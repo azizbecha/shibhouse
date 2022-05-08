@@ -4,7 +4,15 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+export type NewUser = {
+  firstname: any,
+  lastname: any,
+  email: any,
+  username: any,
+  password: any
+}
+
+export type LogUser = {
+  email: any,
+  password: any
 }

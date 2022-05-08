@@ -1,0 +1,77 @@
+import { useRef } from "react"
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
+import { LogUser } from "../interfaces"
+import { signUser } from "../lib/signUser"
+import { toast } from "react-toastify"
+import ProtectedRoute from "../auth/ProtectedRoute"
+
+const Login: React.FC = () => {
+
+    const emailRef = useRef<any>();
+    const passwordRef = useRef<any>();
+
+    const verify = async (e) => {
+        e.preventDefault()
+
+        const userObject: LogUser = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value
+        }
+    
+        try {
+            await signUser(userObject) 
+            toast.success('Logged successfully !', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        } catch (e) {
+            toast.error('Please verify your informations', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+    return (
+        <ProtectedRoute>
+            <Navbar />
+            <div className="relative bg-dark">
+                <div className="container px-6 md:px-12 pb-5 lg:px-7">
+                    <div className="flex items-center flex-wrap px-1 md:px-0">
+                        <div className="relative lg:w-7/12 xl:py-32">
+                            <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
+                            <form onSubmit={verify}>
+                                <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
+                                <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" />
+
+                                <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
+                                <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" />
+
+                                <button type="submit" className="bg-primary w-11/12 mt-5 rounded-lg text-white font-bold py-2">Login</button>
+                                
+                            </form>
+                            <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you are able to use all our features</p>
+                        </div>
+                        <div className="ml-auto lg:w-5/12">
+                            <img src="https://shibatoken.com/images/shib-logo.svg" className="relative w-6/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </ProtectedRoute>
+    )
+}
+
+export default Login

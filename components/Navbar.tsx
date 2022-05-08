@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FaBars, FaTimes, FaHome } from "react-icons/fa";
+import Link from "next/link";
 
 const navigation = [
-    { name: "Dashboard", href: "#", current: true },
-    { name: "Team", href: "#", current: false },
-    { name: "Projects", href: "#", current: false },
-    { name: "Calendar", href: "#", current: false },
+    { name: "Dashboard", href: "/dashboard", current: true },
+    { name: "Rooms", href: "#", current: false },
+    { name: "Profile", href: "#", current: false },
+    { name: "Settings", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -43,26 +44,29 @@ export default function Navbar() {
                                         src="https://shibatoken.com/images/shib-logo.svg"
                                         alt="Workflow"
                                     />
-                                    <h1 className="text-white font-medium text-lg">&nbsp;Shibahouse</h1>
+                                    <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibahouse</Link></h1>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <div className="hidden sm:block sm:ml-6">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <a
+                                            <Link
                                                 key={item.name}
                                                 href={item.href}
-                                                className={classNames(
-                                                item.current
-                                                    ? "bg-primary"
-                                                    : "text-white hover:bg-gray-700 hover:text-white",
-                                                "px-3 py-2 rounded-md text-sm font-medium text-white font-bold text-md"
-                                                )}
-                                                aria-current={item.current ? "page" : undefined}
                                             >
+                                                <span
+                                                className={classNames(
+                                                    item.current
+                                                        ? "bg-primary"
+                                                        : "text-white hover:bg-gray-700 hover:text-white",
+                                                    "px-3 py-2 rounded-md text-sm font-medium text-white font-bold text-md"
+                                                    )}
+                                                    aria-current={item.current ? "page" : undefined}>
+
                                                 {item.name}
-                                            </a>
+                                                </span>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>

@@ -8,7 +8,9 @@ module.exports = {
   theme: {
     colors: {
       primary: '#ed111f',
-      dark: '#363333',
+      secondary: "#f42525",
+      dark: '#1F1E29',
+      darker: '#363333',
       transparent: 'transparent',
       current: 'currentColor',
       black: colors.black,
@@ -18,6 +20,10 @@ module.exports = {
       purple: colors.violet,
       yellow: colors.amber,
       pink: colors.fuchsia,
+    },
+    container: {
+      padding: '2rem',
+      center: true
     },
     extend: {},
   },

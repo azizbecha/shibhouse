@@ -1,14 +1,80 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import React, { useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const IndexPage = () => (
-  <>
-    <Navbar />
-    <h1 style={{fontSize: 100,}}>Shibahouse</h1>
-    <Footer />
-  </>
-)
+import { createUser } from '../lib/createUser'
+import { NewUser } from '../interfaces'
+import { toast } from 'react-toastify'
+
+const IndexPage: React.FC = () => {
+
+    //const [firstname, setFirstname] = useState("");
+
+    const firstnameRef = useRef<any>();
+    const lastnameRef = useRef<any>();
+    const emailRef = useRef<any>();
+    const usernameRef = useRef<any>();
+    const passwordRef = useRef<any>();
+
+    const addUser = (e) => {
+        e.preventDefault();
+
+        const userObject: NewUser = {
+            firstname: firstnameRef.current.value,
+            lastname: lastnameRef.current.value,
+            email: emailRef.current.value,
+            username: usernameRef.current.value,
+            password: passwordRef.current.value
+        }
+
+        if (createUser(userObject)) {
+            toast.success('Joined !', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+
+    return (
+        <>
+            <Navbar />
+            <div className="relative bg-dark">
+                <div className="container m-auto px-6 pt-8 md:px-12 pb-14 lg:px-7">
+                    <div className="flex items-center flex-wrap px-1 md:px-0">
+                        <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
+                            <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Re-taking voice conversations to the moon 🚀</h1>
+                            <form onSubmit={addUser} className="w-full mt-12">
+                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
+                                    <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" />
+                                    <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" />
+                                </div>
+                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
+                                    <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" />
+                                    <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
+                                </div>
+                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
+                                    <input ref={passwordRef} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
+                                </div>
+                                <button type="submit" className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
+                                    <span className="text-white font-semibold md:block">Join now</span>
+                                </button>
+                            </form>
+                            <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p>
+                        </div>
+                        <div className="ml-auto -mb-25 lg:w-4/12">
+                            <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </>
+    )
+}
 
 export default IndexPage
