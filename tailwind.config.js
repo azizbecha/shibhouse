@@ -9,17 +9,20 @@ module.exports = {
     colors: {
       primary: '#ed111f',
       secondary: "#f42525",
-      dark: '#1F1E29',
-      darker: '#363333',
+      dark: '#151A21',
+      darker: '#242C37',
       transparent: 'transparent',
       current: 'currentColor',
       black: colors.black,
       white: colors.white,
-      gray: colors.slate,
-      green: colors.emerald,
+      gray: '#323D4D',
+      green: "#24BE87",
       purple: colors.violet,
       yellow: colors.amber,
       pink: colors.fuchsia,
+    },
+    fontFamily: {
+      inter: 'inter'
     },
     container: {
       padding: '2rem',

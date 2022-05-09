@@ -10,6 +10,8 @@ import { toast } from 'react-toastify'
 
 import AOS from 'aos'
 import "aos/dist/aos.css";
+import Link from 'next/link'
+import ProtectedRoute from '../auth/ProtectedRoute'
 
 const IndexPage: React.FC = () => {
 
@@ -51,12 +53,12 @@ const IndexPage: React.FC = () => {
     }
 
     return (
-        <>
+        <ProtectedRoute>
             <Navbar />
             <div className="relative bg-dark">
-                <div className="container m-auto px-6 pt-8 md:px-12 pb-14 lg:px-7">
+                <div className="container px-6 pt-8 md:px-12 lg:px-7">
                     <div className="flex items-center flex-wrap px-1 md:px-0">
-                        <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
+                        <div className="relative lg:w-6/12 lg:py-10 xl:py-32">
                             <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
                             <form onSubmit={addUser} className="w-full mt-12">
                                 <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
@@ -74,7 +76,8 @@ const IndexPage: React.FC = () => {
                                     <span className="text-white font-semibold md:block">Join now</span>
                                 </button>
                             </form>
-                            <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p>
+                            <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
+                            <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
                         </div>
                         <div className="ml-auto -mb-25 lg:w-4/12" data-aos='flip-right'>
                             <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
@@ -83,7 +86,7 @@ const IndexPage: React.FC = () => {
                 </div>
             </div>
             <Footer />
-        </>
+        </ProtectedRoute>
     )
 }
 

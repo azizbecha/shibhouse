@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaTimes, FaHome } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 
 const navigation = [
     { name: "Dashboard", href: "/dashboard", current: true },
-    { name: "Rooms", href: "#", current: false },
-    { name: "Profile", href: "#", current: false },
-    { name: "Settings", href: "#", current: false },
+    { name: "Rooms", href: "/dashboard", current: false },
+    { name: "Profile", href: "/profile", current: false },
+    { name: "Settings", href: "/settings", current: false },
 ];
 
 function classNames(...classes) {
