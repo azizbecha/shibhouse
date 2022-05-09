@@ -5,6 +5,7 @@ import { LogUser } from "../interfaces"
 import { signUser } from "../lib/signUser"
 import { toast } from "react-toastify"
 import ProtectedRoute from "../auth/ProtectedRoute"
+import Head from "next/head"
 
 const Login: React.FC = () => {
 
@@ -45,6 +46,9 @@ const Login: React.FC = () => {
     }
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Login - Shibhouse</title>
+            </Head>
             <Navbar />
             <div className="relative bg-dark">
                 <div className="container px-6 md:px-12 pb-5 lg:px-7">

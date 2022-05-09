@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
 
@@ -10,8 +13,6 @@ import { toast } from 'react-toastify'
 
 import AOS from 'aos'
 import "aos/dist/aos.css";
-import Link from 'next/link'
-import ProtectedRoute from '../auth/ProtectedRoute'
 
 const IndexPage: React.FC = () => {
 
@@ -54,6 +55,9 @@ const IndexPage: React.FC = () => {
 
     return (
         <ProtectedRoute>
+            <Head>
+                <title>Shibhouse - Re-taking voice conversations to the moon 🚀</title>
+            </Head>
             <Navbar />
             <div className="relative bg-dark">
                 <div className="container px-6 pt-8 md:px-12 lg:px-7">

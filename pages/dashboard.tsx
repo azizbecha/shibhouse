@@ -7,10 +7,14 @@ import { GoClock } from 'react-icons/go'
 import PrivateRoute from "../auth/PrivateRoute"
 import { logOut } from "../lib/signOut"
 import Divider from "../components/Divider"
+import Head from "next/head"
 
 const Dashboard = () => {
     return (
         <PrivateRoute>
+            <Head>
+                <title>Dashboard - Dogehouse</title>
+            </Head>
             <div className="bg-dark text-white">
                 <Navbar />
                     <div className="flex h-screen bg-dark">
