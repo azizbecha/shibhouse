@@ -1,10 +1,11 @@
 import { fireStore } from '../auth/Firebase'
-import { collection, addDoc } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import { NewRoom } from '../interfaces';
 
 const createRoom = async (data: NewRoom) => {
 
-    const docRef = await addDoc(collection(fireStore, "rooms", data.id), {
+    const docRef = await setDoc(doc(fireStore, "rooms", data.id), {
+        id: data.id,
         createdAt: Date.now(),
         createdBy: data.createdBy,
         title: data.title,

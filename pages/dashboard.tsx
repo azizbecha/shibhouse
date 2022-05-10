@@ -16,7 +16,8 @@ import { GoClock } from 'react-icons/go'
 import Divider from "../components/Divider"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
-import getUserData from "../lib/getUserData"
+import getUserData from "../lib/getCurrentUserData"
+import ExportRooms from "../components/ExportRooms"
 
 const Dashboard = () => {
 
@@ -30,8 +31,6 @@ const Dashboard = () => {
     const roomDescriptionRef = useRef<any>();
     const roomPinnedLinkRef = useRef<any>();
     const roomTopicsRef = useRef<any>();
-
-    console.log(userData)
 
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -196,32 +195,7 @@ const Dashboard = () => {
                                                     </button>
                                                 </div>
                                                 <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
-                                                <ul role="list" className="divide-y divide-gray-200">
-                                                    <li className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg">
-                                                        <div className="flex items-center space-x-4">
-                                                            <div className="flex-1 min-w-0">
-                                                                <p className="text-xg font-medium text-gray-900 truncate dark:text-white mb-2 cursor-pointer">
-                                                                    How to start investing
-                                                                </p>
-                                                                <p className="text-sm truncate dark:text-gray-400 mb-6">
-                                                                    Aziz & 2 more speakers.
-                                                                </p>
-                                                                <p className="text-sm mb-4">
-                                                                    <span className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#Finance</span>
-                                                                    <span className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#Crypto</span>
-                                                                    <span className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#Real estates</span>
-                                                                    <span className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#Market</span>
-                                                                </p>
-                                                                <p className="text-sm font-normal flex">
-                                                                    <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started 45 min ago.
-                                                                </p>
-                                                            </div>
-                                                            <div className="inline-flex items-center text-base">
-                                                                12&nbsp;<FaUsers className="text-green" size={20} />
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                <ExportRooms />
                                             </div>
                                         </div>
                                     </main>
