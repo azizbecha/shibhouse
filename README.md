@@ -125,7 +125,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 Aziz Becha - [@azizbechaa](https://twitter.com/azizbechaa) - aziz07becha@gmail.com
 
-Project Link: [https://github.com/azizbechae/shibhouse](https://github.com/azizbechae/shibhouse)
+Project Link: [https://github.com/azizbecha/shibhouse](https://github.com/azizbecha/shibhouse)
 
 [contributors-shield]: https://img.shields.io/github/contributors/azizbecha/shibhouse.svg?style=for-the-badge
 [contributors-url]: https://github.com/azizbecha/shibhouse/graphs/contributors
