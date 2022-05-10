@@ -1,23 +1,75 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
+import Head from "next/head"
+import generateId from "../lib/generateId"
+import PrivateRoute from "../auth/PrivateRoute"
+
+import createRoom from "../lib/createRoom"
+import { NewRoom } from "../interfaces"
+import { logOut } from "../lib/signOut"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
-import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaUsers, FaTimes } from "react-icons/fa"
+import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaUsers } from "react-icons/fa"
 import { GoClock } from 'react-icons/go'
 
-import PrivateRoute from "../auth/PrivateRoute"
-import { logOut } from "../lib/signOut"
 import Divider from "../components/Divider"
-import Head from "next/head"
-import createRoom from "../lib/createRoom"
+import { toast } from "react-toastify"
+import { useRouter } from "next/router"
+import getUserData from "../lib/getUserData"
 
 const Dashboard = () => {
 
+    const router = useRouter();
+
     const [showModal, setShowModal] = useState(false);
 
-    const createNewRoom = async () => {
+    const userData = getUserData()
+
+    const roomTitleRef = useRef<any>();
+    const roomDescriptionRef = useRef<any>();
+    const roomPinnedLinkRef = useRef<any>();
+    const roomTopicsRef = useRef<any>();
+
+    console.log(userData)
+
+    const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const roomId = generateId(10);
+        const data: NewRoom = {
+            id: roomId,
+            createdBy: userData.uid,
+            title: roomTitleRef.current.value,
+            description: roomDescriptionRef.current.value,
+            pinnedLink: roomPinnedLinkRef.current.value,
+            topics: roomTopicsRef.current.value
+        }
         
+        if (roomTitleRef.current.value == "" || roomDescriptionRef.current.value == "" || roomTopicsRef.current.value) {
+            try {
+                createRoom(data);
+                toast.success('Room created successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                router.push(`room/${roomId}`)
+            } catch (e) {
+                toast.error('An error has been occured', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        }
     }
 
     return (
@@ -39,40 +91,41 @@ const Dashboard = () => {
                                         </span>
                                     </div>
                                     {/*body*/}
-                                    <div className="relative p-4 flex-auto bg-gray">
-                                        <div className="my-4 text-slate-500 text-md leading-relaxed">
-                                            <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
-                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                    <form onSubmit={createNewRoom}>
+                                        <div className="relative p-4 flex-auto bg-gray">
+                                            <div className="my-4 text-slate-500 text-md leading-relaxed">
+                                                <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
+                                                <input ref={roomTitleRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" required /><br />
 
-                                            <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
-                                            <textarea className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
+                                                <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
+                                                <textarea ref={roomDescriptionRef} className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
 
-                                            <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
-                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
+                                                <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
 
-                                            <label htmlFor="">Pinned link</label><br />
-                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <label htmlFor="">Pinned link</label><br />
+                                                <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
 
-                                            <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
+                                                <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/*footer*/}
-                                    <div className="flex items-center justify-end bg-gray p-6 border-t border-solid border-slate-200 rounded-b">
-                                        <button
-                                            className="text-red-500 bg-dark font-bold uppercase px-6 py-3 rounded-lg text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={() => setShowModal(false)}
-                                        >
-                                            Close
-                                        </button>
-                                        <button
-                                            className="bg-primary text-white font-bold uppercase text-sm px-6 py-3 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={() => createNewRoom()}
-                                        >
-                                            Create
-                                        </button>
-                                    </div>
+                                        {/*footer*/}
+                                        <div className="flex items-center justify-end bg-gray p-6 border-t border-solid border-slate-200 rounded-b">
+                                            <button
+                                                className="bg-dark font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button"
+                                                onClick={() => setShowModal(false)}
+                                            >
+                                                Close
+                                            </button>
+                                            <button
+                                                className="bg-primary font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit"
+                                            >
+                                                Create
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

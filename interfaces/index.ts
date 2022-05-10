@@ -18,7 +18,8 @@ export type LogUser = {
 }
 
 export type NewRoom = {
-  title: any,
+  id: string,
+  title: string,
   description: any,
   pinnedLink: any,
   topics: any,
