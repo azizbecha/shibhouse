@@ -5,6 +5,7 @@ import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { fireStore } from "../auth/Firebase";
 import TimeAgo from "../lib/timeAgo";
+import Link from "next/link";
 
 const ExportRooms = () => {
 
@@ -30,12 +31,14 @@ const ExportRooms = () => {
                 data.map((room, index) => {
                     const topics = room.topics.split(" ")
                     return (
-                        <li className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg">
+                        <li key={index} className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-xg font-medium text-gray-900 truncate dark:text-white mb-2 cursor-pointer">
-                                        {room.title}
-                                    </p>
+                                    <Link href={`room/${room.id}`}>
+                                        <p className="text-xg font-medium text-gray-900 truncate dark:text-white mb-2 cursor-pointer">
+                                            {room.title}
+                                        </p>
+                                    </Link>
                                     {/*<p className="text-sm truncate dark:text-gray-400 mb-6">
                                         Aziz & 2 more speakers.
                                     </p>*/}
