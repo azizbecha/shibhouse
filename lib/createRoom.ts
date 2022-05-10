@@ -5,7 +5,7 @@ import { NewRoom } from '../interfaces';
 const createRoom = async (data: NewRoom) => {
 
     const docRef = await addDoc(collection(fireStore, "rooms", data.id), {
-        createdAt: new Date(),
+        createdAt: Date.now(),
         createdBy: data.createdBy,
         title: data.title,
         description: data.description,
