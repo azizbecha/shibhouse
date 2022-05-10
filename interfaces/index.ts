@@ -16,3 +16,11 @@ export type LogUser = {
   email: any,
   password: any
 }
+
+export type NewRoom = {
+  title: any,
+  description: any,
+  pinnedLink: any,
+  topics: any,
+  createdBy: any
+}

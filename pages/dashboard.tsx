@@ -1,21 +1,84 @@
+import { useState } from "react"
+
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
-import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaUsers } from "react-icons/fa"
+import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaUsers, FaTimes } from "react-icons/fa"
 import { GoClock } from 'react-icons/go'
 
 import PrivateRoute from "../auth/PrivateRoute"
 import { logOut } from "../lib/signOut"
 import Divider from "../components/Divider"
 import Head from "next/head"
+import createRoom from "../lib/createRoom"
 
 const Dashboard = () => {
+
+    const [showModal, setShowModal] = useState(false);
+
+    const createNewRoom = async () => {
+        
+    }
+
     return (
         <PrivateRoute>
             <Head>
                 <title>Dashboard - Dogehouse</title>
             </Head>
             <div className="bg-dark text-white">
+                {showModal ? (
+                    <>
+                        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                            {/*content*/}
+                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                    {/*header*/}
+                                    <div className="flex items-start justify-between bg-gray p-5 border-b border-solid border-slate-200 rounded-t">
+                                        <span className="text-2xl font-semibold">
+                                            Create room
+                                        </span>
+                                    </div>
+                                    {/*body*/}
+                                    <div className="relative p-4 flex-auto bg-gray">
+                                        <div className="my-4 text-slate-500 text-md leading-relaxed">
+                                            <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
+                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+
+                                            <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
+                                            <textarea className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
+
+                                            <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
+                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+
+                                            <label htmlFor="">Pinned link</label><br />
+                                            <input type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+
+                                            <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
+                                        </div>
+                                    </div>
+                                    {/*footer*/}
+                                    <div className="flex items-center justify-end bg-gray p-6 border-t border-solid border-slate-200 rounded-b">
+                                        <button
+                                            className="text-red-500 bg-dark font-bold uppercase px-6 py-3 rounded-lg text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={() => setShowModal(false)}
+                                        >
+                                            Close
+                                        </button>
+                                        <button
+                                            className="bg-primary text-white font-bold uppercase text-sm px-6 py-3 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={() => createNewRoom()}
+                                        >
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null}
                 <Navbar />
                     <div className="flex h-screen bg-dark">
                         <div className="w-full mx-5 flex align-center justify-center mb-10">
@@ -68,7 +131,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white font-bold text-md" type="button">Create room</button>
+                                                            <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white font-bold text-md" type="button">Create room</button>
                                                         </div>
                                                     </div>
                                                 </div>
