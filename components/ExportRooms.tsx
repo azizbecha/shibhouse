@@ -4,6 +4,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { fireStore } from "../auth/Firebase";
+import TimeAgo from "../lib/timeAgo";
 
 const ExportRooms = () => {
 
@@ -48,7 +49,7 @@ const ExportRooms = () => {
                                         }
                                     </p>
                                     <p className="text-sm font-normal flex">
-                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started 45 min ago.
+                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started {TimeAgo(room.createdAt)}.
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base">
