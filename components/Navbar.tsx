@@ -1,7 +1,8 @@
 import { Fragment } from "react";
+import Link from "next/link";
+
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import Link from "next/link";
 
 const navigation = [
     { name: "Dashboard", href: "/dashboard", current: true },
@@ -44,7 +45,7 @@ export default function Navbar() {
                                         src="https://shibatoken.com/images/shib-logo.svg"
                                         alt="Workflow"
                                     />
-                                    <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibahouse</Link></h1>
+                                    <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibhouse</Link></h1>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
