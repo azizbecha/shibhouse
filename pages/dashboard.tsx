@@ -2,10 +2,14 @@ import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/router"
 import Head from "next/head"
 
+import { collection, query, getDocs } from "firebase/firestore";
+
+import { fireStore } from "../auth/Firebase";
 import generateId from "../lib/generateId"
 import PrivateRoute from "../auth/PrivateRoute"
 
 import getCurrentUserData from "../lib/getCurrentUserData"
+import getUserData from "../lib/getUserData"
 import createRoom from "../lib/createRoom"
 import { logOut } from "../lib/signOut"
 
@@ -19,11 +23,11 @@ import Divider from "../components/Divider"
 import { toast } from "react-toastify"
 
 import { FaHome, FaCircle, FaSearch, FaSignOutAlt } from "react-icons/fa"
-import getUserData from "../lib/getUserData"
 
 const Dashboard = () => {
 
     const router = useRouter();
+    const [users, setUsers] = useState<any>([])
 
     const [showModal, setShowModal] = useState(false);
 
@@ -41,7 +45,19 @@ const Dashboard = () => {
                 setUserData(await getUserData(user.uid))
             }
         }
-        fetch()
+        const getUsers = async () => {
+            const q = query(collection(fireStore, "users"));
+
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                const users = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setUsers(users);
+            });
+        }
+
+        fetch();
+        getUsers();
     }, [])
 
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -83,7 +99,7 @@ const Dashboard = () => {
         }
     }
 
-    //console.log(userData)
+    console.log(users)
 
     return (
         <PrivateRoute>
@@ -160,7 +176,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">People</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-bold text-md">Discover</button>
+                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-normal text-md">Discover</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -169,7 +185,7 @@ const Dashboard = () => {
                                                     <li className="py-3 sm:py-4 border-b">
                                                         <div className="flex items-center space-x-4">
                                                             <div className="flex-shrink-0">
-                                                                <img className="w-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/63454940?s=400&u=e08f5651d12dd6af2601c9510db4991b73049942&v=4" alt="Neil image" />
+                                                                <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
                                                             </div>
                                                             <div className="flex-1 min-w-0">
                                                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -184,6 +200,32 @@ const Dashboard = () => {
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    {
+                                                        users.map((user) => {
+                                                            if (user.id != userData.id) {
+                                                                return (
+                                                                    <li className="py-3 sm:py-4 border-b">
+                                                                        <div className="flex items-center space-x-4">
+                                                                            <div className="flex-shrink-0">
+                                                                                <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
+                                                                            </div>
+                                                                            <div className="flex-1 min-w-0">
+                                                                                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                                    {user.firstname} {user.lastname}
+                                                                                </p>
+                                                                                <p className="text-sm text-white truncate dark:text-gray-400">
+                                                                                    @{user.username}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div className="inline-flex text-green items-center text-base">
+                                                                                <FaCircle className="text-green" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
                                                 </ul>
                                             </div>
                                         </div>
@@ -197,7 +239,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white font-bold text-md" type="button">Create room</button>
+                                                            <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md" type="button">Create room</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -223,7 +265,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">My profile</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white font-bold text-md">Settings</button>
+                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md">Settings</button>
                                                         </div>
                                                     </div>
                                                 </div>
