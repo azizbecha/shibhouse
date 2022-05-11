@@ -1,9 +1,10 @@
-import { useContext } from "react"
-import { AuthContext } from "../auth/AuthContext"
+import { getAuth } from "firebase/auth";
 
-const getUserData = () => {
-    const { currentUser } = useContext(AuthContext);
-    return currentUser
+const getCurrentUserData = () => {
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+    return user
 }
 
-export default getUserData
+export default getCurrentUserData

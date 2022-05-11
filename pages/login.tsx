@@ -24,7 +24,7 @@ const Login: React.FC = () => {
             await signUser(userObject) 
             toast.success('Logged successfully !', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
         } catch (e) {
             toast.error('Please verify your informations', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

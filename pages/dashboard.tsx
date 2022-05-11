@@ -1,23 +1,25 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/router"
 import Head from "next/head"
+
 import generateId from "../lib/generateId"
 import PrivateRoute from "../auth/PrivateRoute"
 
+import getCurrentUserData from "../lib/getCurrentUserData"
 import createRoom from "../lib/createRoom"
-import { NewRoom } from "../interfaces"
 import { logOut } from "../lib/signOut"
 
+import { NewRoom } from "../interfaces"
+
+import ExportRooms from "../components/ExportRooms"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
-import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaUsers } from "react-icons/fa"
-import { GoClock } from 'react-icons/go'
-
 import Divider from "../components/Divider"
 import { toast } from "react-toastify"
-import { useRouter } from "next/router"
-import getUserData from "../lib/getCurrentUserData"
-import ExportRooms from "../components/ExportRooms"
+
+import { FaHome, FaCircle, FaSearch, FaSignOutAlt } from "react-icons/fa"
+import getUserData from "../lib/getUserData"
 
 const Dashboard = () => {
 
@@ -25,19 +27,29 @@ const Dashboard = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const userData = getUserData()
-
+    const [userData, setUserData] = useState<any>([])
+    
     const roomTitleRef = useRef<any>();
     const roomDescriptionRef = useRef<any>();
     const roomPinnedLinkRef = useRef<any>();
     const roomTopicsRef = useRef<any>();
+    
+    useEffect(() => {
+        const fetch = async () => {
+            const user: any = await getCurrentUserData();
+            if (user !== null) {
+                setUserData(await getUserData(user.uid))
+            }
+        }
+        fetch()
+    }, [])
 
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const roomId = generateId(10);
         const data: NewRoom = {
             id: roomId,
-            createdBy: userData.uid,
+            createdBy: userData.id,
             title: roomTitleRef.current.value,
             description: roomDescriptionRef.current.value,
             pinnedLink: roomPinnedLinkRef.current.value,
@@ -46,10 +58,10 @@ const Dashboard = () => {
         
         if (roomTitleRef.current.value == "" || roomDescriptionRef.current.value == "" || roomTopicsRef.current.value) {
             try {
-                createRoom(data);
+                await createRoom(data);
                 toast.success('Room created successfully', {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 4000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -60,7 +72,7 @@ const Dashboard = () => {
             } catch (e) {
                 toast.error('An error has been occured', {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 4000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -71,10 +83,12 @@ const Dashboard = () => {
         }
     }
 
+    //console.log(userData)
+
     return (
         <PrivateRoute>
             <Head>
-                <title>Dashboard - Dogehouse</title>
+                <title>Dashboard - Shibhouse</title>
             </Head>
             <div className="bg-dark text-white">
                 {showModal ? (
@@ -146,7 +160,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">People</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white font-bold text-md">Discover</button>
+                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-bold text-md">Discover</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -159,10 +173,10 @@ const Dashboard = () => {
                                                             </div>
                                                             <div className="flex-1 min-w-0">
                                                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                    Aziz Becha
+                                                                    {userData.firstname} {userData.lastname}
                                                                 </p>
-                                                                <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                                    CEO of Shibhouse
+                                                                <p className="text-sm text-white truncate dark:text-gray-400">
+                                                                    @{userData.username}
                                                                 </p>
                                                             </div>
                                                             <div className="inline-flex text-green items-center text-base">
@@ -222,9 +236,9 @@ const Dashboard = () => {
                                                         
                                                     </div>
                                                     <div className="flex flex-col container pb-10">
-                                                        <img className="mb-3 w-24 h-24 rounded-full shadow-lg mx-auto" src="https://avatars.githubusercontent.com/u/63454940?s=400&u=e08f5651d12dd6af2601c9510db4991b73049942&v=4" alt="Bonnie image"/>
-                                                        <h5 className="mb-1 text-lg font-medium text-center">Aziz Becha</h5>
-                                                        <span className="text-sm text-gray-500 dark:text-gray-400 text-center">CEO of Shibhouse</span>
+                                                        <img className="mb-3 w-24 h-24 rounded-full shadow-lg mx-auto" src="https://shibatoken.com/images/shib-logo.svg" alt="Shib icon"/>
+                                                        <h5 className="mb-1 text-lg font-medium text-center">{userData.firstname} {userData.lastname}</h5>
+                                                        <span className="text-sm text-white text-center">@{userData.username}</span>
                                                         <span className="text-sm text-gray-500 dark:text-gray-400 mt-3">A dummy text to see user bio preview bla bla bla some talking goes here.</span>
                                                         <div className="flex space-x-3 mt-3">
                                                             <span className="flex justify-left text-sm font-bold text-white">3.2K&nbsp;<span className="font-normal">followers</span></span>

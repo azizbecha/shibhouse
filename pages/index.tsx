@@ -43,7 +43,7 @@ const IndexPage: React.FC = () => {
         if (createUser(userObject)) {
             toast.success('Joined !', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
         })
         toast.warning('You are already logged in', {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

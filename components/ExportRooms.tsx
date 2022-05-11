@@ -1,11 +1,13 @@
 import { useState } from "react"
-import { collection, query, where, getDocs } from "firebase/firestore";
+import Link from "next/link";
+
+import { collection, query, getDocs } from "firebase/firestore";
+import { fireStore } from "../auth/Firebase";
+
+import TimeAgo from "../lib/timeAgo";
 
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
-import { fireStore } from "../auth/Firebase";
-import TimeAgo from "../lib/timeAgo";
-import Link from "next/link";
 
 const ExportRooms = () => {
 
@@ -15,13 +17,10 @@ const ExportRooms = () => {
     const getRooms = async () => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            const newUserDataArray = querySnapshot.docs
+            const rooms = querySnapshot.docs
             .map((doc) => ({ ...doc.data(), id: doc.id }));
-
-            setData(newUserDataArray);
+            setData(rooms);
         });
-        console.log(data)
     }
 
     getRooms()
