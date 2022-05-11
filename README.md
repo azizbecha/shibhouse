@@ -3,8 +3,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://shibatoken.com/images/shib-logo.svg" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/63454940/167841339-cc915128-5b1e-4ed6-9fae-d4e1e356f8c4.jpg" alt="Logo" width="250" height="250">
   </a>
 
   <h3 align="center">Shibhouse</h3>
@@ -137,3 +138,6 @@ Project Link: [https://github.com/azizbecha/shibhouse](https://github.com/azizbe
 [issues-url]: https://github.com/azizbecha/shibhouse/issues
 [license-shield]: https://img.shields.io/github/license/azizbecha/shibhouse.svg?style=for-the-badge
 [license-url]: https://github.com/azizbecha/shibhouse/blob/master/LICENSE.md
+
+## Thanks
+1. <a href='https://github.com/CortexTN'>@CortexTN</a> for the logo and your improvements.
