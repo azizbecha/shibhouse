@@ -4,8 +4,8 @@
 <br />
 <div align="center">
 
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://user-images.githubusercontent.com/63454940/167841339-cc915128-5b1e-4ed6-9fae-d4e1e356f8c4.jpg" alt="Logo" width="250" height="250">
+  <a href="https://github.com/azizbecha/shibhouse">
+    <img src="https://user-images.githubusercontent.com/63454940/168051960-7da5c959-07f7-4fbb-be91-53e42054cc56.png" alt="Logo" width="130" height="250">
   </a>
 
   <h3 align="center">Shibhouse</h3>
