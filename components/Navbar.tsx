@@ -37,13 +37,13 @@ export default function Navbar() {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-8 w-auto"
-                                        src="https://shibatoken.com/images/shib-logo.svg"
-                                        alt="Workflow"
+                                        src="shibhouse-logo-transparent.png"
+                                        alt="Shibhouse logo"
                                     />
                                     <img
-                                        className="hidden lg:block h-8 w-auto"
-                                        src="https://shibatoken.com/images/shib-logo.svg"
-                                        alt="Workflow"
+                                        className="hidden lg:block h-12 w-7 mr-1 mt-1"
+                                        src="shibhouse-logo-transparent.png"
+                                        alt="Shibhouse logo"
                                     />
                                     <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibhouse</Link></h1>
                                 </div>
