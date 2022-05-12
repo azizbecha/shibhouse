@@ -1,20 +1,22 @@
 import { useState } from "react"
 import Link from "next/link";
 
-import { collection, query, getDocs } from "firebase/firestore";
+import { collection, query, getDocs, doc, getDoc } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
 import TimeAgo from "../lib/timeAgo";
 
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
+import getUserData from "../lib/getUserData";
 
 const ExportRooms = () => {
 
     const [data, setData] = useState([]);
-    const q = query(collection(fireStore, "rooms"));
-
+    const [creatorData, setCreatorData] = useState<any>()
+    
     const getRooms = async () => {
+        const q = query(collection(fireStore, "rooms"));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             const rooms = querySnapshot.docs
@@ -29,6 +31,12 @@ const ExportRooms = () => {
             {
                 data.map((room, index) => {
                     const topics = room.topics.split(" ")
+                    var user: any
+                    const getUsername = async () => {
+                        user = await getUserData(room.createdBy)
+                    }
+                    getUsername()
+                    console.log(user)
                     return (
                         <li key={index} className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg">
                             <div className="flex items-center space-x-4">
@@ -38,9 +46,9 @@ const ExportRooms = () => {
                                             {room.title}
                                         </p>
                                     </Link>
-                                    {/*<p className="text-sm truncate dark:text-gray-400 mb-6">
-                                        Aziz & 2 more speakers.
-                                    </p>*/}
+                                    <p className="text-sm dark:text-gray-400 mb-6">
+                                        {room.description}
+                                    </p>
                                     <p className="text-sm mb-4">
                                         {
                                             topics.map((word) => {
