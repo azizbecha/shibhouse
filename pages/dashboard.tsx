@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/router"
 import Head from "next/head"
+import Link from "next/link";
 
 import { collection, query, getDocs } from "firebase/firestore";
 
@@ -98,8 +99,6 @@ const Dashboard = () => {
             }
         }
     }
-
-    console.log(users)
 
     return (
         <PrivateRoute>
@@ -210,12 +209,14 @@ const Dashboard = () => {
                                                                                 <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
                                                                             </div>
                                                                             <div className="flex-1 min-w-0">
-                                                                                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                                    {user.firstname} {user.lastname}
-                                                                                </p>
-                                                                                <p className="text-sm text-white truncate dark:text-gray-400">
-                                                                                    @{user.username}
-                                                                                </p>
+                                                                                <Link href={`user/${user.username}`}>
+                                                                                    <div className="cursor-pointer">
+                                                                                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                                            {user.firstname} {user.lastname}
+                                                                                        </p>
+                                                                                        <p className="text-sm text-white cursor-pointer">@{user.username}</p>
+                                                                                    </div>
+                                                                                </Link>
                                                                             </div>
                                                                             <div className="inline-flex text-green items-center text-base">
                                                                                 <FaCircle className="text-green" />
