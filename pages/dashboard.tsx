@@ -175,7 +175,7 @@ const Dashboard = () => {
                                                             <h1 className="font-bold text-2xl font-inter">People</h1>
                                                         </div>
                                                         <div className="inline-flex text-green items-end text-base">
-                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-normal text-md">Discover</button>
+                                                            <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-medium text-md">Discover</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,7 +203,7 @@ const Dashboard = () => {
                                                         users.map((user) => {
                                                             if (user.id != userData.id) {
                                                                 return (
-                                                                    <li className="py-3 sm:py-4 border-b" data-aos='fade-left'>
+                                                                    <li className="py-3 sm:py-4 border-b" data-aos='fade-up'>
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
                                                                                 <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />

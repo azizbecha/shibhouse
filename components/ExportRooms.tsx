@@ -38,7 +38,7 @@ const ExportRooms = () => {
                     getUsername()
                     console.log(user)
                     return (
-                        <li key={index} className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg">
+                        <li key={index} className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg" data-aos="zoom-in">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
                                     <Link href={`room/${room.id}`}>
