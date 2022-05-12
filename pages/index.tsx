@@ -11,9 +11,6 @@ import { NewUser } from '../interfaces'
 
 import { toast } from 'react-toastify'
 
-import AOS from 'aos'
-import "aos/dist/aos.css";
-
 const IndexPage: React.FC = () => {
 
     //const [firstname, setFirstname] = useState("");
@@ -23,11 +20,6 @@ const IndexPage: React.FC = () => {
     const emailRef = useRef<any>();
     const usernameRef = useRef<any>();
     const passwordRef = useRef<any>();
-
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    })
 
     const addUser = (e) => {
         e.preventDefault();

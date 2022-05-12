@@ -203,7 +203,7 @@ const Dashboard = () => {
                                                         users.map((user) => {
                                                             if (user.id != userData.id) {
                                                                 return (
-                                                                    <li className="py-3 sm:py-4 border-b">
+                                                                    <li className="py-3 sm:py-4 border-b" data-aos='fade-left'>
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
                                                                                 <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
