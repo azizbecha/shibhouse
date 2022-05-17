@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
 
-    const logoLink = typeof window === 'undefined' ? '' : `${window.location.protocol || ''}//${location.hostname || ''}:${window.location.port || ''}/shibhouse-logo-transparent.png`
+    const logoLink = "https://shibhouse.web.app/shibhouse-logo-transparent.png"
 
     return (
         <Disclosure as="nav" className="bg-dark">

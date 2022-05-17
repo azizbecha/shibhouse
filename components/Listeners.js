@@ -27,11 +27,6 @@ export default function Listeners() {
     onPromotePeerToSpeaker(peer.peer)
   }
 
-  const reactions = useMemo(() => {
-    return recentEvents
-      .filter(({eventName}) => eventName === 'reaction')
-  }, [recentEvents])
-
   return (
     <>
       <div className="grid">
