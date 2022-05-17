@@ -32,7 +32,7 @@ export default function Listeners() {
       <div className="grid">
         <div className="bg-darker rounded-md p-5">
           <h1 className="font-bold text-white text-2xl mb-4">Listeners ({listenersPeers.length})</h1>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-5 gap-5 sm:grid-cols-2">
             { listenersPeers.map(peer => (
               <User
                 key={peer.peer}
