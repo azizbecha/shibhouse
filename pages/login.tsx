@@ -6,11 +6,14 @@ import { signUser } from "../lib/signUser"
 import { toast } from "react-toastify"
 import ProtectedRoute from "../auth/ProtectedRoute"
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 const Login: React.FC = () => {
 
     const emailRef = useRef<any>();
     const passwordRef = useRef<any>();
+
+    const router = useRouter()
 
     const verify = async (e) => {
         e.preventDefault()
@@ -31,6 +34,7 @@ const Login: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
+            router.push("/dashboard")
 
         } catch (e) {
             toast.error('Please verify your informations', {
