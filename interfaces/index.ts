@@ -23,5 +23,6 @@ export type NewRoom = {
   description: any,
   pinnedLink: any,
   topics: any,
-  createdBy: any
+  createdBy: any,
+  speakers: Array<any>
 }

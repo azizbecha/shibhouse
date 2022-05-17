@@ -1,44 +1,51 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link";
 
 import { collection, query, getDocs, doc, getDoc } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
-import TimeAgo from "../lib/timeAgo";
+import ReactTimeAgo from 'react-time-ago'
 
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
-import getUserData from "../lib/getUserData";
-
 const ExportRooms = () => {
 
     const [data, setData] = useState([]);
     const [creatorData, setCreatorData] = useState<any>()
     
-    const getRooms = async () => {
-        const q = query(collection(fireStore, "rooms"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            const rooms = querySnapshot.docs
-            .map((doc) => ({ ...doc.data(), id: doc.id }));
-            setData(rooms);
-        });
-    }
+    useEffect(() => {
+        const getRooms = async () => {
+            const q = query(collection(fireStore, "rooms"));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                const rooms = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setData(rooms);
+            });
+        }
+        getRooms()
+    }, [])
 
-    getRooms()
-    return (
-        <ul role="list" className="divide-y divide-gray-200">
+
+    if (data.length < 1) {
+        return (
+            <div className="bg-dark p-5 rounded-lg">
+                <img src="musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />
+                <h1 className="text-center text-white font-medium">
+                    There are no rooms actually
+                </h1>
+                <p className="text-center text-white font-normal text-sm mt-3 mb-3">
+                    We didn't find any running rooms actually, why not create your own room ?
+                </p>
+            </div>
+        )
+    } else {return (
+        <ul role="list">
             {
                 data.map((room, index) => {
-                    const topics = room.topics.split(" ")
-                    var user: any
-                    const getUsername = async () => {
-                        user = await getUserData(room.createdBy)
-                    }
-                    getUsername()
-                    console.log(user)
+                    const topics = room.topics.split(" ");
                     return (
-                        <li key={index} className="px-5 sm:py-4 border-b-2 bg-gray rounded-t-lg" data-aos="zoom-in">
+                        <li key={index} className="px-5 sm:py-4 border-t-0 border-b-2 border-b-white bg-gray rounded-t-lg mb-5" data-aos="zoom-in">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
                                     <Link href={`room/${room.id}`}>
@@ -59,11 +66,11 @@ const ExportRooms = () => {
                                         }
                                     </p>
                                     <p className="text-sm font-normal flex">
-                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started {TimeAgo(room.createdAt)}.
+                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started&nbsp;{<ReactTimeAgo tooltip={true} date={Number(room.createdAt)} locale="en-US"/>}.
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base">
-                                    12&nbsp;<FaUsers className="text-green" size={20} />
+                                    {room.users}&nbsp;<FaUsers className="text-green" size={20} />
                                 </div>
                             </div>
                         </li>
@@ -71,7 +78,8 @@ const ExportRooms = () => {
                 })
             }
         </ul>
-    )
+    )}
+    
 }
 
 export default ExportRooms

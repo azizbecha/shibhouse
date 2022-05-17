@@ -14,6 +14,9 @@ const createUser = (user: NewUser) => {
             lastname: user.lastname,
             email: user.email,
             username: user.username,
+            followers: 0,
+            following: 0,
+            claps: 0,
             joinDate: new Date()
         });
         

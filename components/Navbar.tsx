@@ -16,6 +16,9 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+
+    const logoLink = typeof window === 'undefined' ? '' : `${window.location.protocol || ''}//${location.hostname || ''}:${window.location.port || ''}/shibhouse-logo-transparent.png`
+
     return (
         <Disclosure as="nav" className="bg-dark">
             {({ open }) => (
@@ -37,12 +40,12 @@ export default function Navbar() {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-8 w-auto"
-                                        src="shibhouse-logo-transparent.png"
+                                        src={logoLink}
                                         alt="Shibhouse logo"
                                     />
                                     <img
                                         className="hidden lg:block h-12 w-7 mr-1 mt-1"
-                                        src="shibhouse-logo-transparent.png"
+                                        src={logoLink}
                                         alt="Shibhouse logo"
                                     />
                                     <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibhouse</Link></h1>
@@ -61,7 +64,7 @@ export default function Navbar() {
                                                     item.current
                                                         ? "bg-primary"
                                                         : "text-white hover:bg-gray-700 hover:text-white",
-                                                    "px-3 py-2 rounded-md text-sm font-medium text-white font-bold text-md"
+                                                    "px-3 py-2 rounded-md text-sm font-medium text-white text-md"
                                                     )}
                                                     aria-current={item.current ? "page" : undefined}>
 

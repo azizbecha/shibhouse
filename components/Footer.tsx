@@ -5,7 +5,7 @@ const Footer = () => {
                 <div className="container align-center">
                     <div className="relative">
                         <p className="absolute left-0 text-white">
-                            <b>SHIBAHOUSE</b>
+                            <b>Shibhouse</b>
                         </p>
 
                         <p className="absolute right-0 text-white">

@@ -1,0 +1,220 @@
+import { useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
+import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
+
+import Speakers from './Speakers'
+import Listeners from './Listeners'
+
+import { Audio } from "react-loader-spinner"
+import ReactTimeAgo from 'react-time-ago'
+
+import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { BsPeopleFill } from 'react-icons/bs'
+import { HiPhoneMissedCall } from 'react-icons/hi'
+import { IoMdChatboxes } from 'react-icons/io'
+import { GoClock } from "react-icons/go"
+import { FiAlertTriangle } from 'react-icons/fi'
+import { AiFillPushpin } from "react-icons/ai"
+
+import { doc, deleteDoc } from "firebase/firestore";
+import { fireStore } from '../auth/Firebase'
+import { toast } from 'react-toastify'
+
+export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) {
+
+  return (
+    <StreamContextProvider>
+      <PeerContextProvider initialContext={{
+        isHost,
+        roomId,
+        user: {
+          name: userName,
+        },
+      }}>
+        <Main user={{
+          name: userName,
+        }} room={{
+          title: roomName,
+          description: roomDescription,
+          pinnedLink: pinnedLink,
+          topics: topics,
+          createdAt: createdAt,
+          createdBy: createdBy
+        }} />
+      </PeerContextProvider>
+    </StreamContextProvider>
+  )
+}
+
+function Main ({ user, room }) {
+  const router = useRouter()
+
+  if (!user.name) {
+    //router.push('/')
+    console.log('no username provided')
+  }
+
+  const {
+    muteToggle,
+    micMuted,
+    startMicStream,
+  } = useContext<any>(StreamContext)
+
+  const {
+    state: {
+      roomId,
+      peer,
+      peerId,
+      peerStatus,
+      connToHost,
+      connRole,
+      roomMetadata,
+      isHost,
+      connectedPeers,
+      peersOnRoom,
+      peerList,
+    },
+    streams: {
+      incomingStreams,
+      outgoingStreams,
+    },
+    actions: {
+      onPromotePeerToSpeaker,
+      onDemotePeerToListener,
+      sendMessageToHost,
+      // reconnectToHost,
+    }
+  } = useContext<any>(PeerContext)
+
+  useEffect(() => {
+    if (!isHost) return
+    startMicStream()
+  }, [isHost])
+  
+  //const shareLink = typeof window === 'undefined' ? '' : `${window.location.protocol || ''}//${window.location.host || ''}/room/${roomId}`
+
+  async function onLeave() {
+    if (isHost) {
+      const agree =  confirm('Are you sure you want to close the room ?')
+      if (!agree) return
+      if (agree) {
+        await deleteDoc(doc(fireStore, "rooms", roomId));
+        toast.success('Room deleted', {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+    if (connToHost) connToHost.close()
+    if (connectedPeers) {
+      connectedPeers.forEach(conn => {
+        conn.close()
+      })
+    }
+    if (outgoingStreams) {
+      outgoingStreams.forEach(conn => {
+        conn.close()
+      })
+    }
+    if (incomingStreams) {
+      incomingStreams.forEach(conn => {
+        conn.call.close()
+      })
+    }
+
+    router.push('/dashboard')
+  }
+
+  if (peerStatus === 'error') {
+    return (
+      <div className="bg-dark w-full flex items-center justify-center">
+        <h1 className="text-white text-center text-3xl container">
+          An error has been occured
+        </h1>
+      </div>
+    )
+  }
+
+  const topics = room.topics.split(" ")
+
+  return (
+    <>
+      <div className="bg-dark w-full flex items-center justify-center">
+        <div className="bg-gray-800 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+          <div className="bg-dark px-2 lg:px-4 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
+            <nav className="flex items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
+              {(isHost || connRole === 'speaker') && (
+                <span style={{marginLeft:10}} onClick={muteToggle}>
+                  <button className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover">
+                    { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
+                  </button>
+                </span>
+              )}
+              <button className="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md">
+                <FaHeadphones size={18} onClick={() => {
+                  // deafen function will be added later
+                  var vid:any = document.getElementsByTagName("audio");
+                  vid.muted = true;
+                }} />
+              </button>
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+                <FaUserPlus size={18} />
+              </a>
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+                <IoMdChatboxes size={20} />
+              </a>
+              <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover">
+                <HiPhoneMissedCall size={20} />
+              </button>
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+                <FaCog size={20} />
+              </a>
+            </nav>
+          </div>
+          <div className="flex-1 px-2 sm:px-0 w-100">
+            <div className="flex justify-between items-center">
+              <h3 className="text-3xl font-bold text-white inline-flex items-center"><Audio color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span></h3>
+              <div className="flex-row">
+                {
+                  room.pinnedLink !== "" ? (
+                    <>
+                      <h4 className="text-sm font-normal text-white flex"><AiFillPushpin size={20} className="" />&nbsp; <a href={room.pinnedLink} target="_blank" >{room.pinnedLink}</a> </h4>
+                    </>
+                  ) : null
+                }
+                <h4 className="text-sm font-normal text-white flex mt-2"><FaMapMarkerAlt size={14} className="mt-1" />&nbsp; The moon</h4>
+              </div>
+            </div>
+            
+            <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
+            <h4 className="text-lg font-normal text-white mt-3">{
+              topics.map((topic, index) => {
+                return (
+                  <span className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
+                )
+              })
+            }</h4>
+            <h5 className="text-md font-normal text-white mt-3 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo tooltip={true} date={Number(room.createdAt)} locale="en-US"/>}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
+            
+            <div className="bg-darker mt-10 mb-5 rounded-md p-5">
+              <Speakers />
+            </div>
+
+            <div className="bg-darker mb-10 rounded-md p-5">
+              <Listeners />
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

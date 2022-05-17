@@ -48,7 +48,21 @@ const IndexPage: React.FC = () => {
     return (
         <ProtectedRoute>
             <Head>
-                <title>Shibhouse - Re-taking voice conversations to the moon 🚀</title>
+                <title>Shibhouse</title>
+                <meta name="description" content="Re-taking voice conversations to the moon 🚀" />
+                <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://shibhouse.web.app/" />
+                <meta property="og:title" content="Shibhouse" />
+                <meta property="og:description" content="Re-taking voice conversations to the moon 🚀" />
+                <meta property="og:image" content="cover.png" />
+
+                <meta property="twitter:card" content="cover.png" />
+                <meta property="twitter:url" content="https://shibhouse.web.app/" />
+                <meta property="twitter:title" content="Shibhouse" />
+                <meta property="twitter:description" content="Re-taking voice conversations to the moon 🚀" />
+                <meta property="twitter:image" content="cover.png"></meta>
             </Head>
             <Navbar />
             <div className="relative bg-dark">

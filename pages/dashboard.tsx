@@ -42,9 +42,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetch = async () => {
             const user: any = await getCurrentUserData();
-            if (user !== null) {
-                setUserData(await getUserData(user.uid))
-            }
+            setUserData(await getUserData(user.uid))
         }
         const getUsers = async () => {
             const q = query(collection(fireStore, "users"));
@@ -66,14 +64,15 @@ const Dashboard = () => {
         const roomId = generateId(10);
         const data: NewRoom = {
             id: roomId,
-            createdBy: userData.id,
+            createdBy: userData.username,
             title: roomTitleRef.current.value,
             description: roomDescriptionRef.current.value,
             pinnedLink: roomPinnedLinkRef.current.value,
-            topics: roomTopicsRef.current.value
+            topics: roomTopicsRef.current.value,
+            speakers: [userData.username]
         }
         
-        if (roomTitleRef.current.value == "" || roomDescriptionRef.current.value == "" || roomTopicsRef.current.value) {
+        if (roomTitleRef.current.value !== "" && roomDescriptionRef.current.value !== "" && roomTopicsRef.current.value !== "") {
             try {
                 await createRoom(data);
                 toast.success('Room created successfully', {
@@ -85,7 +84,8 @@ const Dashboard = () => {
                     draggable: true,
                     progress: undefined,
                 });
-                router.push(`room/${roomId}`)
+
+                router.push(`/room/${roomId}`)
             } catch (e) {
                 toast.error('An error has been occured', {
                     position: "top-center",
@@ -108,7 +108,7 @@ const Dashboard = () => {
             <div className="bg-dark text-white">
                 {showModal ? (
                     <>
-                        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div data-aos='zoom-in' className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                             <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             {/*content*/}
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -239,8 +239,8 @@ const Dashboard = () => {
                                                         <div className="flex-1 min-w-0">
                                                             <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                         </div>
-                                                        <div className="inline-flex text-green items-end text-base">
-                                                            <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md" type="button">Create room</button>
+                                                        <div className="inline-flex items-end text-base">
+                                                            <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-secondary hover:shadow" type="button">Create room</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,7 +273,7 @@ const Dashboard = () => {
                                                 <Divider />
                                                 <div className="max-w-sm bg-gray rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                                                     <div className="flex justify-end px-4 pt-4">
-                                                        <button onClick={logOut} className="hidden sm:inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                                                        <button onClick={logOut} className="hidden sm:inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                                                             <FaSignOutAlt />
                                                         </button>
                                                         
@@ -284,9 +284,9 @@ const Dashboard = () => {
                                                         <span className="text-sm text-white text-center">@{userData.username}</span>
                                                         <span className="text-sm text-gray-500 dark:text-gray-400 mt-3">A dummy text to see user bio preview bla bla bla some talking goes here.</span>
                                                         <div className="flex space-x-3 mt-3">
-                                                            <span className="flex justify-left text-sm font-bold text-white">3.2K&nbsp;<span className="font-normal">followers</span></span>
-                                                            <span className="flex justify-left text-sm font-bold text-white">20&nbsp;<span className="font-normal">following</span></span>
-                                                            <span className="flex justify-left text-sm font-bold text-white">45&nbsp;<span className="font-normal">claps</span></span>
+                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.followers}&nbsp;<span className="font-normal">followers</span></span>
+                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.following}&nbsp;<span className="font-normal">following</span></span>
+                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.claps}&nbsp;<span className="font-normal">claps</span></span>
                                                         </div>
                                                         <div className="flex mt-4 space-x-3 lg:mt-6">
                                                             <a href="#" className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit profile</a>

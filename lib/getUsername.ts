@@ -1,17 +1,11 @@
 import { fireStore } from "../auth/Firebase";
 import { getDoc, doc } from "firebase/firestore";
 
-const getUserData = async (userID) => {
+const getUsername = async (userID) => {
 
-    var data = {}
     const docRef = doc(fireStore, "users", userID);
     const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        data = docSnap.data();
-    }
-
-    return data
+    return docSnap.data().username
 }
 
-export default getUserData
+export default getUsername
