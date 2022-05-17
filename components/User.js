@@ -24,9 +24,9 @@ export default function User ({ host, onClick, muted, me, stream, name, highligh
             {name[0].toUpperCase()}{name[1].toUpperCase()}
           </div>
           <h1 className="mt-4 text-white text-center font-bold">
-            {name}
+            {name} {me && '(You)'}
           </h1>
-          <div className='flex space-x-4 mt-2'>
+          <div className='flex space-x-4 mt-3'>
 
             {host ? <AiFillHome /> : <FaHeadphones />}
             
