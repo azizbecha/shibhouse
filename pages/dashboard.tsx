@@ -3,6 +3,8 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link";
 
+import randomColor from 'randomcolor'
+
 import { collection, query, getDocs } from "firebase/firestore";
 
 import { fireStore } from "../auth/Firebase";
@@ -32,7 +34,7 @@ const Dashboard = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const [userData, setUserData] = useState<any>([])
+    const [userData, setUserData] = useState<any>({firstname: '', lastname: ''}) // adding default values to prevent showing undefined value error
     
     const roomTitleRef = useRef<any>();
     const roomDescriptionRef = useRef<any>();
@@ -99,6 +101,8 @@ const Dashboard = () => {
             }
         }
     }
+
+    const myAvatarColor = randomColor({luminosity: 'dark'})
 
     return (
         <PrivateRoute>
@@ -183,8 +187,8 @@ const Dashboard = () => {
                                                 <ul role="list" className="divide-y divide-gray-200">
                                                     <li className="py-3 sm:py-4 border-b">
                                                         <div className="flex items-center space-x-4">
-                                                            <div className="flex-shrink-0">
-                                                                <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
+                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: myAvatarColor}}>
+                                                                {userData.firstname[0]}{userData.lastname[0]}
                                                             </div>
                                                             <div className="flex-1 min-w-0">
                                                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -206,7 +210,10 @@ const Dashboard = () => {
                                                                     <li className="py-3 sm:py-4 border-b" data-aos='fade-up'>
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
-                                                                                <img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />
+                                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+                                                                                    {user.firstname[0]}{user.lastname[0]}
+                                                                                </div>
+                                                                                {/*<img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />*/}
                                                                             </div>
                                                                             <div className="flex-1 min-w-0">
                                                                                 <Link href={`user/${user.username}`}>
@@ -279,7 +286,9 @@ const Dashboard = () => {
                                                         
                                                     </div>
                                                     <div className="flex flex-col container pb-10">
-                                                        <img className="mb-3 w-24 h-24 rounded-full shadow-lg mx-auto" src="https://shibatoken.com/images/shib-logo.svg" alt="Shib icon"/>
+                                                        <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto" style={{backgroundColor: myAvatarColor}}>
+                                                            {userData.firstname[0]}{userData.lastname[0]}
+                                                        </div>
                                                         <h5 className="mb-1 text-lg font-medium text-center">{userData.firstname} {userData.lastname}</h5>
                                                         <span className="text-sm text-white text-center">@{userData.username}</span>
                                                         <span className="text-sm text-gray-500 dark:text-gray-400 mt-3">A dummy text to see user bio preview bla bla bla some talking goes here.</span>

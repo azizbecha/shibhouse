@@ -1645,6 +1645,11 @@
   dependencies:
     "performance-now" "^2.1.0"
 
+"randomcolor@^0.6.2":
+  "integrity" "sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A=="
+  "resolved" "https://registry.npmjs.org/randomcolor/-/randomcolor-0.6.2.tgz"
+  "version" "0.6.2"
+
 "react-dom@^16 || ^17 || ^18", "react-dom@^17.0.2", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@>= 16.8.0", "react-dom@>=0.16.8", "react-dom@>=16":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
