@@ -70,7 +70,7 @@ export default function Speakers() {
     <>
       <div className="bg-darker my-0 rounded-md p-5">
         <h1 className="font-bold text-white text-2xl mb-4">Speakers ({speakers.length})</h1>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-5 gap-5 sm:grid-cols-2">
             {speakers.map(speaker => (
               <User
                 key={speaker?.peer}
