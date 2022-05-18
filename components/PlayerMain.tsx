@@ -7,7 +7,7 @@ import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 import Speakers from './Speakers'
 import Listeners from './Listeners'
 
-import { Audio } from "react-loader-spinner"
+import { Audio as AudioLoader } from "react-loader-spinner"
 import ReactTimeAgo from 'react-time-ago'
 
 import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
@@ -145,6 +145,12 @@ function Main ({ user, room }) {
 
   const topics = room.topics.split(" ")
 
+  let muteAudio = new Audio("/mute.wav")
+  let unmuteAudio = new Audio("/unmute.wav")
+
+  const playMuteAudio = () => {
+    micMuted ? muteAudio.play() : unmuteAudio.play()
+  }
 
   return (
     <>
@@ -153,8 +159,8 @@ function Main ({ user, room }) {
           <div className="bg-dark px-2 lg:px-4 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
             <nav className="flex items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
               {(isHost || connRole === 'speaker') && (
-                <span onClick={muteToggle} className="mb-1">
-                  <button className={`p-4 inline-flex justify-center rounded-full hover:bg-gray/50 hover:bg-gray-800 ${micMuted ? 'text-white bg-primary rounded-full': 'text-white/50' } smooth-hover`}>
+                <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
+                  <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full': 'text-white/50 hover:bg-gray/50' } smooth-hover`}>
                     { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                   </button>
                 </span>
@@ -184,7 +190,7 @@ function Main ({ user, room }) {
           </div>
           <div className="flex-1 px-2 sm:px-0 w-100">
             <div className="flex justify-between items-center">
-              <h3 className="text-3xl font-bold text-white inline-flex items-center"><Audio color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span></h3>
+              <h3 className="text-3xl font-bold text-white inline-flex items-center"><AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span></h3>
               <div className="flex-row">
                 {
                   room.pinnedLink !== "" ? (
