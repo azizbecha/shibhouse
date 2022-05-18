@@ -33,7 +33,7 @@ const ExportRooms = () => {
             });
         }
         //getRooms()
-    })
+    }, [data])
 
 
     if (data.length < 1) {
