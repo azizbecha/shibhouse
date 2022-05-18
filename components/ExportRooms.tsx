@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link";
 
-import { collection, query, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, query, getDocs, onSnapshot, orderBy } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
 import ReactTimeAgo from 'react-time-ago'
@@ -14,6 +14,15 @@ const ExportRooms = () => {
     const [creatorData, setCreatorData] = useState<any>()
     
     useEffect(() => {
+        const q = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const rooms = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setData(rooms);
+            });
+        });
+        //////////////
         const getRooms = async () => {
             const q = query(collection(fireStore, "rooms"));
             const querySnapshot = await getDocs(q);
@@ -23,8 +32,8 @@ const ExportRooms = () => {
                 setData(rooms);
             });
         }
-        getRooms()
-    }, [])
+        //getRooms()
+    })
 
 
     if (data.length < 1) {
