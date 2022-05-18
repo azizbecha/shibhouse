@@ -4,7 +4,7 @@ import { auth } from '../auth/Firebase'
 
 const signUser = async (user: LogUser) => {
     
-    return await signInWithEmailAndPassword(auth, user.email, user.password)
+    return signInWithEmailAndPassword(auth, user.email, user.password)
     
 }
 

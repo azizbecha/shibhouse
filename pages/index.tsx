@@ -13,8 +13,6 @@ import { toast } from 'react-toastify'
 
 const IndexPage: React.FC = () => {
 
-    //const [firstname, setFirstname] = useState("");
-
     const firstnameRef = useRef<any>();
     const lastnameRef = useRef<any>();
     const emailRef = useRef<any>();

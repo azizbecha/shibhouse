@@ -49,7 +49,7 @@ const Login: React.FC = () => {
         }
     }
     return (
-        <>
+        <ProtectedRoute>
             <Head>
                 <title>Login - Shibhouse</title>
             </Head>
@@ -78,7 +78,7 @@ const Login: React.FC = () => {
                 </div>
             </div>
             <Footer />
-        </>
+        </ProtectedRoute>
     )
 }
 

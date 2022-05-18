@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import randomColor from 'randomcolor'
 
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { collection, query, getDocs } from "firebase/firestore";
 
 import { fireStore } from "../auth/Firebase";
@@ -43,8 +44,19 @@ const Dashboard = () => {
     
     useEffect(() => {
         const fetch = async () => {
-            const user: any = await getCurrentUserData();
-            setUserData(await getUserData(user.uid))
+            const auth = getAuth();
+            onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                setUserData(await getUserData(uid))
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+            });
         }
         const getUsers = async () => {
             const q = query(collection(fireStore, "users"));
@@ -213,7 +225,6 @@ const Dashboard = () => {
                                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
                                                                                     {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                                                 </div>
-                                                                                {/*<img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />*/}
                                                                             </div>
                                                                             <div className="flex-1 min-w-0">
                                                                                 <Link href={`user/${user.username}`}>
