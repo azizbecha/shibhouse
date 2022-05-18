@@ -153,7 +153,7 @@ function Main ({ user, room }) {
           <div className="bg-dark px-2 lg:px-4 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
             <nav className="flex items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
               {(isHost || connRole === 'speaker') && (
-                <span onClick={muteToggle}>
+                <span onClick={muteToggle} className="mb-1">
                   <button className={`p-4 inline-flex justify-center rounded-full hover:bg-gray/50 hover:bg-gray-800 ${micMuted ? 'text-white bg-primary rounded-full': 'text-white/50' } smooth-hover`}>
                     { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                   </button>
@@ -165,19 +165,19 @@ function Main ({ user, room }) {
                   vid.muted = true;
                   setDeafen(!deafen)
                   
-                }} className={`text-white/50 p-4 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
+                }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                 <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
               </button>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
+              <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <FaUserPlus size={18} />
               </a>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
+              <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <IoMdChatboxes size={20} />
               </a>
-              <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+              <button onClick={onLeave} className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                 <HiPhoneMissedCall size={20} />
               </button>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
+              <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <FaCog size={20} />
               </a>
             </nav>
