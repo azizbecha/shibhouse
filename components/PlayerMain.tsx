@@ -7,6 +7,7 @@ import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 import Speakers from './Speakers'
 import Listeners from './Listeners'
 
+import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
 import ReactTimeAgo from 'react-time-ago'
 
@@ -19,7 +20,6 @@ import { AiFillPushpin } from "react-icons/ai"
 
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
-import { toast } from 'react-toastify'
 
 export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) {
 
@@ -94,8 +94,6 @@ function Main ({ user, room }) {
     startMicStream()
   }, [isHost])
   
-  //const shareLink = typeof window === 'undefined' ? '' : `${window.location.protocol || ''}//${window.location.host || ''}/room/${roomId}`
-
   async function onLeave() {
     if (isHost) {
       const agree =  confirm('Are you sure you want to close the room ?')
@@ -148,8 +146,15 @@ function Main ({ user, room }) {
   let muteAudio = new Audio("/mute.wav")
   let unmuteAudio = new Audio("/unmute.wav")
 
+  let deafenAudio = new Audio("/deafen.wav")
+  let undeafenAudio = new Audio("/undeafen.wav")
+
   const playMuteAudio = () => {
     micMuted ? muteAudio.play() : unmuteAudio.play()
+  }
+
+  const playDeafenAudio = () => {
+    deafen ? deafenAudio.play() : undeafenAudio.play()
   }
 
   return (
@@ -166,11 +171,8 @@ function Main ({ user, room }) {
                 </span>
               )}
               <button onClick={() => {
-                  var vid:any = document.getElementsByTagName("audio");
-                  console.log(vid)
-                  vid.muted = true;
+                  playDeafenAudio()
                   setDeafen(!deafen)
-                  
                 }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                 <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
               </button>

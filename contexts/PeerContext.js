@@ -230,6 +230,7 @@ const PeerContextProvider = ({ children, initialContext }) => {
 
     // This is only for Host
     peer.on('connection', (conn) => {
+
       console.log(`PeerContext::Incoming peer connection ${conn.peer}`)
 
       conn.on('data', (data) => {
@@ -262,7 +263,6 @@ const PeerContextProvider = ({ children, initialContext }) => {
 
     peer.on('call', call => {
       console.log('Received call')
-
       call.on('close', (e) => { console.log('Close call',e); onSpeakerClosesStream(call, e)})
       call.on('error', (e) => { console.log('Error call',e); onSpeakerClosesStream(call, e)})
       // Connected Streams (each call will be stored here)
@@ -273,7 +273,7 @@ const PeerContextProvider = ({ children, initialContext }) => {
         const audioObj = new Audio()
         audioObj.srcObject = audioStream
         audioObj.play()
-
+        
         // const incomingStreams = {
         //   ...incomingStreamsObjRef.current,
         // } 
