@@ -1,6 +1,5 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
@@ -16,7 +15,6 @@ import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'
 import { GoClock } from "react-icons/go"
-import { FiAlertTriangle } from 'react-icons/fi'
 import { AiFillPushpin } from "react-icons/ai"
 
 import { doc, deleteDoc } from "firebase/firestore";
@@ -50,7 +48,9 @@ export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDe
 }
 
 function Main ({ user, room }) {
+
   const router = useRouter()
+  const [deafen, setDeafen] = useState(false)
 
   if (!user.name) {
     //router.push('/')
@@ -136,7 +136,7 @@ function Main ({ user, room }) {
   if (peerStatus === 'error') {
     return (
       <div className="bg-dark w-full flex items-center justify-center">
-        <h1 className="text-white text-center text-3xl container">
+        <h1 className="text-white text-center text-3xl container h-screen">
           An error has been occured
         </h1>
       </div>
@@ -145,6 +145,7 @@ function Main ({ user, room }) {
 
   const topics = room.topics.split(" ")
 
+
   return (
     <>
       <div className="bg-dark w-full flex items-center justify-center">
@@ -152,29 +153,31 @@ function Main ({ user, room }) {
           <div className="bg-dark px-2 lg:px-4 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
             <nav className="flex items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
               {(isHost || connRole === 'speaker') && (
-                <span style={{marginLeft:10}} onClick={muteToggle}>
-                  <button className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover">
+                <span onClick={muteToggle}>
+                  <button className={`p-4 inline-flex justify-center rounded-full hover:bg-gray/50 hover:bg-gray-800 ${micMuted ? 'text-white bg-primary rounded-full': 'text-white/50' } smooth-hover`}>
                     { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                   </button>
                 </span>
               )}
-              <button className="bg-gray-800 text-white p-4 inline-flex justify-center rounded-md">
-                <FaHeadphones size={18} onClick={() => {
-                  // deafen function will be added later
+              <button onClick={() => {
                   var vid:any = document.getElementsByTagName("audio");
+                  console.log(vid)
                   vid.muted = true;
-                }} />
+                  setDeafen(!deafen)
+                  
+                }} className={`text-white/50 p-4 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
+                <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
               </button>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <FaUserPlus size={18} />
               </a>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <IoMdChatboxes size={20} />
               </a>
-              <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover">
+              <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                 <HiPhoneMissedCall size={20} />
               </button>
-              <a className="text-white/50 p-4 inline-flex justify-center rounded-md hover:bg-gray-800 hover:text-white smooth-hover" href="#">
+              <a className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                 <FaCog size={20} />
               </a>
             </nav>

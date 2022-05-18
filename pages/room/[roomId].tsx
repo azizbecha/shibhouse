@@ -61,7 +61,7 @@ export default function RoomPage() {
   return (
     <PrivateRoute>
       <Head>
-        <title>Listening to: {title} - Shibhouse</title>
+        <title>Listening to: {roomData} - Shibhouse</title>
         <meta name="description" content={roomData.description} />
       </Head>
       <Navbar />
