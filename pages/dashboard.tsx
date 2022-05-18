@@ -211,7 +211,7 @@ const Dashboard = () => {
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
                                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
-                                                                                    {user.firstname[0]}{user.lastname[0]}
+                                                                                    {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                                                 </div>
                                                                                 {/*<img className="w-8 h-8 rounded-full" src="https://shibatoken.com/images/shib-logo.svg" alt="Shiba image" />*/}
                                                                             </div>
