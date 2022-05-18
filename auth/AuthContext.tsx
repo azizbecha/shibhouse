@@ -12,27 +12,6 @@ export function useAuth() {
 
 export default function AuthProvider({children}) {
 
-    /*const [loading, setLoading] = useState(true);
-    const [currentUser, setCurrentUser] = useState<any>();
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, user => {
-            setCurrentUser(user);
-            setLoading(false);
-        });
-        return unsubscribe;
-    }, []);
-
-    const value = {
-        currentUser,
-        loading
-    };
-
-    return (
-        <AuthContext.Provider value={value}>
-            {children}
-        </AuthContext.Provider>
-    );*/
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [userData, setUserData] = useState({

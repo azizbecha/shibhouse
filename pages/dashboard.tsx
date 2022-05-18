@@ -12,7 +12,6 @@ import { fireStore } from "../auth/Firebase";
 import generateId from "../lib/generateId"
 import PrivateRoute from "../auth/PrivateRoute"
 
-import getCurrentUserData from "../lib/getCurrentUserData"
 import getUserData from "../lib/getUserData"
 import createRoom from "../lib/createRoom"
 import { logOut } from "../lib/signOut"
@@ -47,14 +46,11 @@ const Dashboard = () => {
             const auth = getAuth();
             onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
                 setUserData(await getUserData(uid))
-                // ...
+                
             } else {
-                // User is signed out
-                // ...
+
             }
             });
         }
@@ -181,10 +177,9 @@ const Dashboard = () => {
                         <div className="w-full mx-5 flex align-center justify-center mb-10">
                             <div className="flex-1 flex flex-col overflow-hidden">
                                 <div className="flex h-full">
-                                    <nav className="hidden w-3/12 h-full bg-darker md:flex rounded-lg">
+                                    <nav className="hidden w-3/12 h-auto bg-darker md:flex rounded-lg">
                                         <div className="flex mx-auto p-4 rounded-md container">
-                                            
-                                            <div className="w-full h-full py-4 items-start justify-left text-white text-xl rounded-md">
+                                            <div className="w-full py-4 items-start justify-left text-white text-xl rounded-md ">
                                                 <div className="flex space-x-45">
                                                     <div className="flex space-x-20 w-full">
                                                         <div className="flex-1 min-w-0">
@@ -196,7 +191,7 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                                 <Divider />
-                                                <ul role="list" className="divide-y divide-gray-200">
+                                                <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar">
                                                     <li className="py-3 sm:py-4 border-b">
                                                         <div className="flex items-center space-x-4">
                                                             <div className="p-4 text-white rounded-full" style={{backgroundColor: myAvatarColor}}>
