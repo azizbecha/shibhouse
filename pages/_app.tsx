@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head';
 
+import NextNProgress from "nextjs-progressbar";
+
 import AuthProvider from '../auth/AuthContext';
 
 import { ToastContainer } from 'react-toastify'
@@ -26,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <AuthProvider>
+            <NextNProgress color='#ed111f' height={5} />
             <Head>
                 <link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
             </Head>

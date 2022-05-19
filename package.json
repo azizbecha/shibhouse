@@ -18,6 +18,7 @@
     "javascript-time-ago": "^2.3.13",
     "jquery": "^3.6.0",
     "next": "latest",
+    "nextjs-progressbar": "^0.0.14",
     "peerjs": "^1.4.2",
     "randomcolor": "^0.6.2",
     "react": "^17.0.2",
