@@ -25,7 +25,9 @@ import Navbar from "../components/Navbar"
 import Divider from "../components/Divider"
 import { toast } from "react-toastify"
 
-import { FaHome, FaCircle, FaSearch, FaSignOutAlt } from "react-icons/fa"
+import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
+
+import { Ticker, TickerTape } from "react-ts-tradingview-widgets";
 
 const Dashboard = () => {
 
@@ -251,6 +253,7 @@ const Dashboard = () => {
                                                     <div className="flex space-x-20 w-full">
                                                         <div className="flex-1 min-w-0">
                                                             <h1 className="font-bold text-2xl font-inter">Feed</h1>
+                                                            
                                                         </div>
                                                         <div className="inline-flex items-end text-base">
                                                             <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-secondary hover:shadow" type="button">Create room</button>
@@ -263,6 +266,19 @@ const Dashboard = () => {
                                                     <button className="absolute border border-dark inset-y-0 right-0 flex items-center px-4 font-bold text-white bg-primary rounded-r-lg">
                                                         <FaSearch size={15} />
                                                     </button>
+                                                </div>
+                                                <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-2 mt-1" /> Crypto prices</h1>
+                                                <div className="bg-dark p-4 rounded-lg mb-5">
+                                                    <Ticker isTransparent={true} locale={"en"} symbols={[
+                                                        {
+                                                            "proName": "BINANCE:SHIBUSDT",
+                                                            "title": "SHIB/USDT"
+                                                        },
+                                                        {
+                                                            "proName": "BINANCE:BTCUSDT",
+                                                            "title": "BTC/USDT"
+                                                        }
+                                                        ]} colorTheme="dark"></Ticker>
                                                 </div>
                                                 <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
                                                 <ExportRooms />
@@ -309,6 +325,7 @@ const Dashboard = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </nav>
