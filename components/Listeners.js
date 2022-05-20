@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react'
-import { FaLink } from 'react-icons/fa'
+import { FaLink, FaPlus } from 'react-icons/fa'
 
 import { PeerContext } from '../contexts/PeerJSContext'
 import useRoomEvents from '../hooks/useRoomEvents'
@@ -18,6 +18,7 @@ export default function Listeners() {
     },
     actions: {
       onPromotePeerToSpeaker,
+      onDemotePeerToListener
     },
   } = useContext(PeerContext)
 
@@ -27,9 +28,14 @@ export default function Listeners() {
     .filter(peer => !peer.metadata.isSpeaker)
 
   function handleUserClick(peer) {
-    if (!isHost) return
+    if (!isHost) onDemotePeerToListener(peer.peer)
     onPromotePeerToSpeaker(peer.peer)
   }
+
+  const reactions = useMemo(() => {
+    return recentEvents
+      .filter(({eventName}) => eventName === 'reaction')
+  }, [recentEvents])
 
   return (
     <>
@@ -68,6 +74,8 @@ export default function Listeners() {
               me={peer.peer === peerId}
               name={peer.metadata?.user?.name || 'Anonym'}
               onClick={isHost ? () => handleUserClick(peer) : null}
+              hoverIcon={<FaPlus/>}
+              reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
             />
           ))}
           

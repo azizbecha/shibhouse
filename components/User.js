@@ -3,10 +3,10 @@ import hark from 'hark'
 
 import randomColor from 'randomcolor'
 
-import { FaHeadphones, FaPlus } from 'react-icons/fa'
+import { FaHeadphones, FaMicrophone, FaPlus } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 
-export default function User ({ host, onClick, muted, me, stream, name, highlight, ...props }) {
+export default function User ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, ...props }) {
   const [speaking, setSpeaking] = useState(false)
 
   useEffect(() => {
@@ -27,20 +27,20 @@ export default function User ({ host, onClick, muted, me, stream, name, highligh
           <h1 className="mt-4 text-white text-center font-bold">
             {name} {me && '(You)'}
           </h1>
+
           <div className='flex space-x-4 mt-3'>
 
             {host ? <AiFillHome /> : <FaHeadphones />}
             
-            {
-              !host && !me ? (
-                <>
-                  <FaPlus onClick={onClick} />
-                </>
-              ) : null
-            }
+              { onClick && hoverIcon && (
+                <div className="avatarAction" onClick={onClick}>
+                  { hoverIcon }
+                </div>
+              )}
           </div>
         </div>
       </div>
+
     </div>
   )
 }

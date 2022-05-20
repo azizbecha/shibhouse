@@ -7,6 +7,7 @@ import { PeerContext } from '../contexts/PeerJSContext'
 import User from './User'
 import { StreamContext } from '../contexts/StreamContext'
 import useRoomEvents from '../hooks/useRoomEvents'
+import { FaTimes } from 'react-icons/fa'
 
 export default function Speakers() {
   const {
@@ -65,7 +66,6 @@ export default function Speakers() {
       })
   }, [peerList])
 
-
   return (
     <>
       <div className="bg-darker my-0 rounded-md p-5">
@@ -79,6 +79,7 @@ export default function Speakers() {
                 me={speaker.peer === peerId}
                 stream={speaker.stream}
                 onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
+                hoverIcon={<FaTimes />}
               />
             ))}
           </div>
