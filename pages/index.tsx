@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import PasswordStrengthBar from "react-password-strength-bar";
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -18,6 +19,8 @@ const IndexPage: React.FC = () => {
     const emailRef = useRef<any>();
     const usernameRef = useRef<any>();
     const passwordRef = useRef<any>();
+
+    const [password, setPassword] = useState('')
 
     const addUser = (e) => {
         e.preventDefault();
@@ -78,8 +81,23 @@ const IndexPage: React.FC = () => {
                                     <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
                                 </div>
                                 <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                    <input ref={passwordRef} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
+                                    <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                        setPassword(e.target.value)
+                                    }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
                                 </div>
+                                <PasswordStrengthBar
+                                    minLength={8}
+                                    password={password}
+                                    barColors={[
+                                        "#B83E26",
+                                        "#FFB829",
+                                        "#009200",
+                                        "#009200",
+                                        "#009200",
+                                        "#009200"
+                                    ]}
+                                    className="mb-5 w-12/12"
+                                />
                                 <button type="submit" data-aos='fade-left' className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
                                     <span className="text-white font-semibold md:block">Join now</span>
                                 </button>
