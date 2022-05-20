@@ -1,17 +1,20 @@
+import Link from "next/link";
+
 const Footer = () => {
     return (
         <div>
-            <footer className="relative z-50 bg-dark text-white flex items-center pt-7 pb-7 border">
-                <div className="container align-center">
-                    <div className="relative">
-                        <p className="absolute left-0 text-white">
-                            <b>Shibhouse</b>
-                        </p>
-
-                        <p className="absolute right-0 text-white">
-                            <b>Re-taking voice conversations to the moon 🚀</b>
-                        </p>
-                        <br />
+            <footer className="text-center lg:text-left bg-darker text-gray-600">
+                <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
+                    <div className="mr-12 lg:block font-inter font-bold text-lg">
+                        <span>Shibhouse</span>
+                    </div>
+                    <div className="flex justify-center space-x-4">
+                        <Link href="report">
+                            <span className="mx-6 text-gray-600 font-semibold">Report a bug</span>
+                        </Link>
+                        <Link href="privacy">
+                            <span className="mx-6 text-gray-600 font-semibold">Privacy Policy</span>
+                        </Link>
                     </div>
                 </div>
             </footer>
