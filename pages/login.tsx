@@ -1,12 +1,16 @@
-import { useRef } from "react"
-import Footer from "../components/Footer"
-import Navbar from "../components/Navbar"
+import { useRef, useState } from "react"
+import { useRouter } from "next/router"
+import Head from "next/head"
+
 import { LogUser } from "../interfaces"
 import { signUser } from "../lib/signUser"
-import { toast } from "react-toastify"
+
 import ProtectedRoute from "../auth/ProtectedRoute"
-import Head from "next/head"
-import { useRouter } from "next/router"
+
+import { toast } from "react-toastify"
+
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
 
 const Login: React.FC = () => {
 
@@ -14,6 +18,8 @@ const Login: React.FC = () => {
     const passwordRef = useRef<any>();
 
     const router = useRouter()
+
+    const [disabled, setDisabled] = useState(false)
 
     const verify = async (e) => {
         e.preventDefault()
@@ -24,6 +30,7 @@ const Login: React.FC = () => {
         }
     
         try {
+            setDisabled(true)
             await signUser(userObject) 
             toast.success('Logged successfully !', {
                 position: "top-center",
@@ -34,9 +41,11 @@ const Login: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
+            setDisabled(false)
             router.push("/dashboard")
 
         } catch (e) {
+            setDisabled(false)
             toast.error('Please verify your informations', {
                 position: "top-center",
                 autoClose: 4000,
@@ -66,7 +75,7 @@ const Login: React.FC = () => {
                                 <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
                                 <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" />
 
-                                <button type="submit" className="bg-primary w-11/12 mt-5 rounded-lg text-white font-bold py-2">Login</button>
+                                <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-bold py-2">Login</button>
                                 
                             </form>
                             <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
