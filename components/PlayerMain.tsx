@@ -7,11 +7,12 @@ import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 import Speakers from './Speakers'
 import Listeners from './Listeners'
 
+import ReactTimeAgo from 'react-time-ago'
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
-import ReactTimeAgo from 'react-time-ago'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { FaCog, FaHeadphones, FaLink, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'
@@ -161,8 +162,8 @@ function Main ({ user, room }) {
     <>
       <div className="bg-dark w-full flex items-center justify-center">
         <div className="bg-gray-800 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
-          <div className="bg-dark px-2 lg:px-4 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
-            <nav className="flex items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
+          <div className="bg-dark px-2 lg:px-0 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
+            <nav className="flex bg-darker p-3 rounded-xl items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
               {(isHost || connRole === 'speaker') && (
                 <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
                   <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full': 'text-white/50 hover:bg-gray/50' } smooth-hover`}>
@@ -194,26 +195,40 @@ function Main ({ user, room }) {
             <div className="flex justify-between items-center">
               <h3 className="text-3xl font-bold text-white inline-flex items-center"><AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span></h3>
               <div className="flex-row">
-                {
-                  room.pinnedLink !== "" ? (
-                    <>
-                      <h4 className="text-sm font-normal text-white flex"><AiFillPushpin size={20} className="" />&nbsp; <a href={room.pinnedLink} target="_blank" >{room.pinnedLink}</a> </h4>
-                    </>
-                  ) : null
-                }
-                <h4 className="text-sm font-normal text-white flex mt-2"><FaMapMarkerAlt size={14} className="mt-1" />&nbsp; The moon</h4>
+                
+                <h4 className="text-sm font-normal text-white flex mt-2 space-x-2"><FaMapMarkerAlt size={14} className="mt-1 mr-1" />The moon</h4>
+                <CopyToClipboard text={window.location.href} onCopy={() => {
+                  toast.success('Link copied', {
+                    position: "top-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }}>
+                  <h4 className="text-sm font-normal text-white flex mt-2 space-x-2 cursor-pointer"><FaUserPlus size={15} className="mt-1 mr-1" />{window.location.href}</h4>
+                </CopyToClipboard>
               </div>
             </div>
             
-            <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
+            <h4 className="text-lg font-normal text-white">{room.description}</h4>
+            {
+              room.pinnedLink !== "" ? (
+                <>
+                  <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" >{room.pinnedLink}</a> </h4>
+                </>
+              ) : null
+            }
             <h4 className="text-lg font-normal text-white mt-3">{
-              topics.map((topic, index) => {
+              topics.map((topic) => {
                 return (
                   <span className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
                 )
               })
             }</h4>
-            <h5 className="text-md font-normal text-white mt-3 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo tooltip={true} date={Number(room.createdAt)} locale="en-US"/>}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
+            <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
             
             <div className="bg-darker mt-10 mb-5 rounded-md p-5">
               <Speakers />
