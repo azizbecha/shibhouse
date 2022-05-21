@@ -74,7 +74,7 @@ export default function Listeners() {
               me={peer.peer === peerId}
               name={peer.metadata?.user?.name || 'Anonym'}
               onClick={isHost ? () => handleUserClick(peer) : null}
-              hoverIcon={<FaPlus/>}
+              hoverIcon={<FaPlus size={15} />}
               reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
             />
           ))}

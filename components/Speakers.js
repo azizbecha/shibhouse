@@ -79,7 +79,7 @@ export default function Speakers() {
                 me={speaker.peer === peerId}
                 stream={speaker.stream}
                 onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
-                hoverIcon={<FaTimes />}
+                hoverIcon={<FaTimes size={15} />}
               />
             ))}
           </div>

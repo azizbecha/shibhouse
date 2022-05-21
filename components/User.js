@@ -3,7 +3,7 @@ import hark from 'hark'
 
 import randomColor from 'randomcolor'
 
-import { FaHeadphones, FaMicrophone, FaPlus } from 'react-icons/fa'
+import { FaHeadphones } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 
 export default function User ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, ...props }) {
@@ -21,22 +21,21 @@ export default function User ({ host, onClick, muted, me, stream, name, highligh
     <div {...props}>
       <div className={`bg-dark text-white p-2 rounded-lg`}>
         <div className="container mt-5 mb-5">
-          <div className={`p-6 w-5/12 md:md:w-8/12 text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+          <div className={`p-6 w-5/12 relative md:md:w-8/12 text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
             {name[0].toUpperCase()}{name[1].toUpperCase()}
+            { onClick && hoverIcon && (
+              <div className="p-1 right-0 -bottom-1 bg-darker rounded-full border-white absolute" style={{borderWidth: '1.5px'}} onClick={onClick}>
+                { hoverIcon }
+              </div>
+            )}
           </div>
           <h1 className="mt-4 text-white text-center font-bold">
             {name} {me && '(You)'}
           </h1>
 
           <div className='flex space-x-4 mt-3'>
-
-            {host ? <AiFillHome /> : <FaHeadphones />}
+            <span className='p-1.5 bg-gray rounded-md'>{host ? <AiFillHome /> : <FaHeadphones />}</span>
             
-              { onClick && hoverIcon && (
-                <div className="avatarAction" onClick={onClick}>
-                  { hoverIcon }
-                </div>
-              )}
           </div>
         </div>
       </div>
