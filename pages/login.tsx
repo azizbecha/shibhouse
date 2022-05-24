@@ -30,6 +30,15 @@ const Login: React.FC = () => {
         }
     
         try {
+            toast.info('Please wait', {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             setDisabled(true)
             await signUser(userObject) 
             toast.success('Logged successfully !', {

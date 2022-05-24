@@ -160,10 +160,10 @@ function Main ({ user, room }) {
 
   return (
     <>
-      <div className="bg-dark w-full flex items-center justify-center">
-        <div className="bg-gray-800 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+      <div className="bg-dark w-12/12 flex items-center justify-center">
+        <div className="bg-gray-800 w-12/12 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
           <div className="bg-dark px-2 lg:px-0 py-1 lg:py-5 sm:rounded-xl flex lg:flex-col justify-between">
-            <nav className="flex bg-darker p-3 rounded-xl items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
+            <nav className="flex rounded-xl items-center my-auto flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
               {(isHost || connRole === 'speaker') && (
                 <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
                   <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full': 'text-white/50 hover:bg-gray/50' } smooth-hover`}>

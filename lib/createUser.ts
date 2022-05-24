@@ -21,8 +21,8 @@ const createUser = (user: NewUser) => {
         });
         
     })
-    
     return true
+    
 }
 
 export { createUser }

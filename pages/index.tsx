@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useRouter } from 'next/router';
 import Link from 'next/link'
 import Head from 'next/head'
 import PasswordStrengthBar from "react-password-strength-bar";
@@ -13,6 +14,8 @@ import { NewUser } from '../interfaces'
 import { toast } from 'react-toastify'
 
 const IndexPage: React.FC = () => {
+
+    const router = useRouter();
 
     const firstnameRef = useRef<any>();
     const lastnameRef = useRef<any>();
@@ -30,7 +33,7 @@ const IndexPage: React.FC = () => {
             lastname: lastnameRef.current.value,
             email: emailRef.current.value,
             username: usernameRef.current.value,
-            password: passwordRef.current.value
+            password: password
         }
 
         if (createUser(userObject)) {
@@ -43,6 +46,7 @@ const IndexPage: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
+            router.push('/login');
         }
     }
 
