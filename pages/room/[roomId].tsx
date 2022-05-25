@@ -37,7 +37,7 @@ export default function RoomPage() {
         if (docSnap.exists()) {
           var d = docSnap.data()
           setUserName(d.username)
-          console.log('my username:', userName)
+          //console.log('my username:', userName)
         }
       } catch (e) {
         //console.log('error getting username')
@@ -48,7 +48,7 @@ export default function RoomPage() {
         const roomSnap = await getDoc(roomRef);
         if (roomSnap.exists()) {
           setRoomData(roomSnap.data())
-          console.log(roomData)
+          //console.log(roomData)
         }
       } catch (e) {
         //console.log('error getting room data')
