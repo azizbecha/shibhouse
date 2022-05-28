@@ -297,7 +297,7 @@ const Dashboard = () => {
                                                             "proName": "BINANCE:BTCUSDT",
                                                             "title": "BTC/USDT"
                                                         }
-                                                        ]} colorTheme="dark"></Ticker>
+                                                    ]} colorTheme="dark"></Ticker>
                                                 </div>
                                                 <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
                                                 <ExportRooms />
