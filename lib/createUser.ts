@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth, fireStore } from '../auth/Firebase'
 import { doc, setDoc } from "firebase/firestore"; 
 import getCurrentUserData from "./getCurrentUserData";
+import { capitalizeWord } from "./capitalize";
 
 const createUser = (user: NewUser) => {
     createUserWithEmailAndPassword(auth, user.email, user.password)
@@ -10,12 +11,12 @@ const createUser = (user: NewUser) => {
         const userData = getCurrentUserData()
         const docRef = await setDoc(doc(fireStore, "users", userData.uid), {
             id: userData.uid,
-            firstname: user.firstname,
-            lastname: user.lastname,
+            firstname: capitalizeWord(user.firstname).trim(),
+            lastname: capitalizeWord(user.lastname).trim(),
             email: user.email,
             username: user.username,
-            followers: 0,
-            following: 0,
+            followers: [],
+            following: [],
             claps: 0,
             joinDate: new Date()
         });

@@ -36,7 +36,7 @@ const Dashboard = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const [userData, setUserData] = useState<any>({firstname: '', lastname: ''}) // adding default values to prevent showing undefined value error
+    const [userData, setUserData] = useState<any>({firstname: ' ', lastname: ' ', followers: [], following: []}) // adding default values to prevent showing undefined value error
     
     const roomTitleRef = useRef<any>();
     const roomDescriptionRef = useRef<any>();
@@ -313,11 +313,11 @@ const Dashboard = () => {
                                                         </div>
                                                         <h5 className="mb-1 text-lg font-medium text-center">{userData.firstname} {userData.lastname}</h5>
                                                         <span className="text-sm text-white text-center">@{userData.username}</span>
-                                                        <span className="text-sm text-gray-500 dark:text-gray-400 mt-3">A dummy text to see user bio preview bla bla bla some talking goes here.</span>
+                                                        <span className="text-sm text-gray-500 text-center mt-3">{userData.bio}</span>
                                                         <div className="flex space-x-3 mt-3">
-                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.followers}&nbsp;<span className="font-normal">followers</span></span>
-                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.following}&nbsp;<span className="font-normal">following</span></span>
-                                                            <span className="flex justify-left text-sm font-bold text-white">{userData.claps}&nbsp;<span className="font-normal">claps</span></span>
+                                                            <span className="justify-left text-sm font-bold text-white">{userData.followers.length} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></span>
+                                                            <span className="justify-left text-sm font-bold text-white">{userData.following.length} <span className="font-normal">following</span></span>
+                                                            <span className="justify-left text-sm font-bold text-white">{userData.claps} <span className="font-normal">claps</span></span>
                                                         </div>
                                                         <div className="flex mt-4 space-x-3 lg:mt-6">
                                                             <a href="#" className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit profile</a>

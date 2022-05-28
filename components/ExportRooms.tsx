@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 import Link from "next/link";
 
-import { collection, query, getDocs, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
 import ReactTimeAgo from 'react-time-ago'
 
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
+
 const ExportRooms = () => {
 
     const [data, setData] = useState([]);
-    const [creatorData, setCreatorData] = useState<any>()
     
     useEffect(() => {
         const q = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
@@ -22,17 +22,7 @@ const ExportRooms = () => {
                 setData(rooms);
             });
         });
-        //////////////
-        const getRooms = async () => {
-            const q = query(collection(fireStore, "rooms"));
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-                const rooms = querySnapshot.docs
-                .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setData(rooms);
-            });
-        }
-        //getRooms()
+
     }, [data])
 
 
@@ -75,7 +65,7 @@ const ExportRooms = () => {
                                         }
                                     </p>
                                     <p className="text-sm font-normal flex">
-                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started&nbsp;{<ReactTimeAgo tooltip={true} date={Number(room.createdAt)} locale="en-US"/>}.
+                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started&nbsp;{<ReactTimeAgo date={Number(room.createdAt)} locale="en-US"/>}.
                                     </p>
                                 </div>
                                 <div className="inline-flex items-center text-base">

@@ -10,8 +10,8 @@ const getUserData = async (userID) => {
     if (docSnap.exists()) {
         data = docSnap.data();
     }
-
     return data
+
 }
 
 export default getUserData

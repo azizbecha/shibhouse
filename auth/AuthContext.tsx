@@ -3,6 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from './Firebase';
 import LoadingScreen from '../lib/LoadingScreen';
+import getUserData from '../lib/getUserData';
 
 export const AuthContext = createContext(null);
 
@@ -14,31 +15,34 @@ export default function AuthProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [userData, setUserData] = useState({
+    const [currentUserData, setCurrentUserData] = useState<any>();
+    /*
+    {
         userProviderId: "",
         userId: "",
         userName: "",
         userEmail: "",
         userPhotoLink: "",
-    })
+    }
+    */
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const requiredData = {
-            userProviderId: user.providerData[0].providerId,
-            userId: user.uid,
-            userName: user.displayName,
-            userEmail: user.email,
-            userPhotoLink: user.photoURL,
-            }
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const x = {
+                    userProviderId: user.providerData[0].providerId,
+                    userId: user.uid,
+                    userName: user.displayName,
+                    userEmail: user.email,
+                    userPhotoLink: user.photoURL,
+                }
 
-            setUserData(requiredData)
-            setCurrentUser(user)
-        } else {
-            setCurrentUser(null)
-        }
-        setLoading(false)
+                setCurrentUserData(await getUserData(user.uid))
+                setCurrentUser(user)
+            } else {
+                setCurrentUser(null)
+            }
+            setLoading(false)
         })
     }, [])
 
@@ -50,7 +54,7 @@ export default function AuthProvider({children}) {
         <AuthContext.Provider
         value={{
             currentUser,
-            userData,
+            currentUserData,
         }}
         >
         {children}
