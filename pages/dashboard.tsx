@@ -75,6 +75,13 @@ const Dashboard = () => {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+
+            $("#userSearchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("ul#usersList li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         });
 
         fetch();
@@ -203,7 +210,11 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                                 <Divider />
-                                                <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar">
+                                                <div className="relative text-gray-700 border-0">
+                                                    <input id="userSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
+                                                </div>
+                                                <Divider />
+                                                <ul role="list" id="usersList" className="divide-y divide-gray-200 overflow-auto no-scrollbar -mt-5">
                                                     <li className="py-3 sm:py-4 border-b">
                                                         <div className="flex items-center space-x-4">
                                                             <div className="p-4 text-white rounded-full" style={{backgroundColor: myAvatarColor}}>
@@ -226,7 +237,7 @@ const Dashboard = () => {
                                                         users.map((user) => {
                                                             if (user.id != userData.id) {
                                                                 return (
-                                                                    <li className="py-3 sm:py-4 border-b" data-aos='fade-up'>
+                                                                    <li className="py-3 sm:py-4 border-b">
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
                                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
@@ -273,9 +284,6 @@ const Dashboard = () => {
                                                 <Divider />
                                                 <div className="relative text-gray-700 mb-5 border-0">
                                                     <input id="roomSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
-                                                    <button className="absolute border border-dark inset-y-0 right-0 flex items-center px-4 font-bold text-white bg-primary rounded-r-lg">
-                                                        <FaSearch size={15} />
-                                                    </button>
                                                 </div>
                                                 <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-2 mt-1" /> Crypto prices</h1>
                                                 <div className="bg-dark p-4 rounded-lg mb-5">
