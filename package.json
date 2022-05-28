@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
+    "deploy": "next build && next export && firebase deploy",
     "type-check": "tsc"
   },
   "dependencies": {
