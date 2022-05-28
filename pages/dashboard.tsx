@@ -29,6 +29,7 @@ import { toast } from "react-toastify"
 import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
 
 import { Ticker } from "react-ts-tradingview-widgets";
+import { capitalizeWord } from "../lib/capitalize";
 
 const Dashboard = () => {
 
@@ -211,7 +212,7 @@ const Dashboard = () => {
                                                 </div>
                                                 <Divider />
                                                 <div className="relative text-gray-700 border-0">
-                                                    <input id="userSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
+                                                    <input id="userSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for a user on the moon 🚀"/>
                                                 </div>
                                                 <Divider />
                                                 <ul role="list" id="usersList" className="divide-y divide-gray-200 overflow-auto no-scrollbar -mt-5">
@@ -248,7 +249,7 @@ const Dashboard = () => {
                                                                                 <Link href={`user/${user.username}`}>
                                                                                     <div className="cursor-pointer">
                                                                                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                                            {user.firstname} {user.lastname}
+                                                                                            {capitalizeWord(user.firstname)} {capitalizeWord(user.lastname)}
                                                                                         </p>
                                                                                         <p className="text-sm text-white cursor-pointer">@{user.username}</p>
                                                                                     </div>
@@ -283,7 +284,7 @@ const Dashboard = () => {
                                                 </div>
                                                 <Divider />
                                                 <div className="relative text-gray-700 mb-5 border-0">
-                                                    <input id="roomSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
+                                                    <input id="roomSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for a room on the moon 🚀"/>
                                                 </div>
                                                 <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-2 mt-1" /> Crypto prices</h1>
                                                 <div className="bg-dark p-4 rounded-lg mb-5">
