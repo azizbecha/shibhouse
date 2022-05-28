@@ -149,6 +149,26 @@ const User: React.FC = () => {
         fetch()
     }, [username])
 
+    const FollowStatus = () => {
+        if (currentUserData.followers.includes(userData.username) && userData.followers.includes(currentUserData.username)) {
+            return <span>You are following each other</span>
+        }
+        
+        else if (currentUserData.followers.includes(userData.username) && !userData.followers.includes(currentUserData.username)) {
+            return <span>Follows you</span>
+        }
+        
+        else if (!currentUserData.followers.includes(userData.username) && userData.followers.includes(currentUserData.username)) {
+            return <span>You are following this account</span>
+        }
+        
+        else if (!currentUserData.followers.includes(userData.username) && !userData.followers.includes(currentUserData.username)) {
+            return <span>You are not following each other</span>
+        }
+        
+        return <></>
+    }
+
     return (
         <div className="h-screen">
             <Navbar />
@@ -180,7 +200,7 @@ const User: React.FC = () => {
                                     </div>
 
                                     <div className="mb-3 mt-2 font-semibold text-md w-10/12">
-                                        {userData.following.includes(currentUserData.username) && 'Follows you'}
+                                        <FollowStatus />
                                     </div>
 
                                     <div className="mb-3 mt-5 font-normal text-md w-10/12">
