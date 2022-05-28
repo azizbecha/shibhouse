@@ -37,7 +37,7 @@ const User: React.FC = () => {
         querySnapshot.forEach((doc) => {
             setUserData(doc.data())
             if (userData.username == currentUserData.username) {
-                //router.push('/me'); // Redirect the user to his profile
+                router.push('/me'); // Redirect the user to his profile
             }
         });
     }
