@@ -39,12 +39,12 @@ const ExportRooms = () => {
             </div>
         )
     } else {return (
-        <ul role="list">
+        <ul role="list" id="roomsList">
             {
                 data.map((room, index) => {
                     const topics = room.topics.split(" ");
                     return (
-                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-gray rounded-t-lg mb-5" data-aos="zoom-in">
+                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-gray rounded-t-lg mb-5">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
                                     <Link href={`room/${room.id}`}>

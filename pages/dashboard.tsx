@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import Link from "next/link";
 
+import $ from 'jquery'
 import randomColor from 'randomcolor'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
@@ -27,7 +28,7 @@ import { toast } from "react-toastify"
 
 import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
 
-import { Ticker, TickerTape } from "react-ts-tradingview-widgets";
+import { Ticker } from "react-ts-tradingview-widgets";
 
 const Dashboard = () => {
 
@@ -66,6 +67,15 @@ const Dashboard = () => {
                 setUsers(users);
             });
         }
+
+        $(document).ready(function(){
+            $("#roomSearchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("ul#roomsList li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
 
         fetch();
         getUsers();
@@ -262,7 +272,7 @@ const Dashboard = () => {
                                                 </div>
                                                 <Divider />
                                                 <div className="relative text-gray-700 mb-5 border-0">
-                                                    <input className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
+                                                    <input id="roomSearchInput" className="w-full h-10 pl-3 pr-8 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for something on the moon 🚀"/>
                                                     <button className="absolute border border-dark inset-y-0 right-0 flex items-center px-4 font-bold text-white bg-primary rounded-r-lg">
                                                         <FaSearch size={15} />
                                                     </button>
