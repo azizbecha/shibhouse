@@ -177,10 +177,10 @@ const User: React.FC = () => {
             </Head>
             <div className="bg-dark pb-16">
                 <div className="container">
-                    <h1 className="pt-10 text-3xl text-white font-bold font-inter flex"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> Profile of {userData.firstname} {userData.lastname}</h1>
+                    <h1 className="pt-10 sm:text-3xl text-2xl text-white font-bold font-inter flex"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> Profile of {userData.firstname} {userData.lastname}</h1>
                     <div className="bg-dark flex space-x-3 pt-10">
                         
-                        <div className="sm:w-12/12 xs:w-12/12 md:w-8/12 pb-32 xs:mx-auto">
+                        <div className="w-12/12 sm:w-12/12 md:w-8/12 pb-32 xs:mx-auto">
                             <div className="w-full mt-10">
                                 <div className="absolute -mt-14 ml-5">
                                     <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
@@ -189,7 +189,7 @@ const User: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-darker text-white rounded-lg pt-16 pb-12 px-8 flex flex-col">
+                            <div className="bg-darker text-white rounded-lg pt-16 pb-12 px-9 flex flex-col">
                                 <div className="mb-1 font-semibold text-2xl">{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} <span className="text-lg">(@{userData.username})</span></div>
                                 {/*<div className="mb-1 font-normal text-md">Joined <ReactTimeAgo date={new Date(userData.joinDate).getMilliseconds()} /></div>*/}
                                 <div className="text-sm mt-2 text-gray-200">
@@ -217,7 +217,7 @@ const User: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-4/12 bg-darker rounded-lg mt-10">
+                        <div className="w-4/12 bg-darker rounded-lg mt-10 hidden md:block lg:block xl:block">
                             <div className="container p-5">
                                 <h1 className="text-white text-2xl font-inter font-bold">Discover</h1>
                                 <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar mt-3 space-y-2">

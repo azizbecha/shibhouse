@@ -35,9 +35,10 @@ yarn-error.log*
 .vercel
 
 # firebase
-/.firebase/
+/.firebase
 .firebaserc
 firebase.json
 
 # firebase credentials file
 config.ts
+.firebase/hosting.b3V0.cache
