@@ -218,7 +218,7 @@ const Dashboard = () => {
                                                 <ul role="list" id="usersList" className="divide-y divide-gray-200 overflow-auto no-scrollbar -mt-5">
                                                     <li className="py-3 sm:py-4 border-b">
                                                         <div className="flex items-center space-x-4">
-                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: myAvatarColor}}>
+                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: userData.avatarColor}}>
                                                                 {userData.firstname[0]}{userData.lastname[0]}
                                                             </div>
                                                             <div className="flex-1 min-w-0">
@@ -241,7 +241,7 @@ const Dashboard = () => {
                                                                     <li className="py-3 sm:py-4 border-b">
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
-                                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+                                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
                                                                                     {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                                                 </div>
                                                                             </div>
@@ -327,7 +327,7 @@ const Dashboard = () => {
                                                         
                                                     </div>
                                                     <div className="flex flex-col container pb-10">
-                                                        <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto" style={{backgroundColor: myAvatarColor}}>
+                                                        <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto" style={{backgroundColor: userData.avatarColor}}>
                                                             {userData.firstname[0]}{userData.lastname[0]}
                                                         </div>
                                                         <h5 className="mb-1 text-lg font-medium text-center">{userData.firstname} {userData.lastname}</h5>
@@ -336,11 +336,10 @@ const Dashboard = () => {
                                                         <div className="flex space-x-3 mt-3">
                                                             <span className="justify-left text-sm font-bold text-white">{userData.followers.length} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></span>
                                                             <span className="justify-left text-sm font-bold text-white">{userData.following.length} <span className="font-normal">following</span></span>
-                                                            <span className="justify-left text-sm font-bold text-white">{userData.claps} <span className="font-normal">claps</span></span>
+                                                            <span className="justify-left text-sm font-bold text-white">{userData.claps} <span className="font-normal">Claps</span></span>
                                                         </div>
                                                         <div className="flex mt-4 space-x-3 lg:mt-6">
-                                                            <a href="#" className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit profile</a>
-                                                            {/*<a href="#" className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-primary rounded-lg  hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>*/}
+                                                            <Link href="me" ><span className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">Edit profile</span></Link>
                                                         </div>
                                                     </div>
                                                 </div>

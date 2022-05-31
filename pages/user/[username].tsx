@@ -183,7 +183,7 @@ const User: React.FC = () => {
                         <div className="w-12/12 sm:w-12/12 md:w-8/12 pb-32 xs:mx-auto">
                             <div className="w-full mt-10">
                                 <div className="absolute -mt-14 ml-5">
-                                    <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+                                    <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: userData.avatarColor}}>
                                         <span className="my-auto mx-auto text-3xl font-inter font-bold">{userData.firstname[0].toUpperCase()}{userData.lastname[0].toUpperCase()}</span>
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@ const User: React.FC = () => {
                                                 <Link href={user.username} passHref>
                                                     <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer">
                                                         <div className="flex items-center space-x-4 px-3">
-                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
                                                                 {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                             </div>
                                                             <div className="flex-1 min-w-0">

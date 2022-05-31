@@ -11,8 +11,6 @@ import { fireStore } from "../auth/Firebase";
 
 import { toast } from "react-toastify";
 
-import randomColor from 'randomcolor';
-
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -166,7 +164,7 @@ const Me: React.FC = () => {
                                                     progress: undefined,
                                                 });
                                                 }}>
-                                                <h4 className="text-sm font-semibold text-white flex mt-2 space-x-2 cursor-pointer"><FaLink size={13.5} className="mt-1 mr-1" />https://shibhouse.web.app/user/azizbecha</h4>
+                                                <h4 className="text-sm font-semibold text-white flex mt-2 space-x-2 cursor-pointer"><FaLink size={13.5} className="mt-1 mr-1" />{window.location.host}/{currentUserData.username}</h4>
                                             </CopyToClipboard>
                                         </div>
                                     </div>
@@ -214,7 +212,7 @@ const Me: React.FC = () => {
                                                     <Link href={user.username} passHref>
                                                         <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer">
                                                             <div className="flex items-center space-x-4 px-3">
-                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
                                                                     {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                                 </div>
                                                                 <div className="flex-1 min-w-0">

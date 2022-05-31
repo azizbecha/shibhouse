@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Head from "next/head"
@@ -11,8 +11,7 @@ import { getDoc, doc } from "firebase/firestore";
 import LoadingScreen from '../../lib/LoadingScreen'
 
 import PrivateRoute from '../../auth/PrivateRoute'
-
-import { getAuth } from 'firebase/auth'
+import { AuthContext } from '../../auth/AuthContext'
 
 const PlayerMain = dynamic(
   () => import('../../components/PlayerMain'),
@@ -26,29 +25,15 @@ export default function RoomPage() {
   const { roomId } = router.query
   
   const [roomData, setRoomData] = useState<any>('')
-  const [title, setTitle] = useState<string>("");
+  const { currentUserData } = useContext(AuthContext);
   
   useEffect(() => {
     const check = async () => {
-      const auth = getAuth();
-      try {
-        const docRef = doc(fireStore, "users", auth.currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          var d = docSnap.data()
-          setUserName(d.username)
-          //console.log('my username:', userName)
-        }
-      } catch (e) {
-        //console.log('error getting username')
-      }
-      
       try {
         const roomRef = doc(fireStore, "rooms", String(roomId));
         const roomSnap = await getDoc(roomRef);
         if (roomSnap.exists()) {
           setRoomData(roomSnap.data())
-          //console.log(roomData)
         }
       } catch (e) {
         //console.log('error getting room data')
@@ -67,11 +52,11 @@ export default function RoomPage() {
       <Navbar />
       {
         roomData !== '' ? (
-          roomData.createdBy == userName ? (
+          roomData.createdBy == currentUserData.username ? (
             <PlayerMain
               roomId={roomId}
               roomName={roomData.title}
-              userName={userName}
+              userName={currentUserData.username}
               pinnedLink={roomData.pinnedLink}
               topics={roomData.topics}
               roomDescription={roomData.description}
@@ -82,7 +67,7 @@ export default function RoomPage() {
           ) : (
             <PlayerMain
               roomId={roomId}
-              userName={userName}
+              userName={currentUserData.username}
               roomName={roomData.title}
               pinnedLink={roomData.pinnedLink}
               topics={roomData.topics}
