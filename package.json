@@ -22,6 +22,7 @@
     "peerjs": "^1.4.2",
     "randomcolor": "^0.6.2",
     "react": "^17.0.2",
+    "react-colorful": "^5.5.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^17.0.2",
     "react-html-parser": "^2.0.2",

@@ -12,7 +12,7 @@ import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { FaCog, FaHeadphones, FaLink, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'

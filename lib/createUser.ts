@@ -1,7 +1,11 @@
 import { NewUser } from "../interfaces"
+
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth, fireStore } from '../auth/Firebase'
 import { doc, setDoc } from "firebase/firestore"; 
+
+import randomColor from "randomColor";
+
+import { auth, fireStore } from '../auth/Firebase'
 import getCurrentUserData from "./getCurrentUserData";
 import { capitalizeWord } from "./capitalize";
 
@@ -18,7 +22,8 @@ const createUser = (user: NewUser) => {
             followers: [],
             following: [],
             claps: 0,
-            joinDate: new Date()
+            joinDate: new Date(),
+            avatarColor: randomColor({luminosity: 'dark'})
         });
         
     })

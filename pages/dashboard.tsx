@@ -26,7 +26,7 @@ import Navbar from "../components/Navbar"
 import Divider from "../components/Divider"
 import { toast } from "react-toastify"
 
-import { FaHome, FaCircle, FaSearch, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
+import { FaHome, FaCircle, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
 
 import { Ticker } from "react-ts-tradingview-widgets";
 import { capitalizeWord } from "../lib/capitalize";
