@@ -4,19 +4,22 @@ import Head from "next/head"
 import Link from "next/link";
 
 import $ from 'jquery'
-import randomColor from 'randomcolor'
 
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { collection, query, getDocs } from "firebase/firestore";
 
+import { toast } from "react-toastify"
+import { Ticker } from "react-ts-tradingview-widgets";
+import { FaHome, FaCircle, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
+
 import { fireStore } from "../auth/Firebase";
-import generateId from "../lib/generateId"
 import PrivateRoute from "../auth/PrivateRoute"
 
+import generateId from "../lib/generateId"
 import getUserData from "../lib/getUserData"
 import createRoom from "../lib/createRoom"
+import { capitalizeWord } from "../lib/capitalize";
 import { logOut } from "../lib/signOut"
-
 import { NewRoom } from "../interfaces"
 
 import ExportRooms from "../components/ExportRooms"
@@ -24,12 +27,6 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
 import Divider from "../components/Divider"
-import { toast } from "react-toastify"
-
-import { FaHome, FaCircle, FaSignOutAlt, FaDollarSign } from "react-icons/fa"
-
-import { Ticker } from "react-ts-tradingview-widgets";
-import { capitalizeWord } from "../lib/capitalize";
 
 const Dashboard = () => {
 
@@ -130,8 +127,6 @@ const Dashboard = () => {
         }
     }
 
-    const myAvatarColor = randomColor({luminosity: 'dark'})
-
     return (
         <PrivateRoute>
             <Head>
@@ -216,24 +211,6 @@ const Dashboard = () => {
                                                 </div>
                                                 <Divider />
                                                 <ul role="list" id="usersList" className="divide-y divide-gray-200 overflow-auto no-scrollbar -mt-5">
-                                                    <li className="py-3 sm:py-4 border-b">
-                                                        <div className="flex items-center space-x-4">
-                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: userData.avatarColor}}>
-                                                                {userData.firstname[0]}{userData.lastname[0]}
-                                                            </div>
-                                                            <div className="flex-1 min-w-0">
-                                                                <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                    {userData.firstname} {userData.lastname}
-                                                                </p>
-                                                                <p className="text-sm text-white truncate dark:text-gray-400">
-                                                                    @{userData.username}
-                                                                </p>
-                                                            </div>
-                                                            <div className="inline-flex text-green items-center text-base">
-                                                                <FaCircle className="text-green" />
-                                                            </div>
-                                                        </div>
-                                                    </li>
                                                     {
                                                         users.map((user) => {
                                                             if (user.id != userData.id) {
@@ -327,11 +304,13 @@ const Dashboard = () => {
                                                         
                                                     </div>
                                                     <div className="flex flex-col container pb-10">
-                                                        <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto" style={{backgroundColor: userData.avatarColor}}>
-                                                            {userData.firstname[0]}{userData.lastname[0]}
-                                                        </div>
-                                                        <h5 className="mb-1 text-lg font-medium text-center">{userData.firstname} {userData.lastname}</h5>
-                                                        <span className="text-sm text-white text-center">@{userData.username}</span>
+                                                        <Link href={'/me'}>
+                                                            <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: userData.avatarColor}}>
+                                                                {userData.firstname[0]}{userData.lastname[0]}
+                                                            </div>
+                                                        </Link>
+                                                        <h5 className="mb-1 text-lg font-medium text-center cursor-pointer"><Link href={'/me'}><span>{userData.firstname} {userData.lastname}</span></Link></h5>
+                                                        <span className="text-sm text-white text-center cursor-pointer"><Link href={'/me'}><span>@{userData.username}</span></Link></span>
                                                         <span className="text-sm text-gray-500 text-center mt-3">{userData.bio}</span>
                                                         <div className="flex space-x-3 mt-3">
                                                             <span className="justify-left text-sm font-bold text-white">{userData.followers.length} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></span>

@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link'
 import Head from 'next/head'
+
 import PasswordStrengthBar from "react-password-strength-bar";
+import { toast } from 'react-toastify'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -10,8 +12,6 @@ import Footer from '../components/Footer'
 import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
-
-import { toast } from 'react-toastify'
 
 const IndexPage: React.FC = () => {
 

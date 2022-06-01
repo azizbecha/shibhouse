@@ -209,7 +209,7 @@ const Me: React.FC = () => {
                                         {
                                             users.map((user) => {
                                                 return (
-                                                    <Link href={user.username} passHref>
+                                                    <Link href={`user/${user.username}`} passHref>
                                                         <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer">
                                                             <div className="flex items-center space-x-4 px-3">
                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>

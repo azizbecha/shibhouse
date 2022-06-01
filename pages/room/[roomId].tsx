@@ -20,7 +20,6 @@ const PlayerMain = dynamic(
 
 export default function RoomPage() {
   const router = useRouter()
-  const [userName, setUserName] = useState('')
 
   const { roomId } = router.query
   

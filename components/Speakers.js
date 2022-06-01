@@ -1,12 +1,10 @@
-import { useRef, useContext, useEffect, useState, useMemo } from 'react'
-import { FiX, FiPlus } from 'react-icons/fi'
-
-import { PeerContext } from '../contexts/PeerJSContext'
-
+import { useContext, useMemo } from 'react'
 
 import User from './User'
+import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
 import useRoomEvents from '../hooks/useRoomEvents'
+
 import { FaTimes } from 'react-icons/fa'
 
 export default function Speakers() {
