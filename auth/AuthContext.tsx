@@ -16,27 +16,10 @@ export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [currentUserData, setCurrentUserData] = useState<any>();
-    /*
-    {
-        userProviderId: "",
-        userId: "",
-        userName: "",
-        userEmail: "",
-        userPhotoLink: "",
-    }
-    */
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const x = {
-                    userProviderId: user.providerData[0].providerId,
-                    userId: user.uid,
-                    userName: user.displayName,
-                    userEmail: user.email,
-                    userPhotoLink: user.photoURL,
-                }
-
                 setCurrentUserData(await getUserData(user.uid))
                 setCurrentUser(user)
             } else {
@@ -44,7 +27,7 @@ export default function AuthProvider({children}) {
             }
             setLoading(false)
         })
-    }, [])
+    })
 
     if (loading) {
         return <LoadingScreen />
