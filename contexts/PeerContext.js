@@ -1,4 +1,4 @@
-import { useEffect, createContext, useState, useContext, useRef } from 'react'
+import { useEffect, createContext, useState, useContext } from 'react'
 import uuid from 'uuid-random'
 import Peer from 'peerjs'
 
