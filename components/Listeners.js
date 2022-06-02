@@ -67,7 +67,7 @@ export default function Listeners() {
               </div>
             )
           }
-        <div className="grid md:grid-cols-5 gap-5 sm:grid-cols-2 mx-auto w-12/12">
+        <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
           { listenersPeers.map(peer => (
             <User
               key={peer.peer}

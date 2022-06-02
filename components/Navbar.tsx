@@ -1,12 +1,13 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { AuthContext, useAuth } from "../auth/AuthContext";
+import { useAuth } from "../auth/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../auth/Firebase";
 import { logOut } from '../lib/signOut'
+
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const navigation = [
     { name: "Dashboard", href: "/dashboard", current: false },
@@ -24,7 +25,7 @@ export default function Navbar() {
     const logoLink = "https://shibhouse.web.app/shibhouse-logo-transparent.png";
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const { currentUserData } = useAuth()
+    const { currentUserData } = useAuth();
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {

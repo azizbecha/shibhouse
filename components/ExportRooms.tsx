@@ -57,9 +57,9 @@ const ExportRooms = () => {
                                     </p>
                                     <p className="text-sm mb-4">
                                         {
-                                            topics.map((word) => {
+                                            topics.map((word, key) => {
                                                 return (
-                                                    <span className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{word}</span>
+                                                    <span key={key} className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{word}</span>
                                                 )
                                             })
                                         }

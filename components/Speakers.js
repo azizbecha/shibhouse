@@ -66,9 +66,9 @@ export default function Speakers() {
 
   return (
     <>
-      <div className="bg-darker my-0 rounded-md p-5">
+      <div className="bg-darker my-0 rounded-md p-2">
         <h1 className="font-bold text-white text-2xl mb-4">Speakers ({speakers.length})</h1>
-          <div className="grid md:grid-cols-5 gap-5 sm:grid-cols-2">
+          <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
             {speakers.map(speaker => (
               <User
                 key={speaker?.peer}
@@ -80,6 +80,7 @@ export default function Speakers() {
                 hoverIcon={<FaTimes size={15} />}
               />
             ))}
+            
           </div>
           <style jsx>{`
             audio {

@@ -27,7 +27,7 @@ export default function AuthProvider({children}) {
             }
             setLoading(false)
         })
-    })
+    }, [currentUser])
 
     if (loading) {
         return <LoadingScreen />

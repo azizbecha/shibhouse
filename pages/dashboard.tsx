@@ -23,9 +23,9 @@ import { logOut } from "../lib/signOut"
 import { NewRoom } from "../interfaces"
 
 import ExportRooms from "../components/ExportRooms"
+
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-
 import Divider from "../components/Divider"
 
 const Dashboard = () => {
@@ -212,10 +212,10 @@ const Dashboard = () => {
                                                 <Divider />
                                                 <ul role="list" id="usersList" className="divide-y divide-gray-200 overflow-auto no-scrollbar -mt-5">
                                                     {
-                                                        users.map((user) => {
+                                                        users.map((user, key) => {
                                                             if (user.id != userData.id) {
                                                                 return (
-                                                                    <li className="py-3 sm:py-4 border-b">
+                                                                    <li className="py-3 sm:py-4 border-b" key={key}>
                                                                         <div className="flex items-center space-x-4">
                                                                             <div className="flex-shrink-0">
                                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>

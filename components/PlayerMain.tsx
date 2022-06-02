@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
@@ -15,12 +15,13 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall } from 'react-icons/hi'
-import { IoMdChatboxes } from 'react-icons/io'
+import { IoMdChatboxes, IoMdSend } from 'react-icons/io'
 import { GoClock } from "react-icons/go"
 import { AiFillPushpin } from "react-icons/ai"
 
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
+import Chat from './Chat'
 
 export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) {
 
@@ -50,8 +51,8 @@ export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDe
 
 function Main ({ user, room }) {
 
-  const router = useRouter()
-  const [deafen, setDeafen] = useState(false)
+  const router = useRouter();
+  const [deafen, setDeafen] = useState(false);
 
   if (!user.name) {
     //router.push('/')
@@ -230,14 +231,21 @@ function Main ({ user, room }) {
             }</h4>
             <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
             
-            <div className="bg-darker mt-10 mb-5 rounded-md p-5">
-              <Speakers />
-            </div>
+            <div className="flex space-x-4">
+              <div className="md:w-8/12 lg:w-8/12 xl:w-8/12 w-12/12">
+                <div className="bg-darker mt-10 mb-5 rounded-md p-5">
+                  <Speakers />
+                </div>
 
-            <div className="bg-darker mb-10 rounded-md p-5">
-              <Listeners />
+                <div className="bg-darker mb-10 rounded-md p-5">
+                  <Listeners />
+                </div>
+              </div>
+              <div className="w-4/12 p-5 bg-darker mt-10 rounded-md hidden md:block lg:block xl:block">
+                <h1 className="text-white font-bold text-2xl">Chat</h1>
+                <Chat roomId={roomId} />
+              </div>
             </div>
-            
           </div>
         </div>
       </div>
