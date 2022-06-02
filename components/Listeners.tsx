@@ -8,7 +8,7 @@ import User from './User'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
 
-export default function Listeners() {
+const Listeners: React.FC = () => {
   const {
     state: {
       peerId,
@@ -20,7 +20,7 @@ export default function Listeners() {
       onPromotePeerToSpeaker,
       onDemotePeerToListener
     },
-  } = useContext(PeerContext)
+  } = useContext<any>(PeerContext)
 
   const [recentEvents, roomEvents] = useRoomEvents()
 
@@ -84,3 +84,5 @@ export default function Listeners() {
     </>
   )
 }
+
+export default Listeners

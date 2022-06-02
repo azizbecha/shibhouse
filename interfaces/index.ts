@@ -4,7 +4,7 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type NewUser = {
+export interface NewUser {
   firstname: any,
   lastname: any,
   email: any,
@@ -12,12 +12,12 @@ export type NewUser = {
   password: any
 }
 
-export type LogUser = {
+export interface LogUser {
   email: any,
   password: any
 }
 
-export type NewRoom = {
+export interface NewRoom {
   id: string,
   title: string,
   description: any,
@@ -25,4 +25,16 @@ export type NewRoom = {
   topics: any,
   createdBy: any,
   speakers: Array<any>
+}
+
+export interface PlayerProps {
+  roomId: string,
+  userName: string,
+  isHost: boolean,
+  roomName: string,
+  roomDescription: string,
+  pinnedLink: string,
+  topics: Array<string>,
+  createdBy: string,
+  createdAt: string
 }

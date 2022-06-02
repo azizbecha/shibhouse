@@ -53,7 +53,7 @@ export default function RoomPage() {
         roomData !== '' ? (
           roomData.createdBy == currentUserData.username ? (
             <PlayerMain
-              roomId={roomId}
+              roomId={String(roomId)}
               roomName={roomData.title}
               userName={currentUserData.username}
               pinnedLink={roomData.pinnedLink}
@@ -65,7 +65,7 @@ export default function RoomPage() {
               />
           ) : (
             <PlayerMain
-              roomId={roomId}
+              roomId={String(roomId)}
               userName={currentUserData.username}
               roomName={roomData.title}
               pinnedLink={roomData.pinnedLink}

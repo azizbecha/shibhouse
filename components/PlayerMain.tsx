@@ -4,8 +4,14 @@ import { useRouter } from 'next/router'
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 
+import { PlayerProps } from '../interfaces'
+
 import Speakers from './Speakers'
 import Listeners from './Listeners'
+import Chat from './Chat'
+
+import { doc, deleteDoc } from "firebase/firestore";
+import { fireStore } from '../auth/Firebase'
 
 import ReactTimeAgo from 'react-time-ago'
 import { toast } from 'react-toastify'
@@ -15,15 +21,11 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall } from 'react-icons/hi'
-import { IoMdChatboxes, IoMdSend } from 'react-icons/io'
+import { IoMdChatboxes } from 'react-icons/io'
 import { GoClock } from "react-icons/go"
 import { AiFillPushpin } from "react-icons/ai"
 
-import { doc, deleteDoc } from "firebase/firestore";
-import { fireStore } from '../auth/Firebase'
-import Chat from './Chat'
-
-export default function PlayerMain ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) {
+const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) => {
 
   return (
     <StreamContextProvider>
@@ -252,3 +254,5 @@ function Main ({ user, room }) {
     </>
   )
 }
+
+export default PlayerMain

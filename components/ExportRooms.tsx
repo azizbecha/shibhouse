@@ -9,7 +9,7 @@ import ReactTimeAgo from 'react-time-ago'
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 
-const ExportRooms = () => {
+const ExportRooms:React.FC = () => {
 
     const [data, setData] = useState([]);
     
@@ -24,7 +24,6 @@ const ExportRooms = () => {
         });
 
     }, [data])
-
 
     if (data.length < 1) {
         return (

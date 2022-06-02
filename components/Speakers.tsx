@@ -7,7 +7,7 @@ import useRoomEvents from '../hooks/useRoomEvents'
 
 import { FaTimes } from 'react-icons/fa'
 
-export default function Speakers() {
+const Speakers: React.FC = () => {
   const {
     // incomingStreams,
     peerConnError,
@@ -29,12 +29,12 @@ export default function Speakers() {
       onPromotePeerToSpeaker,
       onDemotePeerToListener,
     },
-  } = useContext(PeerContext)
+  } = useContext<any>(PeerContext)
 
   const {
     micAudioStream,
     startMicStream,
-  } = useContext(StreamContext)
+  } = useContext<any>(StreamContext)
 
   const [recentEvents, roomEvents] = useRoomEvents()
 
@@ -91,3 +91,5 @@ export default function Speakers() {
     </>
   )
 }
+
+export default Speakers

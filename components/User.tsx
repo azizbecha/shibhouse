@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { JSXElementConstructor, useEffect, useState } from 'react'
 import hark from 'hark'
 
 import randomColor from 'randomcolor'
@@ -6,12 +6,24 @@ import randomColor from 'randomcolor'
 import { FaHeadphones } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 
-export default function User ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, ...props }) {
+interface UserProps {
+  host?: any,
+  onClick: () => void,
+  muted?: any,
+  me: boolean,
+  stream?: any,
+  name: string,
+  highlight?: any,
+  hoverIcon: JSX.Element,
+  reaction?: any
+}
+
+const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, ...props }) => {
   const [speaking, setSpeaking] = useState(false)
 
   useEffect(() => {
     if (!stream) return
-    if (!stream instanceof MediaStream) return
+    //if (!stream instanceof MediaStream) return
     const speechEvents = hark(stream)
     speechEvents.on('speaking', () => setSpeaking(true))
     speechEvents.on('stopped_speaking', () => setSpeaking(false))
@@ -43,3 +55,5 @@ export default function User ({ host, onClick, muted, me, stream, name, highligh
     </div>
   )
 }
+
+export default User

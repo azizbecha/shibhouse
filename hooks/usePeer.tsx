@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import uuid from 'uuid-random'
 import Peer from 'peerjs'
 
-export default function usePeer(config = {}) {
+const usePeer = (config: any = {}) => {
   const {
     peerId: paramPeerId,
     onConnectionOpen,
   } = config
 
   const [peerInstance, setPeerInstance] = useState(null)
-  const [peerStatus, setPeerStatus] = useState()
-  const [peerId, setPeerId] = useState(null)
+  const [peerStatus, setPeerStatus] = useState<String>()
+  const [peerId, setPeerId] = useState<String | null>(null)
 
   const destroyPeerInstance = () => {
     if (!peerInstance) return
@@ -57,3 +57,5 @@ export default function usePeer(config = {}) {
   return [peerInstance, peerId, peerStatus]
 
 }
+
+export default usePeer
