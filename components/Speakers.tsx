@@ -6,6 +6,7 @@ import { StreamContext } from '../contexts/StreamContext'
 import useRoomEvents from '../hooks/useRoomEvents'
 
 import { FaTimes } from 'react-icons/fa'
+import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
 
 const Speakers: React.FC = () => {
   const {
@@ -26,7 +27,6 @@ const Speakers: React.FC = () => {
       peerId,
     },
     actions: {
-      onPromotePeerToSpeaker,
       onDemotePeerToListener,
     },
   } = useContext<any>(PeerContext)
@@ -71,6 +71,7 @@ const Speakers: React.FC = () => {
           <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
             {speakers.map(speaker => (
               <User
+                id={peer}
                 key={speaker?.peer}
                 name={speaker?.metadata?.user?.name ? speaker.metadata.user.name : 'Anonym'}
                 host={speaker?.metadata?.isHost}
@@ -78,6 +79,8 @@ const Speakers: React.FC = () => {
                 stream={speaker.stream}
                 onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
                 hoverIcon={<FaTimes size={15} />}
+                speakerIcon={<HiSpeakerphone />}
+                kickIcon={<HiOutlineBan />}
               />
             ))}
             

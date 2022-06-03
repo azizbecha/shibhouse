@@ -7,12 +7,12 @@ import User from './User'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
+import { FaBan } from 'react-icons/fa'
 
 const Listeners: React.FC = () => {
   const {
     state: {
       peerId,
-      connRole,
       peerList,
       isHost,
     },
@@ -70,12 +70,14 @@ const Listeners: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
           { listenersPeers.map(peer => (
             <User
+              id={peer}
               key={peer.peer}
               me={peer.peer === peerId}
               name={peer.metadata?.user?.name || 'Anonym'}
               onClick={isHost ? () => handleUserClick(peer) : null}
               hoverIcon={<FaPlus size={15} />}
               reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
+              kickIcon={<FaBan />}
             />
           ))}
           

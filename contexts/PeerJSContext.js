@@ -1,4 +1,4 @@
-import { useEffect, createContext, useState, useContext, useRef, useMemo } from 'react'
+import { useEffect, createContext, useState, useContext, useMemo } from 'react'
 import uuid from 'uuid-random'
 
 import { StreamContext } from '../contexts/StreamContext'
@@ -9,7 +9,7 @@ import useStateRef from '../lib/useStateRef'
 import usePeer from '../hooks/usePeer'
 
 import { serverTimestamp, doc, updateDoc, getDoc } from 'firebase/firestore'
-import {fireStore} from '../auth/Firebase'
+import { fireStore } from '../auth/Firebase'
 import { toast } from 'react-toastify'
 
 export const PeerContext = createContext({

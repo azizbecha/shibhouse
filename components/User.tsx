@@ -1,10 +1,13 @@
-import { JSXElementConstructor, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import hark from 'hark'
 
 import randomColor from 'randomcolor'
 
-import { FaHeadphones } from 'react-icons/fa'
+import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
+import { PeerContext } from '../contexts/PeerJSContext'
+import { StreamContext } from '../contexts/StreamContext'
+import { HiSpeakerphone } from 'react-icons/hi'
 
 interface UserProps {
   host?: any,
@@ -15,11 +18,26 @@ interface UserProps {
   name: string,
   highlight?: any,
   hoverIcon: JSX.Element,
-  reaction?: any
+  reaction?: any,
+  kickIcon?: JSX.Element,
+  key: any,
+  id:any,
+  speakerIcon?: JSX.Element,
 }
 
-const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, ...props }) => {
-  const [speaking, setSpeaking] = useState(false)
+const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, ...props }) => {
+  const [speaking, setSpeaking] = useState(false);
+
+  const {
+    state: {
+      connToHost,
+      connRole,
+      connectedPeers,
+    },
+
+  } = useContext<any>(PeerContext)
+
+  const { micMuted } = useContext<any>(StreamContext)
 
   useEffect(() => {
     if (!stream) return
@@ -36,18 +54,48 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
           <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
             {name[0].toUpperCase()}{name[1].toUpperCase()}
             { onClick && hoverIcon && (
-              <div className="p-1 right-0 -bottom-1 bg-darker rounded-full border-white absolute" style={{borderWidth: '1.5px'}} onClick={onClick}>
-                { hoverIcon }
-              </div>
+              <>
+                <div className="p-1 right-0 -bottom-1 bg-darker rounded-full border-white absolute" style={{borderWidth: '1.5px'}} onClick={onClick}>
+                  { hoverIcon }
+                </div>
+              </>
             )}
           </div>
           <h1 className="mt-4 text-white text-center font-bold">
             {name} {me && '(You)'}
           </h1>
-
-          <div className='flex space-x-4 mt-3'>
-            <span className='p-1.5 bg-gray rounded-md'>{host ? <AiFillHome /> : <FaHeadphones />}</span>
             
+          <div className='flex justify-center space-x-2 mt-3'>
+            {host && (
+              <>
+                <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
+                
+              </>
+            )}
+              <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><FaHeadphones /></span>
+              {
+                speakerIcon && (
+                  <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{speakerIcon}</span>
+                )
+              }
+              {
+                me && ['host', 'speaker'].includes(connRole) &&(
+                  <>
+                    
+                    <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
+                  </>
+                )
+              }
+
+            
+            {! me && !host && !stream && <span onClick={() => {
+              console.log(id)
+                connectedPeers.forEach(conn => {
+                  conn.peer == id.peer && conn.close();
+                  if (connToHost) connToHost.close()
+                })
+              }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{ kickIcon }</span>
+            }
           </div>
         </div>
       </div>

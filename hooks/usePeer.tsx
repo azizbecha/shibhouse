@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import uuid from 'uuid-random'
 import Peer from 'peerjs'
+import { useRouter } from 'next/router'
 
 const usePeer = (config: any = {}) => {
   const {
@@ -11,6 +12,8 @@ const usePeer = (config: any = {}) => {
   const [peerInstance, setPeerInstance] = useState(null)
   const [peerStatus, setPeerStatus] = useState<String>()
   const [peerId, setPeerId] = useState<String | null>(null)
+
+  const router = useRouter()
 
   const destroyPeerInstance = () => {
     if (!peerInstance) return
@@ -32,6 +35,7 @@ const usePeer = (config: any = {}) => {
 
     peer.on('disconnected', () => {
       console.log('usePeer::Peer desconnected')
+      router.push('/dashboard')
       setPeerStatus('disconnected')
       destroyPeerInstance()
     })
@@ -40,6 +44,7 @@ const usePeer = (config: any = {}) => {
       console.log('usePeer::Peer closed remotetly')
       destroyPeerInstance()
       setPeerStatus('close')
+      router.push('/dashboard')
     })
 
 

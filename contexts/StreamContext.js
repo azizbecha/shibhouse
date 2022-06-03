@@ -38,7 +38,7 @@ const StreamContextProvider = ({ children }) => {
     setMicMuted(stream.enabled)
     stream.enabled ? (
       toast.success('Mic muted', {
-        position: "top-center",
+        position: "top-right",
         autoClose: 500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -48,7 +48,7 @@ const StreamContextProvider = ({ children }) => {
       })
     ) : (
       toast.success('Mic unmuted', {
-        position: "top-center",
+        position: "top-right",
         autoClose: 500,
         hideProgressBar: true,
         closeOnClick: true,

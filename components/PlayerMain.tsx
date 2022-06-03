@@ -10,13 +10,13 @@ import Speakers from './Speakers'
 import Listeners from './Listeners'
 import Chat from './Chat'
 
-import { doc, deleteDoc } from "firebase/firestore";
-import { fireStore } from '../auth/Firebase'
-
 import ReactTimeAgo from 'react-time-ago'
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import { doc, deleteDoc } from "firebase/firestore";
+import { fireStore } from '../auth/Firebase'
 
 import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
@@ -70,32 +70,27 @@ function Main ({ user, room }) {
   const {
     state: {
       roomId,
-      peer,
-      peerId,
       peerStatus,
       connToHost,
       connRole,
-      roomMetadata,
       isHost,
       connectedPeers,
-      peersOnRoom,
       peerList,
     },
     streams: {
       incomingStreams,
       outgoingStreams,
     },
-    actions: {
-      onPromotePeerToSpeaker,
-      onDemotePeerToListener,
-      sendMessageToHost,
-      // reconnectToHost,
-    }
   } = useContext<any>(PeerContext)
 
   useEffect(() => {
+    if (peerList.length == 0) {
+      onLeave();
+      router.push('/dashboard')
+    }
     if (!isHost) return
     startMicStream()
+    
   }, [isHost])
   
   async function onLeave() {
