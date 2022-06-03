@@ -207,10 +207,10 @@ const Me: React.FC = () => {
                                     <h1 className="text-white text-2xl font-inter font-bold">Discover</h1>
                                     <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar mt-3 space-y-2">
                                         {
-                                            users.map((user) => {
+                                            users.map((user, key) => {
                                                 return (
                                                     <Link href={`user/${user.username}`} passHref>
-                                                        <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer">
+                                                        <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer" key={key}>
                                                             <div className="flex items-center space-x-4 px-3">
                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
                                                                     {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
