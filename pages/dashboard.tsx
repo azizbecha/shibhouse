@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
             <Head>
                 <title>Dashboard - Shibhouse</title>
             </Head>
-            <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'}`}>
+            <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                 <Navbar />
                 <div className="mx-auto" style={{width: '98%'}}>
                     <Row>
