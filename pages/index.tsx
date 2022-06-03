@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link'
-import Head from 'next/head'
 
 import PasswordStrengthBar from "react-password-strength-bar";
 import { toast } from 'react-toastify'
@@ -9,11 +8,11 @@ import { toast } from 'react-toastify'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+import SEO from '../components/SEO';
 import ProtectedRoute from '../auth/ProtectedRoute'
+
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
-import SEO from '../components/SEO';
-import { getRandomColor } from '../lib/getRandomColor';
 
 const IndexPage: React.FC = () => {
 
@@ -54,7 +53,7 @@ const IndexPage: React.FC = () => {
 
     return (
         <>
-            <SEO title="Shibhouse - Re-taking voice conversations to the moon" description="Re-taking voice conversations to the moon 🚀" image='https://shibhouse.tv/cover.png' />
+            <SEO title="Shibhouse - Re-taking voice conversations to the moon" description="Re-taking voice conversations to the moon 🚀" image="https://cdn.shibhouse.tv/images/cover.png" />
             <ProtectedRoute>
                 <Navbar />
                 <div className="relative bg-dark">
@@ -93,7 +92,6 @@ const IndexPage: React.FC = () => {
                                         <span className="text-white font-semibold md:block">Join now</span>
                                     </button>
                                 </form>
-                                <button style={{backgroundColor: getRandomColor()}} onClick={() => console.log(getRandomColor())}>generate</button>
                                 <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
                                 <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
                             </div>

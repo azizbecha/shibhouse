@@ -22,7 +22,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
 
-    const logoLink = "https://shibhouse.web.app/shibhouse-logo-transparent.png";
+    const logoLink = "https://cdn.shibhouse.tv/images/shibhouse-logo-transparent.png";
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const { currentUserData } = useAuth();
@@ -112,7 +112,7 @@ export default function Navbar() {
 
                                 {/* Profile dropdown */}
                                 {
-                                    isLoggedIn && currentUserData !== null && (
+                                    isLoggedIn && currentUserData !== undefined && (
                                         <>
                                             <Menu as="div" className="ml-3 relative">
                                                 <div>

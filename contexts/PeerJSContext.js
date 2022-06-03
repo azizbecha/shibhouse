@@ -20,7 +20,7 @@ export const PeerContext = createContext({
 })
 
 export const PeerContextProvider = ({ children, initialContext }) => {
-  const soundEffect = new Audio("../roomChatMention.wav")
+  const soundEffect = new Audio("https://cdn.shibhouse.tv/sounds/roomChatMention.wav")
 
   const {
     roomId,
@@ -279,7 +279,7 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     if (!peer) return
     if (peerListenersInitialized) return
     peer.on('connection', (conn) => {
-      const soundEffect = new Audio("../roomChatMention.wav")
+      const soundEffect = new Audio("https://cdn.shibhouse.tv/sounds/roomChatMention.wav")
 
       // Incoming connection
       // Room Host only

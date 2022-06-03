@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <AuthProvider>
             <NextNProgress color='#ed111f' height={5} />
             <Head>
-                <link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
+                <link rel="shortcut icon" href="https://cdn.shibhouse.tv/images/icon.ico" type="image/x-icon" />
             </Head>
             <ToastContainer
                 position="top-center"

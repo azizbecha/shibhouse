@@ -142,11 +142,11 @@ function Main ({ user, room }) {
 
   const topics = room.topics.split(" ")
 
-  let muteAudio = new Audio("/mute.wav")
-  let unmuteAudio = new Audio("/unmute.wav")
+  let muteAudio = new Audio("https://cdn.shibhouse.tv/soundsmute.wav")
+  let unmuteAudio = new Audio("https://cdn.shibhouse.tv/sounds/unmute.wav")
 
-  let deafenAudio = new Audio("/deafen.wav")
-  let undeafenAudio = new Audio("/undeafen.wav")
+  let deafenAudio = new Audio("https://cdn.shibhouse.tv/sounds/deafen.wav")
+  let undeafenAudio = new Audio("https://cdn.shibhouse.tv/sounds/undeafen.wav")
 
   const playMuteAudio = () => {
     micMuted ? muteAudio.play() : unmuteAudio.play()
