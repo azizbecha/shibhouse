@@ -9,9 +9,7 @@ import { AuthContext } from "../../auth/AuthContext";
 import { fireStore } from "../../auth/Firebase";
 
 import { toast } from "react-toastify";
-import ReactTimeAgo from "react-time-ago";
 
-import randomColor from 'randomcolor';
 import { removeItem } from "../../lib/removeItemFromArray";
 
 import Footer from "../../components/Footer";

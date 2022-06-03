@@ -3,11 +3,10 @@ import { NewUser } from "../interfaces"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from "firebase/firestore"; 
 
-import randomColor from "randomColor";
-
 import { auth, fireStore } from '../auth/Firebase'
 import getCurrentUserData from "./getCurrentUserData";
 import { capitalizeWord } from "./capitalize";
+import { getRandomColor } from "./getRandomColor";
 
 const createUser = (user: NewUser) => {
     createUserWithEmailAndPassword(auth, user.email, user.password)
@@ -23,7 +22,7 @@ const createUser = (user: NewUser) => {
             following: [],
             claps: 0,
             joinDate: new Date(),
-            avatarColor: randomColor({luminosity: 'dark'})
+            avatarColor: getRandomColor()
         });
         
     })

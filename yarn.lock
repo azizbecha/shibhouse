@@ -1704,11 +1704,6 @@
   dependencies:
     "performance-now" "^2.1.0"
 
-"randomcolor@^0.6.2":
-  "integrity" "sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A=="
-  "resolved" "https://registry.npmjs.org/randomcolor/-/randomcolor-0.6.2.tgz"
-  "version" "0.6.2"
-
 "react-colorful@^5.5.1":
   "integrity" "sha512-M1TJH2X3RXEt12sWkpa6hLc/bbYS0H6F4rIqjQZ+RxNBstpY67d9TrFXtqdZwhpmBXcCwEi7stKqFue3ZRkiOg=="
   "resolved" "https://registry.npmjs.org/react-colorful/-/react-colorful-5.5.1.tgz"

@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import hark from 'hark'
 
-import randomColor from 'randomcolor'
-
 import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
 import { HiSpeakerphone } from 'react-icons/hi'
+import { getRandomColor } from '../lib/getRandomColor'
 
 interface UserProps {
   host?: any,
@@ -51,7 +50,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
     <div {...props}>
       <div className={`bg-dark text-white py-1 rounded-lg`}>
         <div className="container mt-5 mb-5">
-          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: randomColor({luminosity: 'dark'})}}>
+          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: getRandomColor()}}>
             {name[0].toUpperCase()}{name[1].toUpperCase()}
             { onClick && hoverIcon && (
               <>

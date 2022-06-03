@@ -13,6 +13,7 @@ import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
 import SEO from '../components/SEO';
+import { getRandomColor } from '../lib/getRandomColor';
 
 const IndexPage: React.FC = () => {
 
@@ -92,6 +93,7 @@ const IndexPage: React.FC = () => {
                                         <span className="text-white font-semibold md:block">Join now</span>
                                     </button>
                                 </form>
+                                <button style={{backgroundColor: getRandomColor()}} onClick={() => console.log(getRandomColor())}>generate</button>
                                 <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
                                 <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
                             </div>
