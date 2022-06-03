@@ -12,6 +12,7 @@ import Footer from '../components/Footer'
 import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
+import SEO from '../components/SEO';
 
 const IndexPage: React.FC = () => {
 
@@ -52,25 +53,8 @@ const IndexPage: React.FC = () => {
 
     return (
         <>
-            <Head>
-                <title>Shibhouse - Re-taking voice conversations to the moon 🚀</title>
-                <meta name="description" content="Re-taking voice conversations to the moon 🚀" />
-                <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://shibhouse.web.app/" />
-                <meta property="og:title" content="Shibhouse" />
-                <meta property="og:description" content="Re-taking voice conversations to the moon 🚀" />
-                <meta property="og:image" content="cover.png" />
-
-                <meta property="twitter:card" content="cover.png" />
-                <meta property="twitter:url" content="https://shibhouse.web.app/" />
-                <meta property="twitter:title" content="Shibhouse" />
-                <meta property="twitter:description" content="Re-taking voice conversations to the moon 🚀" />
-                <meta property="twitter:image" content="cover.png"></meta>
-            </Head>
+            <SEO title="Shibhouse - Re-taking voice conversations to the moon" description="Re-taking voice conversations to the moon 🚀" image='https://shibhouse.tv/cover.png' />
             <ProtectedRoute>
-                
                 <Navbar />
                 <div className="relative bg-dark">
                     <div className="container px-6 pt-8 md:px-12 lg:px-7">
