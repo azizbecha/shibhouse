@@ -81,19 +81,22 @@ const User: React.FC = () => {
 
     const Follow = async () => {
         try {
-            var followersArray = userData.followers
-            followersArray.push(currentUserData.username)
+            var followersArray = userData.followers;
+            var followingArray = currentUserData.following;
 
-            const followersRef = doc(fireStore, "users", userData.id);
+            followersArray.push(currentUserData.username);
+            followingArray.push(userData.username);
+
+            const followersRef = doc(fireStore, "users", currentUserData.id);
 
             await updateDoc(followersRef, {
-                followers: followersArray
+                following: followingArray
             });
 
-            const followersRef2 = doc(fireStore, "users", currentUserData.id);
+            const followersRef2 = doc(fireStore, "users", userData.id);
 
             await updateDoc(followersRef2, {
-                following: followersArray
+                followers: followersArray
             });
 
             fetch();

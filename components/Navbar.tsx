@@ -112,7 +112,7 @@ export default function Navbar() {
 
                                 {/* Profile dropdown */}
                                 {
-                                    isLoggedIn && (
+                                    isLoggedIn && currentUserData !== null && (
                                         <>
                                             <Menu as="div" className="ml-3 relative">
                                                 <div>

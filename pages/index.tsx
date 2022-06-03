@@ -51,9 +51,9 @@ const IndexPage: React.FC = () => {
     }
 
     return (
-        <ProtectedRoute>
+        <>
             <Head>
-                <title>Shibhouse</title>
+                <title>Shibhouse - Re-taking voice conversations to the moon 🚀</title>
                 <meta name="description" content="Re-taking voice conversations to the moon 🚀" />
                 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -69,54 +69,57 @@ const IndexPage: React.FC = () => {
                 <meta property="twitter:description" content="Re-taking voice conversations to the moon 🚀" />
                 <meta property="twitter:image" content="cover.png"></meta>
             </Head>
-            <Navbar />
-            <div className="relative bg-dark">
-                <div className="container px-6 pt-8 md:px-12 lg:px-7">
-                    <div className="flex items-center flex-wrap px-1 md:px-0">
-                        <div className="relative lg:w-6/12 lg:py-10 xl:py-32">
-                            <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
-                            <form onSubmit={addUser} className="w-full mt-12">
-                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                    <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" />
-                                    <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" />
-                                </div>
-                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                    <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" />
-                                    <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
-                                </div>
-                                <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                    <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                        setPassword(e.target.value)
-                                    }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
-                                </div>
-                                <PasswordStrengthBar
-                                    minLength={8}
-                                    password={password}
-                                    barColors={[
-                                        "#B83E26",
-                                        "#FFB829",
-                                        "#009200",
-                                        "#009200",
-                                        "#009200",
-                                        "#009200"
-                                    ]}
-                                    className="mb-5 w-12/12"
-                                />
-                                <button type="submit" data-aos='fade-left' className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
-                                    <span className="text-white font-semibold md:block">Join now</span>
-                                </button>
-                            </form>
-                            <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
-                            <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
-                        </div>
-                        <div className="ml-auto -mb-25 lg:w-4/12" data-aos='flip-right'>
-                            <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
+            <ProtectedRoute>
+                
+                <Navbar />
+                <div className="relative bg-dark">
+                    <div className="container px-6 pt-8 md:px-12 lg:px-7">
+                        <div className="flex items-center flex-wrap px-1 md:px-0">
+                            <div className="relative lg:w-6/12 lg:py-10 xl:py-32">
+                                <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
+                                <form onSubmit={addUser} className="w-full mt-12">
+                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
+                                        <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" />
+                                        <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" />
+                                    </div>
+                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
+                                        <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" />
+                                        <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
+                                    </div>
+                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
+                                        <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                            setPassword(e.target.value)
+                                        }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
+                                    </div>
+                                    <PasswordStrengthBar
+                                        minLength={8}
+                                        password={password}
+                                        barColors={[
+                                            "#B83E26",
+                                            "#FFB829",
+                                            "#009200",
+                                            "#009200",
+                                            "#009200",
+                                            "#009200"
+                                        ]}
+                                        className="mb-5 w-12/12"
+                                    />
+                                    <button type="submit" data-aos='fade-left' className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
+                                        <span className="text-white font-semibold md:block">Join now</span>
+                                    </button>
+                                </form>
+                                <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
+                                <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
+                            </div>
+                            <div className="ml-auto -mb-25 lg:w-4/12" data-aos='flip-right'>
+                                <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <Footer />
-        </ProtectedRoute>
+                <Footer />
+            </ProtectedRoute>
+        </>
     )
 }
 
