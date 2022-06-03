@@ -20,11 +20,12 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }: AppProps) {
     
     useEffect(() => {
-        TimeAgo.addDefaultLocale(en)
-        TimeAgo.addLocale(en)
+        TimeAgo.addDefaultLocale(en);
+        TimeAgo.addLocale(en);
+
         AOS.init();
         AOS.refresh();
-    })
+    }, [])
 
     return (
         <AuthProvider>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { fireStore } from "../auth/Firebase";
 import { useAuth } from "../auth/AuthContext";
 import { IoMdSend } from "react-icons/io";
+import { toast } from "react-toastify";
 
 interface Props {
     roomId: string;
@@ -12,8 +13,10 @@ interface Props {
 const Chat: React.FC<Props> = (props) => {
 
     const { currentUserData } = useAuth();
+
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
 
     useEffect(() => {
         const fetch = async () => {
@@ -32,17 +35,44 @@ const Chat: React.FC<Props> = (props) => {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-        if (message.length > 0) {
-            addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
-                message: message.trim(),
-                sendTime: new Date().getTime(),
-                sentBy: currentUserData.username,
-                roomId: props.roomId,
-                avatarColor: currentUserData.avatarColor
-            }),
-            setMessage('');
+            if (message.length > 0) {
+                // If message is not empty
+                if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
+
+                    // If last message timestamp is greater than 3 seconds
+                    addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
+                        message: message.trim(),
+                        sendTime: new Date().getTime(),
+                        sentBy: currentUserData.username,
+                        roomId: props.roomId,
+                        avatarColor: currentUserData.avatarColor
+                    }),
+                    setMessage('');
+                    setLastMessageTimestamp(new Date().getTime());
+                    return 
+                } else {
+                    toast.warning('Please wait a moment before', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    return 
+                }
             }
         } catch (e) {
+            toast.error('An error occured', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.log(e)
         }
     }
