@@ -189,7 +189,7 @@ const Me: React.FC = () => {
 
                                         <h1 className="font-normal text-md mb-1">Bio</h1>
                                         <div className="flex mb-3">
-                                            <textarea value={currentUserData.bio} onChange={e => setBio(e.currentTarget.value)} placeholder="Please enter your bio" className="w-9/12 px-3 py-2 mb-1 text-black rounded-md" />
+                                            <textarea value={bio} onChange={e => setBio(e.currentTarget.value)} placeholder="Please enter your bio" className="w-9/12 px-3 py-2 mb-1 text-black rounded-md" />
                                         </div>
 
                                         <h1 className="font-normal text-md mb-1">Avatar</h1>
