@@ -7,15 +7,15 @@ export const useScreenType = () => {
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
 
     if(isBigScreen){
-        return "3-cols";
+        return "bigScreen";
     }
     
     if(isDesktopOrLaptop){
-        return "2-cols";
+        return "mediumScreen";
     }
     
     if(isTabletOrMobile){
-        return "1-cols";
+        return "smallScreen";
     }
     
     return "fullscreen";

@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
+import 'react-flexbox-grid/dist/react-flexbox-grid.css'
 
 import '../styles/globals.css'
 
