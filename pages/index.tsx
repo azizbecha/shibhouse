@@ -53,7 +53,11 @@ const IndexPage: React.FC = () => {
 
     return (
         <>
-            <SEO title="Shibhouse - Re-taking voice conversations to the moon" description="Re-taking voice conversations to the moon 🚀" image="https://cdn.shibhouse.tv/images/cover.png" />
+            <SEO 
+                title="Shibhouse - Re-taking voice conversations to the moon" 
+                description="Re-taking voice conversations to the moon 🚀" 
+                image="../cover.png" 
+            />
             <ProtectedRoute>
                 <Navbar />
                 <div className="relative bg-dark">

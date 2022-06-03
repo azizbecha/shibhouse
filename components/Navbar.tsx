@@ -22,7 +22,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
 
-    const logoLink = "https://cdn.shibhouse.tv/images/shibhouse-logo-transparent.png";
+    const logoLink = "../../../../shibhouse-logo-transparent.png";
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const { currentUserData } = useAuth();

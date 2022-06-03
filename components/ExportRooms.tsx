@@ -28,7 +28,7 @@ const ExportRooms:React.FC = () => {
     if (data.length < 1) {
         return (
             <div className="bg-dark p-5 rounded-lg">
-                <img src="https://cdn.shibhouse.tv/images/musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />
+                <img src="../musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />
                 <h1 className="text-center text-white font-medium">
                     There are no rooms actually
                 </h1>

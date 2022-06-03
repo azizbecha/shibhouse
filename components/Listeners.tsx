@@ -45,7 +45,7 @@ const Listeners: React.FC = () => {
             listenersPeers.length == 0 && (
               <div className='flex w-12/12'>
                 <div className='mx-auto'>
-                  <img src='https://cdn.shibhouse.tv/images/shiba-inu-with-rocket.png' className='w-3/12 object-center mx-auto mb-5' />
+                  <img src='../../shiba-inu-with-rocket.png' className='w-3/12 object-center mx-auto mb-5' />
                   <h1 className="text-white text-xl text-center font-normal font-inter">Looks like there are no listeners with you in this room.</h1>
                   <h2 className='text-white text-center text-lg font-inter flex items-center justify-center mt-1'>Invite your friends to join the room with this link:<br /></h2>
                   <CopyToClipboard text={window.location.href} onCopy={() => {

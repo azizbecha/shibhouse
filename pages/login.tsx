@@ -90,7 +90,7 @@ const Login: React.FC = () => {
                             <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
                         </div>
                         <div className="ml-auto lg:w-5/12">
-                            <img src="https://cdn.shibhouse.tv/images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
+                            <img src="../cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
                         </div>
                     </div>
                 </div>
