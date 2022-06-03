@@ -14,7 +14,7 @@ const PeopleSidebar = () => {
     const { currentUserData } = useAuth();
 
     const getUsers = async () => {
-        const q = query(collection(fireStore, "users"), limit(12));
+        const q = query(collection(fireStore, "users"), limit(10));
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -58,7 +58,7 @@ const PeopleSidebar = () => {
                             <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for a user on the moon 🚀"/>
                         </div>
                         </div>
-                        <ul role="list" id="usersList" className="overflow-auto no-scrollbar">
+                        <ul role="list" id="usersList" className="overflow-auto">
                             {
                                 users.map((user, key) => {
                                     if (user.id != currentUserData.id) {
