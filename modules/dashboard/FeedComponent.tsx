@@ -77,61 +77,61 @@ const FeedComponent = () => {
     
     return (
         <>
-            {showModal ? (
-                <>
-                    <div data-aos='zoom-in' className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                        {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                {/*header*/}
-                                <div className="flex items-start justify-between bg-gray p-5 border-b border-solid border-slate-200 rounded-t">
-                                    <span className="text-2xl font-semibold">
-                                        Create room
-                                    </span>
-                                </div>
-                                {/*body*/}
-                                <form onSubmit={createNewRoom}>
-                                    <div className="relative p-4 flex-auto bg-gray">
-                                        <div className="my-4 text-slate-500 text-md leading-relaxed">
-                                            <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
-                                            <input ref={roomTitleRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" required /><br />
+            <main className="flex flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
+                {showModal ? (
+                    <>
+                        <div data-aos='zoom-in' className="justify-center items-center flex absolute overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none focus:outline-none">
+                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                            {/*content*/}
+                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                    {/*header*/}
+                                    <div className="flex items-start justify-between bg-gray p-5 border-b border-solid border-slate-200 rounded-t">
+                                        <span className="text-2xl font-semibold">
+                                            Create room
+                                        </span>
+                                    </div>
+                                    {/*body*/}
+                                    <form onSubmit={createNewRoom}>
+                                        <div className="relative p-4 flex-auto bg-gray">
+                                            <div className="my-4 text-slate-500 text-md leading-relaxed">
+                                                <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
+                                                <input ref={roomTitleRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" required /><br />
 
-                                            <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
-                                            <textarea ref={roomDescriptionRef} className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
+                                                <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
+                                                <textarea ref={roomDescriptionRef} className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
 
-                                            <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
-                                            <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
+                                                <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
 
-                                            <label htmlFor="">Pinned link</label><br />
-                                            <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <label htmlFor="">Pinned link</label><br />
+                                                <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
 
-                                            <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
+                                                <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/*footer*/}
-                                    <div className="flex items-center justify-end bg-gray p-6 border-t border-solid border-slate-200 rounded-b">
-                                        <button
-                                            className="bg-dark font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={() => setShowModal(false)}
-                                        >
-                                            Close
-                                        </button>
-                                        <button
-                                            className="bg-primary font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
-                                            type="submit"
-                                        >
-                                            Create
-                                        </button>
-                                    </div>
-                                </form>
+                                        {/*footer*/}
+                                        <div className="flex items-center justify-end bg-gray p-6 border-t border-solid border-slate-200 rounded-b">
+                                            <button
+                                                className="bg-dark font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button"
+                                                onClick={() => setShowModal(false)}
+                                            >
+                                                Close
+                                            </button>
+                                            <button
+                                                className="bg-primary font-bold px-6 py-3 rounded-lg text-sm mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit"
+                                            >
+                                                Create
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                </>
-            ) : null}
-            <main className="flex flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null}
                 <div className="flex w-full mx-auto px-4 pt-8 pb-8">
                     <div className="flex flex-col w-full h-full text-gray-900 text-xl">
                         <div className="flex space-x-45">
