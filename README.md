@@ -16,7 +16,7 @@
     <a href="https://github.com/azizbecha/shibhouse"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://shibhouse.web.app">View Demo</a>
+    <a href="https://shibhouse.tv">View Demo</a>
     ·
     <a href="https://github.com/azizbecha/shibhouse/issues">Report Bug</a>
     ·
