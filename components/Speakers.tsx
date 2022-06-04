@@ -32,6 +32,7 @@ const Speakers: React.FC = () => {
   } = useContext<any>(PeerContext)
 
   const {
+    checkMicPermission,
     micAudioStream,
     startMicStream,
   } = useContext<any>(StreamContext)
@@ -39,6 +40,7 @@ const Speakers: React.FC = () => {
   const [recentEvents, roomEvents] = useRoomEvents()
 
   const speakers = useMemo(() => {
+    checkMicPermission()
     return peerList
       .filter(Boolean)
       .filter(peer => peer.metadata.isSpeaker)
@@ -62,7 +64,7 @@ const Speakers: React.FC = () => {
           stream, // TODO: Add incoming stream for animation
         }
       })
-  }, [peerList, incomingStreams, micAudioStream, peerId])
+  }, [peerList, incomingStreams, micAudioStream, peerId, checkMicPermission])
 
   return (
     <>
