@@ -62,7 +62,7 @@ const Speakers: React.FC = () => {
           stream, // TODO: Add incoming stream for animation
         }
       })
-  }, [peerList])
+  }, [peerList, incomingStreams, micAudioStream, peerId])
 
   return (
     <>

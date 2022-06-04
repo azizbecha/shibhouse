@@ -40,7 +40,7 @@ export default function RoomPage() {
       
     }
     check()
-  }, [])
+  }, [roomId])
 
   return (
     <PrivateRoute>

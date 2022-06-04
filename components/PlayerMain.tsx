@@ -85,13 +85,13 @@ function Main ({ user, room }) {
 
   useEffect(() => {
     if (peerList.length == 0) {
-      onLeave();
-      router.push('/dashboard')
+      //onLeave();
+     // router.push('/dashboard')
     }
     if (!isHost) return
     startMicStream()
     
-  }, [isHost])
+  }, [isHost, peerList.length, startMicStream])
   
   async function onLeave() {
     if (isHost) {
@@ -215,14 +215,14 @@ function Main ({ user, room }) {
             {
               room.pinnedLink !== "" ? (
                 <>
-                  <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" >{room.pinnedLink}</a> </h4>
+                  <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" rel="noreferrer" >{room.pinnedLink}</a> </h4>
                 </>
               ) : null
             }
             <h4 className="text-lg font-normal text-white mt-3">{
-              topics.map((topic) => {
+              topics.map((topic, key) => {
                 return (
-                  <span className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
+                  <span key={key} className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
                 )
               })
             }</h4>

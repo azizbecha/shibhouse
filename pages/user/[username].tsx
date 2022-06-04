@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const User: React.FC = () => {
     const { username } = router.query;
     const { currentUserData } = useContext(AuthContext);
 
-    const fetch = async () => {
+    const fetch = useCallback(async () => {
         const q = query(collection(fireStore, "users"), where("username", "==", username), limit(1));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -38,7 +38,7 @@ const User: React.FC = () => {
                 router.push('/me'); // Redirect the user to his profile
             }
         });
-    }
+    }, [currentUserData.username, router, userData.username, username])
 
     const Unfollow = async () => {
         try {
@@ -148,7 +148,7 @@ const User: React.FC = () => {
         getUsers()
         getRooms()
         fetch()
-    }, [username])
+    }, [username, fetch])
 
     const FollowStatus = () => {
         if (currentUserData.followers.includes(userData.username) && userData.followers.includes(currentUserData.username)) {
@@ -223,9 +223,9 @@ const User: React.FC = () => {
                                 <h1 className="text-white text-2xl font-inter font-bold">Discover</h1>
                                 <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar mt-3 space-y-2">
                                     {
-                                        users.map((user) => {
+                                        users.map((user, key) => {
                                             return (
-                                                <Link href={user.username} passHref>
+                                                <Link href={user.username} key={key} passHref>
                                                     <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer">
                                                         <div className="flex items-center space-x-4 px-3">
                                                             <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>

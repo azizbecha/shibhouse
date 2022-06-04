@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react"
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ import ReactTimeAgo from 'react-time-ago'
 import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 
-const ExportRooms:React.FC = () => {
+const ExportRooms: React.FC = () => {
 
     const [data, setData] = useState([]);
     
@@ -33,7 +34,7 @@ const ExportRooms:React.FC = () => {
                     There are no rooms actually
                 </h1>
                 <p className="text-center text-white font-normal text-sm mt-3 mb-3">
-                    We didn't find any running rooms actually, why not create your own room ?
+                    We didn&apos;t find any running rooms actually, why not create your own room ?
                 </p>
             </div>
         )

@@ -30,7 +30,7 @@ const Chat: React.FC<Props> = (props) => {
             });
         }
         fetch()
-    }, [])
+    }, [props.roomId])
 
     const sendMessage = async (e) => {
         e.preventDefault();

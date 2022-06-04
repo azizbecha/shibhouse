@@ -92,19 +92,19 @@ const FeedComponent = () => {
                                     </div>
                                     {/*body*/}
                                     <form onSubmit={createNewRoom}>
-                                        <div className="relative p-4 flex-auto bg-gray">
+                                        <div className="relative p-4 flex-auto bg-gray w-full">
                                             <div className="my-4 text-slate-500 text-md leading-relaxed">
                                                 <label htmlFor="">Room title <span className="text-primary font-bold">*</span></label><br />
-                                                <input ref={roomTitleRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" required /><br />
+                                                <input ref={roomTitleRef} type="text" className="w-8/12 rounded-md mb-4 px-6 py-1 text-black" required /><br />
 
                                                 <label htmlFor="">Room description <span className="text-primary font-bold">*</span></label><br />
-                                                <textarea ref={roomDescriptionRef} className="w-8/12 rounded-sm px-2 py-1 mb-4 text-black" /><br />
+                                                <textarea ref={roomDescriptionRef} className="w-8/12 rounded-md px-2 py-1 mb-4 text-black" /><br />
 
                                                 <label htmlFor="">Topics <span className="text-primary font-bold">*</span></label><br />
-                                                <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-md mb-4 px-2 py-1 text-black" /><br />
 
                                                 <label htmlFor="">Pinned link</label><br />
-                                                <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-sm mb-4 px-2 py-1 text-black" /><br />
+                                                <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-md mb-4 px-2 py-1 text-black" /><br />
 
                                                 <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
                                             </div>

@@ -38,25 +38,25 @@ const Me: React.FC = () => {
 
     const [users, setUsers] = useState([]);
 
-    const getUsers = async () => {
-        const q = query(collection(fireStore, "users"), limit(10), where('username', '!=', currentUserData.username));
-
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            const users = querySnapshot.docs
-            .map((doc) => ({ ...doc.data(), id: doc.id }));
-            setUsers(users);
-        });
-    }
-
+    
     useEffect(() => {
+        const getUsers = async () => {
+            const q = query(collection(fireStore, "users"), limit(10), where('username', '!=', currentUserData.username));
+    
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                const users = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setUsers(users);
+            });
+        }
         setFirstname(currentUserData.firstname);
         setLastname(currentUserData.lastname);
         setEmail(currentUserData.email);
         setBio(currentUserData.bio);
         setAvatarColor(currentUserData.avatarColor);
         getUsers();
-    }, [])
+    }, [currentUserData.avatarColor, currentUserData.bio, currentUserData.email, currentUserData.firstname, currentUserData.lastname, currentUserData.username])
 
     useEffect(() => {
         if (firstname !== currentUserData.firstname || lastname !== currentUserData.lastname || email !== currentUserData.email || bio !== currentUserData.bio || avatarColor !== currentUserData.avatarColor) {
@@ -64,7 +64,7 @@ const Me: React.FC = () => {
         } else {
             setIsDisabled(true)
         }
-    }, [firstname, lastname, email, bio, avatarColor])
+    }, [firstname, lastname, email, bio, avatarColor, currentUserData.firstname, currentUserData.lastname, currentUserData.email, currentUserData.bio, currentUserData.avatarColor])
 
 
     const updateProfile = async (e) => {
@@ -209,7 +209,7 @@ const Me: React.FC = () => {
                                         {
                                             users.map((user, key) => {
                                                 return (
-                                                    <Link href={`user/${user.username}`} passHref>
+                                                    <Link href={`user/${user.username}`} key={key} passHref>
                                                         <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer" key={key}>
                                                             <div className="flex items-center space-x-4 px-3">
                                                                 <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
