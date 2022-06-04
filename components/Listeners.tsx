@@ -60,7 +60,7 @@ const Listeners: React.FC = () => {
                       progress: undefined,
                     });
                   }}>
-                    <div className='flex justify-center text-center text-white font-normal text-xl mt-3 cursor-pointer'>
+                    <div className='flex justify-center text-center text-white font-normal text-sm mt-3 cursor-pointer'>
                       <FaLink size={16} className="mt-2 mr-1" /> {window.location.href}
                     </div>
                   </CopyToClipboard>

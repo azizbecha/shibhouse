@@ -7,6 +7,7 @@ import useRoomEvents from '../hooks/useRoomEvents'
 
 import { FaTimes } from 'react-icons/fa'
 import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 const Speakers: React.FC = () => {
   const {
@@ -70,23 +71,24 @@ const Speakers: React.FC = () => {
     <>
       <div className="bg-darker my-0 rounded-md p-2">
         <h1 className="font-bold text-white text-2xl mb-4">Speakers ({speakers.length})</h1>
-          <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
-            {speakers.map(speaker => (
-              <User
-                id={peer}
-                key={speaker?.peer}
-                name={speaker?.metadata?.user?.name ? speaker.metadata.user.name : 'Anonym'}
-                host={speaker?.metadata?.isHost}
-                me={speaker.peer === peerId}
-                stream={speaker.stream}
-                onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
-                hoverIcon={<FaTimes size={15} />}
-                speakerIcon={<HiSpeakerphone />}
-                kickIcon={<HiOutlineBan />}
-              />
+          <Row>
+            {speakers.map((speaker, key) => (
+              <Col key={key} xs={12} sm={4} md={4} lg={3}>
+                <User
+                  id={peer}
+                  key={speaker?.peer}
+                  name={speaker?.metadata?.user?.name ? speaker.metadata.user.name : 'Anonym'}
+                  host={speaker?.metadata?.isHost}
+                  me={speaker.peer === peerId}
+                  stream={speaker.stream}
+                  onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
+                  hoverIcon={<FaTimes size={15} />}
+                  speakerIcon={<HiSpeakerphone />}
+                  kickIcon={<HiOutlineBan />}
+                />
+              </Col>
             ))}
-            
-          </div>
+          </Row>
           <style jsx>{`
             audio {
               display: none;
