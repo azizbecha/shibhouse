@@ -5,7 +5,7 @@ const StreamContext = createContext({})
 
 const StreamContextProvider = ({ children }) => {
   const [micAudioStream, setMicAudioStream] = useState(null)
-  const [micAudioStreamError, setMicAudioStreamError] = useState()
+  const [micAudioStreamError, setMicAudioStreamError] = useState();
   const [micAccess, setMicAccess] = useState(false)
   const [micMuted, setMicMuted] = useState(false)
 

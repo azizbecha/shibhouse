@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import uuid from 'uuid-random'
-import Peer from 'peerjs'
 import { useRouter } from 'next/router'
+import Peer from 'peerjs'
+import uuid from 'uuid-random'
 
 const usePeer = (config: any = {}) => {
   const {

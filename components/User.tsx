@@ -5,8 +5,8 @@ import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa
 import { AiFillHome } from 'react-icons/ai'
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
-import { HiSpeakerphone } from 'react-icons/hi'
 import { getRandomColor } from '../lib/getRandomColor'
+import { useMediaQuery } from 'react-responsive'
 
 interface UserProps {
   host?: any,
@@ -25,6 +25,7 @@ interface UserProps {
 }
 
 const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, ...props }) => {
+  const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [speaking, setSpeaking] = useState(false);
 
   const {
@@ -48,9 +49,10 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
 
   return (
     <div {...props}>
-      <div className={`bg-dark text-white py-1 rounded-lg`}>
+      <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-2'}`}>
         <div className="container mt-5 mb-5">
-          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: getRandomColor()}}>
+          
+          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking && me ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: getRandomColor()}}>
             {name[0].toUpperCase()}{name[1].toUpperCase()}
             { onClick && hoverIcon && (
               <>
@@ -60,7 +62,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
               </>
             )}
           </div>
-          <h1 className="mt-4 text-white text-center font-bold">
+          <h1 className="mt-4 text-white text-center font-bold text-md">
             {name} {me && '(You)'}
           </h1>
             

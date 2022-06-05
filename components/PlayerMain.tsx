@@ -18,12 +18,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
 
-import { FaCog, FaHeadphones, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { FaBan, FaBullhorn, FaCog, FaHeadphones, FaHome, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
-import { HiPhoneMissedCall } from 'react-icons/hi'
+import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'
 import { GoClock } from "react-icons/go"
-import { AiFillPushpin } from "react-icons/ai"
+import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { useMediaQuery } from 'react-responsive'
 
@@ -87,10 +87,6 @@ function Main ({ user, room }) {
   } = useContext<any>(PeerContext)
 
   useEffect(() => {
-    if (peerList.length == 0) {
-      //onLeave();
-     // router.push('/dashboard')
-    }
     if (!isHost) return
     startMicStream()
     
@@ -164,11 +160,11 @@ function Main ({ user, room }) {
       <div className="bg-dark w-12/12 py-5 flex items-center">
         <div style={{width: '96%'}} className="mx-auto">
           <Row between="lg" middle="lg">
-            <Col lg={9} md={6} sm={12} xs={12}>
+            <Col lg={9} md={7} sm={12} xs={12}>
               <h3 className="text-3xl font-bold text-white inline-flex items-center justify-start">
                 <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span>
               </h3>
-              <h4 className="text-lg font-normal text-white">{room.description}</h4>
+              <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
                 {
                   room.pinnedLink !== "" ? (
                     <>
@@ -176,16 +172,56 @@ function Main ({ user, room }) {
                     </>
                   ) : null
                 }
-                <h4 className="text-lg font-normal text-white mt-3">{
-                  topics.map((topic, key) => {
-                    return (
-                      <span key={key} className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
-                    )
-                  })
-                }</h4>
+                <Col xs={12} sm={12} md={12} lg={12} className="mt-2">
+                  <Row className={`justify-start ${isTabletOrMobile && 'space-y-1'}`}>
+                    {
+                      topics.map((topic, key) => {
+                        return (
+                          <Col key={key}>
+                            <span key={key} className="bg-gray text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
+                          </Col>
+                        )
+                      })
+                    }
+                  </Row>
+                </Col>
                 <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
+                <Col xs={12} sm={12} md={12} lg={12}>
+                  <Row className={`flex relative mt-5 space-x-1 justify-start ${isTabletOrMobile && 'space-y-1'}`}>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
+                        <AiFillHome size={13} className="my-auto mr-1" /> Host
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                        <HiSpeakerphone size={13} className="my-auto mr-1" /> Speaker
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                        <FaHeadphones size={13} className="my-auto mr-1" /> Listener
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                        <FaMicrophoneSlash size={13} className="my-auto mr-1" /> Muted
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                        <FaMicrophone size={13} className="my-auto mr-1" /> Ummuted
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                        <FaBan size={13} className="my-auto mr-1" /> Ban
+                      </span>
+                    </Col>
+                  </Row>
+                </Col>
               </Col>
-              <Col lg={3} md={3} sm={12} xs={12}>
+              <Col lg={3} md={2} sm={12} xs={12}>
                 <nav className={`flex rounded-xl items-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto justify-center'}`}>
                   {(isHost || connRole === 'speaker') && (
                     <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
@@ -226,7 +262,6 @@ function Main ({ user, room }) {
               </Col>
               <Col xs={12} sm={12} md={4} lg={4}>
                 <div className="bg-darker p-4 mt-3 rounded-lg">
-                  
                   <h1 className="font-bold text-white text-2xl mb-4">Chat</h1>
                   <Chat roomId={roomId} />
                 </div>

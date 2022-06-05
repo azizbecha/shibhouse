@@ -9,6 +9,7 @@ import User from './User'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 const Listeners: React.FC = () => {
   const {
@@ -68,21 +69,23 @@ const Listeners: React.FC = () => {
               </div>
             )
           }
-        <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-3">
-          { listenersPeers.map(peer => (
-            <User
-              id={peer}
-              key={peer.peer}
-              me={peer.peer === peerId}
-              name={peer.metadata?.user?.name || 'Anonym'}
-              onClick={isHost ? () => handleUserClick(peer) : null}
-              hoverIcon={<FaPlus size={15} />}
-              reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
-              kickIcon={<FaBan />}
-            />
+        <Row>
+          { listenersPeers.map((peer, key) => (
+            <Col key={key} xs={12} sm={4} md={4} lg={3} className="px-1">
+              <User
+                id={peer}
+                key={peer.peer}
+                me={peer.peer === peerId}
+                name={peer.metadata?.user?.name || 'Anonym'}
+                onClick={isHost ? () => handleUserClick(peer) : null}
+                hoverIcon={<FaPlus size={15} />}
+                reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
+                kickIcon={<FaBan />}
+              />
+            </Col>
           ))}
           
-        </div>
+        </Row>
       </div>
     </>
   )

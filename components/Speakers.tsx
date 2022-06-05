@@ -10,6 +10,7 @@ import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 const Speakers: React.FC = () => {
+  
   const {
     // incomingStreams,
     peerConnError,
@@ -30,24 +31,24 @@ const Speakers: React.FC = () => {
     actions: {
       onDemotePeerToListener,
     },
-  } = useContext<any>(PeerContext)
-
+  } = useContext<any>(PeerContext);
+  
   const {
     checkMicPermission,
     micAudioStream,
     startMicStream,
-  } = useContext<any>(StreamContext)
+  } = useContext<any>(StreamContext);
 
-  const [recentEvents, roomEvents] = useRoomEvents()
+  const [recentEvents, roomEvents] = useRoomEvents();
 
   const speakers = useMemo(() => {
-    checkMicPermission()
+    checkMicPermission();
     return peerList
       .filter(Boolean)
       .filter(peer => peer.metadata.isSpeaker)
       .map(peer => {
         // Peer has stream
-        let stream
+        let stream: any
 
         const peerHasStream = incomingStreams
           .find(call => call.call.peer === peer.peer)
