@@ -54,9 +54,9 @@ const PeopleSidebar = () => {
                                 </div>
                             </div>
                             <Divider />
-                        <div className="relative text-gray-700 border-0 mb-5">
-                            <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for a user on the moon 🚀"/>
-                        </div>
+                            <div className="relative text-gray-700 border-0 mb-5">
+                                <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" type="search" placeholder="Search for a user on the moon 🚀"/>
+                            </div>
                         </div>
                         <ul role="list" id="usersList" className="overflow-auto">
                             {

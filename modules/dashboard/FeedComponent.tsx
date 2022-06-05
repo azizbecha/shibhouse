@@ -104,7 +104,7 @@ const FeedComponent = () => {
                                                 <input ref={roomTopicsRef} type="text" className="w-8/12 rounded-md mb-4 px-2 py-1 text-black" /><br />
 
                                                 <label htmlFor="">Pinned link</label><br />
-                                                <input ref={roomPinnedLinkRef} type="text" className="w-8/12 rounded-md mb-4 px-2 py-1 text-black" /><br />
+                                                <input ref={roomPinnedLinkRef} type="link" className="w-8/12 rounded-md mb-4 px-2 py-1 text-black" /><br />
 
                                                 <span className="mt-5">By creating a room, everyone on shibhouse can join, listen, chat and request to talk with you.</span>
                                             </div>
@@ -138,7 +138,6 @@ const FeedComponent = () => {
                             <div className="flex space-x-20 w-full">
                                 <div className="flex-1 min-w-0">
                                     <h1 className="font-bold text-2xl font-inter">Feed</h1>
-                                    
                                 </div>
                                 <div className="inline-flex items-end text-base">
                                     <button onClick={() => setShowModal(true)} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-secondary hover:shadow" type="button">Create room</button>
@@ -147,7 +146,7 @@ const FeedComponent = () => {
                         </div>
                         <Divider />
                         <div className="relative text-gray-700 mb-5 border-0">
-                            <input id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" type="text" placeholder="Search for a room on the moon 🚀"/>
+                            <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" placeholder="Search for a room on the moon 🚀"/>
                         </div>
                         <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                         <div className="bg-dark p-4 rounded-lg mb-5">
