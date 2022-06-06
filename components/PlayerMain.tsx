@@ -13,12 +13,11 @@ import Chat from './Chat'
 import ReactTimeAgo from 'react-time-ago'
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
 
-import { FaBan, FaBullhorn, FaCog, FaHeadphones, FaHome, FaMapMarkerAlt, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { FaBan,  FaCog, FaHeadphones, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { IoMdChatboxes } from 'react-icons/io'
@@ -148,11 +147,11 @@ function Main ({ user, room }) {
   let undeafenAudio = new Audio("../../undeafen.wav")
 
   const playMuteAudio = () => {
-    micMuted ? muteAudio.play() : unmuteAudio.play()
+    micMuted ? muteAudio.play() : unmuteAudio.play();
   }
 
   const playDeafenAudio = () => {
-    deafen ? deafenAudio.play() : undeafenAudio.play()
+    deafen ? deafenAudio.play() : undeafenAudio.play();
   }
 
   return (
