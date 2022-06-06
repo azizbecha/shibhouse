@@ -1,29 +1,26 @@
 import { useRouter } from "next/router"
 import { useState, useRef, useEffect, Fragment } from "react"
-
 import { Dialog, Transition } from '@headlessui/react'
 import { FaDollarSign, FaHome } from "react-icons/fa"
-import { AiFillHome } from "react-icons/ai"
-import Divider from "../../components/Divider"
-
 import { toast } from "react-toastify"
 import { Ticker } from "react-ts-tradingview-widgets"
-
 import { useAuth } from "../../auth/AuthContext"
+import Divider from "../../components/Divider"
 import ExportRooms from "../../components/ExportRooms"
-
 import { NewRoom } from "../../interfaces"
 import createRoom from "../../lib/createRoom"
 import generateId from "../../lib/generateId"
 
 import $ from 'jquery'
+import { AiFillHome } from "react-icons/ai"
 
 const FeedComponent = () => {
 
     const router = useRouter();
     const { currentUserData } = useAuth();
-
+    
     const [showModal, setShowModal] = useState<boolean>(false);
+    const cancelButtonRef = useRef(null)
     const roomTitleRef = useRef<HTMLInputElement>();
     const roomDescriptionRef = useRef<HTMLTextAreaElement>();
     const roomPinnedLinkRef = useRef<HTMLInputElement>();
@@ -44,6 +41,7 @@ const FeedComponent = () => {
         
         if (roomTitleRef.current.value !== "" && roomDescriptionRef.current.value !== "" && roomTopicsRef.current.value !== "") {
             try {
+                setShowModal(false);
                 await createRoom(data);
                 toast.success('Room created successfully', {
                     position: "top-center",
@@ -80,13 +78,12 @@ const FeedComponent = () => {
             });
         });
     }, [])
-    const cancelButtonRef = useRef(null)
     
     return (
         <>
             <main className="flex flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
                 <Transition.Root show={showModal} as={Fragment}>
-                    <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowModal}>
+                    <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setShowModal}>
                         <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -111,7 +108,7 @@ const FeedComponent = () => {
                                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                 >
                                     <Dialog.Panel className="relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
-                                        <form onSubmit={createNewRoom}>
+                                    <form onSubmit={createNewRoom}>
                                             <div className="bg-darker px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                                 <div className="sm:flex sm:items-start">
                                                     <div className="m-auto bg-primary flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
