@@ -445,6 +445,10 @@ function Main ({ user, room }) {
                                   CTRL + Y
                                 </span> For opening/closing settings
                                 <br /><br />
+                                <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                  CTRL + B
+                                </span> For opening/closing chat
+                                <br /><br />
                               </div>
                               <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                                 <span className="text-xl text-white font-bold">Debug</span>
@@ -492,6 +496,10 @@ function Main ({ user, room }) {
       <Hotkeys 
         keyName="ctrl+i" 
         onKeyDown={() => copyRoomLink()}
+      ></Hotkeys>
+      <Hotkeys 
+        keyName="ctrl+b" 
+        onKeyDown={() => toggleChat()}
       ></Hotkeys>
       <div className="bg-dark w-12/12 py-5 flex items-center">
         <div style={{width: '96%'}} className="mx-auto">
