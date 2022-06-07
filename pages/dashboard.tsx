@@ -132,7 +132,7 @@ const Dashboard: React.FC = () => {
                                                                 </div>
                                                                 <Divider />
                                                                 <span className="font-semibold">Room title <span className="text-primary font-extrabold">*</span></span><br />
-                                                                <input className="rounded w-full py-2 px-2 text-white mb-4 bg-dark mt-1" placeholder="Please enter the room title here" ref={roomTitleRef}  type="text" required /><br />
+                                                                <input className="rounded w-full py-2 px-2 text-white mb-4 bg-dark mt-1" placeholder="Please enter the room title here" ref={roomTitleRef} type="text" required /><br />
 
                                                                 <span className="font-semibold">Description <span className="text-primary font-extrabold">*</span></span><br />
                                                                 <textarea className="rounded w-full py-1 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room description here" ref={roomDescriptionRef} required /><br />
