@@ -15,7 +15,7 @@ const Chat: React.FC<Props> = (props) => {
     const { currentUserData } = useAuth();
 
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
 
     useEffect(() => {
@@ -23,11 +23,12 @@ const Chat: React.FC<Props> = (props) => {
             const q = query(collection(fireStore, `rooms/${props.roomId}/messages`), orderBy("sendTime", "desc"), limit(15));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    const rooms = querySnapshot.docs
+                    const messages = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
-                    setMessages(rooms);
+                    setMessages(messages);
                 });
             });
+
         }
         fetch()
     }, [props.roomId])
