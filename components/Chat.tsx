@@ -5,6 +5,7 @@ import { fireStore } from "../auth/Firebase";
 import { useAuth } from "../auth/AuthContext";
 import { IoMdSend } from "react-icons/io";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 interface Props {
     roomId: string;
@@ -91,11 +92,28 @@ const Chat: React.FC<Props> = (props) => {
                     }
                     {
                         messages.map((message, key) => {
+                            var pattern = /\B@[a-z0-9_-]+/gi;
+                            var mentions = [""]
+                            mentions = message.message.match(pattern)
+                            var msg = message.message.split(" ");
+                            console.log(msg)
                             return (
                                 <li className='w-full my-1' key={key}>
                                     <span className='font-bold text-sm' style={{color: message.avatarColor}}>{message.sentBy}: {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mr-1 rounded-full text-xs text-white">You</span>}</span>
                                     <span className="text-sm text-wrap break-all">
-                                        {message.message}
+                                        {
+                                            msg.map((word) => {
+                                                if (mentions.includes(word)) {
+                                                    return (
+                                                        <span>
+                                                            <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer"><Link href={`../user/${word.substring(1)}`}>{word}</Link></span>&nbsp;
+                                                        </span>
+                                                    )
+                                                } else {
+                                                    return word + " "
+                                                }
+                                            })
+                                        }
                                     </span>
                                 </li>
                             )
