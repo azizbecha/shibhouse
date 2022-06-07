@@ -445,7 +445,7 @@ function Main ({ user, room }) {
       <Hotkeys 
         keyName="ctrl+y" 
         onKeyDown={() => {
-          open ? setOpen(false) : setOpen(true)
+          setOpen(!open)
         }}
       ></Hotkeys>
       <Hotkeys 
