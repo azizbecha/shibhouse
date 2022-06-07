@@ -21,6 +21,7 @@ import { toast } from "react-toastify"
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
 import { Ticker } from "react-ts-tradingview-widgets"
+import Hotkeys from 'react-hot-keys';
 
 const Dashboard: React.FC = () => {
     const router = useRouter();
@@ -78,6 +79,10 @@ const Dashboard: React.FC = () => {
             <Head>
                 <title>Dashboard - Shibhouse</title>
             </Head>
+            <Hotkeys 
+                keyName="ctrl+y" 
+                onKeyDown={() => setShowModal(!showModal)}
+            ></Hotkeys>
             <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                 <Navbar />
                 <div className="mx-auto" style={{width: '98%'}}>
