@@ -17,6 +17,8 @@ import Hotkeys from 'react-hot-keys';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
+import { useNetworkState } from 'react-use';
+
 
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
@@ -61,6 +63,7 @@ const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName,
 function Main ({ user, room }) {
 
   const router = useRouter();
+  const networkState = useNetworkState();
   const [deafen, setDeafen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTab, setOpenTab] = useState(1);
@@ -156,6 +159,18 @@ function Main ({ user, room }) {
     )
   }
 
+  if (!networkState.online) {
+    toast.error("You are disconnected !", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
   const copyRoomLink = () => {
     copy(window.location.href);
     toast.success('Room link copied to clipboard', {
@@ -184,7 +199,7 @@ function Main ({ user, room }) {
   const playDeafenAudio = () => {
     deafen ? deafenAudio.play() : undeafenAudio.play();
   }
-
+  
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
