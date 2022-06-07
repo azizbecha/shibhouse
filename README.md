@@ -141,3 +141,4 @@ Project Link: [https://github.com/azizbecha/shibhouse](https://github.com/azizbe
 
 ## Thanks
 1. <a href='https://github.com/CortexTN'>@CortexTN</a> for the logo and your improvements.
+2. <a href='https://instagram.com/zeriab666'>Zeriab</a> for paying the hosting costs
