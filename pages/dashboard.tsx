@@ -83,6 +83,10 @@ const Dashboard: React.FC = () => {
                 keyName="ctrl+y" 
                 onKeyDown={() => setShowModal(!showModal)}
             ></Hotkeys>
+            <Hotkeys 
+                keyName="ctrl+m" 
+                onKeyDown={() => router.push('/me')}
+            ></Hotkeys>
             <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                 <Navbar />
                 <div className="mx-auto" style={{width: '98%'}}>
