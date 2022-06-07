@@ -94,7 +94,10 @@ const Chat: React.FC<Props> = (props) => {
                         messages.map((message, key) => {
                             var pattern = /\B@[a-z0-9_-]+/gi;
                             var mentions = [""]
-                            mentions = message.message.match(pattern)
+                            mentions = []
+                            if (message.message.match(pattern) !== null) {
+                                mentions = message.message.match(pattern)
+                            }
                             var msg = message.message.split(" ");
                             console.log(msg)
                             return (
