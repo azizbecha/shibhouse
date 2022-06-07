@@ -14,11 +14,9 @@ import Chat from './Chat'
 import { useMediaQuery } from 'react-responsive'
 import ReactTimeAgo from 'react-time-ago'
 import Hotkeys from 'react-hot-keys';
-import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
-import { useNetworkState } from 'react-use';
-
+import { useNetworkState, useCopyToClipboard } from 'react-use';
 
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
@@ -64,6 +62,8 @@ function Main ({ user, room }) {
 
   const router = useRouter();
   const networkState = useNetworkState();
+  const [state, copyToClipboard] = useCopyToClipboard();
+
   const [deafen, setDeafen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTab, setOpenTab] = useState(1);
@@ -72,7 +72,6 @@ function Main ({ user, room }) {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
 
   if (!user.name) {
-    //router.push('/')
     console.log('no username provided')
   }
 
@@ -172,7 +171,7 @@ function Main ({ user, room }) {
   }
 
   const copyRoomLink = () => {
-    copy(window.location.href);
+    copyToClipboard(window.location.href)
     toast.success('Room link copied to clipboard', {
       position: "top-right",
       autoClose: 1000,
