@@ -102,6 +102,12 @@ function Main ({ user, room }) {
     startMicStream()
     
   }, [isHost, peerList.length, startMicStream])
+
+  useEffect(() => {
+    window.onbeforeunload = async () => {
+      onLeave();
+    };
+  })
   
   async function onLeave() {
     if (isHost) {
