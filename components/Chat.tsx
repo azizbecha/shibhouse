@@ -93,7 +93,7 @@ const Chat: React.FC<Props> = (props) => {
                             return (
                                 <li className='w-full my-1' key={key}>
                                     <span className='font-bold text-sm' style={{color: message.avatarColor}}>{message.sentBy}: {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mr-1 rounded-full text-xs text-white">You</span>}</span>
-                                    <span className="text-sm">
+                                    <span className="text-sm text-wrap break-all">
                                         {message.message}
                                     </span>
                                 </li>
