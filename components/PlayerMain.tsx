@@ -28,7 +28,7 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
-import { IoMdChatboxes } from 'react-icons/io'
+import { RiChat4Fill, RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 
@@ -64,12 +64,29 @@ function Main ({ user, room }) {
   const networkState = useNetworkState();
   const [state, copyToClipboard] = useCopyToClipboard();
 
+  const [showChat, setShowChat] = useState(true);
   const [deafen, setDeafen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTab, setOpenTab] = useState(1);
 
   const cancelButtonRef = useRef(null)
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
+
+  let muteAudio = new Audio("../../mute.wav")
+  let unmuteAudio = new Audio("../../unmute.wav")
+
+  let deafenAudio = new Audio("../../deafen.wav");
+  let undeafenAudio = new Audio("../../undeafen.wav");
+
+  let toggleChatAudio = new Audio("../../deafen.wav");
+
+  const playMuteAudio = () => {
+    micMuted ? muteAudio.play() : unmuteAudio.play();
+  }
+
+  const playDeafenAudio = () => {
+    deafen ? deafenAudio.play() : undeafenAudio.play();
+  }
 
   if (!user.name) {
     console.log('no username provided')
@@ -183,21 +200,33 @@ function Main ({ user, room }) {
     });
   }
 
+  const toggleChat = () => {
+    showChat ? (
+      toast.success('Chat invisible', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      })
+    ) : (
+      toast.success('Chat visible', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      })
+    )
+    toggleChatAudio.play();
+    setShowChat(!showChat);
+  }
+
   const topics = room.topics.split(" ")
-
-  let muteAudio = new Audio("../../mute.wav")
-  let unmuteAudio = new Audio("../../unmute.wav")
-
-  let deafenAudio = new Audio("../../deafen.wav")
-  let undeafenAudio = new Audio("../../undeafen.wav")
-
-  const playMuteAudio = () => {
-    micMuted ? muteAudio.play() : unmuteAudio.play();
-  }
-
-  const playDeafenAudio = () => {
-    deafen ? deafenAudio.play() : undeafenAudio.play();
-  }
   
   return (
     <>
@@ -532,7 +561,7 @@ function Main ({ user, room }) {
                 <nav className={`flex rounded-xl items-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto justify-center'}`}>
                   {(isHost || connRole === 'speaker') && (
                     <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
-                      <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full': 'text-white/50 hover:bg-gray/50' } smooth-hover`}>
+                      <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                         { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                       </button>
                     </span>
@@ -546,20 +575,22 @@ function Main ({ user, room }) {
                   <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
                     <FaUserPlus size={18} />
                   </a>
-                  <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
-                    <IoMdChatboxes size={20} />
-                  </a>
-                  <button onClick={onLeave} className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+                  <button onClick={() => { toggleChat() } } className={`p-4 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
+                    {
+                      showChat ? <RiChat4Fill size={20} /> : <RiChatOffFill size={20} />
+                    }
+                  </button>
+                  <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <HiPhoneMissedCall size={20} />
                   </button>
-                  <button onClick={() => setOpen(true)} className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+                  <button onClick={() => setOpen(true)} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <FaCog size={20} />
                   </button>
                 </nav>
               </Col>
             </Row>
             <Row>
-              <Col xs={12} sm={12} md={8} lg={8}>
+              <Col xs={12} sm={12} md={8} lg={showChat ? 8 : 12}>
                 <div className="p-4 mt-3 rounded-lg bg-darker">
                   <Speakers />
                 </div>
@@ -567,12 +598,16 @@ function Main ({ user, room }) {
                   <Listeners />
                 </div>
               </Col>
-              <Col xs={12} sm={12} md={4} lg={4}>
-                <div className="bg-darker p-4 mt-3 rounded-lg">
-                  <h1 className="font-bold text-white text-2xl mb-4">Chat</h1>
-                  <Chat roomId={roomId} />
-                </div>
-              </Col>
+              {
+                showChat && (
+                  <Col xs={12} sm={12} md={4} lg={4}>
+                    <div className="bg-darker p-4 mt-3 rounded-lg">
+                      <h1 className="font-bold text-white text-2xl mb-4">Chat</h1>
+                      <Chat roomId={roomId} />
+                    </div>
+                  </Col>
+                )
+              }
             </Row>
         </div>
       </div>

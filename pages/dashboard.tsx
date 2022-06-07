@@ -24,28 +24,37 @@ import { Ticker } from "react-ts-tradingview-widgets"
 import Hotkeys from 'react-hot-keys';
 
 const Dashboard: React.FC = () => {
+
     const router = useRouter();
     const { currentUserData } = useAuth();
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+
     const [showModal, setShowModal] = useState<boolean>(false);
-    const cancelButtonRef = useRef(null)
-    const roomTitleRef = useRef<HTMLInputElement>();
-    const roomDescriptionRef = useRef<HTMLTextAreaElement>();
-    const roomPinnedLinkRef = useRef<HTMLInputElement>();
-    const roomTopicsRef = useRef<HTMLInputElement>();
+    const cancelButtonRef = useRef(null);
+
+    // const roomTitleRef = useRef<HTMLInputElement>();
+    // const roomDescriptionRef = useRef<HTMLTextAreaElement>();
+    // const roomPinnedLinkRef = useRef<HTMLInputElement>();
+    // const roomTopicsRef = useRef<HTMLInputElement>();
+    const [roomTitle, setRoomTitle] = useState('');
+    const [roomDescription, setRoomDescription] = useState('');
+    const [roomPinnedLink, setRoomPinnedLink] = useState('');
+    const [roomTopics, setRoomTopics] = useState('');
+
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const roomId = generateId(10);
         const data: NewRoom = {
             id: roomId,
             createdBy: currentUserData.username,
-            title: roomTitleRef.current.value,
-            description: roomDescriptionRef.current.value,
-            pinnedLink: roomPinnedLinkRef.current.value,
-            topics: roomTopicsRef.current.value,
+            title: roomTitle,
+            description: roomDescription,
+            pinnedLink: roomPinnedLink,
+            topics: roomTopics,
             speakers: [currentUserData.username]
         }
         
-        if (roomTitleRef.current.value !== "" && roomDescriptionRef.current.value !== "" && roomTopicsRef.current.value !== "") {
+        if (roomTitle !== "" && roomDescription !== "" && roomTopics !== "") {
             try {
                 setShowModal(false);
                 await createRoom(data);
@@ -73,7 +82,7 @@ const Dashboard: React.FC = () => {
             }
         }
     }
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+
     return (
         <PrivateRoute>
             <Head>
@@ -141,16 +150,16 @@ const Dashboard: React.FC = () => {
                                                                 </div>
                                                                 <Divider />
                                                                 <span className="font-semibold">Room title <span className="text-primary font-extrabold">*</span></span><br />
-                                                                <input className="rounded w-full py-2 px-2 text-white mb-4 bg-dark mt-1" placeholder="Please enter the room title here" ref={roomTitleRef} type="text" required /><br />
+                                                                <input className="rounded w-full py-2 px-2 text-white bg-dark mt-1 mb-4" placeholder="Please enter the room title here" value={roomTitle} onChange={(e) => {setRoomTitle(e.target.value)}} type="text" required />
 
                                                                 <span className="font-semibold">Description <span className="text-primary font-extrabold">*</span></span><br />
-                                                                <textarea className="rounded w-full py-1 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room description here" ref={roomDescriptionRef} required /><br />
+                                                                <textarea className="rounded w-full py-1 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={roomDescription} onChange={(e) => {setRoomDescription(e.target.value)}} required /><br />
 
                                                                 <span className="font-semibold">Topics <span className="text-primary font-extrabold">*</span></span><br />
-                                                                <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" ref={roomTopicsRef} required /><br />
+                                                                <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" value={roomTopics} onChange={(e) => {setRoomTopics(e.target.value)}} required /><br />
                                                                 
                                                                 <span className="font-semibold">Pinned link (optional)</span><br />
-                                                                <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" ref={roomPinnedLinkRef} type="link" /><br />
+                                                                <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />
                                                             </div>
                                                             <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                                                 <button
