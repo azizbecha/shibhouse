@@ -7,7 +7,7 @@ import { fireStore } from "../auth/Firebase";
 
 import ReactTimeAgo from 'react-time-ago'
 
-import { FaUsers } from 'react-icons/fa'
+import { FaShare, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 
 const ExportRooms: React.FC = () => {
@@ -44,7 +44,7 @@ const ExportRooms: React.FC = () => {
                 data.map((room, index) => {
                     const topics = room.topics.split(" ");
                     return (
-                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-gray rounded-t-lg mb-5">
+                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
                                     <Link href={`room/${room.id}`}>
@@ -52,6 +52,7 @@ const ExportRooms: React.FC = () => {
                                             {room.title}
                                         </p>
                                     </Link>
+
                                     <p className="text-sm dark:text-gray-400 mb-6">
                                         {room.description}
                                     </p>
@@ -59,17 +60,19 @@ const ExportRooms: React.FC = () => {
                                         {
                                             topics.map((word, key) => {
                                                 return (
-                                                    <span key={key} className="bg-dark text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{word}</span>
+                                                    <span key={key} className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{word}</span>
                                                 )
                                             })
                                         }
                                     </p>
-                                    <p className="text-sm font-normal flex">
-                                        <GoClock size={18} className="mt-0.5 text-primary" />&nbsp;Started&nbsp;{<ReactTimeAgo date={Number(room.createdAt)} locale="en-US"/>}.
+                                    <p className="text-sm font-normal flex space-x-1">
+                                        <GoClock size={18} className="my-auto mr-1 text-primary" /> With <Link href={`user/${room.createdBy}`}><span className="font-bold text-white text-sm cursor-pointer">@{room.createdBy}</span></Link>
                                     </p>
                                 </div>
-                                <div className="inline-flex items-center text-base">
-                                    {room.users}&nbsp;<FaUsers className="text-green" size={20} />
+                                <div className="flex font-bold">
+                                    <div className="items-center flex space-x-1">
+                                        <span className="text-sm">{room.users}</span> <FaUsers className="text-primary" size={18} />
+                                    </div>
                                 </div>
                             </div>
                         </li>
