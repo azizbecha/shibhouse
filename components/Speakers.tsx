@@ -72,9 +72,9 @@ const Speakers: React.FC = () => {
     <>
       <div className="bg-darker my-0 rounded-md p-2">
         <h1 className="font-bold text-white text-2xl mb-4">Speakers ({speakers.length})</h1>
-          <Row>
+          <Row className="gap-y-2">
             {speakers.map((speaker, key) => (
-              <Col key={key} xs={12} sm={4} md={4} lg={3}>
+              <Col key={key} xs={6} sm={4} md={4} lg={3}>
                 <User
                   id={peer}
                   key={speaker?.peer}

@@ -69,9 +69,9 @@ const Listeners: React.FC = () => {
               </div>
             )
           }
-        <Row>
+        <Row className="gap-y-2">
           { listenersPeers.map((peer, key) => (
-            <Col key={key} xs={12} sm={4} md={4} lg={3} className="px-1">
+            <Col key={key} xs={6} sm={4} md={4} lg={3} className="px-1">
               <User
                 id={peer}
                 key={peer.peer}
@@ -84,7 +84,6 @@ const Listeners: React.FC = () => {
               />
             </Col>
           ))}
-          
         </Row>
       </div>
     </>
