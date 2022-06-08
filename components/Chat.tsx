@@ -92,20 +92,20 @@ const Chat: React.FC<Props> = (props) => {
                     }
                     {
                         messages.map((message, key) => {
-                            var pattern = /\B@[a-z0-9_-]+/gi;
-                            var mentions = [""]
+                            var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
+                            var mentions: Array<string> | null = []
                             mentions = []
                             if (message.message.match(pattern) !== null) {
                                 mentions = message.message.match(pattern)
                             }
-                            var msg = message.message.split(" ");
-                            console.log(msg)
+                            var msg: Array<string> = message.message.split(" ");
+
                             return (
                                 <li className='w-full my-1' key={key}>
                                     <span className='font-bold text-sm' style={{color: message.avatarColor}}>{message.sentBy}: {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mr-1 rounded-full text-xs text-white">You</span>}</span>
                                     <span className="text-sm text-wrap break-all">
                                         {
-                                            msg.map((word) => {
+                                            msg.map((word: string) => {
                                                 if (mentions.includes(word)) {
                                                     return (
                                                         <span>
