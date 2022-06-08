@@ -82,14 +82,14 @@ const Chat: React.FC<Props> = (props) => {
     return (
         <>
             <div className="overflow-y-auto relative flex rounded-md w-full h-11/12 mt-3 p-3 text-white bg-dark">
-                <ul className='space-y-3 flex-col-reverse flex'>
-                    {
-                        messages.length == 0 && (
-                            <div className="p-4">
-                                <h1 className="text-center font-semibold">No messages actually</h1>
-                            </div>
-                        )
-                    }
+                {
+                    messages.length == 0 && (
+                        <div className="p-4">
+                            <h1 className="text-center font-semibold">No messages actually</h1>
+                        </div>
+                    )
+                }
+                <ul className='space-y-3'>
                     {
                         messages.map((message, key) => {
                             var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
