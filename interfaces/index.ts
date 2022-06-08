@@ -20,11 +20,12 @@ export interface LogUser {
 export interface NewRoom {
   id: string,
   title: string,
-  description: any,
-  pinnedLink: any,
-  topics: any,
-  createdBy: any,
-  speakers: Array<any>
+  description: string,
+  pinnedLink: string,
+  topics: string,
+  createdBy: string,
+  allowChat: boolean,
+  speakers: Array<string>
 }
 
 export interface PlayerProps {
@@ -36,5 +37,6 @@ export interface PlayerProps {
   pinnedLink: string,
   topics: Array<string>,
   createdBy: string,
-  createdAt: string
+  createdAt: string,
+  isChatAllowed: boolean
 }

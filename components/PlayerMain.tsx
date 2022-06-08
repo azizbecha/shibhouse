@@ -32,7 +32,7 @@ import { RiChat4Fill, RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 
-const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt }) => {
+const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
   return (
     <StreamContextProvider>
@@ -51,7 +51,8 @@ const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName,
           pinnedLink: pinnedLink,
           topics: topics,
           createdAt: createdAt,
-          createdBy: createdBy
+          createdBy: createdBy,
+          allowChat: isChatAllowed
         }} />
       </PeerContextProvider>
     </StreamContextProvider>
@@ -611,7 +612,7 @@ function Main ({ user, room }) {
                   <Col xs={12} sm={12} md={4} lg={4}>
                     <div className="bg-darker p-4 mt-3 rounded-lg">
                       <h1 className="font-bold text-white text-2xl mb-4">Chat</h1>
-                      <Chat roomId={roomId} />
+                      <Chat roomId={roomId} isChatAllowed={room.allowChat} />
                     </div>
                   </Col>
                 )

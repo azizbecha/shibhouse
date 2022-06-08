@@ -61,6 +61,7 @@ export default function RoomPage() {
               roomDescription={roomData.description}
               createdAt={roomData.createdAt}
               createdBy={roomData.createdBy}
+              isChatAllowed={roomData.allowChat}
               isHost={true}
               />
           ) : (
@@ -73,6 +74,7 @@ export default function RoomPage() {
               roomDescription={roomData.description}
               createdAt={roomData.createdAt}
               createdBy={roomData.createdBy}
+              isChatAllowed={roomData.allowChat}
               isHost={false}
             />
           )

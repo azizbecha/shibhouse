@@ -14,6 +14,7 @@ const createRoom = async (data: NewRoom) => {
         pinnedLink: data.pinnedLink,
         topics: data.topics,
         users: 0,
+        allowChat: data.allowChat,
         speakers: data.speakers
     });
 }

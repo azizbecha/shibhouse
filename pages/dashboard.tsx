@@ -1,10 +1,11 @@
 import { useState, useRef, Fragment } from "react"
 import { useRouter } from "next/router"
-import { Dialog, Transition } from '@headlessui/react'
 import Head from "next/head"
+import { Dialog, Transition } from '@headlessui/react'
 
 import PrivateRoute from "../auth/PrivateRoute"
 
+import Switch from "react-switch";
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar";
@@ -30,6 +31,7 @@ const Dashboard: React.FC = () => {
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
 
     const [showModal, setShowModal] = useState<boolean>(false);
+    const [allowChat, setAllowChat] = useState<boolean>(true);
     const cancelButtonRef = useRef(null);
 
     // const roomTitleRef = useRef<HTMLInputElement>();
@@ -51,6 +53,7 @@ const Dashboard: React.FC = () => {
             description: roomDescription,
             pinnedLink: roomPinnedLink,
             topics: roomTopics,
+            allowChat: allowChat,
             speakers: [currentUserData.username]
         }
         
@@ -160,6 +163,8 @@ const Dashboard: React.FC = () => {
                                                                 
                                                                 <span className="font-semibold">Pinned link (optional)</span><br />
                                                                 <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />
+                                                                
+                                                                <div className="font-semibold flex space-x-2"><span>Allow chat:</span> <Switch onChange={setAllowChat} checked={allowChat} width={53} offColor='#151A21' onColor="#fa2f2f" /> </div>
                                                             </div>
                                                             <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                                                 <button
