@@ -9,6 +9,7 @@ import ReactTimeAgo from 'react-time-ago'
 
 import { FaShare, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
+import { RiChat1Fill, RiChat4Fill, RiChatOffFill } from "react-icons/ri";
 
 const ExportRooms: React.FC = () => {
 
@@ -64,6 +65,9 @@ const ExportRooms: React.FC = () => {
                                                 )
                                             })
                                         }
+                                    </p>
+                                    <p className="text-sm font-semibold flex space-x-1 mb-1">
+                                        {room.allowChat ? <RiChat4Fill size={18} className="my-auto mr-1 text-primary" /> : <RiChatOffFill className="my-auto mr-1 text-primary" /> } Chat {!room.allowChat && 'not'} allowed
                                     </p>
                                     <p className="text-sm font-normal flex space-x-1">
                                         <GoClock size={18} className="my-auto mr-1 text-primary" /> With <Link href={`user/${room.createdBy}`}><span className="font-bold text-white text-sm cursor-pointer">@{room.createdBy}</span></Link>
