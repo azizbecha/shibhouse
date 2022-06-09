@@ -8,6 +8,7 @@ import { query, collection, limit, where, getDocs, doc, updateDoc } from "fireba
 import { AuthContext } from "../../auth/AuthContext";
 import { fireStore } from "../../auth/Firebase";
 
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { toast } from "react-toastify";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -163,12 +164,11 @@ const User: React.FC = () => {
                 <title>{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} (@{userData.username}) - Shibhouse</title>
             </Head>
             <div className="bg-dark pb-16">
-                <div className="container">
-                    <h1 className="pt-10 sm:text-3xl text-2xl text-white font-bold font-inter flex"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> Profile of {userData.firstname} {userData.lastname}</h1>
-                    <div className="bg-dark flex space-x-3 pt-10">
-                        
-                        <div className="w-12/12 sm:w-12/12 md:w-8/12 pb-32 xs:mx-auto">
-                            <div className="w-full mt-10">
+                <div className="container">                    
+                    <Row>
+                        <Col xs={12} sm={12} md={12} lg={8}>
+                            <h1 className="pt-10 sm:text-3xl text-2xl text-white font-bold font-inter flex"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> Profile of {userData.firstname} {userData.lastname}</h1>
+                            <div className="mt-20">
                                 <div className="absolute -mt-14 ml-5">
                                     <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: userData.avatarColor}}>
                                         <span className="my-auto mx-auto text-3xl font-inter font-bold">{userData.firstname[0].toUpperCase()}{userData.lastname[0].toUpperCase()}</span>
@@ -203,9 +203,9 @@ const User: React.FC = () => {
                                     
                                 </div>
                             </div>
-                        </div>
-                        <div className="w-4/12 bg-darker rounded-lg mt-10 hidden md:block lg:block xl:block">
-                            <div className="container p-5">
+                        </Col>
+                        <Col xs={12} sm={12} md={12} lg={4}>
+                            <div className="container p-5 bg-darker rounded-lg mt-12">
                                 <h1 className="text-white text-2xl font-inter font-bold">Discover</h1>
                                 <ul role="list" className="divide-y divide-gray-200 overflow-auto no-scrollbar mt-3 space-y-2">
                                     {
@@ -237,9 +237,8 @@ const User: React.FC = () => {
                                     
                                 </ul>
                             </div>
-                        </div>
-                        
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
             </div>
             <Footer />
