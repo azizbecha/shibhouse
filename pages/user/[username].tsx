@@ -3,20 +3,19 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { query, collection, limit, where, getDocs, orderBy, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { query, collection, limit, where, getDocs, doc, updateDoc } from "firebase/firestore";
 
 import { AuthContext } from "../../auth/AuthContext";
 import { fireStore } from "../../auth/Firebase";
 
 import { toast } from "react-toastify";
-
-import { removeItem } from "../../lib/removeItemFromArray";
-
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
 import { FaArrowLeft } from "react-icons/fa";
+
 import { capitalizeWord } from "../../lib/capitalize";
+import { removeItem } from "../../lib/removeItemFromArray";
 
 const User: React.FC = () => {
 
@@ -24,7 +23,6 @@ const User: React.FC = () => {
     
     const [userData, setUserData] = useState<any>({firstname: ' ', lastname: ' ', followers: [], following: []}) // adding default values to prevent showing undefined value error
     const [users, setUsers] = useState<any>([]);
-    const [rooms, setRooms] = useState([]);
 
     const { username } = router.query;
     const { currentUserData } = useContext(AuthContext);
@@ -134,20 +132,8 @@ const User: React.FC = () => {
             });
         }
 
-        const getRooms = async () => {
-            const q = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
-            const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    const rooms = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
-                    setRooms(rooms);
-                });
-            });
-        }
-
-        getUsers()
-        getRooms()
-        fetch()
+        getUsers();
+        fetch();
     }, [username, fetch])
 
     const FollowStatus = () => {
