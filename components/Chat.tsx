@@ -8,10 +8,12 @@ import { IoMdSend } from "react-icons/io";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { RiChatOffFill } from "react-icons/ri";
+import { AiFillPushpin } from "react-icons/ai";
 
 interface ChatProps {
     roomId: string;
-    isChatAllowed: boolean
+    isChatAllowed: boolean,
+    pinnedLink: string
 }
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -82,7 +84,12 @@ const Chat: React.FC<ChatProps> = (props) => {
     }
 
     return (
-        <>
+        <div>
+            {props.pinnedLink !== "" && (
+                <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold flex">
+                    <AiFillPushpin size={16} className="my-auto mr-1" /><a href={props.pinnedLink} target="_blank" rel="noreferrer" >{props.pinnedLink}</a>
+                </div>
+            )}
             {
                 props.isChatAllowed ? (
                     <>
@@ -146,7 +153,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     </div>
                 )
             }
-        </>
+        </div>
     )
 }
 
