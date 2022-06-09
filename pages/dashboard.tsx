@@ -1,28 +1,35 @@
 import { useState, useRef, Fragment } from "react"
 import { useRouter } from "next/router"
 import Head from "next/head"
+
 import { Dialog, Transition } from '@headlessui/react'
 
 import PrivateRoute from "../auth/PrivateRoute"
 
 import Switch from "react-switch";
+import { Ticker } from "react-ts-tradingview-widgets"
+import { toast } from "react-toastify"
+
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import ExportRooms from "../components/ExportRooms"
+import Divider from "../components/Divider"
+
 import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar";
 import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar";
+
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+
+import Hotkeys from 'react-hot-keys';
 import { useMediaQuery } from "react-responsive"
-import Divider from "../components/Divider"
-import ExportRooms from "../components/ExportRooms"
+
+import { useAuth } from "../auth/AuthContext"
 import { NewRoom } from "../interfaces"
 import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
-import { useAuth } from "../auth/AuthContext"
-import { toast } from "react-toastify"
+
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
-import { Ticker } from "react-ts-tradingview-widgets"
-import Hotkeys from 'react-hot-keys';
 
 const Dashboard: React.FC = () => {
 
