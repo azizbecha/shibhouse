@@ -1,17 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+
+import { useCopyToClipboard } from "react-use";
+import { Anchorme, LinkComponentProps } from 'react-anchorme'
+import InputEmoji from "react-input-emoji";
+import { toast } from "react-toastify";
+
 import { addDoc, collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { fireStore } from "../auth/Firebase";
 import { useAuth } from "../auth/AuthContext";
-import { Anchorme, LinkComponentProps } from 'react-anchorme'
-import { toast } from "react-toastify";
-import Link from "next/link";
+
 import { RiChatOffFill } from "react-icons/ri";
 import { AiFillPushpin } from "react-icons/ai";
-import InputEmoji from "react-input-emoji";
+
 import { getBrightColor } from "../lib/getBrightColor";
-import { useCopyToClipboard } from "react-use";
 import { isChatCommand } from "../lib/isChatCommand";
 
 interface ChatProps {
