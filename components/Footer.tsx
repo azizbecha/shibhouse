@@ -9,9 +9,9 @@ const Footer = () => {
                         <span>Shibhouse</span>
                     </div>
                     <div className="flex justify-center space-x-4">
-                        <Link href="report">
+                        <a href="https://github.com/azizbecha/shibhouse/issues" target={"_blank"} rel="noreferrer">
                             <span className="mx-6 text-gray-600 font-semibold text-white">Report a bug</span>
-                        </Link>
+                        </a>
                         <Link href="privacy">
                             <span className="mx-6 text-gray-600 font-semibold text-white">Privacy Policy</span>
                         </Link>

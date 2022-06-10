@@ -15,7 +15,7 @@ import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
 
-const IndexPage: React.FC = () => {
+const IndexPage: React.FC<{props: any}> = ({props}) => {
 
     const router = useRouter();
 
@@ -55,9 +55,9 @@ const IndexPage: React.FC = () => {
     return (
         <>
             <SEO 
-                title="Shibhouse - Re-taking voice conversations to the moon" 
-                description="Re-taking voice conversations to the moon 🚀" 
-                image="../cover.png" 
+                title={props.title}
+                description={props.description}
+                image={props.image}
             />
             <ProtectedRoute>
                 <Navbar />
@@ -110,6 +110,23 @@ const IndexPage: React.FC = () => {
             </ProtectedRoute>
         </>
     )
+}
+
+export async function getStaticProps() {
+    
+    const props = {
+        title: "Shibhouse - Re-taking voice conversations to the moon",
+        description: "Re-taking voice conversations to the moon",
+        image: "https://shibhouse.tv/cover.png"
+    }
+
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+        props: {
+            props,
+        },
+    }
 }
 
 export default IndexPage
