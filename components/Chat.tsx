@@ -16,7 +16,8 @@ import { useCopyToClipboard } from "react-use";
 interface ChatProps {
     roomId: string;
     isChatAllowed: boolean,
-    pinnedLink: string
+    pinnedLink: string,
+    leave: () => void
 }
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -86,7 +87,10 @@ const Chat: React.FC<ChatProps> = (props) => {
                     // if message is a command
                     switch(message) {
                         case '/copy':
-                            copyRoomLink()
+                            copyRoomLink();
+                        case '/leave':
+                            props.leave()
+
                     }
                 } else {
                     if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {

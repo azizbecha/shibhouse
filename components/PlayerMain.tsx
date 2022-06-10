@@ -613,7 +613,7 @@ function Main ({ user, room }) {
                   <Col xs={12} sm={12} md={4} lg={4}>
                     <div className="bg-darker p-4 mt-3 rounded-lg">
                       <h1 className="font-bold text-white text-2xl mb-4 flex"><IoMdChatboxes size={22} className="mt-2 mr-1" /> Chat</h1>
-                      <Chat roomId={roomId} isChatAllowed={room.allowChat} pinnedLink={room.pinnedLink} />
+                      <Chat roomId={roomId} isChatAllowed={room.allowChat} pinnedLink={room.pinnedLink} leave={onLeave} />
                     </div>
                   </Col>
                 )
