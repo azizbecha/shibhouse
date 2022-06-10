@@ -17,7 +17,8 @@ interface ChatProps {
     roomId: string;
     isChatAllowed: boolean,
     pinnedLink: string,
-    leave: () => void
+    leave: () => void,
+    muteToggle: () => void
 }
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -89,7 +90,9 @@ const Chat: React.FC<ChatProps> = (props) => {
                         case '/copy':
                             copyRoomLink();
                         case '/leave':
-                            props.leave()
+                            props.leave();
+                        case '/mute':
+                            props.muteToggle();
 
                     }
                 } else {
