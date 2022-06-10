@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef, Fragment } from 'react'
+import React, { useContext, useEffect, useState, useRef, Fragment, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
@@ -32,6 +32,7 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
+import { useDevices } from "../lib/useDevices";
 
 const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -73,6 +74,9 @@ function Main ({ user, room }) {
 
   const cancelButtonRef = useRef(null)
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
+  const [devices, setDevices] = useState<Array<{ id: string; label: string }>>(
+    []
+  );
 
   let muteAudio = new Audio("../../mute.wav")
   let unmuteAudio = new Audio("../../unmute.wav")
@@ -129,6 +133,20 @@ function Main ({ user, room }) {
       onLeave();
     };
   })
+
+  useEffect(() => {
+    if (connRole == 'speaker' && devices.length === 0) {
+      toast.error('you dont have a mic to speak', {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, []);
   
   async function onLeave() {
     if (isHost) {
@@ -228,8 +246,8 @@ function Main ({ user, room }) {
     setShowChat(!showChat);
   }
 
-  const topics = room.topics.split(" ")
-  
+  const topics = room.topics.split(" ");
+
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
