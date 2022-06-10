@@ -10,8 +10,7 @@ import Link from "next/link";
 import { RiChatOffFill } from "react-icons/ri";
 import { AiFillPushpin } from "react-icons/ai";
 import InputEmoji from "react-input-emoji";
-import { HexColorPicker } from "react-colorful";
-import { getRandomColor } from "../lib/getRandomColor";
+import { getBrightColor } from "../lib/getBrightColor";
 
 interface ChatProps {
     roomId: string;
@@ -44,9 +43,20 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const CustomLink = (props: LinkComponentProps) => {
         return (
-            <a {...props} style={{color: getRandomColor()}} className="font-semibold" />
+            <a {...props} className="font-semibold chat-link" />
         )
     }
+
+    useEffect(() => {
+        setInterval(() => {
+            const boxes = document.getElementsByClassName('chat-link') as HTMLCollectionOf<HTMLElement>;
+            for (let i = 0; i < boxes.length; i++) {
+                if(boxes[i] !== null) {
+                    boxes[i].style.color = getBrightColor();
+                }
+            }
+        }, 100)
+    }, [])
 
     const sendMessage = async (e) => {
         //e.preventDefault();
@@ -141,7 +151,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                                     )
                                                                 } else {
                                                                     return (
-                                                                        <span>
+                                                                        <span className="message">
                                                                             <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
                                                                                 {word}
                                                                             </Anchorme>&nbsp;
