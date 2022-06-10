@@ -1,5 +1,5 @@
 const isChatCommand = (input: string): boolean => {
-    let regex: RegExp = /\/[a-zA-Z]+/i;
+    let regex: RegExp = /([/])\w+/g;
     return regex.test(input);
 }
 
