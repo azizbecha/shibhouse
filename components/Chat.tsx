@@ -91,12 +91,15 @@ const Chat: React.FC<ChatProps> = (props) => {
                     switch(message) {
                         case '/copy':
                             copyRoomLink();
+                            break;
 
                         case '/leave':
                             props.leave();
+                            break;
 
                         case '/mute':
                             props.muteToggle();
+                            break;
 
                         case '/role':
                             toast.info(`You are a ${props.role}`, {
@@ -108,6 +111,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 draggable: true,
                                 progress: undefined,
                             });
+                            break;
                         
                         default:
                             toast.error(`Command ${message} not found`, {
@@ -119,6 +123,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 draggable: true,
                                 progress: undefined,
                             });
+                            break;
 
                     }
                 } else {
