@@ -246,9 +246,9 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                                     return (
                                                                         <span key={key}>
                                                                             <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
-                                                                                <Link href={`../user/${word.substring(1)}`}>
+                                                                                <a href={`../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
                                                                                     {word}
-                                                                                </Link>
+                                                                                </a>
                                                                             </span>&nbsp;
                                                                         </span>
                                                                     )
