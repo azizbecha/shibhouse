@@ -1,6 +1,5 @@
 const isChatCommand = (input: string): boolean => {
-    let regex: RegExp = /[\/\\]/;
-    return regex.test(input);
+    return input[0] == '/'
 }
 
 export { isChatCommand }
