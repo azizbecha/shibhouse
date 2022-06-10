@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext, useMemo } from 'react'
-import { FaLink, FaPlus } from 'react-icons/fa'
+import { FaHeadphones, FaLink, FaPlus } from 'react-icons/fa'
 
 import { PeerContext } from '../contexts/PeerJSContext'
 import useRoomEvents from '../hooks/useRoomEvents'
@@ -42,7 +42,7 @@ const Listeners: React.FC = () => {
   return (
     <>
       <div className="bg-darker rounded-md p-5">
-        <h1 className="font-bold text-white text-2xl mb-4">Listeners ({listenersPeers.length})</h1>
+        <h1 className="font-bold text-white text-2xl mb-4 flex"><FaHeadphones size={19} className='mt-2 mr-2' /> Listeners ({listenersPeers.length})</h1>
           {
             listenersPeers.length == 0 && (
               <div className='flex w-12/12'>

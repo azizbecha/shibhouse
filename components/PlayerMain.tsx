@@ -31,6 +31,7 @@ import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { RiChat4Fill, RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
+import { IoMdChatboxes } from 'react-icons/io'
 
 const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -586,7 +587,7 @@ function Main ({ user, room }) {
                   </a>
                   <button onClick={() => { toggleChat() } } className={`p-4 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     {
-                      showChat ? <RiChat4Fill size={20} /> : <RiChatOffFill size={20} />
+                      showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />
                     }
                   </button>
                   <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
@@ -611,7 +612,7 @@ function Main ({ user, room }) {
                 showChat && (
                   <Col xs={12} sm={12} md={4} lg={4}>
                     <div className="bg-darker p-4 mt-3 rounded-lg">
-                      <h1 className="font-bold text-white text-2xl mb-4">Chat</h1>
+                      <h1 className="font-bold text-white text-2xl mb-4 flex"><IoMdChatboxes size={22} className="mt-2 mr-1" /> Chat</h1>
                       <Chat roomId={roomId} isChatAllowed={room.allowChat} pinnedLink={room.pinnedLink} />
                     </div>
                   </Col>

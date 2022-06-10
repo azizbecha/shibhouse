@@ -71,7 +71,7 @@ const Speakers: React.FC = () => {
   return (
     <>
       <div className="bg-darker my-0 rounded-md p-2">
-        <h1 className="font-bold text-white text-2xl mb-4">Speakers ({speakers.length})</h1>
+        <h1 className="font-bold text-white text-2xl mb-4 flex"><HiSpeakerphone size={19} className="mt-2 mr-2" /> Speakers ({speakers.length})</h1>
           <Row className="gap-y-2">
             {speakers.map((speaker, key) => (
               <Col key={key} xs={6} sm={4} md={4} lg={3}>
