@@ -204,10 +204,10 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                 <span className="text-sm text-wrap break-all">
                                                 
                                                         {
-                                                            msg.map((word: string) => {
+                                                            msg.map((word: string, key: number) => {
                                                                 if (mentions.includes(word)) {
                                                                     return (
-                                                                        <span>
+                                                                        <span key={key}>
                                                                             <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
                                                                                 <Link href={`../user/${word.substring(1)}`}>
                                                                                     {word}
@@ -217,7 +217,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                                     )
                                                                 } else {
                                                                     return (
-                                                                        <span className="message">
+                                                                        <span className="message" key={key}>
                                                                             <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
                                                                                 {word}
                                                                             </Anchorme>&nbsp;
