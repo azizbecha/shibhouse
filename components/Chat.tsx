@@ -18,7 +18,8 @@ interface ChatProps {
     isChatAllowed: boolean,
     pinnedLink: string,
     leave: () => void,
-    muteToggle: () => void
+    muteToggle: () => void,
+    role: string,
 }
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -84,8 +85,9 @@ const Chat: React.FC<ChatProps> = (props) => {
 
             // Make sure that message is not empty
             if (message.length > 0) {
+
+                // if message is a command
                 if (message[0] == '/') {
-                    // if message is a command
                     switch(message) {
                         case '/copy':
                             copyRoomLink();
@@ -93,6 +95,17 @@ const Chat: React.FC<ChatProps> = (props) => {
                             props.leave();
                         case '/mute':
                             props.muteToggle();
+                        case '/role':
+                            toast.info(`You are a ${props.role}`, {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                            
 
                     }
                 } else {
