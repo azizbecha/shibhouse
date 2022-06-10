@@ -153,7 +153,7 @@ const Me: React.FC = () => {
                                         </div>
 
                                         <div className="mb-1 mt-2 font-semibold text-md w-10/12">
-                                            <CopyToClipboard text={window.location.href} onCopy={() => {
+                                            <CopyToClipboard text={window.location.host+'/user/'+currentUserData.username} onCopy={() => {
                                                 toast.success('Link copied', {
                                                     position: "top-center",
                                                     autoClose: 4000,
@@ -164,7 +164,7 @@ const Me: React.FC = () => {
                                                     progress: undefined,
                                                 });
                                                 }}>
-                                                <h4 className="text-sm font-semibold text-white flex mt-2 space-x-2 cursor-pointer"><FaLink size={13.5} className="mt-1 mr-1" />{window.location.host}/{currentUserData.username}</h4>
+                                                <h4 className="text-sm font-semibold text-white flex mt-2 space-x-2 cursor-pointer"><FaLink size={13.5} className="mt-1 mr-1" />{window.location.host}/user/{currentUserData.username}</h4>
                                             </CopyToClipboard>
                                         </div>
                                     </div>
