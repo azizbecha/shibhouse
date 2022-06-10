@@ -11,6 +11,7 @@ import { RiChatOffFill } from "react-icons/ri";
 import { AiFillPushpin } from "react-icons/ai";
 import InputEmoji from "react-input-emoji";
 import { getBrightColor } from "../lib/getBrightColor";
+import { useCopyToClipboard } from "react-use";
 
 interface ChatProps {
     roomId: string;
@@ -22,6 +23,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const { currentUserData } = useAuth();
 
+    const [state, copyToClipboard] = useCopyToClipboard();
     const [messages, setMessages] = useState<Array<any>>([]);
     const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
@@ -47,6 +49,19 @@ const Chat: React.FC<ChatProps> = (props) => {
         )
     }
 
+    const copyRoomLink = () => {
+        copyToClipboard(window.location.href)
+        toast.success('Room link copied to clipboard', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     useEffect(() => {
         setInterval(() => {
             const boxes = document.getElementsByClassName('chat-link') as HTMLCollectionOf<HTMLElement>;
@@ -62,32 +77,43 @@ const Chat: React.FC<ChatProps> = (props) => {
         //e.preventDefault();
         try {
             
+            // remove sapces in start/end of message
+            message.trim();
+
             // Make sure that message is not empty
             if (message.length > 0) {
-                if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
-
-                    // If last message timestamp is greater than 3 seconds
-                    addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
-                        message: message.trim(),
-                        sendTime: new Date().getTime(),
-                        sentBy: currentUserData.username,
-                        roomId: props.roomId,
-                        avatarColor: currentUserData.avatarColor
-                    }),
-                    setMessage('');
-                    setLastMessageTimestamp(new Date().getTime());
-                    return 
+                if (message[0] == '/') {
+                    // if message is a command
+                    switch(message) {
+                        case '/copy':
+                            copyRoomLink()
+                    }
                 } else {
-                    toast.warning('Please wait a moment before', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-                    return 
+                    if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
+
+                        // If last message timestamp is greater than 3 seconds
+                        addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
+                            message: message.trim(),
+                            sendTime: new Date().getTime(),
+                            sentBy: currentUserData.username,
+                            roomId: props.roomId,
+                            avatarColor: currentUserData.avatarColor
+                        }),
+                        setMessage('');
+                        setLastMessageTimestamp(new Date().getTime());
+                        return 
+                    } else {
+                        toast.warning('Please wait a moment before', {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                        return 
+                    }
                 }
             }
         } catch (e) {
