@@ -592,7 +592,7 @@ function Main ({ user, room }) {
                   <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <HiPhoneMissedCall size={20} />
                   </button>
-                  <button onClick={() => setOpen(true)} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+                  <button onClick={() => setOpen(true)} className={`p-4 inline-flex justify-center rounded-full ${open ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaCog size={20} />
                   </button>
                 </nav>
