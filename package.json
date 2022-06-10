@@ -23,6 +23,7 @@
     "nextjs-progressbar": "^0.0.14",
     "peerjs": "^1.4.2",
     "react": "^17.0.2",
+    "react-anchorme": "^2.2.1",
     "react-colorful": "^5.5.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^17.0.2",

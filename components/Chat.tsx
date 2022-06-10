@@ -4,12 +4,14 @@ import { addDoc, collection, limit, onSnapshot, orderBy, query } from "firebase/
 import { useEffect, useState } from "react";
 import { fireStore } from "../auth/Firebase";
 import { useAuth } from "../auth/AuthContext";
-import { IoMdSend } from "react-icons/io";
+import { Anchorme, LinkComponentProps } from 'react-anchorme'
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { RiChatOffFill } from "react-icons/ri";
 import { AiFillPushpin } from "react-icons/ai";
 import InputEmoji from "react-input-emoji";
+import { HexColorPicker } from "react-colorful";
+import { getRandomColor } from "../lib/getRandomColor";
 
 interface ChatProps {
     roomId: string;
@@ -39,6 +41,12 @@ const Chat: React.FC<ChatProps> = (props) => {
         }
         fetch()
     }, [props.roomId])
+
+    const CustomLink = (props: LinkComponentProps) => {
+        return (
+            <a {...props} style={{color: getRandomColor()}} className="font-semibold" />
+        )
+    }
 
     const sendMessage = async (e) => {
         //e.preventDefault();
@@ -118,19 +126,30 @@ const Chat: React.FC<ChatProps> = (props) => {
                                             <li className='w-full my-1' key={key}>
                                                 <span className='font-bold text-sm' style={{color: message.avatarColor}}>{message.sentBy}: {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mr-1 rounded-full text-xs text-white">You</span>}</span>
                                                 <span className="text-sm text-wrap break-all">
-                                                    {
-                                                        msg.map((word: string) => {
-                                                            if (mentions.includes(word)) {
-                                                                return (
-                                                                    <span>
-                                                                        <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer"><Link href={`../user/${word.substring(1)}`}>{word}</Link></span>&nbsp;
-                                                                    </span>
-                                                                )
-                                                            } else {
-                                                                return word + " "
-                                                            }
-                                                        })
-                                                    }
+                                                
+                                                        {
+                                                            msg.map((word: string) => {
+                                                                if (mentions.includes(word)) {
+                                                                    return (
+                                                                        <span>
+                                                                            <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
+                                                                                <Link href={`../user/${word.substring(1)}`}>
+                                                                                    {word}
+                                                                                </Link>
+                                                                            </span>&nbsp;
+                                                                        </span>
+                                                                    )
+                                                                } else {
+                                                                    return (
+                                                                        <span>
+                                                                            <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
+                                                                                {word}
+                                                                            </Anchorme>&nbsp;
+                                                                        </span>
+                                                                    )
+                                                                }
+                                                            })
+                                                        }
                                                 </span>
                                             </li>
                                         )
@@ -138,12 +157,6 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 }
                             </ul>
                         </div>
-                        {/*<form method='post' onSubmit={sendMessage} className="overflow-y-auto relative h-1/12 rounded-md w-full mt-3 p-3 bottom-0 text-white bg-dark">
-                            <div className="flex space-x-3">
-                                <input value={message} onChange={e => setMessage(e.currentTarget.value)} type="text" placeholder='Enter your message here' required className='w-10/12 rounded bg-gray px-3 py-1 text-sm' />
-                                <button type='submit' disabled={message.length <= 0} className={`w-2/12 bg-${message.length <= 0 ? 'gray' : 'primary'} text-white px-2 text-center rounded flex `}><span className="text-center m-auto"><IoMdSend /></span></button>
-                            </div>
-                        </form>*/}
                         <div className="mt-2 flex">
                             <InputEmoji
                             value={message}
