@@ -43,3 +43,11 @@
     margin: 0 !important;
     color: #fff;
 }
+
+.emoji-mart-anchor-bar {
+    background-color: #f42525 !important;
+}
+
+.emoji-mart-anchor-icon {
+    color:#fff !important;
+}
