@@ -25,10 +25,10 @@ import Divider from './Divider'
 import { Dialog, Transition } from '@headlessui/react'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaUserPlus } from "react-icons/fa"
+import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaTerminal, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
-import { RiChat4Fill, RiChatOffFill } from 'react-icons/ri'
+import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
@@ -320,6 +320,25 @@ function Main ({ user, room }) {
                               href="#link3"
                               role="tablist"
                             >
+                              <FaTerminal className='my-auto mr-1' /> Commands
+                            </a>
+                          </li>
+                          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                            <a
+                              className={
+                                "text-sm font-bold flex justify-center uppercase px-5 py-3 shadow-lg rounded leading-normal text-white " +
+                                (openTab === 4
+                                ? "bg-primary"
+                                : "bg-dark")
+                              }
+                              onClick={e => {
+                                e.preventDefault();
+                                setOpenTab(4);
+                              }}
+                              data-toggle="tab"
+                              href="#link3"
+                              role="tablist"
+                            >
                               <FaBug className='my-auto mr-1' /> Debug
                             </a>
                           </li>
@@ -452,7 +471,57 @@ function Main ({ user, room }) {
                                 </span> For opening/closing chat
                                 <br /><br />
                               </div>
+
                               <div className={openTab === 3 ? "block" : "hidden"} id="link3">
+                                <span className="text-xl text-white font-bold">Commands</span>
+                                <p>Here are some commands that can help you having better interaction in chats</p><br />
+                                <Row>
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /copy
+                                    </span> To copy room link
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /leave
+                                    </span> To leave the room
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /mic
+                                    </span> To mute / unmute the microphone
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /role
+                                    </span> To check your role in the current room
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /whoami
+                                    </span> To see your username in the current room
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /micaccess
+                                    </span> For checking microphone access permission
+                                    <br /><br />
+                                  </Col>
+                                  
+                                </Row>
+                              </div>
+
+                              <div className={openTab === 4 ? "block" : "hidden"} id="link3">
                                 <span className="text-xl text-white font-bold">Debug</span>
                                 <p>Here are some tools that can help you debug your errors</p><br />
                                 <span className="font-bold text-white">

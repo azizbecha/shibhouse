@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useCopyToClipboard } from "react-use";
@@ -16,6 +16,7 @@ import { AiFillPushpin } from "react-icons/ai";
 
 import { getBrightColor } from "../lib/getBrightColor";
 import { isChatCommand } from "../lib/isChatCommand";
+import { StreamContext } from "../contexts/StreamContext";
 
 interface ChatProps {
     roomId: string;
@@ -35,6 +36,14 @@ const Chat: React.FC<ChatProps> = (props) => {
     const [messages, setMessages] = useState<Array<any>>([]);
     const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
+
+    const {
+    muteToggle,
+    micMuted,
+    startMicStream,
+    checkMicPermission,
+    micAccess
+    } = useContext<any>(StreamContext)
 
     useEffect(() => {
         const fetch = async () => {
@@ -130,7 +139,19 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 progress: undefined,
                             });
                             break;
-                        
+
+                        case '/micaccess':
+                            toast.info(`Mic access is ${micAccess}`, {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                            break;
+
                         default:
                             toast.error(`Command ${message} not found`, {
                                 position: "top-right",
