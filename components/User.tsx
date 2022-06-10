@@ -66,7 +66,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
             )}
           </div>
           <h1 className="mt-4 text-white text-center font-bold text-md">
-            {name} {me && '(You)'}
+            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && '(You)'}
           </h1>
             
           <div className='flex justify-center space-x-2 mt-3'>
