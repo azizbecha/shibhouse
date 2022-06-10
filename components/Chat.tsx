@@ -21,6 +21,7 @@ interface ChatProps {
     leave: () => void,
     muteToggle: () => void,
     role: string,
+    username: string
 }
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -105,6 +106,18 @@ const Chat: React.FC<ChatProps> = (props) => {
 
                         case '/role':
                             toast.info(`You are a ${props.role}`, {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                            break;
+                        
+                        case '/whoami':
+                            toast.info(`You are a ${props.username}`, {
                                 position: "top-right",
                                 autoClose: 3000,
                                 hideProgressBar: false,

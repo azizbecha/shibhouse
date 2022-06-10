@@ -619,6 +619,7 @@ function Main ({ user, room }) {
                         pinnedLink={room.pinnedLink}
                         leave={onLeave}
                         role={connRole}
+                        username={user.name}
                         muteToggle={() => {
                           muteToggle();
                           playMuteAudio();
