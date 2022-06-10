@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { RiChatOffFill } from "react-icons/ri";
 import { AiFillPushpin } from "react-icons/ai";
+import InputEmoji from "react-input-emoji";
 
 interface ChatProps {
     roomId: string;
@@ -40,10 +41,11 @@ const Chat: React.FC<ChatProps> = (props) => {
     }, [props.roomId])
 
     const sendMessage = async (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         try {
+            
+            // Make sure that message is not empty
             if (message.length > 0) {
-                // If message is not empty
                 if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
 
                     // If last message timestamp is greater than 3 seconds
@@ -136,12 +138,26 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 }
                             </ul>
                         </div>
-                        <form method='post' onSubmit={sendMessage} className="overflow-y-auto relative h-1/12 rounded-md w-full mt-3 p-3 bottom-0 text-white bg-dark">
+                        {/*<form method='post' onSubmit={sendMessage} className="overflow-y-auto relative h-1/12 rounded-md w-full mt-3 p-3 bottom-0 text-white bg-dark">
                             <div className="flex space-x-3">
                                 <input value={message} onChange={e => setMessage(e.currentTarget.value)} type="text" placeholder='Enter your message here' required className='w-10/12 rounded bg-gray px-3 py-1 text-sm' />
                                 <button type='submit' disabled={message.length <= 0} className={`w-2/12 bg-${message.length <= 0 ? 'gray' : 'primary'} text-white px-2 text-center rounded flex `}><span className="text-center m-auto"><IoMdSend /></span></button>
                             </div>
-                        </form>
+                        </form>*/}
+                        <div className="mt-2 flex">
+                            <InputEmoji
+                            value={message}
+                            onChange={setMessage}
+                            cleanOnEnter
+                            onEnter={sendMessage}
+                            placeholder="Type a message"
+                            theme="dark"
+                            borderRadius={7}
+                            borderColor="#242C37"
+                            height={20}
+                            maxWidth={120}
+                            />
+                        </div>
                     </>
                 ) : (
                     <div className="overflow-y-auto relative flex rounded-md w-full h-11/12 mt-3 p-3 text-white bg-dark">

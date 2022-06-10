@@ -36,3 +36,10 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+.react-input-emoji--input, .react-input-emoji--container {
+    background-color: #151A21 !important;
+    border-color: #242C37 !important;
+    margin: 0 !important;
+    color: #fff;
+}
