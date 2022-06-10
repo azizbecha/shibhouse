@@ -1,5 +1,5 @@
 const isChatCommand = (input: string): boolean => {
-    return input[0] == '/'
+    return input.trim()[0] == '/'
 }
 
 export { isChatCommand }
