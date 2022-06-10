@@ -8,6 +8,7 @@ import useRoomEvents from '../hooks/useRoomEvents'
 import { FaTimes } from 'react-icons/fa'
 import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+import { useAuth } from '../auth/AuthContext'
 
 const Speakers: React.FC = () => {
   
@@ -38,6 +39,8 @@ const Speakers: React.FC = () => {
     micAudioStream,
     startMicStream,
   } = useContext<any>(StreamContext);
+
+  const { currentUserData } = useAuth();
 
   const [recentEvents, roomEvents] = useRoomEvents();
 
@@ -78,6 +81,9 @@ const Speakers: React.FC = () => {
                 <User
                   id={peer}
                   key={speaker?.peer}
+                  firstname={currentUserData.firstname}
+                  lastname={currentUserData.lastname}
+                  avatar={currentUserData.avatarColor}
                   name={speaker?.metadata?.user?.name ? speaker.metadata.user.name : 'Anonym'}
                   host={speaker?.metadata?.isHost}
                   me={speaker.peer === peerId}

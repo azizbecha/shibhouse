@@ -10,6 +10,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+import { useAuth } from '../auth/AuthContext'
 
 const Listeners: React.FC = () => {
   const {
@@ -22,7 +23,9 @@ const Listeners: React.FC = () => {
       onPromotePeerToSpeaker,
       onDemotePeerToListener
     },
-  } = useContext<any>(PeerContext)
+  } = useContext<any>(PeerContext);
+
+  const { currentUserData } = useAuth();
 
   const [recentEvents, roomEvents] = useRoomEvents()
 
@@ -76,6 +79,9 @@ const Listeners: React.FC = () => {
                 id={peer}
                 key={peer.peer}
                 me={peer.peer === peerId}
+                firstname={currentUserData.firstname}
+                lastname={currentUserData.lastname}
+                avatar={currentUserData.avatarColor}
                 name={peer.metadata?.user?.name || 'Anonym'}
                 onClick={isHost ? () => handleUserClick(peer) : null}
                 hoverIcon={<FaPlus size={15} />}

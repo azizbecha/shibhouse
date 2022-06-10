@@ -22,9 +22,12 @@ interface UserProps {
   key: any,
   id:any,
   speakerIcon?: JSX.Element,
+  firstname: string,
+  lastname: string,
+  avatar: string
 }
 
-const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, ...props }) => {
+const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, ...props }) => {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [speaking, setSpeaking] = useState(false);
 
@@ -52,8 +55,8 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
       <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-2'}`}>
         <div className="container mt-5 mb-5">
           
-          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking && me ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: getRandomColor()}}>
-            {name[0].toUpperCase()}{name[1].toUpperCase()}
+          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking && me ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
+            {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
             { onClick && hoverIcon && (
               <>
                 <div className="p-1 right-0 -bottom-1 bg-darker rounded-full border-white absolute" style={{borderWidth: '1.5px'}} onClick={onClick}>
