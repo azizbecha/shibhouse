@@ -146,7 +146,7 @@ function Main ({ user, room }) {
         progress: undefined,
       });
     }
-  }, []);
+  }, [connRole, devices.length]);
   
   async function onLeave() {
     if (isHost) {
