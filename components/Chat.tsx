@@ -12,6 +12,7 @@ import { AiFillPushpin } from "react-icons/ai";
 import InputEmoji from "react-input-emoji";
 import { getBrightColor } from "../lib/getBrightColor";
 import { useCopyToClipboard } from "react-use";
+import { isChatCommand } from "../lib/isChatCommand";
 
 interface ChatProps {
     roomId: string;
@@ -75,7 +76,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             }
         }, 100)
     }, [])
-
+    
     const sendMessage = async (e) => {
         //e.preventDefault();
         try {
@@ -87,7 +88,8 @@ const Chat: React.FC<ChatProps> = (props) => {
             if (message.length > 0) {
 
                 // if message is a command
-                if (message[0] == '/') {
+                if (isChatCommand(message)) {
+
                     switch(message) {
                         case '/copy':
                             copyRoomLink();
