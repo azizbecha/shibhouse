@@ -32,7 +32,6 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
-import { useDevices } from "../lib/useDevices";
 import { sendBotMessage } from '../lib/sendBotMessage'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {

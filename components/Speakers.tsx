@@ -45,8 +45,6 @@ const Speakers: React.FC<Speakers> = ({roomId}) => {
     startMicStream,
   } = useContext<any>(StreamContext);
 
-  const { currentUserData } = useAuth();
-
   const [recentEvents, roomEvents] = useRoomEvents();
 
   const speakers = useMemo(() => {

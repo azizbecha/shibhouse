@@ -5,11 +5,9 @@ import Link from "next/link";
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
-import ReactTimeAgo from 'react-time-ago'
-
-import { FaShare, FaUsers } from 'react-icons/fa'
+import { FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
-import { RiChat1Fill, RiChat4Fill, RiChatOffFill } from "react-icons/ri";
+import { RiChat4Fill, RiChatOffFill } from "react-icons/ri";
 
 const ExportRooms: React.FC = () => {
 

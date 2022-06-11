@@ -30,8 +30,6 @@ const Listeners: React.FC<Listeners> = ({roomId}) => {
     },
   } = useContext<any>(PeerContext);
 
-  const { currentUserData } = useAuth();
-
   const [recentEvents, roomEvents] = useRoomEvents()
 
   const listenersPeers = peerList
