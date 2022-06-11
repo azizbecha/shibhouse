@@ -22,6 +22,9 @@ function connectToHost(peerInstance, hostId, name) {
   return peerInstance.connect(hostId, {
     metadata: {
       name,
+      firstname,
+      lastname,
+      avatar
     }
   })
 }
@@ -32,6 +35,9 @@ const PeerContextProvider = ({ children, initialContext }) => {
     roomId,
     roomName: initialRoomName,
     userName,
+    firstname,
+    lastname,
+    avatar,
     isHost,
   } = initialContext
 
@@ -76,6 +82,9 @@ const PeerContextProvider = ({ children, initialContext }) => {
       let call = peerInstanceRef.current.call(peerId, stream, {
         metadata: {
           name: userName,
+          firstname: firstname,
+          lastname: lastname,
+          avatar: avatar,
           roomName: initialContext.roomName,
         }
       })
@@ -255,7 +264,10 @@ const PeerContextProvider = ({ children, initialContext }) => {
           action: 'roomMetadata',
           payload: {
             roomName: initialContext.roomName,
-            name: initialContext.userName
+            name: initialContext.userName,
+            firstname: initialContext.firstname,
+            lastname: initialContext.lastname,
+            avatar: initialContext.avatar
           }
         })
       })
@@ -317,6 +329,9 @@ const PeerContextProvider = ({ children, initialContext }) => {
       connectedPeers,
       roomName,
       userName,
+      firstname,
+      lastname,
+      avatar,
       onPromotePeerToSpeaker,
       onDemotePeerToListener,
       isHost,

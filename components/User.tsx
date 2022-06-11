@@ -7,6 +7,7 @@ import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
 import { getRandomColor } from '../lib/getRandomColor'
 import { useMediaQuery } from 'react-responsive'
+import { sendBotMessage } from '../lib/sendBotMessage'
 
 interface UserProps {
   host?: any,
@@ -24,10 +25,11 @@ interface UserProps {
   speakerIcon?: JSX.Element,
   firstname: string,
   lastname: string,
-  avatar: string
+  avatar: string,
+  roomId: string
 }
 
-const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, ...props }) => {
+const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, roomId,  ...props }) => {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [speaking, setSpeaking] = useState(false);
 
@@ -73,7 +75,6 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
             {host && (
               <>
                 <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
-                
               </>
             )}
               <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><FaHeadphones /></span>
@@ -93,11 +94,11 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
 
             
             {! me && !host && !stream && <span onClick={() => {
-              console.log(id)
                 connectedPeers.forEach(conn => {
                   conn.peer == id.peer && conn.close();
                   if (connToHost) connToHost.close()
                 })
+                sendBotMessage(roomId, `@${name} is kicked from the room`)
               }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{ kickIcon }</span>
             }
           </div>

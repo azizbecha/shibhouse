@@ -12,6 +12,7 @@ import LoadingScreen from '../../lib/LoadingScreen'
 
 import PrivateRoute from '../../auth/PrivateRoute';
 import { AuthContext } from '../../auth/AuthContext';
+import { sendBotMessage } from '../../lib/sendBotMessage'
 
 const PlayerMain = dynamic(
   () => import('../../components/PlayerMain'),
@@ -32,7 +33,8 @@ export default function RoomPage() {
         const roomRef = doc(fireStore, "rooms", String(roomId));
         const roomSnap = await getDoc(roomRef);
         if (roomSnap.exists()) {
-          setRoomData(roomSnap.data())
+          setRoomData(roomSnap.data());
+          sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
         }
       } catch (e) {
         //console.log('error getting room data')
@@ -56,6 +58,9 @@ export default function RoomPage() {
               roomId={String(roomId)}
               roomName={roomData.title}
               userName={currentUserData.username}
+              firstname={currentUserData.firstname}
+              lastname={currentUserData.lastname}
+              avatar={currentUserData.avatarColor}
               pinnedLink={roomData.pinnedLink}
               topics={roomData.topics}
               roomDescription={roomData.description}
@@ -68,6 +73,9 @@ export default function RoomPage() {
             <PlayerMain
               roomId={String(roomId)}
               userName={currentUserData.username}
+              firstname={currentUserData.firstname}
+              lastname={currentUserData.lastname}
+              avatar={currentUserData.avatarColor}
               roomName={roomData.title}
               pinnedLink={roomData.pinnedLink}
               topics={roomData.topics}

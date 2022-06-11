@@ -33,8 +33,9 @@ import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
 import { useDevices } from "../lib/useDevices";
+import { sendBotMessage } from '../lib/sendBotMessage'
 
-const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
+const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
   return (
     <StreamContextProvider>
@@ -43,10 +44,16 @@ const PlayerMain:React.FC<PlayerProps> =  ({ roomId, userName, isHost, roomName,
         roomId,
         user: {
           name: userName,
+          firstname: firstname,
+          lastname: lastname,
+          avatar: avatar
         },
       }}>
         <Main user={{
-          name: userName,
+          username: userName,
+          firstname: firstname,
+          lastname: lastname,
+          avatar: avatar
         }} room={{
           title: roomName,
           description: roomDescription,
@@ -94,7 +101,7 @@ function Main ({ user, room }) {
     deafen ? deafenAudio.play() : undeafenAudio.play();
   }
 
-  if (!user.name) {
+  if (!user.username) {
     console.log('no username provided')
   }
 
@@ -165,6 +172,8 @@ function Main ({ user, room }) {
         });
       }
     }
+
+    sendBotMessage(roomId, `@${user.username} left the room`)
     if (connToHost) connToHost.close()
     if (connectedPeers) {
       connectedPeers.forEach(conn => {
@@ -689,10 +698,10 @@ function Main ({ user, room }) {
             <Row>
               <Col xs={12} sm={12} md={8} lg={showChat ? 8 : 12}>
                 <div className="p-4 mt-3 rounded-lg bg-darker">
-                  <Speakers />
+                  <Speakers roomId={roomId} />
                 </div>
                 <div className="p-4 mt-3 rounded-lg bg-darker">
-                  <Listeners />
+                  <Listeners roomId={roomId} />
                 </div>
               </Col>
               {
@@ -706,7 +715,7 @@ function Main ({ user, room }) {
                         pinnedLink={room.pinnedLink}
                         leave={onLeave}
                         role={connRole}
-                        username={user.name}
+                        username={user.username}
                         muteToggle={() => {
                           muteToggle();
                           playMuteAudio();

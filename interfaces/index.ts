@@ -31,6 +31,9 @@ export interface NewRoom {
 export interface PlayerProps {
   roomId: string,
   userName: string,
+  firstname: string,
+  lastname: string,
+  avatar: string,
   isHost: boolean,
   roomName: string,
   roomDescription: string,

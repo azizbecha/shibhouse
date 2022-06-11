@@ -26,6 +26,9 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     roomId,
     roomMetadata: initialRoomMetadata,
     user,
+    firstname,
+    lastname,
+    avatar,
     isHost,
   } = initialContext
 
@@ -98,6 +101,9 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     const conn = peer.connect(roomId, {
       metadata: {
         user,
+        firstname,
+        lastname,
+        avatar
       },
       serialization: 'json',
     })
@@ -216,6 +222,9 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     const call = peer.call(peerId, stream, {
       metadata: {
         user,
+        firstname,
+        lastname,
+        avatar
       }
     })
     // Why this gets executed on peers and not in host
@@ -342,6 +351,9 @@ export const PeerContextProvider = ({ children, initialContext }) => {
         peer: roomId,
         metadata: {
           user,
+          firstname,
+          lastname,
+          avatar,
           isHost,
           isSpeaker: true,
         },

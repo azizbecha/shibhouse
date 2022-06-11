@@ -9,8 +9,13 @@ import { FaTimes } from 'react-icons/fa'
 import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { useAuth } from '../auth/AuthContext'
+import { sendBotMessage } from '../lib/sendBotMessage'
 
-const Speakers: React.FC = () => {
+interface Speakers {
+  roomId: string
+}
+
+const Speakers: React.FC<Speakers> = ({roomId}) => {
   
   const {
     // incomingStreams,
@@ -70,7 +75,7 @@ const Speakers: React.FC = () => {
         }
       })
   }, [peerList, incomingStreams, micAudioStream, peerId, checkMicPermission])
-
+  
   return (
     <>
       <div className="bg-darker my-0 rounded-md p-2">
@@ -78,17 +83,21 @@ const Speakers: React.FC = () => {
           <Row className="gap-y-2">
             {speakers.map((speaker, key) => (
               <Col key={key} xs={6} sm={4} md={4} lg={3}>
+                {
+                  console.log(speaker?.metadata)
+                }
                 <User
+                  roomId={roomId}
                   id={peer}
                   key={speaker?.peer}
-                  firstname={currentUserData.firstname}
-                  lastname={currentUserData.lastname}
-                  avatar={currentUserData.avatarColor}
+                  firstname={speaker.metadata.user.firstname}
+                  lastname={speaker.metadata.user.lastname}
+                  avatar={speaker.metadata.user.avatar}
                   name={speaker?.metadata?.user?.name ? speaker.metadata.user.name : 'Anonym'}
                   host={speaker?.metadata?.isHost}
                   me={speaker.peer === peerId}
                   stream={speaker.stream}
-                  onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer)} : null }
+                  onClick={(connRole === 'host' && !speaker?.metadata?.isHost) ? () => {onDemotePeerToListener(speaker.peer); sendBotMessage(roomId, `@${speaker.metadata.user.name} is now a listener`)} : null }
                   hoverIcon={<FaTimes size={15} />}
                   speakerIcon={<HiSpeakerphone />}
                   kickIcon={<HiOutlineBan />}

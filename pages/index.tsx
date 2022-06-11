@@ -75,7 +75,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                         <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" />
                                         <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
                                     </div>
-                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
+                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
                                         <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                             setPassword(e.target.value)
                                         }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />

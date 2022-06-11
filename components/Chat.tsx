@@ -81,13 +81,31 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     useEffect(() => {
         setInterval(() => {
-            const boxes = document.getElementsByClassName('chat-link') as HTMLCollectionOf<HTMLElement>;
-            for (let i = 0; i < boxes.length; i++) {
-                if(boxes[i] !== null) {
-                    boxes[i].style.color = getBrightColor();
+            const chatLinks = document.getElementsByClassName('chat-link') as HTMLCollectionOf<HTMLElement>;
+            for (let i = 0; i < chatLinks.length; i++) {
+                if(chatLinks[i] !== null) {
+                    chatLinks[i].style.color = getBrightColor();
                 }
             }
         }, 100)
+
+        setInterval(() => {
+            const bot = document.getElementsByClassName('bot') as HTMLCollectionOf<HTMLElement>;
+            for (let i = 0; i < bot.length; i++) {
+                if(bot[i] !== null) {
+                    bot[i].style.color = getBrightColor();
+                }
+            }
+        }, 200)
+
+        setInterval(() => {
+            const bot = document.getElementsByClassName('bg-bot') as HTMLCollectionOf<HTMLElement>;
+            for (let i = 0; i < bot.length; i++) {
+                if(bot[i] !== null) {
+                    bot[i].style.backgroundColor = getBrightColor();
+                }
+            }
+        }, 200)
     }, [])
     
     const sendMessage = async (e) => {
@@ -174,7 +192,8 @@ const Chat: React.FC<ChatProps> = (props) => {
                             sendTime: new Date().getTime(),
                             sentBy: currentUserData.username,
                             roomId: props.roomId,
-                            avatarColor: currentUserData.avatarColor
+                            avatarColor: currentUserData.avatarColor,
+                            isBot: false
                         }),
                         setMessage('');
                         setLastMessageTimestamp(new Date().getTime());
@@ -237,7 +256,11 @@ const Chat: React.FC<ChatProps> = (props) => {
 
                                         return (
                                             <li className='w-full my-1' key={key}>
-                                                <span className='font-bold text-sm' style={{color: message.avatarColor}}><a href={`../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>: {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mr-1 rounded-full text-xs text-white">You</span>}</span>
+                                                <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
+                                                    <a href={`../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
+                                                    {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
+                                                    {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mx-1 rounded-full text-xs text-white">You</span>}
+                                                </span>
                                                 <span className="text-sm text-wrap break-all">
                                                 
                                                         {

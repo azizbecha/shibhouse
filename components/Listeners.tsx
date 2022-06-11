@@ -11,8 +11,13 @@ import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { useAuth } from '../auth/AuthContext'
+import { sendBotMessage } from '../lib/sendBotMessage'
 
-const Listeners: React.FC = () => {
+interface Listeners {
+  roomId: string
+}
+
+const Listeners: React.FC<Listeners> = ({roomId}) => {
   const {
     state: {
       peerId,
@@ -33,8 +38,8 @@ const Listeners: React.FC = () => {
     .filter(peer => !peer.metadata.isSpeaker)
 
   function handleUserClick(peer) {
-    if (!isHost) onDemotePeerToListener(peer.peer)
-    onPromotePeerToSpeaker(peer.peer)
+    if (!isHost) onDemotePeerToListener(peer.peer);
+    onPromotePeerToSpeaker(peer.peer);
   }
 
   const reactions = useMemo(() => {
@@ -76,14 +81,15 @@ const Listeners: React.FC = () => {
           { listenersPeers.map((peer, key) => (
             <Col key={key} xs={6} sm={4} md={4} lg={3} className="px-1">
               <User
+                roomId={roomId}
                 id={peer}
                 key={peer.peer}
                 me={peer.peer === peerId}
-                firstname={currentUserData.firstname}
-                lastname={currentUserData.lastname}
-                avatar={currentUserData.avatarColor}
+                firstname={peer.metadata?.user?.firstname}
+                lastname={peer.metadata?.user?.lastname}
+                avatar={peer.metadata?.user?.avatar}
                 name={peer.metadata?.user?.name || 'Anonym'}
-                onClick={isHost ? () => handleUserClick(peer) : null}
+                onClick={isHost ? () => {handleUserClick(peer); sendBotMessage(roomId, `@${peer.metadata?.user?.name} is now a speaker`);} : null}
                 hoverIcon={<FaPlus size={15} />}
                 reaction={reactions.find(({peer: peerId}) => peerId === peer.peer)?.eventContent}
                 kickIcon={<FaBan />}
