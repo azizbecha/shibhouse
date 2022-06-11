@@ -67,7 +67,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
               </>
             )}
           </div>
-          <h1 className="mt-4 text-white text-center font-bold text-md">
+          <h1 className="mt-4 text-white text-center font-semibold text-md">
             <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && '(You)'}
           </h1>
             
