@@ -55,8 +55,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
   return (
     <div {...props}>
       <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-2'}`}>
-        <div className="container mt-5 mb-5">
-          
+        <div className="container my-5">
           <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
             {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
             { onClick && hoverIcon && (
