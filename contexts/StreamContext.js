@@ -1,11 +1,10 @@
 import { useEffect, createContext, useState } from 'react'
-import { toast } from 'react-toastify'
 
 const StreamContext = createContext({})
 
 const StreamContextProvider = ({ children }) => {
   const [micAudioStream, setMicAudioStream] = useState(null)
-  const [micAudioStreamError, setMicAudioStreamError] = useState();
+  const [micAudioStreamError, setMicAudioStreamError] = useState()
   const [micAccess, setMicAccess] = useState(false)
   const [micMuted, setMicMuted] = useState(false)
 
@@ -36,27 +35,6 @@ const StreamContextProvider = ({ children }) => {
     if (!micAudioStream) return
     const stream = micAudioStream.getAudioTracks()[0]
     setMicMuted(stream.enabled)
-    stream.enabled ? (
-      toast.success('Mic muted', {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      })
-    ) : (
-      toast.success('Mic unmuted', {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      })
-    )
     stream.enabled = !stream.enabled
   }
 
