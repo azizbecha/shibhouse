@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState, useRef, Fragment, useCallback } from 'react'
-import { useRouter } from 'next/router'
+import React, { useContext, useEffect, useState, useRef, Fragment } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
+import { sendBotMessage } from '../lib/sendBotMessage'
 
 import { PlayerProps } from '../interfaces'
 
@@ -11,9 +12,10 @@ import Speakers from './Speakers'
 import Listeners from './Listeners'
 import Chat from './Chat'
 
-import { useMediaQuery } from 'react-responsive'
 import ReactTimeAgo from 'react-time-ago'
 import Hotkeys from 'react-hot-keys';
+import QRCode from "react-qr-code";
+import { useMediaQuery } from 'react-responsive'
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { useNetworkState, useCopyToClipboard } from 'react-use';
@@ -32,7 +34,6 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
-import { sendBotMessage } from '../lib/sendBotMessage'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -75,7 +76,8 @@ function Main ({ user, room }) {
 
   const [showChat, setShowChat] = useState(true);
   const [deafen, setDeafen] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
+  const [openInvite, setOpenInvite] = useState(false);
   const [openTab, setOpenTab] = useState(1);
 
   const cancelButtonRef = useRef(null)
@@ -258,8 +260,10 @@ function Main ({ user, room }) {
 
   return (
     <>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setOpen}>
+
+      {/* Start settings modal */}
+      <Transition.Root show={openSettings} as={Fragment}>
+        <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setOpenSettings}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -401,6 +405,7 @@ function Main ({ user, room }) {
                                 <br /><span className="font-semibold">Your role: {connRole}</span>
                                 <br /><span className="font-semibold">Host: <Link href={`../../user/${room.createdBy}`}><span className='cursor-pointer'>@{room.createdBy}</span></Link></span>
                                 <br /><span className="font-semibold">Connected users: {peerList.length}</span>
+                                
                                 <Divider />
                                 <span className="text-xl text-white font-bold">Room Roles</span>
                                 <Col xs={12} sm={12} md={12} lg={12}>
@@ -571,6 +576,91 @@ function Main ({ user, room }) {
           </div>
         </Dialog>
       </Transition.Root>
+      {/* End settings modal */}
+
+      {/* Start Invite Modal */}
+      <Transition.Root show={openInvite} as={Fragment}>
+        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpenInvite}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity bg-dark" />
+          </Transition.Child>
+
+          <div className="fixed z-10 inset-0 overflow-y-auto">
+            <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className={`relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 ${isTabletOrMobile ? 'w-12/12' : 'w-5/12'}`}>
+                  <div className="bg-darker px-3 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div className="sm:flex sm:items-start">
+                      <div className="mx-auto flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-primary sm:mx-0 sm:h-10 sm:w-10">
+                        <FaUserPlus className="h-6 w-6 text-white" aria-hidden="true" />
+                      </div>
+                      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-white">
+                          Invite to room
+                        </Dialog.Title>
+                        <div className="mt-1">
+                          <p className="text-sm text-white">
+                            Invite your friends to join the current room and chill together !
+                          </p>
+                        </div>
+                        <Divider />
+                        <div className="text-white">
+                          <Row>
+                            <Col>
+                              <span className="font-semibold text-xl font-inter">Scannable QR Code</span><br />
+                              <span className="text-white font-normal text-md">You can scan the following QR Code to send the link to anyone:</span>
+                              <QRCode className='mt-4 mx-auto' value={window.location.href} />
+                            </Col>
+
+                            <Col className="mt-4">
+                              <span className="font-semibold text-xl font-inter">Link</span><br />
+                              <span className="text-white font-normal text-md">Or you can simply copy the following link below:</span><br />
+                              <span onClick={() => copyRoomLink()} className="text-white text-center font-semibold cursor-pointer">
+                                {window.location.href}
+                              </span><br />
+                              <button onClick={() => copyRoomLink()} className="flex justify-center bg-primary px-4 py-2 text-white text-center font-semibold rounded-md mt-5">
+                                <FaLink className='my-auto mr-1' size={14} /> Copy Link
+                              </button>
+                            </Col>
+                          </Row>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button
+                      type="button"
+                      className="mt-3 w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-primary text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                      onClick={() => setOpenInvite(false)}
+                      ref={cancelButtonRef}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
+      {/* End Invite Modal */}
+
       <Hotkeys 
         keyName="ctrl+m" 
         onKeyDown={() => {
@@ -587,7 +677,7 @@ function Main ({ user, room }) {
       <Hotkeys 
         keyName="ctrl+y" 
         onKeyDown={() => {
-          setOpen(!open);
+          setOpenSettings(!open);
         }}
       ></Hotkeys>
       <Hotkeys 
@@ -677,9 +767,9 @@ function Main ({ user, room }) {
                     }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                     <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
                   </button>
-                  <a className="text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover" href="#">
+                  <button onClick={() => setOpenInvite(true)} className={`p-4 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaUserPlus size={18} />
-                  </a>
+                  </button>
                   <button onClick={() => { toggleChat() } } className={`p-4 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     {
                       showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />
@@ -688,7 +778,7 @@ function Main ({ user, room }) {
                   <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <HiPhoneMissedCall size={20} />
                   </button>
-                  <button onClick={() => setOpen(true)} className={`p-4 inline-flex justify-center rounded-full ${open ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
+                  <button onClick={() => setOpenSettings(true)} className={`p-4 inline-flex justify-center rounded-full ${openSettings ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaCog size={20} />
                   </button>
                 </nav>
