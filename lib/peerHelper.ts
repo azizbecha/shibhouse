@@ -1,5 +1,3 @@
-
-
 export function mapPeersData(peers, speakers = []) {
   return peers.filter(Boolean).map(peer => ({
     peer: peer.peer,

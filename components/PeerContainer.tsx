@@ -1,4 +1,4 @@
-export default function PeerContainer ({ context = {} }) {
+const PeerContainer: React.FC<{context: any}> =  ({ context = {} }) => {
   const {
     roomId,
     roomName,
@@ -11,3 +11,5 @@ export default function PeerContainer ({ context = {} }) {
   console.log(isHost)
   return <div></div>
 }
+
+export default PeerContainer

@@ -81,9 +81,6 @@ const Speakers: React.FC<Speakers> = ({roomId}) => {
           <Row className="gap-y-2">
             {speakers.map((speaker, key) => (
               <Col key={key} xs={6} sm={4} md={4} lg={3}>
-                {
-                  console.log(speaker?.metadata)
-                }
                 <User
                   roomId={roomId}
                   id={peer}

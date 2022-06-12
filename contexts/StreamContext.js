@@ -35,7 +35,7 @@ const StreamContextProvider = ({ children }) => {
     if (!micAudioStream) return
     const stream = micAudioStream.getAudioTracks()[0]
     setMicMuted(stream.enabled)
-    stream.enabled = !stream.enabled
+    stream.enabled = !stream.enabled;
   }
 
   return (
