@@ -22,6 +22,7 @@ import PrivateRoute from "../auth/PrivateRoute";
 
 import { HexColorPicker } from "react-colorful";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { numberFormatter } from "../lib/numberFormatter";
 
 const Me: React.FC = () => {
 
@@ -143,9 +144,9 @@ const Me: React.FC = () => {
                                     <div className="mb-1 font-semibold text-2xl mt-3">{capitalizeWord(currentUserData.firstname)} {capitalizeWord(currentUserData.lastname)} <span className="text-lg">(@{currentUserData.username})</span></div>
                                     <div className="text-sm mt-2 text-gray-200">
                                         <div className="flex flex-row ml-auto space-x-3 items-center">
-                                            <div className="mb-1 h-5 font-bold">{currentUserData.followers.length} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></div>
-                                            <div className="mb-1 h-5 font-bold">{currentUserData.following.length} <span className="font-normal">Following</span></div>
-                                            <div className="mb-1 h-5 font-bold ml-2">{currentUserData.claps} <span className="font-normal">Claps</span></div>
+                                            <div className="mb-1 h-5 font-bold">{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></div>
+                                            <div className="mb-1 h-5 font-bold">{numberFormatter(currentUserData.following.length)} <span className="font-normal">Following</span></div>
+                                            <div className="mb-1 h-5 font-bold ml-2">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></div>
                                         </div>
                                         
                                         <div className="mb-1 mt-5 font-normal text-md w-10/12">

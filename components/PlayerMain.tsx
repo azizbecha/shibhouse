@@ -34,6 +34,7 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
+import { numberFormatter } from '../lib/numberFormatter'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -691,7 +692,7 @@ function Main ({ user, room }) {
           <Row between="lg" middle="lg">
             <Col lg={9} md={7} sm={12} xs={12}>
               <h3 className="text-3xl font-bold text-white inline-flex items-center justify-start">
-                <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {peerList.length}</span>
+                <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {numberFormatter(peerList.length)}</span>
               </h3>
               <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
                 {

@@ -17,6 +17,7 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
+import { numberFormatter } from "../../lib/numberFormatter";
 
 const User: React.FC = () => {
 
@@ -181,9 +182,9 @@ const User: React.FC = () => {
                                 {/*<div className="mb-1 font-normal text-md">Joined <ReactTimeAgo date={new Date(userData.joinDate).getMilliseconds()} /></div>*/}
                                 <div className="text-sm mt-2 text-gray-200">
                                     <div className="flex flex-row ml-auto space-x-3 items-center">
-                                        <div className="mb-1 h-5 font-bold">{userData.followers.length} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></div>
-                                        <div className="mb-1 h-5 font-bold">{userData.following.length} <span className="font-normal">Following</span></div>
-                                        <div className="mb-1 h-5 font-bold ml-2">{userData.claps} <span className="font-normal">Claps</span></div>
+                                        <div className="mb-1 h-5 font-bold">{numberFormatter(userData.followers.length)} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></div>
+                                        <div className="mb-1 h-5 font-bold">{numberFormatter(userData.following.length)} <span className="font-normal">Following</span></div>
+                                        <div className="mb-1 h-5 font-bold ml-2">{numberFormatter(userData.claps)} <span className="font-normal">Claps</span></div>
                                     </div>
 
                                     <div className="mb-3 mt-2 font-semibold text-md w-10/12">
