@@ -85,7 +85,7 @@ const Login: React.FC = () => {
                                 <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
                                 <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
 
-                                <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-bold py-2">Login</button>
+                                <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2">Login</button>
                                 
                             </form>
                             <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
