@@ -80,10 +80,10 @@ const Login: React.FC = () => {
                             <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
                             <form onSubmit={verify}>
                                 <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
-                                <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" />
+                                <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" required/>
 
                                 <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
-                                <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" />
+                                <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
 
                                 <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-bold py-2">Login</button>
                                 

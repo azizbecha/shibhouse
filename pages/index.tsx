@@ -68,17 +68,17 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
                                 <form onSubmit={addUser} className="w-full mt-12">
                                     <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                        <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" />
-                                        <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" />
+                                        <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" required/>
+                                        <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" required/>
                                     </div>
                                     <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                        <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" />
-                                        <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" />
+                                        <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" required/>
+                                        <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" required/>
                                     </div>
                                     <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
                                         <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                             setPassword(e.target.value)
-                                        }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" />
+                                        }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" required />
                                     </div>
                                     <PasswordStrengthBar
                                         minLength={8}
