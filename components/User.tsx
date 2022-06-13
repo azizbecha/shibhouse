@@ -54,6 +54,12 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
     speechEvents.on('speaking', () => setSpeaking(true));
     speechEvents.on('stopped_speaking', () => setSpeaking(false));
     speechEvents.on('volume_change', (volumeLevel: number) => {
+      /*
+      * Examples to explain why I used those Math methods
+      * Math.round(-82.752342) => returns -83
+      * Math.abs(-83) => returns 83
+      */
+
       setVolume(Math.abs(Math.round(volumeLevel)));
     });
 

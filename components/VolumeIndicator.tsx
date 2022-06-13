@@ -6,9 +6,11 @@ interface VolumeProps {
 
 const VolumeIndicator: React.FC<VolumeProps> = (props) => {
 
-    let bars = [];
+    let dots = [];
+
+    // 10 is the number of the dots of the indicator
     for (let i:number = 0; i < 10; i++) {
-        bars.push(
+        dots.push(
             <div
                 key={i}
                 className={`h-full rounded-full w-1 transition ${props.volume / 10 >= i ? "bg-white" : "bg-primary"}`}
@@ -19,7 +21,7 @@ const VolumeIndicator: React.FC<VolumeProps> = (props) => {
     return (
         <div className="h-1 gap-x-1 flex mt-5">
             <div className="mx-auto flex gap-x-1 flex-row-reverse">
-                {bars}
+                {dots}
             </div>
         </div>
     )
