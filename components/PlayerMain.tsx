@@ -676,13 +676,11 @@ function Main ({ user, room }) {
       ></Hotkeys>
       <Hotkeys 
         keyName="ctrl+y" 
-        onKeyDown={() => {
-          setOpenSettings(!open);
-        }}
+        onKeyDown={() => setOpenSettings(!openSettings)}
       ></Hotkeys>
       <Hotkeys 
         keyName="ctrl+i" 
-        onKeyDown={() => setOpenInvite(true)}
+        onKeyDown={() => setOpenInvite(!openInvite)}
       ></Hotkeys>
       <Hotkeys 
         keyName="ctrl+b" 
