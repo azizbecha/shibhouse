@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
 import hark from 'hark'
 
+import { useMediaQuery } from 'react-responsive'
+
 import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
+
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
-import { getRandomColor } from '../lib/getRandomColor'
-import { useMediaQuery } from 'react-responsive'
 import { sendBotMessage } from '../lib/sendBotMessage'
+import { VolumeIndicator } from './VolumeIndicator'
 
 interface UserProps {
   host?: any,
@@ -43,13 +45,18 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
   } = useContext<any>(PeerContext)
 
   const { micMuted } = useContext<any>(StreamContext)
+  const [volume, setVolume] = useState<number>(100);
 
   useEffect(() => {
     if (!stream) return
     //if (!stream instanceof MediaStream) return
-    const speechEvents = hark(stream)
-    speechEvents.on('speaking', () => setSpeaking(true))
-    speechEvents.on('stopped_speaking', () => setSpeaking(false))
+    const speechEvents = hark(stream);
+    speechEvents.on('speaking', () => setSpeaking(true));
+    speechEvents.on('stopped_speaking', () => setSpeaking(false));
+    speechEvents.on('volume_change', function(x, threshold) {
+      setVolume(Math.abs(Math.round(x)));
+    });
+
   }, [stream])
 
   return (
@@ -66,6 +73,12 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
               </>
             )}
           </div>
+          {/*volume*/}
+          {
+            speakerIcon && (
+              <VolumeIndicator volume={volume} />
+            )
+          }
           <h1 className="mt-4 text-white text-center font-semibold text-md">
             <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && '(You)'}
           </h1>
