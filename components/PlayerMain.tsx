@@ -682,7 +682,7 @@ function Main ({ user, room }) {
       ></Hotkeys>
       <Hotkeys 
         keyName="ctrl+i" 
-        onKeyDown={() => copyRoomLink()}
+        onKeyDown={() => setOpenInvite(true)}
       ></Hotkeys>
       <Hotkeys 
         keyName="ctrl+b" 
