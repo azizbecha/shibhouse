@@ -33,7 +33,7 @@ interface UserProps {
 
 const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, roomId,  ...props }) => {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
-  const [speaking, setSpeaking] = useState(false);
+  const [speaking, setSpeaking] = useState<boolean>(false);
 
   const {
     state: {
@@ -53,8 +53,8 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
     const speechEvents = hark(stream);
     speechEvents.on('speaking', () => setSpeaking(true));
     speechEvents.on('stopped_speaking', () => setSpeaking(false));
-    speechEvents.on('volume_change', function(x, threshold) {
-      setVolume(Math.abs(Math.round(x)));
+    speechEvents.on('volume_change', (volumeLevel: number) => {
+      setVolume(Math.abs(Math.round(volumeLevel)));
     });
 
   }, [stream])
