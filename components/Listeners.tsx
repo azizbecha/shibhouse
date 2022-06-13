@@ -10,7 +10,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { useAuth } from '../auth/AuthContext'
 import { sendBotMessage } from '../lib/sendBotMessage'
 
 interface Listeners {

@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
+
 import hark from 'hark'
-
-import { useMediaQuery } from 'react-responsive'
-
-import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
-import { AiFillHome } from 'react-icons/ai'
 
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
 import { sendBotMessage } from '../lib/sendBotMessage'
 import { VolumeIndicator } from './VolumeIndicator'
+import { useMediaQuery } from 'react-responsive'
+
+import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
+import { AiFillHome } from 'react-icons/ai'
 
 interface UserProps {
   host?: any,

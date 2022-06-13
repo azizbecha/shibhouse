@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaBug, FaLock } from "react-icons/fa";
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <div>
             <footer className="text-center lg:text-left bg-darker text-gray-600">

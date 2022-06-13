@@ -4,12 +4,12 @@ import User from './User'
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
 import useRoomEvents from '../hooks/useRoomEvents'
+import { sendBotMessage } from '../lib/sendBotMessage'
+
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import { FaTimes } from 'react-icons/fa'
 import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
-import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { useAuth } from '../auth/AuthContext'
-import { sendBotMessage } from '../lib/sendBotMessage'
 
 interface Speakers {
   roomId: string
