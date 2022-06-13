@@ -6,7 +6,7 @@ interface VolumeProps {
 
 const VolumeIndicator: React.FC<VolumeProps> = (props) => {
 
-    let dots = [];
+    let dots: Array<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = [];
 
     // 10 is the number of the dots of the indicator
     for (let i:number = 0; i < 10; i++) {
