@@ -55,7 +55,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
     speechEvents.on('stopped_speaking', () => setSpeaking(false));
     speechEvents.on('volume_change', (volumeLevel: number) => {
       /*
-      * Examples to explain why I used those Math methods
+      * Examples to explain why I used those Math methods:
       * Math.round(-82.752342) => returns -83
       * Math.abs(-83) => returns 83
       */
@@ -86,7 +86,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
             )
           }
           <h1 className="mt-4 text-white text-center font-semibold text-md">
-            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && '(You)'}
+            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && <span className="text-sm">(You)</span> }
           </h1>
             
           <div className='flex justify-center space-x-2 mt-3'>
