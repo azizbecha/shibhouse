@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react"
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
 import LoadingScreen from "../lib/LoadingScreen"
 
 const PrivateRoute = ({ children }) => {
-    const { currentUser } = useContext(AuthContext)
-    const Router = useRouter()
+    const { currentUser } = useContext(AuthContext);
+    const router: NextRouter = useRouter();
 
     if (currentUser) {
         return (
@@ -16,8 +16,8 @@ const PrivateRoute = ({ children }) => {
     } else {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            Router.push("/login")
-        }, [])
+            router.push("/login");
+        }, [router])
 
         return <LoadingScreen />
     }
