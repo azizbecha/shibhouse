@@ -188,7 +188,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                         // If last message timestamp is greater than 3 seconds
                         addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
                             message: message.trim(),
-                            sendTime: new Date().getTime(),
+                            sendTime: Date.now(),
                             sentBy: currentUserData.username,
                             roomId: props.roomId,
                             avatarColor: currentUserData.avatarColor,
@@ -242,7 +242,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     </div>
                                 )
                             }
-                            <ul className='space-y-3'>
+                            <ul className='space-y-3 flex flex-col-reverse'>
                                 {
                                     messages.map((message, key) => {
                                         var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
