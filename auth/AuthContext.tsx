@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from './Firebase';
-import LoadingScreen from '../lib/LoadingScreen';
+import LoadingScreen from '../components/LoadingScreen';
 import getUserData from '../lib/getUserData';
 
 export const AuthContext = createContext(null);

@@ -8,7 +8,7 @@ import Footer from "../../components/Footer"
 
 import { fireStore } from "../../auth/Firebase";
 import { getDoc, doc } from "firebase/firestore";
-import LoadingScreen from '../../lib/LoadingScreen'
+import LoadingScreen from '../../components/LoadingScreen'
 
 import PrivateRoute from '../../auth/PrivateRoute';
 import { AuthContext } from '../../auth/AuthContext';

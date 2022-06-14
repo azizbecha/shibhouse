@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { NextRouter, useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
-import LoadingScreen from "../lib/LoadingScreen"
+import LoadingScreen from "../components/LoadingScreen"
 
 const PrivateRoute = ({ children }) => {
     const { currentUser } = useContext(AuthContext);

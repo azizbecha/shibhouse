@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
-import LoadingScreen from "../lib/LoadingScreen"
+import LoadingScreen from "../components/LoadingScreen"
 
 const ProtectedRoute = ({ children }) => {
     const { currentUser } = useContext(AuthContext)
