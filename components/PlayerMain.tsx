@@ -165,7 +165,7 @@ function Main ({ user, room }) {
         await deleteDoc(doc(fireStore, "rooms", roomId));
         toast.success('Room deleted', {
           position: "top-center",
-          autoClose: 4000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
