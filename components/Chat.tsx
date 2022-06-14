@@ -240,7 +240,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                         customLoader={
                             <div className="flex justify-center items-center h-14 w-full px-20 bg-dark ">
                                 <TailSpin 
-                                    color='red'
+                                    color='#fa2f2f'
                                     ariaLabel='loading'
                                 />
                             </div>

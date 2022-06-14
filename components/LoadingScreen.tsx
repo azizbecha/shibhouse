@@ -5,7 +5,7 @@ const LoadingScreen: React.FC = () => {
         <div className="flex justify-center items-center h-screen px-20 bg-dark ">
             <Plane 
                 secondaryColor="white"
-                color='red'
+                color='#fa2f2f'
                 ariaLabel='loading'
             />
         </div>
