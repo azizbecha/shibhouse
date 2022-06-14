@@ -10,6 +10,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@dhaiwat10/react-link-preview": "^1.14.0",
     "@headlessui/react": "^1.6.1",
     "@types/react-responsive": "^8.0.5",
     "aos": "^2.3.4",

@@ -16,6 +16,9 @@ import { AiFillPushpin } from "react-icons/ai";
 import { getBrightColor } from "../lib/getBrightColor";
 import { isChatCommand } from "../lib/isChatCommand";
 import { StreamContext } from "../contexts/StreamContext";
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
+import { TailSpin } from "react-loader-spinner";
+
 
 interface ChatProps {
     roomId: string;
@@ -227,8 +230,28 @@ const Chat: React.FC<ChatProps> = (props) => {
     return (
         <div>
             {props.pinnedLink !== "" && (
-                <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold flex">
-                    <AiFillPushpin size={16} className="my-auto mr-1" /><a href={props.pinnedLink} target="_blank" rel="noreferrer" >{props.pinnedLink}</a>
+                <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold">
+                    <span className="text-white font-inter text-lg flex space-x-1 mb-2 font-normal">
+                        <AiFillPushpin className="my-auto" size={17} /> <span>Pinned link:</span>
+                    </span>
+                    <LinkPreview 
+                        url={props.pinnedLink}
+                        showLoader={true}
+                        customLoader={
+                            <div className="flex justify-center items-center h-14 w-full px-20 bg-dark ">
+                                <TailSpin 
+                                    color='red'
+                                    ariaLabel='loading'
+                                />
+                            </div>
+                        }
+                        imageHeight={150}
+                        backgroundColor="#151A21"
+                        borderColor="#151A21"
+                        primaryTextColor="#fff" 
+                        secondaryTextColor="#c7c5c5"
+                        descriptionLength={60}
+                    />
                 </div>
             )}
             {
