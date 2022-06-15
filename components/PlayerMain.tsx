@@ -761,8 +761,8 @@ function Main ({ user, room }) {
                     </span>
                   )}
                   <button onClick={() => {
-                      playDeafenAudio()
-                      setDeafen(!deafen)
+                      playDeafenAudio();
+                      setDeafen(!deafen);
                     }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                     <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
                   </button>

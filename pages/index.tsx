@@ -15,6 +15,9 @@ import ProtectedRoute from '../auth/ProtectedRoute'
 import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
 
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+
+
 const IndexPage: React.FC<{props: any}> = ({props}) => {
 
     const router = useRouter();
@@ -62,7 +65,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
             <ProtectedRoute>
                 <Navbar />
                 <div className="relative bg-dark">
-                    <div className="container px-6 pt-8 md:px-12 lg:px-7">
+                    {/*<div className="container px-6 pt-8 md:px-12 lg:px-7">
                         <div className="flex items-center flex-wrap px-1 md:px-0">
                             <div className="relative lg:w-6/12 lg:py-10 xl:py-32">
                                 <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
@@ -104,7 +107,37 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
                             </div>
                         </div>
-                    </div>
+                                    </div>*/}
+
+                    <section className="px-2 py-16 bg-dark text-white md:px-0">
+                        <div className="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+                            <div className="flex flex-wrap items-center sm:-mx-3">
+                                <div className="w-full md:w-1/2 md:px-3">
+                                    <div className="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                                        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+                                            <span className="block xl:inline">Re-taking voice conversations to the moon 🚀</span>
+                                        </h1>
+                                        <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl"></p>
+                                        <div className="relative flex flex-col sm:flex-row sm:space-x-4">
+                                            <a href="#_" className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0 sm:w-auto">
+                                                Join now
+                                            </a>
+                                            <a href="#_" className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0 sm:w-auto">
+                                                Log in
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="w-full md:w-1/2">
+                                    <div className="w-full h-auto overflow-hidden rounded-md sm:rounded-xl flex">
+                                        <img src="shibhouse-logo-transparent.png" style={{width: '25%'}} className="flex mx-auto" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
                 </div>
                 <Footer />
             </ProtectedRoute>
