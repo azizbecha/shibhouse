@@ -33,7 +33,7 @@ const Login: React.FC = () => {
         try {
             toast.info('Please wait', {
                 position: "top-center",
-                autoClose: 4000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
             await signUser(userObject) 
             toast.success('Logged successfully !', {
                 position: "top-center",
-                autoClose: 4000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -58,7 +58,7 @@ const Login: React.FC = () => {
             setDisabled(false)
             toast.error('Please verify your informations', {
                 position: "top-center",
-                autoClose: 4000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
