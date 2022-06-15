@@ -137,7 +137,15 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                         </div>
                     </section>
                     
-                    
+                    <div className='container text-white text-justify'>
+                        <span className="text-4xl font-bold">
+                            About
+                        </span><br /><br />
+                        <span className="text-lg font-normal font-inter">
+                            ShibHouse is an Opensource project created as a Joke where people can create rooms or join existing ones, listen to the speakers and participate in Chat. 
+                            The main goal of this project is to make podcasts easier for everyone so we can share the culture of cryptocurrencies between our users and provide them a better place for sharing knowledge.
+                        </span>
+                    </div>
                 </div>
                 <Footer />
             </ProtectedRoute>
