@@ -16,6 +16,10 @@ import { createUser } from '../lib/createUser'
 import { NewUser } from '../interfaces'
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+import { FaGithub, FaReact, FaTag } from 'react-icons/fa';
+import { MdDevices } from 'react-icons/md'
+import { SiBlockchaindotcom } from 'react-icons/si'
+import { IoIosPeople } from 'react-icons/io';
 
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
@@ -137,7 +141,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                         </div>
                     </section>
                     
-                    <div className='container text-white text-justify'>
+                    <div className='container text-white text-justify pb-9'>
                         <span className="text-4xl font-bold">
                             About
                         </span><br /><br />
@@ -145,6 +149,96 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                             ShibHouse is an Opensource project created as a Joke where people can create rooms or join existing ones, listen to the speakers and participate in Chat. 
                             The main goal of this project is to make podcasts easier for everyone so we can share the culture of cryptocurrencies between our users and provide them a better place for sharing knowledge.
                         </span>
+                    </div>
+
+                    <div className='text-white'>
+                        <div className="container">
+                            <span className="text-4xl font-bold">
+                                Features
+                            </span>
+                        </div>
+                        <section className="bg-dark">
+                            <div className="focus:outline-none mt-10 flex flex-wrap justify-center gap-10 px-4">
+                                
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <FaGithub size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Opensource</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base leading-normal pt-2">What make the project unique first is that it&apos;s Opensource ! means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the GitHub repository.</p>
+                                    </div>
+                                </div>
+
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <MdDevices size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Responsive</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2">Since the design is one of the most important standars of rating the user experience of a website or an app, ShibHouse&apos;s website is fully Responsive ! Means it still look organised and elegant in any device such as Mobile, Tablet or Desktop due to using Tailwind CSS.</p>
+                                    </div>
+                                </div>
+                                
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <FaReact size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Fast & Flexible</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2">The first indicator that the website is good is the loading time. And around 60% of the users will leave if the loading takes more than 3 seconds. That&apos;s why we used NextJS to provide the best experience for our users.</p>
+                                    </div>
+                                </div>
+
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <SiBlockchaindotcom size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Crypto-related</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2">One of our most important topics in ShibHouse is the Cryptocurrencies world and everything related to finance, investing, coding, startups & projects and sharing knowledge between its users. And especially our name is inspired from the Shiba Inu Token.</p>
+                                    </div>
+                                </div>
+
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <IoIosPeople size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Open for everyone</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2">ShibHouse is a community before beeing a Billion Dollar Unicorn Company (together we will achieve this goal &#60;3) so we are working on making this platform such a good audio-based social media app to share knowledge between all the users with no exception.</p>
+                                    </div>
+                                </div>
+
+                                <div tabIndex={0} aria-label="card 1" className="focus:outline-none flex sm:w-full md:w-5/12 pb-10">
+                                    <div className="w-20 h-20 relative mr-1">
+                                        <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                            <FaTag size={50} />
+                                        </div>
+                                    </div>
+                                    <div className="w-10/12 text-justify">
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Different plans</h2>
+                                        <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2">ShibHouse usage is free for everyone. But users can buy ShibNitro which is simply the paid subscription of ShibHouse which offers you special features. the first purpose of adding ShibNitro is to keep supporting the project and push the community forward to do more.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
                 <Footer />
