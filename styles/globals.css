@@ -82,6 +82,11 @@
     -webkit-animation: bounce .5s infinite alternate;
 }
 
+.spin {
+    animation: spin 5s infinite linear;
+    -webkit-animation: spin 5s infinite linear;
+}
+
 @keyframes bounce {
     from {
         transform: translateY(0px);
@@ -97,5 +102,23 @@
     }
     to {
         transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
     }
 }

@@ -108,7 +108,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <div className="focus:outline-none flex sm:w-full md:w-5/12 pb-10" data-aos="zoom-in">
                                     <div className="w-20 h-20 relative mr-1">
                                         <div className="absolute top-0 right-0 rounded w-16 h-16 mt-2" />
-                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2">
+                                        <div className="absolute text-white bottom-0 left-0 rounded w-16 h-16 flex items-center justify-center mt-2 spin">
                                             <FaReact size={50} />
                                         </div>
                                     </div>
