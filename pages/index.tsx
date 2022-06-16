@@ -169,7 +169,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Opensource</h2>
-                                        <p tabIndex={0} className="focus:outline-none text-base leading-normal pt-2">What make the project unique first is that it&apos;s Opensource ! means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the GitHub repository.</p>
+                                        <p tabIndex={0} className="focus:outline-none text-base leading-normal pt-2">What make the project unique first is that it&apos;s Opensource ! Means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the <a href="http://github.com/azizbecha/shibhouse" className='text-primary' target="_blank" rel="noopener noreferrer">GitHub repository.</a></p>
                                     </div>
                                 </div>
 
