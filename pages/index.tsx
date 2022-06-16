@@ -20,6 +20,7 @@ import { FaGithub, FaReact, FaTag } from 'react-icons/fa';
 import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
+import Divider from '../components/Divider';
 
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
@@ -141,7 +142,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                         </div>
                     </section>
                     
-                    <div className='container text-white text-justify pb-9'>
+                    <div className='container text-white text-justify'>
                         <span className="text-4xl font-bold">
                             About
                         </span><br /><br />
@@ -150,7 +151,9 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                             The main goal of this project is to make podcasts easier for everyone so we can share the culture of cryptocurrencies between our users and provide them a better place for sharing knowledge.
                         </span>
                     </div>
-
+                    <div className="container my-5">
+                        <Divider />
+                    </div>
                     <div className='text-white'>
                         <div className="container">
                             <span className="text-4xl font-bold">
