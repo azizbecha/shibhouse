@@ -172,7 +172,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Opensource</h2>
-                                        <p className="focus:outline-none text-base leading-normal pt-2">What make the project unique first is that it&apos;s Opensource ! Means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the <a href="http://github.com/azizbecha/shibhouse" className='text-primary' target="_blank" rel="noopener noreferrer">GitHub repository.</a></p>
+                                        <p className="focus:outline-none text-base leading-normal pt-2">The first thing made this project unique is that it&apos;s Opensource ! Means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the <a href="http://github.com/azizbecha/shibhouse" className='text-primary' target="_blank" rel="noopener noreferrer">GitHub repository.</a></p>
                                     </div>
                                 </div>
 
@@ -185,7 +185,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Responsive</h2>
-                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">Since the design is one of the most important standars of rating the user experience of a website or an app, ShibHouse&apos;s website is fully Responsive ! Means it still look organised and elegant in any device such as Mobile, Tablet or Desktop due to using Tailwind CSS.</p>
+                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">Since the design is one of the most important standars of rating the user experience of a website or an app, ShibHouse&apos;s website is fully Responsive ! Means it look organised and elegant in any device such as Mobile, Tablet or Desktop due to using Tailwind CSS.</p>
                                     </div>
                                 </div>
                                 
@@ -198,7 +198,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Fast & Flexible</h2>
-                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">The first indicator that the website is good is the loading time. And around 60% of the users will leave if the loading takes more than 3 seconds. That&apos;s why we used NextJS to provide the best experience for our users.</p>
+                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">The first indicator that of website optimization is loading time. And around 60% of the users will leave if the loading takes more than 3 seconds. That&apos;s why we used NextJS to provide the best experience for our users.</p>
                                     </div>
                                 </div>
 
