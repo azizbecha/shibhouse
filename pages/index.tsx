@@ -88,7 +88,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Opensource</h2>
-                                        <p className="focus:outline-none text-base leading-normal pt-2">The first thing made this project unique is that it&apos;s Opensource ! Means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the <a href="http://github.com/azizbecha/shibhouse" className='text-primary' target="_blank" rel="noopener noreferrer">GitHub repository.</a></p>
+                                        <p className="focus:outline-none text-base leading-normal pt-2">The first thing that made this project unique is that it&apos;s Opensource! Means everyone on the globe can see the source code, download, edit, suggest features and report issues anytime by visiting the <a href="http://github.com/azizbecha/shibhouse" className='text-primary' target="_blank" rel="noopener noreferrer">GitHub repository.</a></p>
                                     </div>
                                 </div>
 
@@ -114,7 +114,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Fast & Flexible</h2>
-                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">The first indicator that of website optimization is loading time. And around 60% of the users will leave if the loading takes more than 3 seconds. That&apos;s why we used NextJS to provide the best experience for our users.</p>
+                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">The first indicator of website optimization is loading time. And around 60% of the users will leave if the loading takes more than 3 seconds. That&apos;s why we used NextJS to provide the best experience for our users.</p>
                                     </div>
                                 </div>
 
@@ -153,7 +153,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                     </div>
                                     <div className="w-10/12 text-justify">
                                         <h2 className="focus:outline-none text-lg font-bold leading-tight text-gray-800">Different plans</h2>
-                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">ShibHouse usage is free for everyone. But users can buy ShibNitro which is simply the paid subscription of ShibHouse which offers you special features. the first purpose of adding ShibNitro is to keep supporting the project and push the community forward to do more.</p>
+                                        <p className="focus:outline-none text-base text-gray-600 leading-normal pt-2">ShibHouse usage is free for everyone. But users can buy ShibNitro which is simply the paid subscription of ShibHouse that offers you special features. the first purpose of adding ShibNitro is to keep supporting the project and push the community forward to do more.</p>
                                     </div>
                                 </div>
                             </div>
