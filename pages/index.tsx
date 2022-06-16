@@ -21,44 +21,13 @@ import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
 import Divider from '../components/Divider';
+import { JoinForm } from '../components/JoinForm';
+import { LoginForm } from '../components/LoginForm';
 
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
 
     const router = useRouter();
-
-    const firstnameRef = useRef<any>();
-    const lastnameRef = useRef<any>();
-    const emailRef = useRef<any>();
-    const usernameRef = useRef<any>();
-    const passwordRef = useRef<any>();
-
-    const [password, setPassword] = useState('')
-
-    const addUser = (e) => {
-        e.preventDefault();
-
-        const userObject: NewUser = {
-            firstname: firstnameRef.current.value,
-            lastname: lastnameRef.current.value,
-            email: emailRef.current.value,
-            username: usernameRef.current.value,
-            password: password
-        }
-
-        if (createUser(userObject)) {
-            toast.success('Joined !', {
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            router.push('/login');
-        }
-    }
 
     return (
         <>
@@ -242,6 +211,22 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 </div>
                             </div>
                         </section>
+                    </div>
+                    
+                    <div className="container">
+                        <Divider />
+                    </div>
+
+                    <div className="container">
+                        <Row between="lg">
+                            <Col lg={6}>
+                                <JoinForm />
+                            </Col>
+
+                            <Col lg={6}>
+                                <LoginForm />
+                            </Col>
+                        </Row>
                     </div>
                 </div>
                 <Footer />
