@@ -160,22 +160,6 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                         </section>
                     </div>
                     
-                    <div className="container">
-                        <Divider />
-                    </div>
-
-                    <div className="container">
-                        <Row between="lg">
-                            <Col lg={6}>
-                                <JoinForm />
-                            </Col>
-
-                            <Col lg={6}>
-                                <LoginForm />
-                            </Col>
-                        </Row>
-                    </div>
-
                     <div className="container py-5">
                         <Divider />
                     </div>

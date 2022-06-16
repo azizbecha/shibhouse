@@ -81,7 +81,7 @@ export default function Navbar() {
                                                     </span>
                                                 </Link>
 
-                                                <Link href={'/'}>
+                                                <Link href={'/register'}>
                                                     <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
                                                         Register
                                                     </span>

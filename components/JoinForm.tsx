@@ -44,9 +44,6 @@ export const JoinForm:React.FC =  () => {
 
     return (
         <form onSubmit={addUser} className="w-full mt-5">
-            <span className="text-4xl font-bold text-white">
-                Join us
-            </span><br /><br />
             <div className="relative flex rounded-full shadow-md mb-5">
                 <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" required />
                 <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" required />
