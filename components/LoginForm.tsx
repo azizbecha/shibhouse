@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/router"
 
 import { LogUser } from "../interfaces"

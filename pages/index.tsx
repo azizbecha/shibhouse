@@ -1,10 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useRef } from 'react'
-import { useRouter } from 'next/router';
-import Link from 'next/link'
-
-import PasswordStrengthBar from "react-password-strength-bar";
-import { toast } from 'react-toastify'
+import React from 'react'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -12,23 +7,19 @@ import Footer from '../components/Footer'
 import SEO from '../components/SEO';
 import ProtectedRoute from '../auth/ProtectedRoute'
 
-import { createUser } from '../lib/createUser'
-import { NewUser } from '../interfaces'
-
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { FaGithub, FaReact, FaTag } from 'react-icons/fa';
+import { FaBitcoin, FaDog, FaEthereum, FaGithub, FaReact, FaTag } from 'react-icons/fa';
 import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
 import Divider from '../components/Divider';
 import { JoinForm } from '../components/JoinForm';
 import { LoginForm } from '../components/LoginForm';
-
+import { useCopyToClipboard } from 'react-use';
+import { toast } from 'react-toastify';
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
-
-    const router = useRouter();
-
+    const [state, copyToClipboard] = useCopyToClipboard();
     return (
         <>
             <SEO 
@@ -39,50 +30,6 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
             <ProtectedRoute>
                 <Navbar />
                 <div className="bg-dark">
-                    {/*<div className="container px-6 pt-8 md:px-12 lg:px-7">
-                        <div className="flex items-center flex-wrap px-1 md:px-0">
-                            <div className="relative lg:w-6/12 lg:py-10 xl:py-32">
-                                <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12" data-aos='fade-right'>Re-taking voice conversations to the moon 🚀</h1>
-                                <form onSubmit={addUser} className="w-full mt-12">
-                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                        <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" required/>
-                                        <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" required/>
-                                    </div>
-                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5" data-aos='fade-left'>
-                                        <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" required/>
-                                        <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" required/>
-                                    </div>
-                                    <div className="relative flex p-1 rounded-full shadow-md md:p-1 mb-5">
-                                        <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                            setPassword(e.target.value)
-                                        }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" required />
-                                    </div>
-                                    <PasswordStrengthBar
-                                        minLength={8}
-                                        password={password}
-                                        barColors={[
-                                            "#B83E26",
-                                            "#FFB829",
-                                            "#009200",
-                                            "#009200",
-                                            "#009200",
-                                            "#009200"
-                                        ]}
-                                        className="mb-5 w-12/12"
-                                    />
-                                    <button type="submit" data-aos='fade-left' className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
-                                        <span className="text-white font-semibold md:block">Join now</span>
-                                    </button>
-                                </form>
-                                <p className="mt-8 text-white lg:w-10/12">By creating an account, you accept our Privacy Policy and Terms of Service.</p><br />
-                                <p className="text-white lg:w-10/12">Already have an account ? Log in from <Link href='/login' passHref><span className="text-primary font-bold cursor-pointer">here</span></Link></p>
-                            </div>
-                            <div className="ml-auto -mb-25 lg:w-4/12" data-aos='flip-right'>
-                                <img src="https://shibatoken.com/images/hero-shib.png" className="relative" alt="Shib hero" loading="lazy" width="3500" height="3500" />
-                            </div>
-                        </div>
-                                    </div>*/}
-
                     <section className="py-12 bg-dark text-white md:px-0">
                         <div className="container items-center max-w-6xl px-8 mx-auto xl:px-5">
                             <div className="flex flex-wrap items-center sm:-mx-3">
@@ -104,7 +51,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 </div>
                                 <div className="w-full md:w-1/2 z-50">
                                     <div className="w-full h-auto overflow-hidden flex">
-                                        <img src="shibhouse-logo-transparent.png" style={{width: '25%'}} className="flex mx-auto bounce" />
+                                        <img src="shibhouse-logo-transparent.png" style={{width: '25%'}} className="flex mx-auto bounce" alt='Logo of ShibHouse' />
                                     </div>
                                 </div>
                             </div>
@@ -225,6 +172,73 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
 
                             <Col lg={6}>
                                 <LoginForm />
+                            </Col>
+                        </Row>
+                    </div>
+
+                    <div className="container py-5">
+                        <Divider />
+                    </div>
+                    <div className="container pt-3 pb-10 text-white">
+                        <p className="text-4xl font-bold mb-2"> Donate</p>
+                        <p className="text-lg font-semibold mb-4">If you want to support the project, you can donate to encourage us to do better and better</p>
+
+                        <Row>
+                            <Col lg={4}>
+                                <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaBitcoin className='my-auto text-primary' /> <span>Bitcoin <span className="text-sm">(bitcoin network)</span></span></h3>
+                                <p className='font-semibold my-3 cursor-pointer' onClick={() => {
+                                    copyToClipboard('3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU');
+                                    toast.success('BTC address copied to clipboard', {
+                                        position: "top-right",
+                                        autoClose: 1000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                }}>
+                                    3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU
+                                </p>
+                                <img src="btc-address.png" alt="Bitcoin address" />
+                            </Col>
+
+                            <Col lg={4}>
+                                <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaEthereum className='my-auto text-primary' /> <span>Ethereum <span className="text-sm">(ethereum network)</span></span></h3>
+                                <p className='font-semibold my-3 cursor-pointer' onClick={() => {
+                                    copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
+                                    toast.success('BTC address copied to clipboard', {
+                                        position: "top-right",
+                                        autoClose: 1000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                }}>
+                                    0x06a6974126a6fccc25c6fe9abf9140d81b537419
+                                </p>
+                                <img src="eth-address.png" alt="Bitcoin address" />
+                            </Col>
+
+                            <Col lg={4}>
+                                <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaDog className='my-auto text-primary' /> <span>Shib <span className="text-sm">(ethereum network)</span></span></h3>
+                                <p className='font-semibold my-3 cursor-pointer' onClick={() => {
+                                    copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
+                                    toast.success('BTC address copied to clipboard', {
+                                        position: "top-right",
+                                        autoClose: 1000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                }}>
+                                    0x06a6974126a6fccc25c6fe9abf9140d81b537419
+                                </p>
+                                <img src="shib-address.png" alt="Bitcoin address" />
                             </Col>
                         </Row>
                     </div>
