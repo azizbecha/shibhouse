@@ -159,7 +159,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                             </div>
                         </section>
                     </div>
-                    
+
                     <div className="container py-5">
                         <Divider />
                     </div>
@@ -184,7 +184,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU
                                 </p>
-                                <img src="btc-address.png" alt="Bitcoin address" />
+                                <img src="btc-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
 
                             <Col lg={4}>
@@ -203,7 +203,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>
-                                <img src="eth-address.png" alt="Bitcoin address" />
+                                <img src="eth-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
 
                             <Col lg={4}>
@@ -222,7 +222,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>
-                                <img src="shib-address.png" alt="Bitcoin address" />
+                                <img src="shib-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
                         </Row>
                     </div>
