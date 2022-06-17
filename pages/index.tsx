@@ -42,12 +42,12 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                         <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl"></p>
                                         <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                                             <Link href='/register'>
-                                                <span className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
+                                                <span className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0 cursor-pointer">
                                                     Join Now
                                                 </span>
                                             </Link>
-                                            <Link href='/login' className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
-                                                <span className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
+                                            <Link href='/login'>
+                                                <span className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0 cursor-pointer">
                                                     Log in
                                                 </span>
                                             </Link>
