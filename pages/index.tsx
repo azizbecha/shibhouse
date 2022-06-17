@@ -31,13 +31,13 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
             <ProtectedRoute>
                 <Navbar />
                 <div className="bg-dark">
-                    <section className="py-12 bg-dark text-white md:px-0">
+                    <section className="py-9 bg-dark text-white md:px-0">
                         <div className="container items-center px-8 mx-auto xl:px-5">
                             <div className="flex flex-wrap items-center sm:-mx-3">
-                                <div className="w-full md:w-1/2">
-                                    <div className="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                                <div className="w-full md:w-8/12">
+                                    <div className="w-full pb-6 space-y-6 md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
                                         <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
-                                            <span className="block xl:inline">Re-taking voice conversations to the moon 🚀</span>
+                                            <span className="block xl:inline" style={{lineHeight: '1.2'}}>Re-taking voice conversations to the moon 🚀</span>
                                         </h1>
                                         <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl"></p>
                                         <div className="relative flex flex-col sm:flex-row sm:space-x-4">
@@ -54,9 +54,9 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-full md:w-1/2 z-50">
+                                <div className="w-full md:w-4/12 z-50">
                                     <div className="w-full h-auto overflow-hidden flex">
-                                        <img src="shibhouse-logo-transparent.png" style={{width: '25%'}} className="flex mx-auto bounce" alt='Logo of ShibHouse' />
+                                        <img src="shibhouse-logo-transparent.png" style={{width: '38%'}} className="flex mx-auto bounce" alt='Logo of ShibHouse' />
                                     </div>
                                 </div>
                             </div>
