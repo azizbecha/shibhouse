@@ -443,41 +443,6 @@ function Main ({ user, room }) {
                                     </Col>
                                   </Row>
                                 </Col>
-                                <Divider />
-                                <span className="text-xl text-white font-bold">Room Actions</span>
-                                <Row className="space-x-3 mt-2 ml-0.5">
-                                  <Col>
-                                  <button onClick={() => {muteToggle(); playMuteAudio()}} className='bg-primary text-white font-semibold px-5 py-2 rounded-lg mb-2'>
-                                    {
-                                      micMuted ? (
-                                        <span className='flex justify-center'>
-                                          <FaMicrophoneSlash className='my-auto mr-1' /> Unmute
-                                        </span>
-                                      ) : (
-                                        <span className='flex justify-center'>
-                                          <FaMicrophone className='my-auto mr-1' /> Mute
-                                        </span>
-                                      )
-                                    }
-                                  </button>
-                                  </Col>
-
-                                  <Col>
-                                  <button onClick={() => {onLeave()}} className='bg-primary text-white font-semibold px-5 py-2 rounded-lg mb-2'>
-                                    <span className="flex justify-center">
-                                      <HiPhoneMissedCall className='my-auto mr-1' /> Leave
-                                    </span>
-                                  </button>
-                                  </Col>
-
-                                  <Col>
-                                  <button onClick={() => copyRoomLink()} className='bg-primary text-white font-semibold px-5 py-2 rounded-lg mb-2'>
-                                    <span className="flex justify-center">
-                                      <FaLink className='my-auto mr-1' /> Copy link
-                                    </span>
-                                  </button>
-                                  </Col>
-                                </Row>
                               </div>
                               <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                                 <span className="text-xl text-white font-bold">Keyboard shortcuts</span>
