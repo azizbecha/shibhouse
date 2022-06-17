@@ -17,6 +17,7 @@ import { JoinForm } from '../components/JoinForm';
 import { LoginForm } from '../components/LoginForm';
 import { useCopyToClipboard } from 'react-use';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
     const [state, copyToClipboard] = useCopyToClipboard();
@@ -40,12 +41,12 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                         </h1>
                                         <p className="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl"></p>
                                         <div className="relative flex flex-col sm:flex-row sm:space-x-4">
-                                            <a href="#_" className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
+                                            <Link href='/register' className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
                                                 Join now
-                                            </a>
-                                            <a href="#_" className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
+                                            </Link>
+                                            <Link href='/login' className="flex items-center px-6 py-3 mb-3 text-lg text-white font-semibold bg-primary rounded-md sm:mb-0">
                                                 Log in
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
