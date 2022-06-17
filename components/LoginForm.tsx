@@ -26,7 +26,7 @@ export const LoginForm:React.FC = () => {
         try {
             toast.info('Please wait', {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
