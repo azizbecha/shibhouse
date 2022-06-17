@@ -67,8 +67,8 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
 
   return (
     <div {...props}>
-      <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-2'}`}>
-        <div className="container my-5">
+      <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-1'}`}>
+        <div className="container my-3">
           <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
             {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
             { onClick && hoverIcon && (
@@ -79,7 +79,6 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
               </>
             )}
           </div>
-          {/*volume*/}
           {
             speakerIcon && (
               <VolumeIndicator volume={volume} />
@@ -114,7 +113,7 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
             {! me && !host && !stream && <span onClick={() => {
                 connectedPeers.forEach(conn => {
                   conn.peer == id.peer && conn.close();
-                  if (connToHost) connToHost.close()
+                  if (connToHost) connToHost.close();
                 })
                 sendBotMessage(roomId, `@${name} is kicked from the room`)
               }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{ kickIcon }</span>

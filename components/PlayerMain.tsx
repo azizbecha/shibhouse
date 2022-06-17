@@ -277,7 +277,7 @@ function Main ({ user, room }) {
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity bg-dark" />
           </Transition.Child>
           <div className="fixed z-10 inset-0 overflow-y-auto m-auto">
-            <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0 text-white">
+            <div className="flex items-center justify-center min-h-full p-4 text-center sm:p-0 text-white">
               <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -287,8 +287,8 @@ function Main ({ user, room }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className={`relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 ${isTabletOrMobile ? 'w-12/12' : 'w-8/12'}`}>
-                  <div className='bg-darker px-10 pt-5 pb-4 sm:p-6 sm:pb-4'>
+                <Dialog.Panel className={`relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 ${isTabletOrMobile ? 'w-full' : 'w-8/12'}`}>
+                  <div className='bg-darker px-3 pt-5 pb-4 sm:p-6 sm:pb-4'>
                     <span className="text-2xl text-white font-bold flex"><FaCog size={19} className="mr-1 mt-2" /> Settings</span>
                     <Divider />
                     <div className="flex flex-wrap">
@@ -297,7 +297,7 @@ function Main ({ user, room }) {
                           className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
                           role="tablist"
                         >
-                          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                          <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
                             <a
                               className={
                                 "text-sm font-bold flex justify-center uppercase px-5 py-3 shadow-lg rounded leading-normal text-white " +
@@ -316,7 +316,7 @@ function Main ({ user, room }) {
                               <AiFillHome className='my-auto mr-1' /> Room
                             </a>
                           </li>
-                          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                          <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
                             <a
                               className={
                                 "text-sm font-bold flex justify-center uppercase px-5 py-3 shadow-lg rounded leading-normal text-white " +
@@ -335,7 +335,7 @@ function Main ({ user, room }) {
                               <FaKeyboard className='my-auto mr-1' /> Shortcuts
                             </a>
                           </li>
-                          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                          <li className="mb-2 mr-2 last:mr-0 flex-auto text-center">
                             <a
                               className={
                                 "text-sm font-bold flex justify-center uppercase px-5 py-3 shadow-lg rounded leading-normal text-white " +
@@ -354,7 +354,7 @@ function Main ({ user, room }) {
                               <FaTerminal className='my-auto mr-1' /> Commands
                             </a>
                           </li>
-                          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                          <li className="mr-2 last:mr-0 flex-auto text-center">
                             <a
                               className={
                                 "text-sm font-bold flex justify-center uppercase px-5 py-3 shadow-lg rounded leading-normal text-white " +
@@ -374,7 +374,7 @@ function Main ({ user, room }) {
                             </a>
                           </li>
                         </ul>
-                        <div className="relative flex flex-col min-w-0 break-words bg-dark w-full mb-6 shadow-lg rounded">
+                        <div className="relative flex flex-col break-words bg-dark w-full mb-6 shadow-lg rounded">
                           <div className="px-4 py-5 flex-auto">
                             <div className="tab-content tab-space">
                               <div className={openTab === 1 ? "block" : "hidden"} id="link1">

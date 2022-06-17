@@ -18,6 +18,7 @@ import { LoginForm } from '../components/LoginForm';
 import { useCopyToClipboard } from 'react-use';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
     const [state, copyToClipboard] = useCopyToClipboard();
@@ -238,7 +239,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
     )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
     
     const props = {
         title: "Shibhouse - Re-taking voice conversations to the moon",
