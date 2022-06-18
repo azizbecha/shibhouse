@@ -73,7 +73,7 @@ const ExportRooms: React.FC = () => {
                                 </div>
                                 <div className="flex font-bold">
                                     <div className="items-center flex space-x-1">
-                                        <span className="text-sm">{room.users}</span> <FaUsers className="text-primary" size={18} />
+                                        <span className="text-sm text-white">{room.users}</span> <FaUsers className="text-primary" size={18} />
                                     </div>
                                 </div>
                             </div>
