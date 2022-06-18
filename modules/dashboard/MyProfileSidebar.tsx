@@ -1,6 +1,5 @@
 import Link from "next/link"
 
-import { FaSignOutAlt } from "react-icons/fa"
 import Divider from "../../components/Divider"
 
 import { useAuth } from "../../auth/AuthContext"
@@ -16,20 +15,20 @@ const MyProfileSidebar = () => {
     return (
         <nav className={`w-full h-full bg-darker rounded-lg ${isTabletOrMobile ? 'hidden' : 'flex'}`}>
             <div className="flex mx-auto p-4 rounded-md container">
-                <div className="w-full h-full py-4 items-start justify-left text-white text-xl rounded-md">
+                <div className="w-full h-full py-2 items-center justify-center text-white text-xl rounded-md">
                     <div className="flex space-x-45">
                         <div className="flex space-x-20 w-full">
                             <div className="flex-1 min-w-0">
                                 <h1 className="font-bold text-2xl font-inter">My profile</h1>
                             </div>
-                            <div className="inline-flex text-green items-end text-base">
+                            <div className="inline-flex items-end text-base">
                                 <button onClick={logOut} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md">Log out</button>
                             </div>
                         </div>
                     </div>
                     <Divider />
                     <div className="max-w-sm mx-auto bg-gray rounded-lg shadow-md py-4">
-                        <div className="flex flex-col container pb-10">
+                        <div className="flex flex-col container pb-10 justify-center align-middle">
                             <Link href={'/me'}>
                                 <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
                                     {currentUserData.firstname[0]}{currentUserData.lastname[0]}
