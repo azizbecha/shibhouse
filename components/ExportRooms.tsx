@@ -43,16 +43,16 @@ const ExportRooms: React.FC = () => {
                 data.map((room, index) => {
                     const topics = room.topics.split(" ");
                     return (
-                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5">
+                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5 shadow-lg">
                             <div className="flex items-center space-x-4">
                                 <div className="flex-1 min-w-0">
                                     <Link href={`room/${room.id}`}>
-                                        <p className="text-xg font-medium text-gray-900 truncate dark:text-white mb-2 cursor-pointer">
+                                        <p className="text-xg font-medium text-white mb-2 cursor-pointer">
                                             {room.title}
                                         </p>
                                     </Link>
 
-                                    <p className="text-sm dark:text-gray-400 mb-6">
+                                    <p className="text-sm text-white mb-6">
                                         {room.description}
                                     </p>
                                     <p className="text-sm mb-4">
@@ -64,10 +64,10 @@ const ExportRooms: React.FC = () => {
                                             })
                                         }
                                     </p>
-                                    <p className="text-sm font-semibold flex space-x-1 mb-1">
+                                    <p className="text-sm text-white font-semibold flex space-x-1 mb-1">
                                         {room.allowChat ? <RiChat4Fill size={18} className="my-auto mr-1 text-primary" /> : <RiChatOffFill className="my-auto mr-1 text-primary" /> } Chat {!room.allowChat && 'not'} allowed
                                     </p>
-                                    <p className="text-sm font-normal flex space-x-1">
+                                    <p className="text-sm text-white font-normal flex space-x-1">
                                         <GoClock size={18} className="my-auto mr-1 text-primary" /> With <Link href={`user/${room.createdBy}`}><span className="font-bold text-white text-sm cursor-pointer">@{room.createdBy}</span></Link>
                                     </p>
                                 </div>
