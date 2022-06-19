@@ -201,7 +201,6 @@ const User: React.FC = () => {
                                         <div className="mb-1 h-5 w-20">{userData.followers.includes(currentUserData.username) ? <button onClick={Unfollow} className="bg-primary px-6 py-2 rounded-md font-semibold">Unfollow</button> : <button onClick={Follow} className="bg-primary px-6 py-2 rounded-md font-semibold">Follow</button>}</div>
                                         <div className="mb-1 h-5 w-20"><button className="bg-primary px-6 py-2 ml-3 rounded-md font-semibold">Block</button></div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </Col>

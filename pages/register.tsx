@@ -5,7 +5,7 @@ import ProtectedRoute from "../auth/ProtectedRoute"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { JoinForm } from "../components/JoinForm"
+import { JoinForm } from "../forms/JoinForm"
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 

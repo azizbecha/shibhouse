@@ -13,8 +13,6 @@ import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
 import Divider from '../components/Divider';
-import { JoinForm } from '../forms/JoinForm';
-import { LoginForm } from '../forms/LoginForm';
 import { useCopyToClipboard } from 'react-use';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
