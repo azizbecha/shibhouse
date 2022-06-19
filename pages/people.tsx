@@ -1,18 +1,23 @@
+import { useEffect, useState } from "react"
 import Head from "next/head"
-import { FaUsers } from "react-icons/fa"
+import Link from "next/link"
+
+import { collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore"
+import { useAuth } from "../auth/AuthContext"
+import { fireStore } from "../auth/Firebase"
 import PrivateRoute from "../auth/PrivateRoute"
+
+import { capitalizeWord } from "../lib/capitalize"
+import { removeItem } from "../lib/removeItemFromArray"
+
+import $ from "jquery"
+
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { useEffect, useState } from "react"
-import { collection, doc, getDocs, limit, onSnapshot, query, updateDoc } from "firebase/firestore"
-import $ from "jquery"
-import { useAuth } from "../auth/AuthContext"
-import { fireStore } from "../auth/Firebase"
-import Link from "next/link"
-import { capitalizeWord } from "../lib/capitalize"
+
 import { toast } from "react-toastify"
-import { removeItem } from "../lib/removeItemFromArray"
+import { FaUsers } from "react-icons/fa"
 
 const People: React.FC = () => {
 

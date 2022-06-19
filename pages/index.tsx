@@ -1,5 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import Link from 'next/link';
+import { GetStaticProps } from 'next';
+
+import { useCopyToClipboard } from 'react-use';
+import { toast } from 'react-toastify';
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -8,15 +13,13 @@ import SEO from '../utils/SEO';
 import ProtectedRoute from '../auth/ProtectedRoute'
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+
 import { FaBitcoin, FaDog, FaEthereum, FaGithub, FaReact, FaTag } from 'react-icons/fa';
 import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
+
 import Divider from '../components/Divider';
-import { useCopyToClipboard } from 'react-use';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
-import { GetStaticProps } from 'next';
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
     const [state, copyToClipboard] = useCopyToClipboard();
