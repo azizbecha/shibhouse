@@ -139,7 +139,7 @@ const People: React.FC = () => {
                 <Navbar />
                     <div className="bg-dark py-6 min-h-screen">
                         <div className="container">
-                            <h1 className="text-4xl font-bold text-white flex mb-8"><FaUsers className='mt-1.5 mr-2' /> People</h1>
+                            <h1 className="text-4xl font-bold text-white flex mb-8"><FaUsers className='mt-1.5 mr-2' /> People <span className="text-2xl ml-1.5 mt-1">({users.length})</span></h1>
                             <div className="relative text-white border-0 mb-5">
                                 <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-darker" type="search" placeholder="Search for a user on the moon 🚀"/>
                             </div>
