@@ -4,7 +4,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-import SEO from '../components/SEO';
+import SEO from '../utils/SEO';
 import ProtectedRoute from '../auth/ProtectedRoute'
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
@@ -13,8 +13,8 @@ import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io';
 import Divider from '../components/Divider';
-import { JoinForm } from '../components/JoinForm';
-import { LoginForm } from '../components/LoginForm';
+import { JoinForm } from '../forms/JoinForm';
+import { LoginForm } from '../forms/LoginForm';
 import { useCopyToClipboard } from 'react-use';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
