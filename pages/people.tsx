@@ -17,7 +17,7 @@ import Navbar from "../components/Navbar"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import { toast } from "react-toastify"
-import { FaUsers } from "react-icons/fa"
+import { FaPlus, FaTimes, FaUsers } from "react-icons/fa"
 
 const People: React.FC = () => {
 
@@ -139,7 +139,7 @@ const People: React.FC = () => {
                 <Navbar />
                     <div className="bg-dark py-6 min-h-screen">
                         <div className="container">
-                            <h1 className="text-4xl font-bold text-white flex mb-8"><FaUsers className='my-auto mr-2' /> People</h1>
+                            <h1 className="text-4xl font-bold text-white flex mb-8"><FaUsers className='mt-1.5 mr-2' /> People</h1>
                             <div className="relative text-white border-0 mb-5">
                                 <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-darker" type="search" placeholder="Search for a user on the moon 🚀"/>
                             </div>
@@ -167,7 +167,7 @@ const People: React.FC = () => {
                                                                 </Link>
                                                                 <div className="text-sm mt-2 text-gray-200">
                                                                     <div className="flex flex-row ml-auto space-x-6 items-center">
-                                                                        <div className="mb-1 h-5 w-20">{user.followers.includes(currentUserData.username) ? <button onClick={() => Unfollow(user)} className="bg-primary text-white px-6 py-2 rounded-md font-semibold">Unfollow</button> : <button onClick={() => Follow(user)} className="bg-primary text-white px-6 py-2 rounded-md font-semibold">Follow</button>}</div>
+                                                                        <div className="mb-1 h-5 w-20">{user.followers.includes(currentUserData.username) ? <button onClick={() => Unfollow(user)} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={() => Follow(user)} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
