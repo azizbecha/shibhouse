@@ -8,13 +8,14 @@ import { auth } from "../auth/Firebase";
 import { logOut } from '../lib/signOut'
 
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa";
+import { AiFillDashboard } from "react-icons/ai";
+import { ImUsers } from 'react-icons/im'
 
 const navigation = [
     { name: "Dashboard", href: "/dashboard", current: false },
     { name: "Rooms", href: "/dashboard", current: false },
     { name: "Profile", href: "/profile", current: false },
-    { name: "Settings", href: "/settings", current: false },
 ];
 
 function classNames(...classes) {
@@ -46,7 +47,7 @@ export default function Navbar() {
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden focus:outline-none">
                                 {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-darker focus:outline-none">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <FaTimes className="block h-6 w-6 text-white" aria-hidden="true" />
@@ -76,34 +77,34 @@ export default function Navbar() {
                                         {!isLoggedIn ? (
                                             <>
                                                 <Link href={'/login'}>
-                                                    <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
-                                                        Log in
+                                                    <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                        <FaSignInAlt className="my-auto mr-1" /> Login
                                                     </span>
                                                 </Link>
 
                                                 <Link href={'/register'}>
-                                                    <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
-                                                        Register
+                                                    <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                        <FaUserPlus className="my-auto mr-1" /> Register
                                                     </span>
                                                 </Link>
                                             </>
                                         ) : (
                                             <>
                                                 <Link href={'/dashboard'}>
-                                                    <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
-                                                        Dashboard
+                                                    <span className={"flex px-3 bg-gray hover:bg-primary py-2 rounded-md text-sm font-medium text-white cursor-pointer"}>
+                                                        <AiFillDashboard className="my-auto mr-1" /> Dashboard
                                                     </span>
                                                 </Link>
 
                                                 <Link href={'/rooms'}>
-                                                    <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
-                                                        Rooms
+                                                    <span className={"flex px-3 bg-gray hover:bg-primary py-2 rounded-md text-sm font-medium text-white cursor-pointer"}>
+                                                        <FaHome className="my-auto mr-1" /> Rooms
                                                     </span>
                                                 </Link>
 
                                                 <Link href={'/people'}>
-                                                    <span className={"px-3 bg-gray py-2 rounded-md text-sm font-medium text-white text-md cursor-pointer"}>
-                                                        People
+                                                    <span className={"flex px-3 bg-gray hover:bg-primary py-2 rounded-md text-sm font-medium text-white cursor-pointer"}>
+                                                        <ImUsers className="my-auto mr-1" /> People
                                                     </span>
                                                 </Link>
                                             </>
@@ -134,21 +135,15 @@ export default function Navbar() {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-                                                    <Menu.Items className="origin-top-right bg-gray absolute z-50 right-0 mt-2 w-48 rounded-md shadow-lg py-1 px-1 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-48 rounded-lg p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             <Link href={'/me'}>
-                                                                <span className={"block px-4 py-3 text-sm text-white bg-gray cursor-pointer border-b-2 mb-2"}>Profile</span>
-                                                            </Link>
-                                                        </Menu.Item>
-
-                                                        <Menu.Item>
-                                                            <Link href={'/settings'}>
-                                                                <span className={"block px-4 py-2 text-sm text-white bg-gray cursor-pointer border-b-2 mb-2"}>Settings</span>
+                                                                <span className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaUserAlt className="my-auto mr-1" /> Profile</span>
                                                             </Link>
                                                         </Menu.Item>
                                                         
                                                         <Menu.Item>
-                                                            <span onClick={logOut} className={"block px-4 py-2 w-100 border-b-2 text-sm text-white bg-gray cursor-pointer"}>Log out</span>
+                                                            <span onClick={logOut} className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaSignOutAlt className="my-auto mr-1" /> Log out</span>
                                                         </Menu.Item>
 
                                                     </Menu.Items>
@@ -162,23 +157,44 @@ export default function Navbar() {
                     </div>
 
                     <Disclosure.Panel className="sm:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1">
-                            {navigation.map((item) => (
-                                <Disclosure.Button
-                                key={item.name}
-                                as="a"
-                                href={item.href}
-                                className={classNames(
-                                    item.current
-                                    ? "bg-primary"
-                                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                    "block px-3 py-2 rounded-md text-base font-medium text-white"
-                                )}
-                                aria-current={item.current ? "page" : undefined}
-                                >
-                                {item.name}
-                                </Disclosure.Button>
-                            ))}
+                        <div className="px-2 pt-2 pb-3 space-y-2">
+                            {
+                                isLoggedIn && currentUserData !== undefined ? (
+                                    <>
+                                        <Link href={'/dashboard'}>
+                                            <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                <AiFillDashboard className="my-auto mr-1" /> Dashboard
+                                            </span>
+                                        </Link>
+
+                                        <Link href={'/rooms'}>
+                                            <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                <FaHome className="my-auto mr-1" /> Rooms
+                                            </span>
+                                        </Link>
+
+                                        <Link href={'/people'}>
+                                            <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                <ImUsers className="my-auto mr-1" /> People
+                                            </span>
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link href={'/login'}>
+                                            <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                <FaSignInAlt className="my-auto mr-1" /> Login
+                                            </span>
+                                        </Link>
+
+                                        <Link href={'/register'}>
+                                            <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
+                                                <FaUserPlus className="my-auto mr-1" /> Register
+                                            </span>
+                                        </Link>
+                                    </>
+                                )
+                            }
                         </div>
                     </Disclosure.Panel>
                 </>
