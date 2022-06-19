@@ -28,8 +28,8 @@ const MyProfileSidebar = () => {
                         </div>
                     </div>
                     <Divider />
-                    <div className="max-w-sm mx-auto bg-gray rounded-lg shadow-md py-2 border-2 border-white">
-                        <div className="flex flex-col container pb-10 justify-center align-center">
+                    <div className="mx-auto bg-gray rounded-lg shadow-md py-2 border-2 border-white">
+                        <div className="flex flex-col container py-5 justify-center align-center">
                             <Link href={'/me'}>
                                 <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
                                     {currentUserData.firstname[0]}{currentUserData.lastname[0]}
