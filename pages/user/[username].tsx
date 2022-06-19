@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
@@ -159,12 +159,12 @@ const User: React.FC = () => {
     }
 
     return (
-        <div className="h-screen">
+        <>
             <Navbar />
             <Head>
                 <title>{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} (@{userData.username}) - Shibhouse</title>
             </Head>
-            <div className="bg-dark pb-16">
+            <div className="bg-dark  h-screen">
                 <div className="container">                    
                     <Row>
                         <Col xs={12} sm={12} md={12} lg={8}>
@@ -198,8 +198,8 @@ const User: React.FC = () => {
 
                                 <div className="text-sm mt-2 text-gray-200">
                                     <div className="flex flex-row ml-auto space-x-6 items-center">
-                                        <div className="mb-1 h-5 w-20">{userData.followers.includes(currentUserData.username) ? <button onClick={Unfollow} className="bg-primary px-6 py-2 rounded-md font-semibold">Unfollow</button> : <button onClick={Follow} className="bg-primary px-6 py-2 rounded-md font-semibold">Follow</button>}</div>
-                                        <div className="mb-1 h-5 w-20"><button className="bg-primary px-6 py-2 ml-3 rounded-md font-semibold">Block</button></div>
+                                        <div className="mb-1 h-5 w-20">{userData.followers.includes(currentUserData.username) ? <button onClick={Unfollow} className="bg-primary px-6 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={Follow} className="bg-primary px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
+                                        <div className="mb-1 h-5 w-20"><button className="bg-primary px-6 py-2 ml-3 rounded-md font-semibold flex"><FaBan className="my-auto mr-1" /> Block</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +242,7 @@ const User: React.FC = () => {
                 </div>
             </div>
             <Footer />
-        </div>
+        </>
     ) 
 }
 
