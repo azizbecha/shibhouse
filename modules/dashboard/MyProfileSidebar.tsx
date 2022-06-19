@@ -6,6 +6,7 @@ import { useAuth } from "../../auth/AuthContext"
 import { logOut } from "../../lib/signOut"
 import { useMediaQuery } from "react-responsive"
 import { numberFormatter } from "../../lib/numberFormatter"
+import { FaSignOutAlt } from "react-icons/fa"
 
 const MyProfileSidebar = () => {
 
@@ -22,7 +23,7 @@ const MyProfileSidebar = () => {
                                 <h1 className="font-bold text-2xl font-inter">My profile</h1>
                             </div>
                             <div className="inline-flex items-end text-base">
-                                <button onClick={logOut} className="bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md">Log out</button>
+                                <button onClick={logOut} className="flex bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md"><FaSignOutAlt className="my-auto mr-1" /> Log out</button>
                             </div>
                         </div>
                     </div>
