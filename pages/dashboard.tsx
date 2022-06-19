@@ -204,7 +204,7 @@ const Dashboard: React.FC = () => {
                                                     <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                 </div>
                                                 <div className="inline-flex items-end text-base">
-                                                    <button onClick={() => setShowModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
+                                                    <button onClick={() => setShowModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
                                                 </div>
                                             </div>
                                         </div>

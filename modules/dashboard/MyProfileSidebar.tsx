@@ -6,7 +6,7 @@ import { useAuth } from "../../auth/AuthContext"
 import { logOut } from "../../lib/signOut"
 import { useMediaQuery } from "react-responsive"
 import { numberFormatter } from "../../lib/numberFormatter"
-import { FaSignOutAlt } from "react-icons/fa"
+import { FaPencilAlt, FaSignOutAlt } from "react-icons/fa"
 
 const MyProfileSidebar = () => {
 
@@ -23,13 +23,13 @@ const MyProfileSidebar = () => {
                                 <h1 className="font-bold text-2xl font-inter">My profile</h1>
                             </div>
                             <div className="inline-flex items-end text-base">
-                                <button onClick={logOut} className="flex bg-primary px-4 py-2 rounded-md text-sm font-medium text-white text-md"><FaSignOutAlt className="my-auto mr-1" /> Log out</button>
+                                <button onClick={logOut} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white text-md"><FaSignOutAlt className="my-auto mr-1" /> Log out</button>
                             </div>
                         </div>
                     </div>
                     <Divider />
-                    <div className="max-w-sm mx-auto bg-gray rounded-lg shadow-md py-4">
-                        <div className="flex flex-col container pb-10 justify-center align-middle">
+                    <div className="max-w-sm mx-auto bg-gray rounded-lg shadow-md py-2 border-2 border-white">
+                        <div className="flex flex-col container pb-10 justify-center align-center">
                             <Link href={'/me'}>
                                 <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
                                     {currentUserData.firstname[0]}{currentUserData.lastname[0]}
@@ -44,7 +44,7 @@ const MyProfileSidebar = () => {
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></span>
                             </div>
                             <div className="flex mt-4 space-x-3 lg:mt-6">
-                                <Link href="me" ><span className="flex justify-left py-2 px-5 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer">Edit profile</span></Link>
+                                <Link href="me"><span className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><FaPencilAlt className="my-auto mr-1" /> Edit profile</span></Link>
                             </div>
                             
                         </div>
