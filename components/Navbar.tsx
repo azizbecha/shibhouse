@@ -8,7 +8,7 @@ import { auth } from "../auth/Firebase";
 import { logOut } from '../lib/signOut'
 
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa";
+import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa";
 import { AiFillDashboard } from "react-icons/ai";
 import { ImUsers } from 'react-icons/im'
 
@@ -138,12 +138,16 @@ export default function Navbar() {
                                                     <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-48 rounded-lg p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             <Link href={'/me'}>
-                                                                <span className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaUserAlt className="my-auto mr-1" /> Profile</span>
+                                                                <span className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaUserAlt className="my-auto mr-1.5" /> Profile</span>
                                                             </Link>
                                                         </Menu.Item>
-                                                        
+
                                                         <Menu.Item>
-                                                            <span onClick={logOut} className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaSignOutAlt className="my-auto mr-1" /> Log out</span>
+                                                            <a href="https://github.com/azizbecha/shibhouse/issues" target={'_blank'} rel="noreferrer" className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaBug className="my-auto mr-1.5" /> Report A Bug</a>
+                                                        </Menu.Item>
+
+                                                        <Menu.Item>
+                                                            <span onClick={logOut} className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaSignOutAlt className="my-auto mr-1.5" /> Log out</span>
                                                         </Menu.Item>
 
                                                     </Menu.Items>
