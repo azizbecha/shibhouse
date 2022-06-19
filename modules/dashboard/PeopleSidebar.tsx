@@ -7,6 +7,7 @@ import { capitalizeWord } from "../../lib/capitalize"
 import Divider from "../../components/Divider"
 import $ from 'jquery'
 import { useMediaQuery } from "react-responsive"
+import { FaCompass } from "react-icons/fa"
 
 const PeopleSidebar = () => {
 
@@ -49,8 +50,8 @@ const PeopleSidebar = () => {
                                 <div className="flex-1 min-w-0">
                                     <h1 className="font-bold text-2xl font-inter">People</h1>
                                 </div>
-                                <div className="inline-flex text-green items-end text-base">
-                                    <button className="bg-primary px-4 py-2 rounded-md text-sm text-white font-medium text-md">Discover</button>
+                                <div className="inline-flex items-end text-base">
+                                    <button className="flex bg-primary px-4 py-2 rounded-md text-sm text-white font-semibold"><FaCompass className="my-auto mr-1" /> Discover</button>
                                 </div>
                             </div>
                             <Divider />
