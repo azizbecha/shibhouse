@@ -378,10 +378,9 @@ function Main ({ user, room }) {
                           <div className="px-4 py-5 flex-auto">
                             <div className="tab-content tab-space">
                               <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                                <span className="text-xl text-white font-bold">
-                                  Room settings
+                                <span className="flex text-xl text-white font-bold">
+                                  <AiFillHome className='my-auto mr-1' /> Room settings
                                 </span>
-                                <br />
                                 <br /><span className="font-semibold">Title:</span> {room.title}
                                 <br /><span className="font-semibold">Description:</span> {room.description}
                                 <br /><span className="font-semibold">ID:</span> {roomId}
@@ -445,7 +444,7 @@ function Main ({ user, room }) {
                                 </Col>
                               </div>
                               <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                                <span className="text-xl text-white font-bold">Keyboard shortcuts</span>
+                                <span className="flex text-xl text-white font-bold"><FaKeyboard className='my-auto mr-1.5' /> Keyboard shortcuts</span>
                                 <p>Here are some keyboard shortcuts below that can help you have better experience with Shibhouse:</p><br />
                                 <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
                                   CTRL + M
@@ -470,7 +469,7 @@ function Main ({ user, room }) {
                               </div>
 
                               <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-                                <span className="text-xl text-white font-bold">Commands</span>
+                                <span className="flex text-xl text-white font-bold"><FaTerminal className='my-auto mr-1.5' /> Commands</span>
                                 <p>Here are some commands that can help you having better interaction in chats</p><br />
                                 <Row>
                                   <Col lg={4}>
@@ -519,7 +518,7 @@ function Main ({ user, room }) {
                               </div>
 
                               <div className={openTab === 4 ? "block" : "hidden"} id="link3">
-                                <span className="text-xl text-white font-bold">Debug</span>
+                                <span className="flex text-xl text-white font-bold"><FaBug className='my-auto mr-1.5' /> Debug</span>
                                 <p>Here are some tools that can help you debug your errors</p><br />
                                 <span className="font-bold text-white">
                                   Mic access: {micAccess}
