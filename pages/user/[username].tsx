@@ -197,8 +197,8 @@ const User: React.FC = () => {
 
                                 <div className="text-sm mt-2 text-gray-200">
                                     <div className="flex flex-row ml-auto space-x-6 items-center">
-                                        <div className="mb-1 h-5 w-20">{userData.followers.includes(currentUserData.username) ? <button onClick={Unfollow} className="bg-primary px-6 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={Follow} className="bg-primary px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
-                                        <div className="mb-1 h-5 w-20"><button className="bg-primary px-6 py-2 ml-3 rounded-md font-semibold flex"><FaBan className="my-auto mr-1" /> Block</button></div>
+                                        <div className="mb-1 h-5 w-20">{userData.followers.includes(currentUserData.username) ? <button onClick={Unfollow} className="bg-primary px-4 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={Follow} className="bg-primary px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
+                                        <div className="mb-1 h-5 w-20"><button className="bg-primary px-5 py-2 ml-3 rounded-md font-semibold flex"><FaBan className="my-auto mr-1" /> Block</button></div>
                                     </div>
                                 </div>
                             </div>
