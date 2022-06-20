@@ -679,7 +679,7 @@ function Main ({ user, room }) {
                     }
                   </Row>
                 </Col>
-                <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <span className="font-bold">@{room.createdBy}</span></h5>
+                <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <span className="font-bold bg-gray px-1 rounded-lg">@{room.createdBy}</span></h5>
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <Row className={`flex relative mt-5 space-x-1 justify-start ${isTabletOrMobile && 'space-y-1'}`}>
                     <Col>
