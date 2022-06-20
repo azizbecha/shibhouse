@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 
 import InputEmoji from "react-input-emoji";
 import { useCopyToClipboard } from "react-use";
@@ -256,7 +256,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             )}
             {
                 props.isChatAllowed ? (
-                    <>
+                    <Fragment>
                         <div className="overflow-y-auto relative flex rounded-md w-full h-11/12 mt-3 p-3 text-white bg-dark">
                             {
                                 messages.length == 0 && (
@@ -329,7 +329,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                             maxWidth={120}
                             />
                         </div>
-                    </>
+                    </Fragment>
                 ) : (
                     <div className="overflow-y-auto relative flex rounded-md w-full h-11/12 mt-3 p-3 text-white bg-dark">
                         <div className="p-4 mx-auto">

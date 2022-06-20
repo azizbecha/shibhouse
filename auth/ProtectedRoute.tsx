@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { Fragment, useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
 import LoadingScreen from "../components/LoadingScreen"
@@ -17,9 +17,9 @@ const ProtectedRoute = ({ children }) => {
         )
     } else {
         return (
-            <>
+            <Fragment>
                 {children}
-            </>
+            </Fragment>
         )
     }
 }

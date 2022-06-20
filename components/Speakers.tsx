@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react'
+import { Fragment, useContext, useMemo } from 'react'
 
 import User from './User'
 import { PeerContext } from '../contexts/PeerJSContext'
@@ -75,7 +75,7 @@ const Speakers: React.FC<Speakers> = ({roomId}) => {
   }, [peerList, incomingStreams, micAudioStream, peerId, checkMicPermission])
   
   return (
-    <>
+    <Fragment>
       <div className="bg-darker my-0 rounded-md p-2">
         <h1 className="font-bold text-white text-2xl mb-4 flex"><HiSpeakerphone size={19} className="mt-2 mr-2" /> Speakers ({speakers.length})</h1>
           <Row className="gap-y-2">
@@ -106,7 +106,7 @@ const Speakers: React.FC<Speakers> = ({roomId}) => {
             }
           `}</style>
         </div>
-    </>
+    </Fragment>
   )
 }
 

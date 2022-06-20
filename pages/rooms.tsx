@@ -3,7 +3,7 @@ import PrivateRoute from "../auth/PrivateRoute"
 import ExportRooms from "../components/ExportRooms"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Link from "next/link";
 
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
@@ -44,7 +44,7 @@ const Rooms: React.FC = () => {
                         <div className="bg-darker p-4 rounded-lg mt-5">
                             {
                                 data.length > 0 ? (
-                                    <>
+                                    <Fragment>
                                         <ul role="list" id="roomsList">
                                             {
                                                 data.map((room, index) => {
@@ -89,7 +89,7 @@ const Rooms: React.FC = () => {
                                                 })
                                             }
                                         </ul>
-                                    </>
+                                    </Fragment>
                                 ) : (
                                     <div className="bg-dark p-5 rounded-lg">
                                         <img src="../musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />

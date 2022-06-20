@@ -42,7 +42,7 @@ export default function Navbar() {
     return (
         <Disclosure as="nav" className="bg-dark">
             {({ open }) => (
-                <>
+                <Fragment>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden focus:outline-none">
@@ -75,7 +75,7 @@ export default function Navbar() {
                                 <div className="hidden sm:block sm:ml-6">
                                     <div className="flex space-x-4">
                                         {!isLoggedIn ? (
-                                            <>
+                                            <Fragment>
                                                 <Link href={'/login'}>
                                                     <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
                                                         <FaSignInAlt className="my-auto mr-1" /> Login
@@ -87,9 +87,9 @@ export default function Navbar() {
                                                         <FaUserPlus className="my-auto mr-1" /> Register
                                                     </span>
                                                 </Link>
-                                            </>
+                                            </Fragment>
                                         ) : (
-                                            <>
+                                            <Fragment>
                                                 <Link href={'/dashboard'}>
                                                     <span className={"flex px-3 bg-gray hover:bg-primary py-2 rounded-md text-sm font-medium text-white cursor-pointer"}>
                                                         <AiFillDashboard className="my-auto mr-1" /> Dashboard
@@ -107,7 +107,7 @@ export default function Navbar() {
                                                         <ImUsers className="my-auto mr-1" /> People
                                                     </span>
                                                 </Link>
-                                            </>
+                                            </Fragment>
                                         )}
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ export default function Navbar() {
                                 {/* Profile dropdown */}
                                 {
                                     isLoggedIn && currentUserData !== undefined && (
-                                        <>
+                                        <Fragment>
                                             <Menu as="div" className="ml-3 relative">
                                                 <div>
                                                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
@@ -153,7 +153,7 @@ export default function Navbar() {
                                                     </Menu.Items>
                                                 </Transition>
                                             </Menu>
-                                        </>
+                                        </Fragment>
                                     )
                                 }
                             </div>
@@ -164,7 +164,7 @@ export default function Navbar() {
                         <div className="px-2 pt-2 pb-3 space-y-2">
                             {
                                 isLoggedIn && currentUserData !== undefined ? (
-                                    <>
+                                    <Fragment>
                                         <Link href={'/dashboard'}>
                                             <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
                                                 <AiFillDashboard className="my-auto mr-1" /> Dashboard
@@ -182,9 +182,9 @@ export default function Navbar() {
                                                 <ImUsers className="my-auto mr-1" /> People
                                             </span>
                                         </Link>
-                                    </>
+                                    </Fragment>
                                 ) : (
-                                    <>
+                                    <Fragment>
                                         <Link href={'/login'}>
                                             <span className={"flex justify-center px-3 bg-gray hover:bg-primary py-2 rounded-md font-medium text-white text-md cursor-pointer"}>
                                                 <FaSignInAlt className="my-auto mr-1" /> Login
@@ -196,12 +196,12 @@ export default function Navbar() {
                                                 <FaUserPlus className="my-auto mr-1" /> Register
                                             </span>
                                         </Link>
-                                    </>
+                                    </Fragment>
                                 )
                             }
                         </div>
                     </Disclosure.Panel>
-                </>
+                </Fragment>
             )}
         </Disclosure>
     );

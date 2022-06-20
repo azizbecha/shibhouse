@@ -46,7 +46,7 @@ const Listeners: React.FC<Listeners> = ({roomId}) => {
   }, [recentEvents])
 
   return (
-    <>
+    <Fragment>
       <div className="bg-darker rounded-md p-5">
         <h1 className="font-bold text-white text-2xl mb-4 flex"><FaHeadphones size={19} className='mt-2 mr-2' /> Listeners ({listenersPeers.length})</h1>
           {
@@ -100,7 +100,7 @@ const Listeners: React.FC<Listeners> = ({roomId}) => {
           ))}
         </Row>
       </div>
-    </>
+    </Fragment>
   )
 }
 

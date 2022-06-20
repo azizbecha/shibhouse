@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { Fragment } from 'react'
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 
@@ -24,7 +24,7 @@ import Divider from '../components/Divider';
 const IndexPage: React.FC<{props: any}> = ({props}) => {
     const [state, copyToClipboard] = useCopyToClipboard();
     return (
-        <>
+        <Fragment>
             <SEO 
                 title={props.title}
                 description={props.description}
@@ -236,7 +236,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                 </div>
                 <Footer />
             </ProtectedRoute>
-        </>
+        </Fragment>
     )
 }
 

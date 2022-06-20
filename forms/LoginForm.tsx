@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import { useRouter } from "next/router"
 
 import { LogUser } from "../interfaces"
@@ -62,7 +62,7 @@ export const LoginForm:React.FC = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <div className="pb-5 lg:px-7 mt-5">
                 <span className="text-4xl font-bold text-white">
                     Log in
@@ -79,6 +79,6 @@ export const LoginForm:React.FC = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </Fragment>
     )
 }

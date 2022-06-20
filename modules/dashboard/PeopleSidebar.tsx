@@ -1,6 +1,6 @@
 import { collection, getDocs, limit, query } from "firebase/firestore"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { useAuth } from "../../auth/AuthContext"
 import { fireStore } from "../../auth/Firebase"
 import { capitalizeWord } from "../../lib/capitalize"
@@ -41,7 +41,7 @@ const PeopleSidebar = () => {
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
 
     return (
-        <>
+        <Fragment>
             <nav className="w-full h-full bg-darker md:block rounded-lg hidden">
                 <div className="flex mx-auto p-4 rounded-md container">
                     <div className="w-full py-4 items-start justify-left text-white text-xl rounded-md ">
@@ -92,7 +92,7 @@ const PeopleSidebar = () => {
                     </div>
                 </div>
             </nav>
-        </>
+        </Fragment>
     )
 }
 

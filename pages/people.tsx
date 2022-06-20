@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Head from "next/head"
 import Link from "next/link"
 
@@ -129,7 +129,7 @@ const People: React.FC = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <Head>
                 <title>
                     People - Shibhouse
@@ -183,7 +183,7 @@ const People: React.FC = () => {
                     </div>
                 <Footer />
             </PrivateRoute>
-        </>
+        </Fragment>
     )
 }
 

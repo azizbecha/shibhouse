@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { Fragment, useContext, useEffect } from "react"
 import { NextRouter, useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
 import LoadingScreen from "../components/LoadingScreen"
@@ -9,9 +9,9 @@ const PrivateRoute = ({ children }) => {
 
     if (currentUser) {
         return (
-            <>
+            <Fragment>
                 {children}
-            </>
+            </Fragment>
         )
     } else {
         // eslint-disable-next-line react-hooks/rules-of-hooks

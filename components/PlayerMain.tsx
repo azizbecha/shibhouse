@@ -260,7 +260,7 @@ function Main ({ user, room }) {
   const topics = room.topics.split(" ");
 
   return (
-    <>
+    <Fragment>
 
       {/* Start settings modal */}
       <Transition.Root show={openSettings} as={Fragment}>
@@ -662,9 +662,9 @@ function Main ({ user, room }) {
               <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
                 {
                   room.pinnedLink !== "" ? (
-                    <>
+                    <Fragment>
                       <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" rel="noreferrer" >{room.pinnedLink}</a> </h4>
-                    </>
+                    </Fragment>
                   ) : null
                 }
                 <Col xs={12} sm={12} md={12} lg={12} className="mt-2">
@@ -783,7 +783,7 @@ function Main ({ user, room }) {
             </Row>
         </div>
       </div>
-    </>
+    </Fragment>
   )
 }
 

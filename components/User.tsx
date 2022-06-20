@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 
 import hark from 'hark'
 
@@ -72,11 +72,11 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
           <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
             {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
             { onClick && hoverIcon && (
-              <>
+              <Fragment>
                 <div className="p-1 right-0 -bottom-1 bg-darker rounded-full border-white absolute" style={{borderWidth: '1.5px'}} onClick={onClick}>
                   { hoverIcon }
                 </div>
-              </>
+              </Fragment>
             )}
           </div>
           {
@@ -90,9 +90,9 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
             
           <div className='flex justify-center space-x-2 mt-3'>
             {host && (
-              <>
+              <Fragment>
                 <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
-              </>
+              </Fragment>
             )}
               <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><FaHeadphones /></span>
               {
@@ -102,10 +102,10 @@ const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, hig
               }
               {
                 me && ['host', 'speaker'].includes(connRole) &&(
-                  <>
+                  <Fragment>
                     
                     <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
-                  </>
+                  </Fragment>
                 )
               }
 

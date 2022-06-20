@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react"
+import React, { Fragment, useCallback, useContext, useEffect, useState } from "react"
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -159,7 +159,7 @@ const User: React.FC = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <Navbar />
             <Head>
                 <title>{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} (@{userData.username}) - Shibhouse</title>
