@@ -5,13 +5,15 @@ import LoadingScreen from "../components/LoadingScreen"
 
 const ProtectedRoute = ({ children }) => {
     const { currentUser } = useContext(AuthContext)
-    const Router = useRouter()
+    const router = useRouter()
+
+    useEffect(() => {
+        if (currentUser) {
+            router.push("/dashboard");
+        }
+    }, [currentUser, router])
 
     if (currentUser) {
-        useEffect(() => {
-            Router.push("/dashboard")
-        })
-
         return (
             <LoadingScreen />
         )
