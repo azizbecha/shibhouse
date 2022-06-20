@@ -27,7 +27,7 @@ import Divider from './Divider'
 import { Dialog, Transition } from '@headlessui/react'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaTerminal, FaUserPlus } from "react-icons/fa"
+import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { RiChatOffFill } from 'react-icons/ri'
@@ -589,13 +589,13 @@ function Main ({ user, room }) {
                         <div className="text-white">
                           <Row>
                             <Col>
-                              <span className="font-semibold text-xl font-inter">Scannable QR Code</span><br />
+                              <p className="font-semibold text-xl font-inter flex mb-1"><FaQrcode className='my-auto mr-1' /> Scannable QR Code</p>
                               <span className="text-white font-normal text-md">You can scan the following QR Code to send the link to anyone:</span>
                               <QRCode className='mt-4 mx-auto' value={window.location.href} />
                             </Col>
 
                             <Col className="mt-4">
-                              <span className="font-semibold text-xl font-inter">Link</span><br />
+                              <p className="font-semibold text-xl font-inter flex mb-1"><FaLink className='my-auto mr-1' /> Link</p>
                               <span className="text-white font-normal text-md">Or you can simply copy the following link below:</span><br />
                               <span onClick={() => copyRoomLink()} className="text-white text-center font-semibold cursor-pointer">
                                 {window.location.href}
