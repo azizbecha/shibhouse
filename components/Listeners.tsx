@@ -66,8 +66,8 @@ const Listeners: React.FC<Listeners> = ({roomId}) => {
                       progress: undefined,
                     });
                   }}>
-                    <div className='flex justify-center text-center text-white font-normal text-sm mt-3 cursor-pointer'>
-                      <FaLink size={16} className="mt-2 mr-1" /> {window.location.href}
+                    <div className='flex justify-center text-center text-white font-semibold text-sm mt-3 cursor-pointer'>
+                      <FaLink size={13} className="my-auto mr-1" /> {window.location.href}
                     </div>
                   </CopyToClipboard>
                 </div>
