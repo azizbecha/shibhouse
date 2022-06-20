@@ -151,12 +151,13 @@ const People: React.FC = () => {
                                                 <Col xs={12} sm={6} md={4} lg={4} key={key} className="userElement">
                                                     <div className="bg-darker px-4 py-6 rounded-md shadow-lg mb-3 justify-start items-center flex">
                                                         <div className="flex items-center space-x-4">
-                                                            <div className="flex-shrink-0">
-                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
-                                                                    {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
+                                                            <Link href={`user/${user.username}`}>
+                                                                <div className="flex-shrink-0 cursor-pointer">
+                                                                    <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
+                                                                        {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            
+                                                            </Link>
                                                             
                                                             <div className="cursor-pointer">
                                                                 <Link href={`user/${user.username}`}>
