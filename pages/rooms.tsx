@@ -1,19 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import PrivateRoute from "../auth/PrivateRoute"
-import Footer from "../components/Footer"
-import Navbar from "../components/Navbar"
 import { Fragment, useEffect, useState } from "react"
+import Head from "next/head"
 import Link from "next/link";
 
 import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
+import PrivateRoute from "../auth/PrivateRoute"
+
+import $ from 'jquery'
+
+import Footer from "../components/Footer"
+import Navbar from "../components/Navbar"
 
 import { FaHome, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { RiChat4Fill, RiChatOffFill } from "react-icons/ri"
-import Head from "next/head"
-
-import $ from 'jquery'
 
 const Rooms: React.FC = () => {
     const [data, setData] = useState([]);
