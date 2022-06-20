@@ -13,17 +13,8 @@ const ProtectedRoute = ({ children }) => {
         }
     }, [currentUser, router])
 
-    if (currentUser) {
-        return (
-            <LoadingScreen />
-        )
-    } else {
-        return (
-            <Fragment>
-                {children}
-            </Fragment>
-        )
-    }
+
+    return currentUser ? <LoadingScreen /> :  <Fragment>{children}</Fragment>
 }
 
 export default ProtectedRoute
