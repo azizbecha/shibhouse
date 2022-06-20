@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import PrivateRoute from "../auth/PrivateRoute"
-import ExportRooms from "../components/ExportRooms"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { Fragment, useEffect, useState } from "react"
@@ -13,6 +12,8 @@ import { FaHome, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { RiChat4Fill, RiChatOffFill } from "react-icons/ri"
 import Head from "next/head"
+
+import $ from 'jquery'
 
 const Rooms: React.FC = () => {
     const [data, setData] = useState([]);
@@ -32,6 +33,17 @@ const Rooms: React.FC = () => {
         });
 
     }, [data])
+
+    useEffect(() => {
+        $(document).ready(() => {
+            $("#roomSearchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".roomList .roomElement").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        })
+    }, [])
     return (
         <PrivateRoute>
             <Head>
@@ -41,6 +53,9 @@ const Rooms: React.FC = () => {
                 <div className="bg-dark py-10">
                     <div className="container">
                         <h1 className="text-white font-bold text-4xl flex space-x-2"><FaHome className="my-auto" /> <span>Current rooms <span className="text-md">({count})</span></span></h1>
+                        <div className="relative text-white border-0 my-5">
+                            <input id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-darker" type="search" placeholder="Search for a room on the moon 🚀"/>
+                        </div>
                         <div className="bg-darker p-4 rounded-lg mt-5">
                             {
                                 data.length > 0 ? (
@@ -50,7 +65,7 @@ const Rooms: React.FC = () => {
                                                 data.map((room, index) => {
                                                     const topics = room.topics.split(" ");
                                                     return (
-                                                        <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5 shadow-lg">
+                                                        <li key={index} className="roomElement px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5 shadow-lg">
                                                             <div className="flex items-center space-x-4">
                                                                 <div className="flex-1 min-w-0">
                                                                     <Link href={`room/${room.id}`}>
