@@ -179,7 +179,6 @@ const User: React.FC = () => {
 
                             <div className="bg-darker text-white rounded-lg pt-16 pb-12 px-9 flex flex-col">
                                 <div className="mb-1 font-semibold text-2xl">{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} <span className="text-lg">(@{userData.username})</span></div>
-                                {/*<div className="mb-1 font-normal text-md">Joined <ReactTimeAgo date={new Date(userData.joinDate).getMilliseconds()} /></div>*/}
                                 <div className="text-sm mt-2 text-gray-200">
                                     <div className="flex flex-row ml-auto space-x-3 items-center">
                                         <div className="mb-1 h-5 font-bold">{numberFormatter(userData.followers.length)} <span className="font-normal">Follower{userData.followers.length == 1 ? null : 's'}</span></div>
@@ -224,9 +223,6 @@ const User: React.FC = () => {
                                                                 <p className="text-sm text-white truncate dark:text-gray-400">
                                                                     @{user.username}
                                                                 </p>
-                                                            </div>
-                                                            <div className="inline-flex text-green items-center text-base">
-                                                                {/*<FaCircle className="text-green" />*/}
                                                             </div>
                                                         </div>
                                                     </li>
