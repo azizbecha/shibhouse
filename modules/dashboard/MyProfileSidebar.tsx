@@ -6,7 +6,8 @@ import { useAuth } from "../../auth/AuthContext"
 import { logOut } from "../../lib/signOut"
 import { useMediaQuery } from "react-responsive"
 import { numberFormatter } from "../../lib/numberFormatter"
-import { FaPencilAlt, FaSignOutAlt } from "react-icons/fa"
+import { FaSignOutAlt } from "react-icons/fa"
+import { RiPencilFill } from "react-icons/ri"
 
 const MyProfileSidebar = () => {
 
@@ -44,7 +45,7 @@ const MyProfileSidebar = () => {
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></span>
                             </div>
                             <div className="flex mt-4 space-x-3 lg:mt-6">
-                                <Link href="me"><span className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><FaPencilAlt className="my-auto mr-1" /> Edit profile</span></Link>
+                                <Link href="me"><span className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><RiPencilFill size={18} className="my-auto mr-1" /> Edit profile</span></Link>
                             </div>
                             
                         </div>
