@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useMemo } from 'react'
+import { Fragment, useContext, useMemo } from 'react'
 import { FaHeadphones, FaLink, FaPlus } from 'react-icons/fa'
 
 import { PeerContext } from '../contexts/PeerJSContext'
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { sendBotMessage } from '../lib/sendBotMessage'
+import QRCode from 'react-qr-code'
 
 interface Listeners {
   roomId: string
@@ -66,9 +67,13 @@ const Listeners: React.FC<Listeners> = ({roomId}) => {
                       progress: undefined,
                     });
                   }}>
-                    <div className='flex justify-center text-center text-white font-semibold text-sm mt-3 cursor-pointer'>
-                      <FaLink size={13} className="my-auto mr-1" /> {window.location.href}
-                    </div>
+                    <Fragment>
+                      <div className='flex justify-center text-center text-white font-semibold text-sm mt-3 cursor-pointer'>
+                        <FaLink size={13} className="my-auto mr-1" /> {window.location.href}
+                      </div>
+                      <QRCode className='mt-4 mx-auto flex justify-center' value={window.location.href} />
+                    </Fragment>
+
                   </CopyToClipboard>
                 </div>
               </div>
