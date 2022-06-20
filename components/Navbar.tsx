@@ -117,7 +117,7 @@ export default function Navbar() {
                                     isLoggedIn && currentUserData !== undefined && (
                                         <Fragment>
                                             <Menu as="div" className="ml-3 relative">
-                                                <div>
+                                                <Fragment>
                                                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
                                                     <span className="sr-only">Open user menu</span>
                                                     
@@ -125,7 +125,7 @@ export default function Navbar() {
                                                         {currentUserData.firstname[0].toUpperCase()}{currentUserData.lastname[0].toUpperCase()}
                                                     </div>
                                                     </Menu.Button>
-                                                </div>
+                                                </Fragment>
                                                 <Transition
                                                     as={Fragment}
                                                     enter="transition ease-out duration-100"

@@ -228,7 +228,7 @@ const Chat: React.FC<ChatProps> = (props) => {
     }
 
     return (
-        <div>
+        <Fragment>
             {props.pinnedLink !== "" && (
                 <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold">
                     <span className="text-white font-inter text-lg flex space-x-1 mb-2 font-normal">
@@ -340,7 +340,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     </div>
                 )
             }
-        </div>
+        </Fragment>
     )
 }
 

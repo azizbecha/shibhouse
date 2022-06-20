@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { FaBug, FaLock } from "react-icons/fa";
 
 const Footer: React.FC = () => {
     return (
-        <div>
+        <Fragment>
             <footer className="text-center lg:text-left bg-darker text-gray-600">
                 <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
                     <div className="mr-10 lg:block font-inter font-bold text-lg text-white">
@@ -19,7 +20,7 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </Fragment>
     );
 };
 

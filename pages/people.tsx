@@ -160,10 +160,10 @@ const People: React.FC = () => {
                                                             
                                                             <div className="cursor-pointer">
                                                                 <Link href={`user/${user.username}`}>
-                                                                    <div>
+                                                                    <Fragment>
                                                                         <h2 className="text-white font-semibold text-xl">{capitalizeWord(user.firstname)} {capitalizeWord(user.lastname)}</h2>
                                                                         <h3 className="text-white font-normald text-md">@{user.username}</h3>
-                                                                    </div>
+                                                                    </Fragment>
                                                                 </Link>
                                                                 <div className="text-sm mt-2 text-gray-200">
                                                                     <div className="flex flex-row ml-auto space-x-6 items-center">
