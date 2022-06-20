@@ -66,11 +66,13 @@ const PeopleSidebar = () => {
                                         return (
                                             <li className={`py-4 ${!isTabletOrMobile && 'border-t'} mx-auto`} key={key}>
                                                 <div className="flex items-center space-x-4">
-                                                    <div className="flex-shrink-0 mx-auto">
-                                                        <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
-                                                            {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
+                                                    <Link href={`user/${user.username}`}>
+                                                        <div className="flex-shrink-0 cursor-pointer">
+                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
+                                                                {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </Link>
                                                         
                                                     <div className={`${isTabletOrMobile ? 'hidden' : 'flex-1 min-w-0'}`}>
                                                         <Link href={`user/${user.username}`}>
