@@ -238,7 +238,7 @@ const User: React.FC = () => {
                 </div>
             </div>
             <Footer />
-        </>
+        </Fragment>
     ) 
 }
 
