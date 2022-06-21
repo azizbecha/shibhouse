@@ -22,7 +22,7 @@ const Rooms: React.FC = () => {
 
     useEffect(() => {
         const q = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const getRooms = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 
                 const rooms = querySnapshot.docs

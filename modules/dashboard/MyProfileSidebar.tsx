@@ -13,7 +13,7 @@ const MyProfileSidebar = () => {
 
     const { currentUserData } = useAuth();
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
-    
+
     return (
         <nav className={`w-full h-full bg-darker rounded-lg ${isTabletOrMobile ? 'hidden' : 'flex'}`}>
             <div className="flex mx-auto p-4 rounded-md container">
