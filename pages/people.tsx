@@ -18,6 +18,7 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import { toast } from "react-toastify"
 import { FaPlus, FaTimes, FaUsers } from "react-icons/fa"
+import SEO from "../utils/SEO"
 
 const People: React.FC = () => {
 
@@ -130,11 +131,7 @@ const People: React.FC = () => {
 
     return (
         <Fragment>
-            <Head>
-                <title>
-                    People - Shibhouse
-                </title>
-            </Head>
+            <SEO title="People - Shibhouse" description="Check out some random users in Shibhouse" />
             <PrivateRoute>
                 <Navbar />
                     <div className="bg-dark py-6 min-h-screen">

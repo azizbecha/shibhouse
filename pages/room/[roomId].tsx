@@ -13,6 +13,7 @@ import LoadingScreen from '../../components/LoadingScreen'
 import PrivateRoute from '../../auth/PrivateRoute';
 import { AuthContext } from '../../auth/AuthContext';
 import { sendBotMessage } from '../../lib/sendBotMessage'
+import SEO from '../../utils/SEO'
 
 const PlayerMain = dynamic(
   () => import('../../components/PlayerMain'),
@@ -46,10 +47,7 @@ export default function RoomPage() {
 
   return (
     <PrivateRoute>
-      <Head>
-        <title>{roomData.title} - Shibhouse</title>
-        <meta name="description" content={roomData.description} />
-      </Head>
+      <SEO title={`${roomData.title} - Shibhouse`} description={roomData.description} />
       <Navbar />
       {
         roomData !== '' ? (

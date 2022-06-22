@@ -15,6 +15,7 @@ import Navbar from "../components/Navbar"
 import { FaHome, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { RiChat4Fill, RiChatOffFill } from "react-icons/ri"
+import SEO from "../utils/SEO";
 
 const Rooms: React.FC = () => {
     const [data, setData] = useState([]);
@@ -27,7 +28,7 @@ const Rooms: React.FC = () => {
                 
                 const rooms = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setCount(rooms.length)
+                setCount(rooms.length);
                 setData(rooms);
 
             });
@@ -47,9 +48,7 @@ const Rooms: React.FC = () => {
     }, [])
     return (
         <PrivateRoute>
-            <Head>
-                <title>Rooms - Shibhouse</title>
-            </Head>
+            <SEO title="Rooms - Shibhouse" description="Discover various rooms playing now at Shibhouse"/>
             <Navbar />
                 <div className="bg-dark py-10">
                     <div className="container">

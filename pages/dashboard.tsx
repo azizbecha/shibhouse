@@ -30,6 +30,7 @@ import generateId from "../lib/generateId"
 
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
+import SEO from "../utils/SEO"
 
 const Dashboard: React.FC = () => {
 
@@ -95,9 +96,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <PrivateRoute>
-            <Head>
-                <title>Dashboard - Shibhouse</title>
-            </Head>
+            <SEO title="Dashboard - Shibhouse" description="Re-taking voice conversations to the moon"  />
             <Hotkeys 
                 keyName="ctrl+y" 
                 onKeyDown={() => setShowModal(!showModal)}

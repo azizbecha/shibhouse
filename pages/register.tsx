@@ -8,14 +8,13 @@ import Navbar from "../components/Navbar"
 import { JoinForm } from "../forms/JoinForm"
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
+import SEO from "../utils/SEO"
 
 const Register: React.FC = () => {
 
     return (
         <ProtectedRoute>
-            <Head>
-                <title>Register - Shibhouse</title>
-            </Head>
+            <SEO title="Register - Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
             <Navbar />
                 <div className="bg-dark py-16">
                     <div className="container">

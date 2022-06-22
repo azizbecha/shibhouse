@@ -2,10 +2,12 @@ import Link from "next/link"
 import { FaArrowLeft } from "react-icons/fa"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import SEO from "../utils/SEO"
 
 const NotFound: React.FC = () => {
     return (
         <>
+            <SEO title="Page not found - Shibhouse" description="We didn't find this page in our website Shibhouse.tv"  />
             <Navbar />
             <div
                 className="

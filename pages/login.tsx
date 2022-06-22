@@ -12,6 +12,7 @@ import { toast } from "react-toastify"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import SEO from "../utils/SEO"
 
 const Login: React.FC = () => {
 
@@ -69,9 +70,7 @@ const Login: React.FC = () => {
     }
     return (
         <ProtectedRoute>
-            <Head>
-                <title>Login - Shibhouse</title>
-            </Head>
+            <SEO title="Login - Shibhouse" description="Log to your account in Shibhouse.tv"  />
             <Navbar />
             <div className="relative bg-dark">
                 <div className="container px-6 md:px-12 pb-5 lg:px-7">

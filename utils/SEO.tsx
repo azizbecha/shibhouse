@@ -3,7 +3,7 @@ import Head from "next/head"
 interface SEOProps {
     title: string,
     description: string,
-    image: string,
+    image?: string,
 }
 
 const SEO: React.FC<SEOProps> = (props) => {
@@ -17,13 +17,13 @@ const SEO: React.FC<SEOProps> = (props) => {
             <meta property="og:url" content="https://shibhouse.tv/" />
             <meta property="og:title" content={props.title} />
             <meta property="og:description" content={props.description} />
-            <meta property="og:image" content={props.image} />
+            <meta property="og:image" content={props.image ? props.image : 'https://shibhouse.tv/cover.png'} />
 
             <meta property="twitter:card" content="summary" />
             <meta property="twitter:url" content="https://shibhouse.tv/" />
             <meta property="twitter:title" content={props.title} />
             <meta property="twitter:description" content={props.description} />
-            <meta property="twitter:image" content={props.image}></meta>
+            <meta property="twitter:image" content={props.image ? props.image : 'https://shibhouse.tv/cover.png'}></meta>
         </Head>
     )
 }

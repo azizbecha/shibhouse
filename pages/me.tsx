@@ -23,6 +23,7 @@ import PrivateRoute from "../auth/PrivateRoute";
 import { HexColorPicker } from "react-colorful";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { numberFormatter } from "../lib/numberFormatter";
+import SEO from "../utils/SEO";
 
 const Me: React.FC = () => {
 
@@ -124,9 +125,7 @@ const Me: React.FC = () => {
         <PrivateRoute>
             <div className="h-screen">
                 <Navbar />
-                <Head>
-                    <title>{capitalizeWord(currentUserData.firstname)} {capitalizeWord(currentUserData.lastname)} (@{currentUserData.username}) - Shibhouse</title>
-                </Head>
+                <SEO title={`${capitalizeWord(currentUserData.firstname)} ${capitalizeWord(currentUserData.lastname)} (@${currentUserData.username}) - Shibhouse`} description="My profile in Shibhouse.tv"  />
                 <div className="bg-dark pb-16">
                     <div className="container">
                         <h1 className="pt-10 text-3xl text-white font-bold font-inter flex mb-3"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> My profile</h1>
