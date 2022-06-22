@@ -27,19 +27,8 @@ export const JoinForm:React.FC =  () => {
             username: usernameRef.current.value,
             password: password
         }
-
-        if (createUser(userObject)) {
-            toast.success('Joined !', {
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            router.push('/login');
-        }
+        
+        createUser(userObject);
     }
 
     return (

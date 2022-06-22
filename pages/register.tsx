@@ -1,14 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import Head from "next/head"
-
 import ProtectedRoute from "../auth/ProtectedRoute"
+import SEO from "../utils/SEO"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { JoinForm } from "../forms/JoinForm"
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import SEO from "../utils/SEO"
 
 const Register: React.FC = () => {
 
@@ -16,7 +14,7 @@ const Register: React.FC = () => {
         <ProtectedRoute>
             <SEO title="Register - Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
             <Navbar />
-                <div className="bg-dark py-16">
+                <div className="bg-dark py-16 min-h-screen">
                     <div className="container">
                         <div className="">
                             <p className="text-white font-bold text-4xl font-inter mb-10">Register</p>
