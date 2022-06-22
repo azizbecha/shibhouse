@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "poppy.app"
-               BlueprintName = "poppy"
-               ReferencedContainer = "container:poppy.xcodeproj">
+               BuildableName = "Shibhouse.app"
+               BlueprintName = "Shibhouse"
+               ReferencedContainer = "container:Shibhouse.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "poppyTests.xctest"
-               BlueprintName = "poppyTests"
-               ReferencedContainer = "container:poppy.xcodeproj">
+               BuildableName = "ShibhouseTests.xctest"
+               BlueprintName = "ShibhouseTests"
+               ReferencedContainer = "container:Shibhouse.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "poppy.app"
-            BlueprintName = "poppy"
-            ReferencedContainer = "container:poppy.xcodeproj">
+            BuildableName = "Shibhouse.app"
+            BlueprintName = "Shibhouse"
+            ReferencedContainer = "container:Shibhouse.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "poppy.app"
-            BlueprintName = "poppy"
-            ReferencedContainer = "container:poppy.xcodeproj">
+            BuildableName = "Shibhouse.app"
+            BlueprintName = "Shibhouse"
+            ReferencedContainer = "container:Shibhouse.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
