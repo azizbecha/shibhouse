@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import PasswordStrengthBar from "react-password-strength-bar";
-import { toast } from "react-toastify";
 import { NewUser } from "../interfaces";
 import { createUser } from "../lib/createUser";
 
