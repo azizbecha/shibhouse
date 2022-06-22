@@ -54,7 +54,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![shibhouse-demo](https://user-images.githubusercontent.com/63454940/167589979-c6726540-e74e-4e70-a1e3-453e39d001fd.PNG)
+![image](https://user-images.githubusercontent.com/63454940/175101998-d36f8c15-071e-457a-9c0c-c3a1cb46ecdd.png)
 
 Shibhouse is a clone of Dogehouse which is a clone of Clubhouse trying to re-take voice conversations to the moon.
 
