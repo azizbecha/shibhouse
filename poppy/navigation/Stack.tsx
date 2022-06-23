@@ -1,19 +1,44 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler'
 
-import Splash from '../pages/Splash';
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import SplashScreen from '../pages/Splash';
+import { Button, Text, View } from 'react-native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-function StackNavigator() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name={'splash'} component={Splash} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+const Home = () => {
+  const navigation = useNavigation<StackNavigationProp<any>>()
+  return (
+    <View>
+      <Text>Home</Text>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+  )
 }
 
-export default StackNavigator;
+const MainNavigation = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="splash"
+          options={{ headerShown: false }}
+          component={SplashScreen}
+        />
+        <Stack.Screen
+          name="home"
+          options={{ headerShown: false }}
+          component={Home}
+        />
+        {/* add your another screen here using -> Stack.Screen */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default MainNavigation;

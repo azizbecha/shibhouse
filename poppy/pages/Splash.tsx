@@ -1,8 +1,18 @@
-import React from "react"
-import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native"
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { useEffect } from "react"
+import { Button, Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native"
 import { Colors } from "../config";
 
-const Splash: React.FC = () => {
+const SplashScreen: React.FC = () => {
+    const navigation = useNavigation<StackNavigationProp<any>>();
+
+    useEffect(() => {
+        const SplashScreenTimerTask = setTimeout(() => navigation.push('home'), 1500);
+        return () => {
+            clearTimeout(SplashScreenTimerTask);
+        };
+    }, []);
     return (
         <SafeAreaView style={styles.fillScreen}>
             <View style={styles.container}>
@@ -60,4 +70,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Splash
+export default SplashScreen;

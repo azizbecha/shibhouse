@@ -1,9 +1,9 @@
-import React from "react";
-import StackNavigator from "./navigation/Stack";
-import Splash from "./pages/Splash";
+import 'react-native-gesture-handler'
+import React from 'react'
+import MainNavigation from './navigation/Stack';
 
 const App = () => {
-  return <Splash />
+  return <MainNavigation />
 };
 
 export default App;
