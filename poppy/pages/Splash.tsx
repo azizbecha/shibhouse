@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react"
-import { Button, Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native"
+import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native"
 import { Colors } from "../config";
 
 const SplashScreen: React.FC = () => {

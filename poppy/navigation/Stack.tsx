@@ -1,15 +1,14 @@
 import 'react-native-gesture-handler'
 
 import React from 'react'
+import { Button, Text, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import SplashScreen from '../pages/Splash';
-import { Button, Text, View } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
+import SplashScreen from '../pages/Splash';
+
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<any>>()
