@@ -1,4 +1,4 @@
-package com.poppy.newarchitecture;
+package com.shibhouse.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.poppy.BuildConfig;
-import com.poppy.newarchitecture.components.MainComponentsRegistry;
-import com.poppy.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.shibhouse.BuildConfig;
+import com.shibhouse.newarchitecture.components.MainComponentsRegistry;
+import com.shibhouse.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
