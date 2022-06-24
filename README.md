@@ -55,14 +55,6 @@
   </ol>
 </details>
 
-## Structure
-
-| Codebase              |      Description          |
-| :-------------------- | :-----------------------: |
-| [pixie](pixie)        |   Next.js frontend        |
-| [poppy](poppy)        |   React Native App        |
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 ![image](https://user-images.githubusercontent.com/63454940/175101998-d36f8c15-071e-457a-9c0c-c3a1cb46ecdd.png)
@@ -79,6 +71,13 @@ Big shout out to the creators of those tools
 * [Tailwind CSS](https://tailwindcss.com)
 * [Firebase](https://firebase.google.com)
 * [React Icons](https://react-icons.github.io/)
+
+## Structure
+
+| Codebase              |      Description          |
+| :-------------------- | :-----------------------: |
+| [pixie](pixie)        |   Next.js frontend        |
+| [poppy](poppy)        |   React Native App        |
 
 <!-- GETTING STARTED -->
 ## Getting Started
