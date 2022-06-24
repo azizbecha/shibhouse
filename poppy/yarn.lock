@@ -1344,6 +1344,11 @@
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
+"@react-native-firebase/auth@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-15.0.0.tgz#4e6339e143e4ac1d5b1f8614b83d0fff70c58446"
+  integrity sha512-eT0NBmwGjR+v881ipBrCbFEMgznqwzlRC9rX+ZqoJfpv/ZqmZ4R8SRqIy/XtEztQFcTzG5RGKFQDCMweDLOtvQ==
+
 "@react-native-masked-view/masked-view@^0.2.6":
   version "0.2.6"
   resolved "https://registry.npmjs.org/@react-native-masked-view/masked-view/-/masked-view-0.2.6.tgz"

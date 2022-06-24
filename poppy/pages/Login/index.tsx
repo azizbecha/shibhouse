@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, SafeAreaView, Text, View } from "react-native";
+
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -13,6 +15,43 @@ const Login: React.FC = () => {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const [initializing, setInitializing] = useState(true);
+    const [userData, setUserData] = useState<FirebaseAuthTypes.User | null>(null);
+
+    // Handle user state changes
+    function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
+        setUserData(user);
+        if (initializing) setInitializing(false);
+    }
+
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    }, []);
+
+    if (initializing) return null;
+
+    if (userData) {
+        navigation.navigate("Home")
+    }
+
+    const handleLogin = () => {
+        if (email.trim() !== "") {
+            if (password.trim() !== "") {
+                auth().signInWithEmailAndPassword(email, password).then(() => {
+                    console.log("success");
+                    navigation.navigate("Home");
+                }).catch((e) => {
+                    console.log("Login failed: ", e);
+                });
+            } else {
+                //alert("Please enter password");
+            }
+        } else {
+            
+        }
+    }
 
     return (
         <SafeAreaView style={styles.fillScreen}>
@@ -70,7 +109,7 @@ const Login: React.FC = () => {
                 />
 
                 <View style={{width: '100%', marginTop: 15}}>
-                    <Button color={Colors.primary} uppercase={false} mode="contained" onPress={() => console.log('Pressed')}>
+                    <Button color={Colors.primary} uppercase={false} mode="contained" onPress={() => handleLogin()}>
                         Log in
                     </Button>
                 </View>
