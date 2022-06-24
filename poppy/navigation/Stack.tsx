@@ -1,24 +1,13 @@
 import 'react-native-gesture-handler'
 
 import React from 'react'
-import { Button, Text, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
 
 import SplashScreen from '../pages/Splash/index';
+import Login from '../pages/Login'
 
 const Stack = createNativeStackNavigator();
-
-const Home = () => {
-  const navigation = useNavigation<StackNavigationProp<any>>()
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  )
-}
 
 const MainNavigation = () => {
   return (
@@ -30,9 +19,9 @@ const MainNavigation = () => {
           component={SplashScreen}
         />
         <Stack.Screen
-          name="home"
+          name="login"
           options={{ headerShown: false }}
-          component={Home}
+          component={Login}
         />
         {/* add your another screen here using -> Stack.Screen */}
       </Stack.Navigator>

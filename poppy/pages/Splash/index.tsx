@@ -9,11 +9,11 @@ const SplashScreen: React.FC = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
 
     useEffect(() => {
-        const SplashScreenTimerTask = setTimeout(() => navigation.push('home'), 1500);
+        const SplashScreenTimerTask = setTimeout(() => navigation.push('login'), 1500);
         return () => {
             clearTimeout(SplashScreenTimerTask);
         };
-    }, []);
+    });
     return (
         <SafeAreaView style={styles.fillScreen}>
             <View style={styles.container}>
