@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import React from "react";
+import React, { useState } from "react";
 import { Image, SafeAreaView, Text, View } from "react-native";
 import { Button, TextInput } from 'react-native-paper';
 import { Colors } from "../../config";
@@ -8,6 +8,10 @@ import { styles } from "./styles";
 
 const Login: React.FC = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
     return (
         <SafeAreaView style={styles.fillScreen}>
             <View style={styles.container}>
@@ -29,10 +33,14 @@ const Login: React.FC = () => {
                     placeholderTextColor="#666"
                     keyboardType="email-address"
                     selectionColor="#fff"
-                    theme={{ colors: { text: "#fff" } }}
+                    theme={{ 
+                        colors: { 
+                            text: "#fff"
+                        }
+                    }}
                     style={styles.input}
-                    //value={text}
-                    //onChangeText={text => setText(text)}
+                    value={email}
+                    onChangeText={value => setEmail(value)}
                 />
 
                 <TextInput
@@ -45,8 +53,8 @@ const Login: React.FC = () => {
                     theme={{ colors: { text: "#fff" } }}
                     style={styles.input}
                     secureTextEntry
-                    //value={text}
-                    //onChangeText={text => setText(text)}
+                    value={password}
+                    onChangeText={value => setPassword(value)}
                 />
 
                 <View style={{width: '100%', marginTop: 15}}>
