@@ -10,6 +10,7 @@ import Toast from 'react-native-toast-message'
 
 import { Colors } from "../../config";
 import { styles } from "./styles";
+import ProtectedRoute from "../../routes/ProtectedRoute";
 
 const Login: React.FC = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
@@ -121,73 +122,75 @@ const Login: React.FC = () => {
     }
 
     return (
-        <SafeAreaView style={styles.fillScreen}>
-            <View style={styles.container}>
-                <Image 
-                    source={require("../../assets/logo.png")}
-                    style={{
-                        width: "25%",
-                        height: "30%",
-                    }}
-                />
-                <Text style={styles.headerText}>Welcome back</Text>
-                
-                <View style={{width: '100%', marginBottom: 5}}>
-                    <Text style={{color: "#fff"}}>
-                        Email
-                    </Text>
-                </View>
-                <TextInput
-                    placeholder="Please enter your email"
-                    underlineColor={"transparent"}
-                    outlineColor={"transparent"}
-                    activeOutlineColor={"transparent"}
-                    activeUnderlineColor={Colors.primary}
-                    placeholderTextColor="#666"
-                    keyboardType="email-address"
-                    selectionColor="#fff"
-                    theme={{ 
-                        colors: { 
-                            text: "#fff"
-                        }
-                    }}
-                    style={styles.input}
-                    value={email}
-                    onChangeText={value => setEmail(value)}
-                />
+        <ProtectedRoute>
+            <SafeAreaView style={styles.fillScreen}>
+                <View style={styles.container}>
+                    <Image 
+                        source={require("../../assets/logo.png")}
+                        style={{
+                            width: "25%",
+                            height: "30%",
+                        }}
+                    />
+                    <Text style={styles.headerText}>Welcome back</Text>
+                    
+                    <View style={{width: '100%', marginBottom: 5}}>
+                        <Text style={{color: "#fff"}}>
+                            Email
+                        </Text>
+                    </View>
+                    <TextInput
+                        placeholder="Please enter your email"
+                        underlineColor={"transparent"}
+                        outlineColor={"transparent"}
+                        activeOutlineColor={"transparent"}
+                        activeUnderlineColor={Colors.primary}
+                        placeholderTextColor="#666"
+                        keyboardType="email-address"
+                        selectionColor="#fff"
+                        theme={{ 
+                            colors: { 
+                                text: "#fff"
+                            }
+                        }}
+                        style={styles.input}
+                        value={email}
+                        onChangeText={value => setEmail(value)}
+                    />
 
-                <View style={{width: '100%', marginBottom: 5}}>
-                    <Text style={{color: "#fff"}}>
-                        Password
-                    </Text>
-                </View>
-                <TextInput
-                    placeholder="Please enter your password"
-                    underlineColor={"transparent"}
-                    outlineColor={"transparent"}
-                    activeOutlineColor={"transparent"}
-                    activeUnderlineColor={Colors.primary}
-                    placeholderTextColor="#666"
-                    theme={{ colors: { text: "#fff" } }}
-                    style={styles.input}
-                    secureTextEntry
-                    value={password}
-                    onChangeText={value => setPassword(value)}
-                />
+                    <View style={{width: '100%', marginBottom: 5}}>
+                        <Text style={{color: "#fff"}}>
+                            Password
+                        </Text>
+                    </View>
+                    <TextInput
+                        placeholder="Please enter your password"
+                        underlineColor={"transparent"}
+                        outlineColor={"transparent"}
+                        activeOutlineColor={"transparent"}
+                        activeUnderlineColor={Colors.primary}
+                        placeholderTextColor="#666"
+                        theme={{ colors: { text: "#fff" } }}
+                        style={styles.input}
+                        secureTextEntry
+                        value={password}
+                        onChangeText={value => setPassword(value)}
+                    />
 
-                <View style={{width: '100%', marginTop: 15}}>
-                    <Button color={Colors.primary} uppercase={false} mode="contained" onPress={() => handleLogin()}>
-                        Log in
-                    </Button>
-                </View>
+                    <View style={{width: '100%', marginTop: 15}}>
+                        <Button color={Colors.primary} uppercase={false} mode="contained" onPress={() => handleLogin()}>
+                            Log in
+                        </Button>
+                    </View>
 
-                <View style={{width: '100%', marginTop: 10}}>
-                    <Text style={{color: "#fff"}}>
-                        Don't have an account ? <Text style={{color: "#fff", marginTop: 10}}>Register now</Text>
-                    </Text>
+                    <View style={{width: '100%', marginTop: 10}}>
+                        <Text style={{color: "#fff"}}>
+                            Don't have an account ? <Text style={{color: "#fff", marginTop: 10}}>Register now</Text>
+                        </Text>
+                    </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ProtectedRoute>
     )
 }
 
