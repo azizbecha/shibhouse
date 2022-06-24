@@ -22,28 +22,31 @@ const Login: React.FC = () => {
 
                 <TextInput
                     placeholder="Please enter your email"
-                    underlineColor={Colors.primary}
-                    outlineColor={Colors.primary}
-                    activeOutlineColor={Colors.primary}
+                    underlineColor={"transparent"}
+                    outlineColor={"transparent"}
+                    activeOutlineColor={"transparent"}
                     activeUnderlineColor={Colors.primary}
                     placeholderTextColor="#666"
+                    keyboardType="email-address"
+                    selectionColor="#fff"
+                    theme={{ colors: { text: "#fff" } }}
+                    style={styles.input}
                     //value={text}
                     //onChangeText={text => setText(text)}
-                    style={styles.input}
                 />
 
                 <TextInput
                     placeholder="Please enter your password"
-                    underlineColor={Colors.primary}
-                    outlineColor={Colors.primary}
-                    activeOutlineColor={Colors.primary}
+                    underlineColor={"transparent"}
+                    outlineColor={"transparent"}
+                    activeOutlineColor={"transparent"}
                     activeUnderlineColor={Colors.primary}
-                    selectionColor={Colors.primary}
                     placeholderTextColor="#666"
-                    //value={text}
-                    //onChangeText={text => setText(text)}
+                    theme={{ colors: { text: "#fff" } }}
                     style={styles.input}
                     secureTextEntry
+                    //value={text}
+                    //onChangeText={text => setText(text)}
                 />
 
                 <View style={{width: '100%', marginTop: 15}}>
