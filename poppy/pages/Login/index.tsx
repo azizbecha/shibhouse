@@ -6,6 +6,7 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Button, TextInput } from 'react-native-paper';
+import Toast from 'react-native-toast-message'
 
 import { Colors } from "../../config";
 import { styles } from "./styles";
@@ -40,16 +41,36 @@ const Login: React.FC = () => {
         if (email.trim() !== "") {
             if (password.trim() !== "") {
                 auth().signInWithEmailAndPassword(email, password).then(() => {
-                    console.log("success");
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Success',
+                        text2: 'Logged in successfully',
+                        position: 'bottom',
+                    });
                     navigation.navigate("Home");
                 }).catch((e) => {
-                    console.log("Login failed: ", e);
+                    Toast.show({
+                        type: 'error',
+                        text1: 'Error',
+                        text2: 'Please verify your informations',
+                        position: 'bottom',
+                    });
                 });
             } else {
-                //alert("Please enter password");
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error',
+                    text2: 'Please enter your password',
+                    position: 'bottom',
+                });
             }
         } else {
-            
+            Toast.show({
+                type: 'error',
+                text1: 'Error',
+                text2: 'Please enter your email',
+                position: 'bottom',
+            });
         }
     }
 

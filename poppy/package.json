@@ -25,7 +25,8 @@
     "react-native-pager-view": "^5.4.24",
     "react-native-paper": "^4.12.1",
     "react-native-safe-area-context": "^4.3.1",
-    "react-native-screens": "^3.13.1"
+    "react-native-screens": "^3.13.1",
+    "react-native-toast-message": "^2.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
