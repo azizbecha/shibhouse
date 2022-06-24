@@ -41,6 +41,9 @@
       </ul>
     </li>
     <li>
+      <a href="#structure">Structure</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation & usage</a></li>
@@ -51,6 +54,14 @@
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
+
+## Structure
+
+| Codebase              |      Description          |
+| :-------------------- | :-----------------------: |
+| [pixie](pixie)        |   Next.js frontend        |
+| [poppy](poppy)        |   React Native App        |
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -64,9 +75,10 @@ Big shout out to the creators of those tools
 
 * [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
-* [Tailwind css](https://tailwindcss.com)
+* [React Native](https://reactnative.dev)
+* [Tailwind CSS](https://tailwindcss.com)
 * [Firebase](https://firebase.google.com)
-* [React icons](https://react-icons.github.io/)
+* [React Icons](https://react-icons.github.io/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
