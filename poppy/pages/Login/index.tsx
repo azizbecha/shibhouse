@@ -1,8 +1,10 @@
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useState } from "react";
 import { Image, SafeAreaView, Text, View } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Button, TextInput } from 'react-native-paper';
+
 import { Colors } from "../../config";
 import { styles } from "./styles";
 
