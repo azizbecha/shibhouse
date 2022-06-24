@@ -21,11 +21,16 @@ const Login: React.FC = () => {
                     source={require("../../assets/logo.png")}
                     style={{
                         width: "25%",
-                        height: "37%",
+                        height: "30%",
                     }}
                 />
                 <Text style={styles.headerText}>Welcome back</Text>
-
+                
+                <View style={{width: '100%', marginBottom: 5}}>
+                    <Text style={{color: "#fff"}}>
+                        Email
+                    </Text>
+                </View>
                 <TextInput
                     placeholder="Please enter your email"
                     underlineColor={"transparent"}
@@ -45,6 +50,11 @@ const Login: React.FC = () => {
                     onChangeText={value => setEmail(value)}
                 />
 
+                <View style={{width: '100%', marginBottom: 5}}>
+                    <Text style={{color: "#fff"}}>
+                        Password
+                    </Text>
+                </View>
                 <TextInput
                     placeholder="Please enter your password"
                     underlineColor={"transparent"}
