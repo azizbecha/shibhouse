@@ -49,12 +49,58 @@ const Login: React.FC = () => {
                     });
                     navigation.navigate("Home");
                 }).catch((e) => {
-                    Toast.show({
-                        type: 'error',
-                        text1: 'Error',
-                        text2: 'Please verify your informations',
-                        position: 'bottom',
-                    });
+                    console.log(e);
+                    if (e == "Error: [auth/wrong-password] The password is invalid or the user does not have a password.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'Wrong Password',
+                            position: 'bottom',
+                        });
+                    } else if (e == "Error: [auth/user-not-found] The email address is not registered. Please check the email address and try again.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'User not found',
+                            position: 'bottom',
+                        });
+                    } else if (e == "Error: [auth/invalid-email] The email address is badly formatted.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'Invalid email',
+                            position: 'bottom',
+                        });
+                    } else if (e == "Error: [auth/network-request-failed] A network error (such as timeout, interrupted connection or unreachable host) has occurred.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'Network error',
+                            position: 'bottom',
+                        });
+                    } else if (e == "Error: [auth/too-many-requests] We have blocked all requests from this device due to unusual activity. Try again later.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'Too many requests',
+                            position: 'bottom',
+                        });
+                    } else if (e == "Error: [auth/operation-not-allowed] Password sign-in is disabled for this project.") {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: 'Password sign-in is temporarily disabled',
+                            position: 'bottom',
+                        });
+                    } else {
+                        Toast.show({
+                            type: 'error',
+                            text1: 'Error',
+                            text2: "Something went wrong",
+                            position: 'bottom',
+                        });
+                    }
+                    
                 });
             } else {
                 Toast.show({
