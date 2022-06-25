@@ -29,7 +29,7 @@ const ProtectedRoute: React.FC<Props> = ({children}) => {
     if (initializing) return null;
 
     if (userData) {
-        navigation.navigate("Home")
+        navigation.navigate("Home");
     }
 
     return (

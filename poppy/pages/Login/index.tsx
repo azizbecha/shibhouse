@@ -185,7 +185,7 @@ const Login: React.FC = () => {
 
                     <View style={{width: '100%', marginTop: 10}}>
                         <Text style={{color: "#fff"}}>
-                            Don't have an account ? <Text style={{color: "#fff", marginTop: 10}}>Register now</Text>
+                            Don't have an account ? <Text style={{color: "#fff", marginTop: 10}} onPress={() => navigation.navigate("Register")}>Register now</Text>
                         </Text>
                     </View>
                 </View>

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import SplashScreen from '../pages/Splash/index';
 import Login from '../pages/Login'
 import Home from '../pages/Home';
+import Register from '../pages/Register';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,12 @@ const MainNavigation = () => {
           name="Login"
           options={{ headerShown: false }}
           component={Login}
+        />
+
+        <Stack.Screen
+          name="Register"
+          options={{ headerShown: false }}
+          component={Register}
         />
 
         <Stack.Screen

@@ -29,7 +29,7 @@ const PrivateRoute: React.FC<Props> = ({children}) => {
     if (initializing) return null;
 
     if (!userData) {
-        navigation.navigate("Login")
+        navigation.navigate("Login");
     }
 
     return (
