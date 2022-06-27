@@ -18,6 +18,7 @@ import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
+import PrivateRoute from "../../auth/PrivateRoute";
 
 const User: React.FC = () => {
 
@@ -159,12 +160,12 @@ const User: React.FC = () => {
     }
 
     return (
-        <Fragment>
+        <PrivateRoute>
             <Navbar />
             <Head>
                 <title>{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} (@{userData.username}) - Shibhouse</title>
             </Head>
-            <div className="bg-dark  h-screen">
+            <div className="bg-dark h-screen">
                 <div className="container">                    
                     <Row>
                         <Col xs={12} sm={12} md={12} lg={8}>
@@ -238,7 +239,7 @@ const User: React.FC = () => {
                 </div>
             </div>
             <Footer />
-        </Fragment>
+        </PrivateRoute>
     ) 
 }
 
