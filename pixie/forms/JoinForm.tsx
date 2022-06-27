@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { NewUser } from "../interfaces";
@@ -6,13 +5,10 @@ import { createUser } from "../lib/createUser";
 
 export const JoinForm:React.FC =  () => {
 
-    const router = useRouter();
-
     const firstnameRef = useRef<any>();
     const lastnameRef = useRef<any>();
     const emailRef = useRef<any>();
     const usernameRef = useRef<any>();
-    const passwordRef = useRef<any>();
 
     const [password, setPassword] = useState<string>('')
 

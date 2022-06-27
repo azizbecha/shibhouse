@@ -1,10 +1,11 @@
-import React, { Fragment, useCallback, useContext, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useState } from "react"
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { query, collection, limit, where, getDocs, doc, updateDoc } from "firebase/firestore";
 
+import PrivateRoute from "../../auth/PrivateRoute";
 import { AuthContext } from "../../auth/AuthContext";
 import { fireStore } from "../../auth/Firebase";
 
@@ -18,7 +19,6 @@ import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
-import PrivateRoute from "../../auth/PrivateRoute";
 
 const User: React.FC = () => {
 
