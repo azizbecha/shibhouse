@@ -1,6 +1,5 @@
 import { useState, useRef, Fragment } from "react"
 import { useRouter } from "next/router"
-import Head from "next/head"
 
 import { Dialog, Transition } from '@headlessui/react'
 
@@ -12,8 +11,10 @@ import { toast } from "react-toastify"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import ExportRooms from "../components/ExportRooms"
 import Divider from "../components/Divider"
+
+import ExportRooms from "../components/ExportRooms"
+import SEO from "../utils/SEO"
 
 import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar";
 import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar";
@@ -30,7 +31,6 @@ import generateId from "../lib/generateId"
 
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
-import SEO from "../utils/SEO"
 
 const Dashboard: React.FC = () => {
 
@@ -57,14 +57,14 @@ const Dashboard: React.FC = () => {
         const data: NewRoom = {
             id: roomId,
             createdBy: currentUserData.username,
-            title: roomTitle,
-            description: roomDescription,
-            pinnedLink: roomPinnedLink,
-            topics: roomTopics,
+            title: roomTitle.trim(),
+            description: roomDescription.trim(),
+            pinnedLink: roomPinnedLink.trim(),
+            topics: roomTopics.trim(),
             allowChat: allowChat,
             speakers: [currentUserData.username]
         }
-        
+        console.log(data)
         if (roomTitle !== "" && roomDescription !== "" && roomTopics !== "") {
             try {
                 setShowModal(false);
@@ -81,6 +81,7 @@ const Dashboard: React.FC = () => {
 
                 router.push(`/room/${roomId}`)
             } catch (e) {
+                console.log(e)
                 toast.error('An error has been occured', {
                     position: "top-center",
                     autoClose: 4000,
