@@ -64,7 +64,9 @@ const Dashboard: React.FC = () => {
             allowChat: allowChat,
             speakers: [currentUserData.username]
         }
-        console.log(data)
+
+        console.log(data);
+        
         if (roomTitle !== "" && roomDescription !== "" && roomTopics !== "") {
             try {
                 setShowModal(false);
