@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <NextNProgress color='#fa2f2f' height={5} />
             <Head>
                 <link rel="shortcut icon" href="../icon.ico" type="image/x-icon" />
+                <meta name="theme-color" content="#fa2f2f" />
             </Head>
             <ToastContainer
                 position="top-center"
