@@ -1,7 +1,7 @@
 import { NewUser } from "../interfaces"
 
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"; 
+import { createUserWithEmailAndPassword, User } from 'firebase/auth'
+import { collection, doc, DocumentData, getDocs, Query, query, QuerySnapshot, setDoc, where } from "firebase/firestore"; 
 
 import { toast } from "react-toastify";
 
@@ -10,11 +10,11 @@ import getCurrentUserData from "./getCurrentUserData";
 import { capitalizeWord } from "./capitalize";
 import { getRandomColor } from "./getRandomColor";
 
-const createUser = async (user: NewUser) => {
+const createUser = async (user: NewUser): Promise<void> => {
 
     // Check if there is a user with the same username
-    const q = query(collection(fireStore, "users"), where("username", "==", user.username));
-    const queryData = await getDocs(q);
+    const q: Query<DocumentData> = query(collection(fireStore, "users"), where("username", "==", user.username));
+    const queryData: QuerySnapshot<DocumentData> = await getDocs(q);
     const users = queryData.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
     // If username is not used
@@ -25,7 +25,7 @@ const createUser = async (user: NewUser) => {
             await createUserWithEmailAndPassword(auth, user.email, user.password);
 
             // Get created user data
-            const userData = getCurrentUserData();
+            const userData: User = getCurrentUserData();
 
             // Push user details to Firebase
             const docRef = await setDoc(doc(fireStore, "users", userData.uid), {

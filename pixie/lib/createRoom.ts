@@ -1,8 +1,8 @@
 import { fireStore } from '../auth/Firebase'
-import { doc, setDoc, serverTimestamp } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore"; 
 import { NewRoom } from '../interfaces';
 
-const createRoom = async (data: NewRoom) => {
+const createRoom = async (data: NewRoom): Promise<void> => {
 
     const docRef = await setDoc(doc(fireStore, "rooms", data.id), {
         id: data.id,

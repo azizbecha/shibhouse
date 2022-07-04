@@ -1,7 +1,7 @@
 import { fireStore } from "../auth/Firebase";
 import { getDoc, doc } from "firebase/firestore";
 
-const getUserData = async (userID) => {
+const getUserData = async (userID: string) => {
 
     var data = {}
     const docRef = doc(fireStore, "users", userID);
