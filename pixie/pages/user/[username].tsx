@@ -19,6 +19,7 @@ import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
+import SEO from "../../utils/SEO";
 
 const User: React.FC = () => {
 
@@ -162,9 +163,7 @@ const User: React.FC = () => {
     return (
         <PrivateRoute>
             <Navbar />
-            <Head>
-                <title>{capitalizeWord(userData.firstname)} {capitalizeWord(userData.lastname)} (@{userData.username}) - Shibhouse</title>
-            </Head>
+            <SEO title={`${capitalizeWord(userData.firstname)} ${capitalizeWord(userData.lastname)} (@${userData.username}) - Shibhouse`} description={`@${userData.username})'s profile on Shibhouse`} />
             <div className="bg-dark h-screen">
                 <div className="container">                    
                     <Row>
