@@ -14,7 +14,7 @@ export function useAuth() {
 export default function AuthProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState<boolean>(true)
     const [currentUserData, setCurrentUserData] = useState<any>();
 
     useEffect(() => {

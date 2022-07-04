@@ -1,21 +1,21 @@
-import { Fragment, useState } from "react"
-import { useRouter } from "next/router"
+import React, { Fragment, useState } from "react"
+import { NextRouter, useRouter } from "next/router"
 
 import { LogUser } from "../interfaces"
 import { signUser } from "../lib/signUser"
 
 import { toast } from "react-toastify"
 
-export const LoginForm:React.FC = () => {
+export const LoginForm: React.FC = () => {
 
-    const [email, setEmail] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
 
-    const router = useRouter()
+    const router: NextRouter = useRouter();
 
-    const [disabled, setDisabled] = useState(false)
+    const [disabled, setDisabled] = useState<boolean>(false);
 
-    const verify = async (e) => {
+    const verify = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         const userObject: LogUser = {

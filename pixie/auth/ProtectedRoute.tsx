@@ -1,11 +1,11 @@
 import React, { Fragment, useContext, useEffect } from "react"
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 import { AuthContext } from "./AuthContext"
 import LoadingScreen from "../components/LoadingScreen"
 
 const ProtectedRoute = ({ children }) => {
-    const { currentUser } = useContext(AuthContext)
-    const router = useRouter()
+    const { currentUser } = useContext(AuthContext);
+    const router: NextRouter = useRouter();
 
     useEffect(() => {
         if (currentUser) {

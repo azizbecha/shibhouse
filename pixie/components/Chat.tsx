@@ -19,7 +19,6 @@ import { StreamContext } from "../contexts/StreamContext";
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import { TailSpin } from "react-loader-spinner";
 
-
 interface ChatProps {
     roomId: string;
     isChatAllowed: boolean,
