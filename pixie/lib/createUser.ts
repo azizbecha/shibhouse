@@ -33,7 +33,7 @@ const createUser = async (user: NewUser) => {
                 firstname: capitalizeWord(user.firstname.trim()),
                 lastname: capitalizeWord(user.lastname.trim()),
                 email: user.email,
-                username: user.username,
+                username: user.username.trim(),
                 followers: [],
                 following: [],
                 claps: 0,
