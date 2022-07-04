@@ -51,7 +51,9 @@ const PeopleSidebar = () => {
                                     <h1 className="font-bold text-2xl font-inter">People</h1>
                                 </div>
                                 <div className="inline-flex items-end text-base">
-                                    <button className="flex bg-primary px-4 py-2 rounded-md text-sm text-white font-semibold"><FaCompass className="my-auto mr-1" /> Discover</button>
+                                    <Link href="/people">
+                                        <button className="flex bg-primary px-4 py-2 rounded-md text-sm text-white font-semibold"><FaCompass className="my-auto mr-1" /> Discover</button>
+                                    </Link>
                                 </div>
                             </div>
                             <Divider />
