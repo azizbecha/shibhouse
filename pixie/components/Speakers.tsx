@@ -18,13 +18,6 @@ interface Speakers {
 const Speakers: React.FC<Speakers> = ({roomId}) => {
   
   const {
-    // incomingStreams,
-    peerConnError,
-    // connRole,
-    // peerId,
-    userName,
-    // onDemotePeerToListener,
-    // incomingStreamsObj,
     streams: {
       incomingStreams,
     },
@@ -44,8 +37,6 @@ const Speakers: React.FC<Speakers> = ({roomId}) => {
     micAudioStream,
     startMicStream,
   } = useContext<any>(StreamContext);
-
-  const [recentEvents, roomEvents] = useRoomEvents();
 
   const speakers = useMemo(() => {
     checkMicPermission();

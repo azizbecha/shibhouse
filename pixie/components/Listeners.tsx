@@ -4,14 +4,14 @@ import { FaHeadphones, FaLink, FaPlus } from 'react-icons/fa'
 
 import { PeerContext } from '../contexts/PeerJSContext'
 import useRoomEvents from '../hooks/useRoomEvents'
+import { sendBotMessage } from '../lib/sendBotMessage'
 import User from './User'
 
+import QRCode from 'react-qr-code'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
 import { FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { sendBotMessage } from '../lib/sendBotMessage'
-import QRCode from 'react-qr-code'
 
 interface Listeners {
   roomId: string
