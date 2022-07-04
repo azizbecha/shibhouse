@@ -15,7 +15,7 @@ import { ImUsers } from 'react-icons/im'
 
 export default function Navbar() {
 
-    const logoLink: string = "../../../../shibhouse-logo-transparent.png";
+    const logoLink: string = "../../../../images/shibhouse-logo-transparent.png";
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const { currentUserData } = useAuth();

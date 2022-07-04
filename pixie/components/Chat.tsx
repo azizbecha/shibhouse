@@ -319,7 +319,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                         <div className="p-4 mx-auto">
                             <h1 className="text-center font-semibold text-md flex space-x-1 justify-center"><RiChatOffFill size={15} className="my-auto" /> <span>Chatting is not allowed in this room.</span></h1>
                             <h2 className="mt-2 text-center font-normal text-sm">The host of this room disabled the chat feature. </h2>
-                            <img src="../../shiba-sleeping.png" className="mt-6" alt="Image of shiba inu sleeping" />
+                            <img src="../../images/shiba-sleeping.png" className="mt-6" alt="Image of shiba inu sleeping" />
                         </div>
                     </div>
                 )

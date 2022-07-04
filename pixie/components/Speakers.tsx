@@ -3,7 +3,6 @@ import { Fragment, useContext, useMemo } from 'react'
 import User from './User'
 import { PeerContext } from '../contexts/PeerJSContext'
 import { StreamContext } from '../contexts/StreamContext'
-import useRoomEvents from '../hooks/useRoomEvents'
 import { sendBotMessage } from '../lib/sendBotMessage'
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'

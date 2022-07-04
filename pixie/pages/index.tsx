@@ -59,7 +59,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 </div>
                                 <div className="w-full md:w-4/12 z-50">
                                     <div className="w-full h-auto overflow-hidden flex">
-                                        <img src="shibhouse-logo-transparent.png" style={{width: '38%'}} className="flex mx-auto bounce" alt='Logo of ShibHouse' />
+                                        <img src="images/shibhouse-logo-transparent.png" style={{width: '38%'}} className="flex mx-auto bounce" alt='Logo of ShibHouse' />
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU
                                 </p>
-                                <img src="btc-address.png" alt="Bitcoin address" className='w-52' />
+                                <img src="images/btc-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
 
                             <Col lg={4}>
@@ -211,7 +211,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>
-                                <img src="eth-address.png" alt="Bitcoin address" className='w-52' />
+                                <img src="images/eth-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
 
                             <Col lg={4}>
@@ -230,7 +230,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>
-                                <img src="shib-address.png" alt="Bitcoin address" className='w-52' />
+                                <img src="images/shib-address.png" alt="Bitcoin address" className='w-52' />
                             </Col>
                         </Row>
                     </div>
@@ -246,7 +246,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const props = {
         title: "Shibhouse - Re-taking voice conversations to the moon",
         description: "Re-taking voice conversations to the moon",
-        image: "https://shibhouse.tv/cover.png"
+        image: "https://shibhouse.tv/images/cover.png"
     }
 
     // By returning { props: { posts } }, the Blog component

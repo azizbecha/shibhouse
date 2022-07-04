@@ -107,7 +107,7 @@ const Rooms: React.FC = () => {
                                     </Fragment>
                                 ) : (
                                     <div className="bg-dark p-5 rounded-lg">
-                                        <img src="../musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />
+                                        <img src="../images/musk-with-cybertruck-and-shiba.png" className="w-6/12 mx-auto" alt="" />
                                         <h1 className="text-center text-white font-inter text-3xl">
                                             There are no rooms actually
                                         </h1>
