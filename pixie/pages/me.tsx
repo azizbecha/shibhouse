@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react"
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,21 +7,21 @@ import { getAuth, updateEmail } from "firebase/auth";
 
 import { AuthContext } from "../auth/AuthContext";
 import { fireStore } from "../auth/Firebase";
+import PrivateRoute from "../auth/PrivateRoute";
 
 import { toast } from "react-toastify";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { HexColorPicker } from "react-colorful";
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Divider from "../components/Divider";
 
 import { FaArrowLeft, FaLink, FaPen } from "react-icons/fa";
 
 import { capitalizeWord } from "../lib/capitalize";
-import Divider from "../components/Divider";
-import PrivateRoute from "../auth/PrivateRoute";
-
-import { HexColorPicker } from "react-colorful";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { numberFormatter } from "../lib/numberFormatter";
+
 import SEO from "../utils/SEO";
 
 const Me: React.FC = () => {

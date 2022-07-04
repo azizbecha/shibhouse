@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { query, collection, limit, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { query, collection, limit, where, getDocs, doc, updateDoc, DocumentReference, DocumentData, QuerySnapshot, QueryDocumentSnapshot } from "firebase/firestore";
 
 import PrivateRoute from "../../auth/PrivateRoute";
 import { AuthContext } from "../../auth/AuthContext";
@@ -80,19 +80,19 @@ const User: React.FC = () => {
 
     const Follow = async () => {
         try {
-            var followersArray = userData.followers;
-            var followingArray = currentUserData.following;
+            var followersArray: Array<string> = userData.followers;
+            var followingArray: Array<string> = currentUserData.following;
 
             followersArray.push(currentUserData.username);
             followingArray.push(userData.username);
 
-            const followersRef = doc(fireStore, "users", currentUserData.id);
+            const followersRef: DocumentReference<DocumentData> = doc(fireStore, "users", currentUserData.id);
 
             await updateDoc(followersRef, {
                 following: followingArray
             });
 
-            const followersRef2 = doc(fireStore, "users", userData.id);
+            const followersRef2: DocumentReference<DocumentData> = doc(fireStore, "users", userData.id);
 
             await updateDoc(followersRef2, {
                 followers: followersArray
@@ -127,8 +127,8 @@ const User: React.FC = () => {
         const getUsers = async () => {
             const q = query(collection(fireStore, "users"), limit(3), where('username', '!=', username));
 
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
+            const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
+            querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                 const users = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setUsers(users);

@@ -1,29 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { Fragment } from 'react'
-import Link from 'next/link';
-import { GetStaticProps } from 'next';
+import Link from 'next/link'
+import { GetStaticProps } from 'next'
 
-import { useCopyToClipboard } from 'react-use';
-import { toast } from 'react-toastify';
+import { useCopyToClipboard } from 'react-use'
+import { toast } from 'react-toastify'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Divider from '../components/Divider'
 
-import SEO from '../utils/SEO';
+import SEO from '../utils/SEO'
 import ProtectedRoute from '../auth/ProtectedRoute'
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-import { FaBitcoin, FaDog, FaEthereum, FaGithub, FaReact, FaTag } from 'react-icons/fa';
+import { FaBitcoin, FaDog, FaEthereum, FaGithub, FaReact, FaTag } from 'react-icons/fa'
 import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
-import { IoIosPeople } from 'react-icons/io';
-
-import Divider from '../components/Divider';
+import { IoIosPeople } from 'react-icons/io'
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
     
     const [state, copyToClipboard] = useCopyToClipboard();
+    
     return (
         <Fragment>
             <SEO 

@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useEffect, useState } from "react"
-import Head from "next/head"
 import Link from "next/link";
 
-import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, Query, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { Unsubscribe } from "firebase/auth";
+
 import { fireStore } from "../auth/Firebase";
 import PrivateRoute from "../auth/PrivateRoute"
 
@@ -15,22 +16,21 @@ import Navbar from "../components/Navbar"
 import { FaHome, FaUsers } from 'react-icons/fa'
 import { GoClock } from "react-icons/go"
 import { RiChat4Fill, RiChatOffFill } from "react-icons/ri"
+
 import SEO from "../utils/SEO";
 
 const Rooms: React.FC = () => {
     const [data, setData] = useState([]);
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState<number>(0);
 
     useEffect(() => {
-        const q = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
-        const getRooms = onSnapshot(q, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                
+        const q: Query<DocumentData> = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
+        const getRooms: Unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                 const rooms = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setCount(rooms.length);
                 setData(rooms);
-
             });
         });
 

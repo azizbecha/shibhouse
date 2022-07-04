@@ -1,8 +1,9 @@
 import { Fragment, useEffect, useState } from "react"
-import Head from "next/head"
 import Link from "next/link"
 
-import { collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore"
+import { collection, doc, DocumentData, onSnapshot, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
+import { Unsubscribe } from "firebase/auth"
+
 import { useAuth } from "../auth/AuthContext"
 import { fireStore } from "../auth/Firebase"
 import PrivateRoute from "../auth/PrivateRoute"
@@ -22,17 +23,17 @@ import SEO from "../utils/SEO"
 
 const People: React.FC = () => {
 
-    const [users, setUsers] = useState<any>([]);
+    const [users, setUsers] = useState([]);
     const { currentUserData } = useAuth();
 
     const getUsers = async () => {
-        const q = query(collection(fireStore, "users"));
+        const q: Query<DocumentData> = query(collection(fireStore, "users"));
 
-        const fetch = onSnapshot(q, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const messages = querySnapshot.docs
+        const fetch: Unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
+                const fetchedUsers = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setUsers(messages);
+                setUsers(fetchedUsers);
             });
         });
     }

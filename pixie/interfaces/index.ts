@@ -9,7 +9,7 @@ export interface NewUser {
   lastname: string,
   email: string,
   username: string,
-  password: string
+  password: string,
 }
 
 export interface LogUser {
