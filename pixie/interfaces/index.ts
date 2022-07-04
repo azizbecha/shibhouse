@@ -5,16 +5,16 @@
 // import { User } from 'path/to/interfaces';
 
 export interface NewUser {
-  firstname: any,
-  lastname: any,
-  email: any,
-  username: any,
-  password: any
+  firstname: string,
+  lastname: string,
+  email: string,
+  username: string,
+  password: string
 }
 
 export interface LogUser {
-  email: any,
-  password: any
+  email: string,
+  password: string
 }
 
 export interface NewRoom {
