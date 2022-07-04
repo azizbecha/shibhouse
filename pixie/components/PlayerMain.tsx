@@ -85,8 +85,8 @@ function Main ({ user, room }) {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [devices, setDevices] = useState<Array<{ id: string; label: string }>>([]);
 
-  let muteAudio = new Audio("../../mute.wav")
-  let unmuteAudio = new Audio("../../unmute.wav")
+  let muteAudio = new Audio("../../mute.wav");
+  let unmuteAudio = new Audio("../../unmute.wav");
 
   let deafenAudio = new Audio("../../deafen.wav");
   let undeafenAudio = new Audio("../../undeafen.wav");
@@ -102,7 +102,7 @@ function Main ({ user, room }) {
   }
 
   if (!user.username) {
-    console.log('no username provided')
+    console.log('no username provided');
   }
 
   const {

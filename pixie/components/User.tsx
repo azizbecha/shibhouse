@@ -28,6 +28,13 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
   const { micMuted, muteToggle } = useContext<any>(StreamContext)
   const [volume, setVolume] = useState<number>(100);
 
+  let muteAudio = new Audio("../../mute.wav");
+  let unmuteAudio = new Audio("../../unmute.wav");
+
+  const playMuteAudio = () => {
+    micMuted ? muteAudio.play() : unmuteAudio.play();
+  }
+
   useEffect(() => {
     if (!stream) return
     // if (!stream instanceof MediaStream) return
@@ -84,7 +91,10 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
               {
                 me && ['host', 'speaker'].includes(connRole) &&(
                   <Fragment>
-                    <span onClick={() => muteToggle()} className='p-1.5 bg-gray rounded-md flex spaxe-x-2 cursor-pointer'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
+                    <span onClick={() => {
+                      muteToggle();
+                      playMuteAudio();
+                    }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2 cursor-pointer'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
                   </Fragment>
                 )
               }
