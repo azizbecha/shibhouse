@@ -25,21 +25,21 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
 
   } = useContext<any>(PeerContext)
 
-  const { micMuted } = useContext<any>(StreamContext)
+  const { micMuted, muteToggle } = useContext<any>(StreamContext)
   const [volume, setVolume] = useState<number>(100);
 
   useEffect(() => {
     if (!stream) return
-    //if (!stream instanceof MediaStream) return
+    // if (!stream instanceof MediaStream) return
     const speechEvents = hark(stream);
     speechEvents.on('speaking', () => setSpeaking(true));
     speechEvents.on('stopped_speaking', () => setSpeaking(false));
     speechEvents.on('volume_change', (volumeLevel: number) => {
-      /*
+    /*
       * Examples to explain why I used those Math methods:
       * Math.round(-82.752342) => returns -83
       * Math.abs(-83) => returns 83
-      */
+    */
 
       setVolume(Math.abs(Math.round(volumeLevel)));
     });
@@ -84,8 +84,7 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
               {
                 me && ['host', 'speaker'].includes(connRole) &&(
                   <Fragment>
-                    
-                    <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
+                    <span onClick={() => muteToggle()} className='p-1.5 bg-gray rounded-md flex spaxe-x-2 cursor-pointer'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
                   </Fragment>
                 )
               }

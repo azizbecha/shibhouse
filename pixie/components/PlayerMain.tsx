@@ -83,9 +83,7 @@ function Main ({ user, room }) {
 
   const cancelButtonRef = useRef(null)
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
-  const [devices, setDevices] = useState<Array<{ id: string; label: string }>>(
-    []
-  );
+  const [devices, setDevices] = useState<Array<{ id: string; label: string }>>([]);
 
   let muteAudio = new Audio("../../mute.wav")
   let unmuteAudio = new Audio("../../unmute.wav")
