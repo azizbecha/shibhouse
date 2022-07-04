@@ -12,19 +12,10 @@ import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, F
 import { AiFillDashboard } from "react-icons/ai";
 import { ImUsers } from 'react-icons/im'
 
-const navigation = [
-    { name: "Dashboard", href: "/dashboard", current: false },
-    { name: "Rooms", href: "/dashboard", current: false },
-    { name: "Profile", href: "/profile", current: false },
-];
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-}
 
 export default function Navbar() {
 
-    const logoLink = "../../../../shibhouse-logo-transparent.png";
+    const logoLink: string = "../../../../shibhouse-logo-transparent.png";
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const { currentUserData } = useAuth();
