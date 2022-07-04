@@ -91,28 +91,9 @@ Clone the repository
   git clone https://github.com/azizbecha/shibhouse.git
   ```
   
-Install dependencies
-  ```sh
-  npm install
-  ```
-Add Firebase app config:
-1. Go to `/auth` folder and create a file named `config.ts` then add this piece of code and don't forget to replace the `xxxxxxxxxxxxxxxxxxxxxxxxxxxxx`'s with your data
-```ts
-export const firebaseConfig = {
-    apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    authDomain: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    projectId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    appId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    measurementId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-};
-```
-    
-Run locally
-  ```sh
-  npm run dev
-  ```
+`NOTE` The project is divided into 2 parts which are: 
+- Pixie: Which is the Next.JS frontend. Here are the <a href="https://github.com/azizbecha/shibhouse/blob/main/pixie/README.md">docs</a>.
+- Poppy: Which is the React Native app. Here are the <a href="https://github.com/azizbecha/shibhouse/blob/main/poppy/README.md">docs</a>.
 
 <!-- CONTRIBUTING -->
 ## Contributing
