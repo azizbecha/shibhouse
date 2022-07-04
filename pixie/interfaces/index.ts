@@ -43,3 +43,13 @@ export interface PlayerProps {
   createdAt: string,
   isChatAllowed: boolean
 }
+
+export interface ChatProps {
+  roomId: string;
+  isChatAllowed: boolean,
+  pinnedLink: string,
+  leave: () => void,
+  muteToggle: () => void,
+  role: string,
+  username: string
+}

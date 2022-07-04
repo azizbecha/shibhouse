@@ -22,6 +22,7 @@ import { IoIosPeople } from 'react-icons/io';
 import Divider from '../components/Divider';
 
 const IndexPage: React.FC<{props: any}> = ({props}) => {
+    
     const [state, copyToClipboard] = useCopyToClipboard();
     return (
         <Fragment>

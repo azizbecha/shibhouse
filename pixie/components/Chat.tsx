@@ -18,16 +18,7 @@ import { isChatCommand } from "../lib/isChatCommand";
 import { StreamContext } from "../contexts/StreamContext";
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import { TailSpin } from "react-loader-spinner";
-
-interface ChatProps {
-    roomId: string;
-    isChatAllowed: boolean,
-    pinnedLink: string,
-    leave: () => void,
-    muteToggle: () => void,
-    role: string,
-    username: string
-}
+import { ChatProps } from "../interfaces";
 
 const Chat: React.FC<ChatProps> = (props) => {
 
