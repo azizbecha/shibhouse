@@ -10,28 +10,9 @@ import { useMediaQuery } from 'react-responsive'
 
 import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
+import { RoomMemberProps } from '../interfaces'
 
-interface UserProps {
-  host?: any,
-  onClick: () => void,
-  muted?: any,
-  me: boolean,
-  stream?: any,
-  name: string,
-  highlight?: any,
-  hoverIcon: JSX.Element,
-  reaction?: any,
-  kickIcon?: JSX.Element,
-  key: any,
-  id:any,
-  speakerIcon?: JSX.Element,
-  firstname: string,
-  lastname: string,
-  avatar: string,
-  roomId: string
-}
-
-const User: React.FC<UserProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, roomId,  ...props }) => {
+const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, name, highlight, hoverIcon, reaction, kickIcon, key, id, speakerIcon, firstname, lastname, avatar, roomId,  ...props }) => {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [speaking, setSpeaking] = useState<boolean>(false);
 

@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { Fragment, useContext, useEffect, useState } from "react";
 
-import InputEmoji from "react-input-emoji";
 import { useCopyToClipboard } from "react-use";
 import { Anchorme, LinkComponentProps } from 'react-anchorme'
+import { TailSpin } from "react-loader-spinner";
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import { toast } from "react-toastify";
+import InputEmoji from "react-input-emoji";
 
 import { addDoc, collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
@@ -16,8 +18,6 @@ import { AiFillPushpin } from "react-icons/ai";
 import { getBrightColor } from "../lib/getBrightColor";
 import { isChatCommand } from "../lib/isChatCommand";
 import { StreamContext } from "../contexts/StreamContext";
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
-import { TailSpin } from "react-loader-spinner";
 import { ChatProps } from "../interfaces";
 
 const Chat: React.FC<ChatProps> = (props) => {
@@ -29,13 +29,7 @@ const Chat: React.FC<ChatProps> = (props) => {
     const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
 
-    const {
-    muteToggle,
-    micMuted,
-    startMicStream,
-    checkMicPermission,
-    micAccess
-    } = useContext<any>(StreamContext)
+    const { micAccess } = useContext<any>(StreamContext)
 
     useEffect(() => {
         const fetch = async () => {

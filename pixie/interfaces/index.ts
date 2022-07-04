@@ -53,3 +53,23 @@ export interface ChatProps {
   role: string,
   username: string
 }
+
+export interface RoomMemberProps {
+  host?: any,
+  onClick: () => void,
+  muted?: any,
+  me: boolean,
+  stream?: any,
+  name: string,
+  highlight?: any,
+  hoverIcon: JSX.Element,
+  reaction?: any,
+  kickIcon?: JSX.Element,
+  key: any,
+  id:any,
+  speakerIcon?: JSX.Element,
+  firstname: string,
+  lastname: string,
+  avatar: string,
+  roomId: string
+}
