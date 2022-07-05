@@ -85,13 +85,13 @@ function Main ({ user, room }) {
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [devices, setDevices] = useState<Array<{ id: string; label: string }>>([]);
 
-  let muteAudio = new Audio("../../sounds/mute.wav");
-  let unmuteAudio = new Audio("../../sounds/unmute.wav");
+  let muteAudio: HTMLAudioElement = new Audio("../../sounds/mute.wav");
+  let unmuteAudio: HTMLAudioElement = new Audio("../../sounds/unmute.wav");
 
-  let deafenAudio = new Audio("../../sounds/deafen.wav");
-  let undeafenAudio = new Audio("../../sounds/undeafen.wav");
+  let deafenAudio: HTMLAudioElement = new Audio("../../sounds/deafen.wav");
+  let undeafenAudio: HTMLAudioElement = new Audio("../../sounds/undeafen.wav");
 
-  let toggleChatAudio = new Audio("../../sounds/deafen.wav");
+  let toggleChatAudio: HTMLAudioElement = new Audio("../../sounds/deafen.wav");
 
   const playMuteAudio = () => {
     micMuted ? muteAudio.play() : unmuteAudio.play();

@@ -28,8 +28,8 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
   const { micMuted, muteToggle } = useContext<any>(StreamContext)
   const [volume, setVolume] = useState<number>(100);
 
-  let muteAudio = new Audio("../../sounds/mute.wav");
-  let unmuteAudio = new Audio("../../sounds/unmute.wav");
+  let muteAudio: HTMLAudioElement = new Audio("../../sounds/mute.wav");
+  let unmuteAudio: HTMLAudioElement = new Audio("../../sounds/unmute.wav");
 
   const playMuteAudio = () => {
     micMuted ? muteAudio.play() : unmuteAudio.play();
