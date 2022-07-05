@@ -10,11 +10,11 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { FaTimes } from 'react-icons/fa'
 import { HiOutlineBan, HiSpeakerphone } from 'react-icons/hi'
 
-interface Speakers {
+interface SpeakersProps {
   roomId: string
 }
 
-const Speakers: React.FC<Speakers> = ({roomId}) => {
+const Speakers: React.FC<SpeakersProps> = ({roomId}) => {
   
   const {
     streams: {

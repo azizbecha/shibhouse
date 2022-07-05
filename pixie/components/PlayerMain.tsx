@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef, Fragment } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
@@ -35,6 +35,7 @@ import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
 import { numberFormatter } from '../lib/numberFormatter'
+import { IUseNetworkState } from 'react-use/lib/useNetworkState'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -71,15 +72,15 @@ const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avata
 
 function Main ({ user, room }) {
 
-  const router = useRouter();
-  const networkState = useNetworkState();
+  const router: NextRouter = useRouter();
+  const networkState: IUseNetworkState = useNetworkState();
   const [state, copyToClipboard] = useCopyToClipboard();
 
-  const [showChat, setShowChat] = useState(true);
-  const [deafen, setDeafen] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-  const [openInvite, setOpenInvite] = useState(false);
-  const [openTab, setOpenTab] = useState(1);
+  const [showChat, setShowChat] = useState<boolean>(true);
+  const [deafen, setDeafen] = useState<boolean>(false);
+  const [openSettings, setOpenSettings] = useState<boolean>(false);
+  const [openInvite, setOpenInvite] = useState<boolean>(false);
+  const [openTab, setOpenTab] = useState<Number>(1);
 
   const cancelButtonRef = useRef(null)
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
@@ -157,7 +158,7 @@ function Main ({ user, room }) {
   
   async function onLeave() {
     if (isHost) {
-      const agree = confirm('Are you sure you want to close the room ?')
+      const agree: boolean = confirm('Are you sure you want to close the room ?')
       if (!agree) return
       if (agree) {
         await deleteDoc(doc(fireStore, "rooms", roomId));
