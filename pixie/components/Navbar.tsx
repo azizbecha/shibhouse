@@ -1,19 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
+import React, { Fragment, useEffect, useState } from "react"
+import Link from "next/link"
 
-import { useAuth } from "../auth/AuthContext";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../auth/Firebase";
+import { onAuthStateChanged } from "firebase/auth"
+import { useAuth } from "../auth/AuthContext"
+import { auth } from "../auth/Firebase"
 import { logOut } from '../lib/signOut'
 
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa";
-import { AiFillDashboard } from "react-icons/ai";
+import { Disclosure, Menu, Transition } from "@headlessui/react"
+import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa"
+import { AiFillDashboard } from "react-icons/ai"
 import { ImUsers } from 'react-icons/im'
 
-
-export default function Navbar() {
+const Navbar: React.FC = () => {
 
     const logoLink: string = "../../../../images/shibhouse-logo-transparent.png";
 
@@ -197,3 +196,5 @@ export default function Navbar() {
         </Disclosure>
     );
 }
+
+export default Navbar
