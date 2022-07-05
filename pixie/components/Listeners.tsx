@@ -1,23 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useContext, useMemo } from 'react'
-import { FaHeadphones, FaLink, FaPlus } from 'react-icons/fa'
 
 import { PeerContext } from '../contexts/PeerJSContext'
-import useRoomEvents from '../hooks/useRoomEvents'
 import { sendBotMessage } from '../lib/sendBotMessage'
+import useRoomEvents from '../hooks/useRoomEvents'
 import User from './User'
 
 import QRCode from 'react-qr-code'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify'
-import { FaBan } from 'react-icons/fa'
+
+import { FaHeadphones, FaLink, FaPlus, FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-interface Listeners {
+interface ListenersProps {
   roomId: string
 }
 
-const Listeners: React.FC<Listeners> = ({roomId}) => {
+const Listeners: React.FC<ListenersProps> = ({roomId}) => {
   const {
     state: {
       peerId,
