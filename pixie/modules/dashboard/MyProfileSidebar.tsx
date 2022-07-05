@@ -11,7 +11,7 @@ import { useAuth } from "../../auth/AuthContext"
 import { logOut } from "../../lib/signOut"
 import { numberFormatter } from "../../lib/numberFormatter"
 
-const MyProfileSidebar = () => {
+const MyProfileSidebar: React.FC = () => {
 
     const { currentUserData } = useAuth();
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });

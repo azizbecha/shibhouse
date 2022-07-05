@@ -13,7 +13,7 @@ import Divider from "../../components/Divider"
 
 import { FaCompass } from "react-icons/fa"
 
-const PeopleSidebar = () => {
+const PeopleSidebar: React.FC = () => {
 
     const [users, setUsers] = useState<any>([]);
     const { currentUserData } = useAuth();
