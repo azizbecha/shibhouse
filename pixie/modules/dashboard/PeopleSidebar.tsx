@@ -1,12 +1,16 @@
-import { collection, getDocs, limit, query } from "firebase/firestore"
-import Link from "next/link"
 import { Fragment, useEffect, useState } from "react"
+import Link from "next/link"
+
+import { collection, DocumentData, getDocs, limit, Query, query, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore"
 import { useAuth } from "../../auth/AuthContext"
 import { fireStore } from "../../auth/Firebase"
-import { capitalizeWord } from "../../lib/capitalize"
-import Divider from "../../components/Divider"
+
 import $ from 'jquery'
 import { useMediaQuery } from "react-responsive"
+import { capitalizeWord } from "../../lib/capitalize"
+
+import Divider from "../../components/Divider"
+
 import { FaCompass } from "react-icons/fa"
 
 const PeopleSidebar = () => {
@@ -15,12 +19,12 @@ const PeopleSidebar = () => {
     const { currentUserData } = useAuth();
 
     const getUsers = async () => {
-        const q = query(collection(fireStore, "users"), limit(10));
+        const q: Query<DocumentData> = query(collection(fireStore, "users"), limit(10));
 
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
+        const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
+        querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
             const users = querySnapshot.docs
-            .map((doc) => ({ ...doc.data(), id: doc.id }));
+            .map((doc: QueryDocumentSnapshot<DocumentData>) => ({ ...doc.data(), id: doc.id }));
             setUsers(users);
         });
     }
@@ -38,7 +42,7 @@ const PeopleSidebar = () => {
         })
     }, [])
 
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+    const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
     return (
         <Fragment>

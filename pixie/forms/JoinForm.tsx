@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
-import PasswordStrengthBar from "react-password-strength-bar";
+import { useRef, useState } from "react"
+import PasswordStrengthBar from "react-password-strength-bar"
 
-import { NewUser } from "../interfaces";
-import { createUser } from "../lib/createUser";
+import { NewUser } from "../interfaces"
+import { createUser } from "../lib/createUser"
 
 export const JoinForm: React.FC = () => {
 

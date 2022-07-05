@@ -1,18 +1,20 @@
 import Link from "next/link"
 
+import { useMediaQuery } from "react-responsive"
+
+import { FaSignOutAlt } from "react-icons/fa"
+import { RiPencilFill } from "react-icons/ri"
+
 import Divider from "../../components/Divider"
 
 import { useAuth } from "../../auth/AuthContext"
 import { logOut } from "../../lib/signOut"
-import { useMediaQuery } from "react-responsive"
 import { numberFormatter } from "../../lib/numberFormatter"
-import { FaSignOutAlt } from "react-icons/fa"
-import { RiPencilFill } from "react-icons/ri"
 
 const MyProfileSidebar = () => {
 
     const { currentUserData } = useAuth();
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+    const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
     return (
         <nav className={`w-full h-full bg-darker rounded-lg ${isTabletOrMobile ? 'hidden' : 'flex'}`}>

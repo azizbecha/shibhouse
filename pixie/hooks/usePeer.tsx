@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
+
 import Peer from 'peerjs'
 import uuid from 'uuid-random'
 
@@ -9,17 +10,17 @@ const usePeer = (config: any = {}) => {
     onConnectionOpen,
   } = config
 
-  const [peerInstance, setPeerInstance] = useState(null)
-  const [peerStatus, setPeerStatus] = useState<String>()
-  const [peerId, setPeerId] = useState<String | null>(null)
+  const [peerInstance, setPeerInstance] = useState(null);
+  const [peerStatus, setPeerStatus] = useState<String>();
+  const [peerId, setPeerId] = useState<String | null>(null);
 
-  const router = useRouter()
+  const router: NextRouter = useRouter();
 
   const destroyPeerInstance = () => {
     if (!peerInstance) return
-    peerInstance.disconnect()
-    peerInstance.destroy()
-    setPeerInstance(null)
+    peerInstance.disconnect();
+    peerInstance.destroy();
+    setPeerInstance(null);
   }
 
   useEffect(() => {    
