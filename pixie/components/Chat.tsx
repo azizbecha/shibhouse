@@ -1,24 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react"
 
-import { useCopyToClipboard } from "react-use";
+import { useCopyToClipboard } from "react-use"
 import { Anchorme, LinkComponentProps } from 'react-anchorme'
-import { TailSpin } from "react-loader-spinner";
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
-import { toast } from "react-toastify";
-import InputEmoji from "react-input-emoji";
+import { TailSpin } from "react-loader-spinner"
+import { LinkPreview } from '@dhaiwat10/react-link-preview'
+import { toast } from "react-toastify"
+import InputEmoji from "react-input-emoji"
 
-import { addDoc, collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-import { fireStore } from "../auth/Firebase";
-import { useAuth } from "../auth/AuthContext";
+import { RiChatOffFill } from "react-icons/ri"
+import { AiFillPushpin } from "react-icons/ai"
 
-import { RiChatOffFill } from "react-icons/ri";
-import { AiFillPushpin } from "react-icons/ai";
+import { addDoc, collection, DocumentData, limit, onSnapshot, orderBy, query, QueryDocumentSnapshot } from "firebase/firestore"
+import { fireStore } from "../auth/Firebase"
+import { useAuth } from "../auth/AuthContext"
 
-import { getBrightColor } from "../lib/getBrightColor";
-import { isChatCommand } from "../lib/isChatCommand";
-import { StreamContext } from "../contexts/StreamContext";
-import { ChatProps } from "../interfaces";
+import { getBrightColor } from "../lib/getBrightColor"
+import { isChatCommand } from "../lib/isChatCommand"
+import { StreamContext } from "../contexts/StreamContext"
+import { ChatProps } from "../interfaces"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -29,15 +29,15 @@ const Chat: React.FC<ChatProps> = (props) => {
     const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
 
-    const { micAccess } = useContext<any>(StreamContext)
+    const { micAccess } = useContext<any>(StreamContext);
 
     useEffect(() => {
         const fetch = async () => {
             const q = query(collection(fireStore, `rooms/${props.roomId}/messages`), orderBy("sendTime", "desc"), limit(15));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                querySnapshot.forEach((doc) => {
+                querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                     const messages = querySnapshot.docs
-                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                    .map((doc: QueryDocumentSnapshot<DocumentData>) => ({ ...doc.data(), id: doc.id }));
                     setMessages(messages);
                 });
             });
@@ -53,7 +53,7 @@ const Chat: React.FC<ChatProps> = (props) => {
     }
 
     const copyRoomLink = () => {
-        copyToClipboard(window.location.href)
+        copyToClipboard(window.location.href);
         toast.success('Room link copied to clipboard', {
             position: "top-right",
             autoClose: 1000,
@@ -94,7 +94,7 @@ const Chat: React.FC<ChatProps> = (props) => {
         }, 200)
     }, [])
     
-    const sendMessage = async (e) => {
+    const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         //e.preventDefault();
         try {
             
@@ -181,8 +181,10 @@ const Chat: React.FC<ChatProps> = (props) => {
                             avatarColor: currentUserData.avatarColor,
                             isBot: false
                         }),
+
                         setMessage('');
                         setLastMessageTimestamp(new Date().getTime());
+
                         return 
                     } else {
                         toast.warning('Please wait a moment before', {
@@ -319,7 +321,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                         <div className="p-4 mx-auto">
                             <h1 className="text-center font-semibold text-md flex space-x-1 justify-center"><RiChatOffFill size={15} className="my-auto" /> <span>Chatting is not allowed in this room.</span></h1>
                             <h2 className="mt-2 text-center font-normal text-sm">The host of this room disabled the chat feature. </h2>
-                            <img src="../../images/shiba-sleeping.png" className="mt-6" alt="Image of shiba inu sleeping" />
+                            <img src="../../images/shiba-sleeping.png" className="mt-6" alt="Image of Shiba Inu sleeping" />
                         </div>
                     </div>
                 )

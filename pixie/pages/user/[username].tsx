@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react"
-import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { query, collection, limit, where, getDocs, doc, updateDoc, DocumentReference, DocumentData, QuerySnapshot, QueryDocumentSnapshot } from "firebase/firestore";
 
