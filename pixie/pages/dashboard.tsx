@@ -28,6 +28,7 @@ import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
 
 import isEmpty from 'validator/lib/isEmpty'
+import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
@@ -65,32 +66,63 @@ const Dashboard: React.FC = () => {
             speakers: [currentUserData.username]
         }
         
-        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && !isEmpty(roomPinnedLink.trim()) && !isEmpty(roomTopics.trim())) {
-            try {
-                setShowModal(false);
-                await createRoom(data);
-                toast.success('Room created successfully', {
-                    position: "top-center",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-
-                router.push(`/room/${roomId}`)
-            } catch (e) {
-                console.log(e)
-                toast.error('An error has been occured', {
-                    position: "top-center",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && !isEmpty(roomTopics.trim())) {
+            if (!isEmpty(roomPinnedLink.trim())) {
+                if (isURL(roomPinnedLink.trim())) {
+                    try {
+                        setShowModal(false);
+                        await createRoom(data);
+                        toast.success('Room created successfully', {
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+        
+                        router.push(`/room/${roomId}`);
+                    } catch (e) {
+                        console.log(e);
+                        toast.error('An error has been occured', {
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                }
+            } else {
+                try {
+                    setShowModal(false);
+                    await createRoom(data);
+                    toast.success('Room created successfully', {
+                        position: "top-center",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+    
+                    router.push(`/room/${roomId}`)
+                } catch (e) {
+                    console.log(e)
+                    toast.error('An error has been occured', {
+                        position: "top-center",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
             }
         } else {
             toast.warning('Please fill all the fields', {
