@@ -27,6 +27,8 @@ import { NewRoom } from "../interfaces"
 import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
 
+import isEmpty from 'validator/lib/isEmpty'
+
 import { AiFillHome } from "react-icons/ai"
 import { FaDollarSign, FaHome } from "react-icons/fa"
 
@@ -62,10 +64,8 @@ const Dashboard: React.FC = () => {
             allowChat: allowChat,
             speakers: [currentUserData.username]
         }
-
-        console.log(data);
         
-        if (roomTitle !== "" && roomDescription !== "" && roomTopics !== "") {
+        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && !isEmpty(roomPinnedLink.trim()) && !isEmpty(roomTopics.trim())) {
             try {
                 setShowModal(false);
                 await createRoom(data);
@@ -92,6 +92,16 @@ const Dashboard: React.FC = () => {
                     progress: undefined,
                 });
             }
+        } else {
+            toast.warning('Please fill all the fields', {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
