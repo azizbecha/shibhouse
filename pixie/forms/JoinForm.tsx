@@ -1,10 +1,11 @@
 import { useRef, useState } from "react"
 import PasswordStrengthBar from "react-password-strength-bar"
 
+import { toast } from "react-toastify"
+
+import isEmpty from 'validator/lib/isEmpty'
 import { NewUser } from "../interfaces"
 import { createUser } from "../lib/createUser"
-import isEmpty from 'validator/lib/isEmpty'
-import { toast } from "react-toastify"
 
 export const JoinForm: React.FC = () => {
 
@@ -27,7 +28,7 @@ export const JoinForm: React.FC = () => {
         }
         
         if (!isEmpty(firstnameRef.current.value) && !isEmpty(lastnameRef.current.value) && !isEmpty(emailRef.current.value) && !isEmpty(usernameRef.current.value) && !isEmpty(password)) {
-            createUser(userObject)
+            createUser(userObject);
         } else {
             toast.warning('Please fill all the inputs', {
                 position: "top-center",

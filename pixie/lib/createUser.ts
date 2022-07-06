@@ -1,14 +1,14 @@
-import { NewUser } from "../interfaces"
-
 import { createUserWithEmailAndPassword, User } from 'firebase/auth'
 import { collection, doc, DocumentData, getDocs, Query, query, QuerySnapshot, setDoc, where } from "firebase/firestore"; 
 
 import { toast } from "react-toastify";
 
-import { auth, fireStore } from '../auth/Firebase'
 import getCurrentUserData from "./getCurrentUserData";
+import { auth, fireStore } from '../auth/Firebase'
 import { capitalizeWord } from "./capitalize";
 import { getRandomColor } from "./getRandomColor";
+import { NewUser } from "../interfaces"
+
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import isAlpha from 'validator/lib/isAlpha';
