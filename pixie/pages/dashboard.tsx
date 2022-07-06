@@ -1,13 +1,17 @@
 import { useState, useRef, Fragment } from "react"
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 
 import { Dialog, Transition } from '@headlessui/react'
 
 import PrivateRoute from "../auth/PrivateRoute"
+import { useAuth } from "../auth/AuthContext"
 
-import Switch from "react-switch";
+import Switch from "react-switch"
+import Hotkeys from 'react-hot-keys'
 import { Ticker } from "react-ts-tradingview-widgets"
 import { toast } from "react-toastify"
+import { useMediaQuery } from "react-responsive"
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -16,15 +20,9 @@ import Divider from "../components/Divider"
 import ExportRooms from "../components/ExportRooms"
 import SEO from "../utils/SEO"
 
-import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar";
-import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar";
+import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar"
+import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar"
 
-import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-
-import Hotkeys from 'react-hot-keys';
-import { useMediaQuery } from "react-responsive"
-
-import { useAuth } from "../auth/AuthContext"
 import { NewRoom } from "../interfaces"
 import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
@@ -34,7 +32,7 @@ import { FaDollarSign, FaHome } from "react-icons/fa"
 
 const Dashboard: React.FC = () => {
 
-    const router = useRouter();
+    const router: NextRouter = useRouter();
     const { currentUserData } = useAuth();
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
 

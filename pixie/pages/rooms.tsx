@@ -28,7 +28,7 @@ const Rooms: React.FC = () => {
         const getRooms: Unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                 const rooms = querySnapshot.docs
-                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                .map((doc: QueryDocumentSnapshot<DocumentData>) => ({ ...doc.data(), id: doc.id }));
                 setCount(rooms.length);
                 setData(rooms);
             });

@@ -32,7 +32,7 @@ const People: React.FC = () => {
         const fetch: Unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                 const fetchedUsers = querySnapshot.docs
-                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                .map((doc: QueryDocumentSnapshot<DocumentData>) => ({ ...doc.data(), id: doc.id }));
                 setUsers(fetchedUsers);
             });
         });

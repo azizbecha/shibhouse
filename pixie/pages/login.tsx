@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from "react"
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 
 import { LogUser } from "../interfaces"
 import { signUser } from "../lib/signUser"
@@ -18,12 +18,12 @@ const Login: React.FC = () => {
     const emailRef = useRef<any>();
     const passwordRef = useRef<any>();
 
-    const router = useRouter()
+    const router: NextRouter = useRouter();
 
-    const [disabled, setDisabled] = useState(false)
+    const [disabled, setDisabled] = useState<boolean>(false);
 
-    const verify = async (e) => {
-        e.preventDefault()
+    const verify = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
         const userObject: LogUser = {
             email: emailRef.current.value,
@@ -40,8 +40,11 @@ const Login: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
-            setDisabled(true)
-            await signUser(userObject) 
+
+            setDisabled(true);
+
+            await signUser(userObject);
+
             toast.success('Logged successfully !', {
                 position: "top-center",
                 autoClose: 3000,
@@ -51,8 +54,9 @@ const Login: React.FC = () => {
                 draggable: true,
                 progress: undefined,
             });
-            setDisabled(false)
-            router.push("/dashboard")
+            
+            setDisabled(false);
+            router.push("/dashboard");
 
         } catch (e) {
             setDisabled(false)

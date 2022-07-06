@@ -53,8 +53,9 @@ export const JoinForm: React.FC = () => {
                     "#009200",
                     "#009200"
                 ]}
-                className="mb-5 w-12/12"
+                className="w-12/12"
             />
+            <p className="text-white mb-5">Password must contain at least 8 characters, 1 number, 1 uppercase letter and 1 lowercase letter</p>
             <button type="submit" className="p-4 rounded-full hover:bg-secondary sm:w-full text-center transition bg-primary text-white md:px-12">
                 <span className="text-white font-semibold md:block">Join now</span>
             </button>

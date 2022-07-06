@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
+import Head from 'next/head'
 import { AppProps } from 'next/app'
-import Head from 'next/head';
 
-import NextNProgress from "nextjs-progressbar";
+import NextNProgress from "nextjs-progressbar"
 
-import AuthProvider from '../auth/AuthContext';
+import AuthProvider from '../auth/AuthContext'
 
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 import AOS from 'aos'
-import "aos/dist/aos.css";
+import "aos/dist/aos.css"
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
