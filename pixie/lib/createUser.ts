@@ -82,7 +82,7 @@ const createUser = async (user: NewUser): Promise<void> => {
             
                             // If Email in use
                             if (e == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
-                                toast.error('Email is already used', {
+                                toast.warning('Email is already used', {
                                     position: "top-center",
                                     autoClose: 3000,
                                     hideProgressBar: false,
