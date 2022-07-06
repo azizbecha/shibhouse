@@ -11,6 +11,7 @@ import { capitalizeWord } from "./capitalize";
 import { getRandomColor } from "./getRandomColor";
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword';
+import isAlpha from 'validator/lib/isAlpha';
 
 const createUser = async (user: NewUser): Promise<void> => {
 
@@ -43,43 +44,59 @@ const createUser = async (user: NewUser): Promise<void> => {
             // If password is strong
             if (isStrongPassword(user.password, passwordOptions)) {
 
-                try {
-                    // Create new user
-                    await createUserWithEmailAndPassword(auth, user.email, user.password);
-    
-                    // Get created user data
-                    const userData: User = getCurrentUserData();
-    
-                    // Push user details to Firebase
-                    const docRef = await setDoc(doc(fireStore, "users", userData.uid), {
-                        id: userData.uid,
-                        firstname: capitalizeWord(user.firstname.trim()),
-                        lastname: capitalizeWord(user.lastname.trim()),
-                        email: user.email,
-                        username: user.username.trim(),
-                        followers: [],
-                        following: [],
-                        claps: 0,
-                        joinDate: new Date(),
-                        avatarColor: getRandomColor()
-                    });
-                    
-                    // Show success message to the user
-                    toast.success('Joined !', {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-                    
-                } catch (e) {
-    
-                    // If Email in use
-                    if (e == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
-                        toast.error('Email is already used', {
+                if (isAlpha(user.firstname)) {
+                    if (isAlpha(user.lastname)) {
+                        try {
+                            // Create new user
+                            await createUserWithEmailAndPassword(auth, user.email, user.password);
+            
+                            // Get created user data
+                            const userData: User = getCurrentUserData();
+            
+                            // Push user details to Firebase
+                            const docRef = await setDoc(doc(fireStore, "users", userData.uid), {
+                                id: userData.uid,
+                                firstname: capitalizeWord(user.firstname.trim()),
+                                lastname: capitalizeWord(user.lastname.trim()),
+                                email: user.email,
+                                username: user.username.trim(),
+                                followers: [],
+                                following: [],
+                                claps: 0,
+                                joinDate: new Date(),
+                                avatarColor: getRandomColor()
+                            });
+                            
+                            // Show success message to the user
+                            toast.success('Joined !', {
+                                position: "top-center",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                            
+                        } catch (e) {
+            
+                            // If Email in use
+                            if (e == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
+                                toast.error('Email is already used', {
+                                    position: "top-center",
+                                    autoClose: 3000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                });
+                            }
+                        }
+                    } else {
+
+                        // If lastname is not strong
+                        toast.warning('Lastname cannot contain numbers', {
                             position: "top-center",
                             autoClose: 3000,
                             hideProgressBar: false,
@@ -89,6 +106,18 @@ const createUser = async (user: NewUser): Promise<void> => {
                             progress: undefined,
                         });
                     }
+                } else {
+
+                    // If firstname is not strong
+                    toast.warning('Firstname cannot contain numbers', {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             } else {
 
