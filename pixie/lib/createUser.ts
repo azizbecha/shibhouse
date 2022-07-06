@@ -37,8 +37,12 @@ const createUser = async (user: NewUser): Promise<void> => {
     // If username is not used
     if (users.length == 0) {
 
+        // If email is valid
         if (isEmail(user.email)) {
+
+            // If password is strong
             if (isStrongPassword(user.password, passwordOptions)) {
+
                 try {
                     // Create new user
                     await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -75,7 +79,6 @@ const createUser = async (user: NewUser): Promise<void> => {
     
                     // If Email in use
                     if (e == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
-            
                         toast.error('Email is already used', {
                             position: "top-center",
                             autoClose: 3000,
@@ -88,6 +91,8 @@ const createUser = async (user: NewUser): Promise<void> => {
                     }
                 }
             } else {
+
+                // If password is not strong
                 toast.warning('Weak password', {
                     position: "top-center",
                     autoClose: 3000,
@@ -99,6 +104,8 @@ const createUser = async (user: NewUser): Promise<void> => {
                 });
             }
         } else {
+
+            // If email is not valid
             toast.warning('Invalid email', {
                 position: "top-center",
                 autoClose: 3000,
