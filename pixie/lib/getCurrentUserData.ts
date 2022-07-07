@@ -1,9 +1,9 @@
-import { getAuth } from "firebase/auth";
+import { Auth, getAuth, User } from "firebase/auth";
 
 const getCurrentUserData = () => {
 
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const auth: Auth = getAuth();
+    const user: User = auth.currentUser;
     return user
 }
 
