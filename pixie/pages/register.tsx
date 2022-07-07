@@ -19,8 +19,11 @@ const Register: React.FC = () => {
                         <div className="">
                             <p className="text-white font-bold text-4xl font-inter mb-10">Register</p>
                             <Row>
-                                <Col lg={8} md={12} sm={12} xs={12}>
+                                <Col lg={7} md={12} sm={12} xs={12}>
                                     <JoinForm />
+                                </Col>
+                                <Col lg={5} md={12} sm={12} xs={12}>
+                                    <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-10/12 mx-auto mb-3" alt="Shib hero" loading="lazy" />
                                 </Col>
                             </Row>
                         </div>
