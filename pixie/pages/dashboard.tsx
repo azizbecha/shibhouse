@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
                         progress: undefined,
                     });
     
-                    router.push(`/room/${roomId}`)
+                    router.push(`/room/${roomId}`);
                 } catch (e) {
                     console.log(e)
                     toast.error('An error has been occured', {

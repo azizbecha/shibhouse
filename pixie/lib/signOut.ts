@@ -1,8 +1,8 @@
-import { getAuth, signOut } from "firebase/auth";
+import { Auth, getAuth, signOut } from "firebase/auth";
 
 const logOut = async (): Promise<void> => {
-    const auth = getAuth();
-    return await signOut(auth)
+    const auth: Auth = getAuth();
+    return await signOut(auth);
 }
 
 export { logOut }

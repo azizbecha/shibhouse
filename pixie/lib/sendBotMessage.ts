@@ -2,7 +2,8 @@ import { addDoc, collection } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
 const sendBotMessage = (roomId: string, message: string): void => {
-        // remove spaces in start/end of message
+    
+        // Remove spaces in start/end of message
         message.trim();
 
         // Make sure that message is not empty
