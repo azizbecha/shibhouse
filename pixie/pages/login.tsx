@@ -75,7 +75,7 @@ const Login: React.FC = () => {
         <ProtectedRoute>
             <SEO title="Login - Shibhouse" description="Log to your account in Shibhouse.tv"  />
             <Navbar />
-            <div className="relative bg-dark">
+            <div className="relative bg-dark vh-100">
                 <div className="container px-6 md:px-12 pb-5 lg:px-7">
                     <div className="flex items-center flex-wrap px-1 md:px-0">
                         <div className="relative lg:w-7/12 xl:py-32">
