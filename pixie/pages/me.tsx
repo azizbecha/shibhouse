@@ -19,6 +19,7 @@ import Divider from "../components/Divider";
 
 import { FaArrowLeft, FaLink, FaPen } from "react-icons/fa";
 
+import isEmail from "validator/lib/isEmail";
 import { capitalizeWord } from "../lib/capitalize";
 import { numberFormatter } from "../lib/numberFormatter";
 
@@ -102,10 +103,34 @@ const Me: React.FC = () => {
             if (email !== currentUserData.email) {
 
                 // If email has changed
-                const auth = getAuth();
+                if (isEmail(email)) {
+                    const auth = getAuth();
 
-                updateEmail(auth.currentUser, email).then(() => {
-                    toast.success('Email updated successfully', {
+                    updateEmail(auth.currentUser, email).then(() => {
+                        toast.success('Email updated successfully', {
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                        router.push('/');
+                    }).catch((error) => {
+                        console.log(error);
+                        toast.error('An error has been occured', {
+                            position: "top-center",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    });
+                } else {
+                    toast.warning('Please enter a valid email', {
                         position: "top-center",
                         autoClose: 4000,
                         hideProgressBar: false,
@@ -114,19 +139,7 @@ const Me: React.FC = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    router.push('/');
-                }).catch((error) => {
-                    console.log(error);
-                    toast.error('An error has been occured', {
-                        position: "top-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-                });
+                }
             }
             router.push('/');
         }
