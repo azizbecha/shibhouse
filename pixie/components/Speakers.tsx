@@ -1,4 +1,4 @@
-import { Fragment, useContext, useMemo } from 'react'
+import React, { Fragment, useContext, useMemo } from 'react'
 
 import User from './User'
 import { PeerContext } from '../contexts/PeerJSContext'

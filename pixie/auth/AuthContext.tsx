@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 import { auth } from './Firebase';
 import LoadingScreen from '../components/LoadingScreen';
@@ -13,19 +13,19 @@ export function useAuth() {
 
 export default function AuthProvider({children}) {
 
-    const [currentUser, setCurrentUser] = useState(null)
-    const [loading, setLoading] = useState<boolean>(true)
+    const [currentUser, setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const [currentUserData, setCurrentUserData] = useState<any>();
 
     useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
+        onAuthStateChanged(auth, async (user: User) => {
             if (user) {
-                setCurrentUserData(await getUserData(user.uid))
-                setCurrentUser(user)
+                setCurrentUserData(await getUserData(user.uid));
+                setCurrentUser(user);
             } else {
-                setCurrentUser(null)
+                setCurrentUser(null);
             }
-            setLoading(false)
+            setLoading(false);
         })
     }, [currentUser])
 

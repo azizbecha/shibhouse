@@ -1,6 +1,6 @@
+import { doc, setDoc } from "firebase/firestore"
 import { fireStore } from '../auth/Firebase'
-import { doc, setDoc } from "firebase/firestore"; 
-import { NewRoom } from '../interfaces';
+import { NewRoom } from '../interfaces'
 
 const createRoom = async (data: NewRoom): Promise<void> => {
 

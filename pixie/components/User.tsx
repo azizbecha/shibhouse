@@ -23,9 +23,9 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
       connectedPeers,
     },
 
-  } = useContext<any>(PeerContext)
+  } = useContext<any>(PeerContext);
 
-  const { micMuted, muteToggle } = useContext<any>(StreamContext)
+  const { micMuted, muteToggle } = useContext<any>(StreamContext);
   const [volume, setVolume] = useState<number>(100);
 
   let muteAudio: HTMLAudioElement = new Audio("../../sounds/mute.wav");

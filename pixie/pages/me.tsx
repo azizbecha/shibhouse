@@ -61,18 +61,19 @@ const Me: React.FC = () => {
 
     useEffect(() => {
         if (firstname !== currentUserData.firstname || lastname !== currentUserData.lastname || email !== currentUserData.email || bio !== currentUserData.bio || avatarColor !== currentUserData.avatarColor) {
-            setIsDisabled(false)
+            setIsDisabled(false);
         } else {
-            setIsDisabled(true)
+            setIsDisabled(true);
         }
     }, [firstname, lastname, email, bio, avatarColor, currentUserData.firstname, currentUserData.lastname, currentUserData.email, currentUserData.bio, currentUserData.avatarColor])
 
 
-    const updateProfile = async (e) => {
+    const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         if (firstname !== currentUserData.firstname || lastname !== currentUserData.lastname || email !== currentUserData.email || bio !== currentUserData.bio || avatarColor !== currentUserData.avatarColor) {
+
             // If something has changed
-            
             const userRef = doc(fireStore, "users", currentUserData.id);
             await updateDoc(userRef, {
                 firstname: firstname,
@@ -99,8 +100,10 @@ const Me: React.FC = () => {
             });
             
             if (email !== currentUserData.email) {
+
                 // If email has changed
                 const auth = getAuth();
+
                 updateEmail(auth.currentUser, email).then(() => {
                     toast.success('Email updated successfully', {
                         position: "top-center",
