@@ -22,9 +22,9 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                setIsLoggedIn(true)
+                setIsLoggedIn(true);
             } else {
-                setIsLoggedIn(false)
+                setIsLoggedIn(false);
             }
         })
     }, [])

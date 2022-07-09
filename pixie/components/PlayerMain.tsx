@@ -1,20 +1,23 @@
 import React, { useContext, useEffect, useState, useRef, Fragment } from 'react'
-import Link from 'next/link'
 import { NextRouter, useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 import { sendBotMessage } from '../lib/sendBotMessage'
+import { numberFormatter } from '../lib/numberFormatter'
 
 import { PlayerProps } from '../interfaces'
 
 import Speakers from './Speakers'
 import Listeners from './Listeners'
 import Chat from './Chat'
+import Divider from './Divider'
 
 import ReactTimeAgo from 'react-time-ago'
 import Hotkeys from 'react-hot-keys';
 import QRCode from "react-qr-code";
+import { IUseNetworkState } from 'react-use/lib/useNetworkState'
 import { useMediaQuery } from 'react-responsive'
 import { toast } from 'react-toastify'
 import { Audio as AudioLoader } from "react-loader-spinner"
@@ -23,19 +26,16 @@ import { useNetworkState, useCopyToClipboard } from 'react-use';
 import { doc, deleteDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
 
-import Divider from './Divider'
 import { Dialog, Transition } from '@headlessui/react'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-import { FaBan,  FaBug,  FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
+import { FaBan, FaBug, FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
-import { numberFormatter } from '../lib/numberFormatter'
-import { IUseNetworkState } from 'react-use/lib/useNetworkState'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
