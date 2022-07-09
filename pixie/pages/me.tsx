@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 
 import { doc, updateDoc, query, collection, where, getDocs, limit, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { getAuth, updateEmail } from "firebase/auth";
@@ -27,7 +27,7 @@ import SEO from "../utils/SEO";
 
 const Me: React.FC = () => {
 
-    const router = useRouter();    
+    const router: NextRouter = useRouter();    
     const { currentUserData } = useContext(AuthContext);
     
     const [firstname, setFirstname] = useState<string>(currentUserData.firstname);
@@ -39,7 +39,6 @@ const Me: React.FC = () => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
     const [users, setUsers] = useState([]);
-
     
     useEffect(() => {
         const getUsers = async () => {
@@ -58,6 +57,7 @@ const Me: React.FC = () => {
         setBio(currentUserData.bio);
         setAvatarColor(currentUserData.avatarColor);
         getUsers();
+
     }, [currentUserData.avatarColor, currentUserData.bio, currentUserData.email, currentUserData.firstname, currentUserData.lastname, currentUserData.username])
 
     useEffect(() => {
@@ -102,7 +102,7 @@ const Me: React.FC = () => {
             
             if (email !== currentUserData.email) {
 
-                // If email has changed
+                // If email has changed, check if it's valid then update it
                 if (isEmail(email)) {
                     const auth = getAuth();
 
@@ -163,7 +163,7 @@ const Me: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="bg-darker text-white rounded-lg pt-16 pb-12 px-8 flex flex-col">
+                                <div className="bg-darker text-white rounded-lg pt-16 pb-7 px-8 flex flex-col">
                                     <div className="mb-1 font-semibold text-2xl mt-3">{capitalizeWord(currentUserData.firstname)} {capitalizeWord(currentUserData.lastname)} <span className="text-lg">(@{currentUserData.username})</span></div>
                                     <div className="text-sm mt-2 text-gray-200">
                                         <div className="flex flex-row ml-auto space-x-3 items-center">
@@ -221,7 +221,7 @@ const Me: React.FC = () => {
                                             <HexColorPicker color={avatarColor} onChange={setAvatarColor} />
                                         </div>
                                         
-                                        <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 rounded-md font-semibold text-sm`} disabled={isDisabled}>Save changes</button>
+                                        <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 mt-3 rounded-md font-semibold text-sm`} disabled={isDisabled}>Save changes</button>
                                     </form>
 
                                 </div>
