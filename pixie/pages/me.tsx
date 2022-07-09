@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { doc, updateDoc, query, collection, where, getDocs, limit } from "firebase/firestore";
+import { doc, updateDoc, query, collection, where, getDocs, limit, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { getAuth, updateEmail } from "firebase/auth";
 
 import { AuthContext } from "../auth/AuthContext";
@@ -47,7 +47,7 @@ const Me: React.FC = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 const users = querySnapshot.docs
-                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                .map((doc: QueryDocumentSnapshot<DocumentData>) => ({ ...doc.data(), id: doc.id }));
                 setUsers(users);
             });
         }
@@ -117,6 +117,15 @@ const Me: React.FC = () => {
                     router.push('/');
                 }).catch((error) => {
                     console.log(error);
+                    toast.error('An error has been occured', {
+                        position: "top-center",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 });
             }
             router.push('/');
