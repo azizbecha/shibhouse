@@ -256,11 +256,13 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     messages.map((message, key) => {
                                         var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
                                         var mentions: Array<string> | null = []
+                                        var msg: Array<string> = message.message.split(" ");
+
                                         mentions = []
+                                        
                                         if (message.message.match(pattern) !== null) {
                                             mentions = message.message.match(pattern)
                                         }
-                                        var msg: Array<string> = message.message.split(" ");
 
                                         return (
                                             <li className='w-full my-1' key={key}>
@@ -270,30 +272,29 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                     {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mx-1 rounded-full text-xs text-white">You</span>}
                                                 </span>
                                                 <span className="text-sm text-wrap break-all">
-                                                
-                                                        {
-                                                            msg.map((word: string, key: number) => {
-                                                                if (mentions.includes(word)) {
-                                                                    return (
-                                                                        <span key={key}>
-                                                                            <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
-                                                                                <a href={`../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
-                                                                                    {word}
-                                                                                </a>
-                                                                            </span>&nbsp;
-                                                                        </span>
-                                                                    )
-                                                                } else {
-                                                                    return (
-                                                                        <span className="message" key={key}>
-                                                                            <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
+                                                    {
+                                                        msg.map((word: string, key: number) => {
+                                                            if (mentions.includes(word)) {
+                                                                return (
+                                                                    <span key={key}>
+                                                                        <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
+                                                                            <a href={`../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
                                                                                 {word}
-                                                                            </Anchorme>&nbsp;
-                                                                        </span>
-                                                                    )
-                                                                }
-                                                            })
-                                                        }
+                                                                            </a>
+                                                                        </span>&nbsp;
+                                                                    </span>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <span className="message" key={key}>
+                                                                        <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
+                                                                            {word}
+                                                                        </Anchorme>&nbsp;
+                                                                    </span>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
                                                 </span>
                                             </li>
                                         )
@@ -303,16 +304,16 @@ const Chat: React.FC<ChatProps> = (props) => {
                         </div>
                         <div className="mt-2 flex">
                             <InputEmoji
-                            value={message}
-                            onChange={setMessage}
-                            cleanOnEnter
-                            onEnter={sendMessage}
-                            placeholder="Type a message"
-                            theme="dark"
-                            borderRadius={7}
-                            borderColor="#242C37"
-                            height={20}
-                            maxWidth={120}
+                                value={message}
+                                onChange={setMessage}
+                                cleanOnEnter
+                                onEnter={sendMessage}
+                                placeholder="Type a message"
+                                theme="dark"
+                                borderRadius={7}
+                                borderColor="#242C37"
+                                height={20}
+                                maxWidth={120}
                             />
                         </div>
                     </Fragment>
