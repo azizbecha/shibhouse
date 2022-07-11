@@ -9,10 +9,10 @@ import { createUser } from "../lib/createUser"
 
 export const JoinForm: React.FC = () => {
 
-    const firstnameRef = useRef<any>();
-    const lastnameRef = useRef<any>();
-    const emailRef = useRef<any>();
-    const usernameRef = useRef<any>();
+    const firstnameRef = useRef<HTMLInputElement>();
+    const lastnameRef = useRef<HTMLInputElement>();
+    const emailRef = useRef<HTMLInputElement>();
+    const usernameRef = useRef<HTMLInputElement>();
 
     const [password, setPassword] = useState<string>('');
 
