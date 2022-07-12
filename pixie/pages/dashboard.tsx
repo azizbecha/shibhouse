@@ -40,6 +40,11 @@ const Dashboard: React.FC = () => {
     const { currentUserData } = useAuth();
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
 
+    const [roomTitle, setRoomTitle] = useState('');
+    const [roomDescription, setRoomDescription] = useState('');
+    const [roomPinnedLink, setRoomPinnedLink] = useState('');
+    const [roomTopics, setRoomTopics] = useState<Array<{id: string, text: string}>>([]);
+
     const [showModal, setShowModal] = useState<boolean>(false);
     const [allowChat, setAllowChat] = useState<boolean>(true);
     const cancelButtonRef = useRef(null);
@@ -51,35 +56,29 @@ const Dashboard: React.FC = () => {
     };
 
     const delimiters: Array<number> = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
-    const [tags, setTags] = useState<Array<{id: string, text: string}>>([]);
 
     const handleDelete = (i) => {
-        setTags(tags.filter((tag, index) => index !== i));
+        setRoomTopics(roomTopics.filter((tag, index) => index !== i));
     };
 
     const handleAddition = (tag) => {
-        setTags([...tags, tag]);
+        setRoomTopics([...roomTopics, tag]);
     };
 
     const handleDrag = (tag, currPos, newPos) => {
-        const newTags = tags.slice();
+        const newTags = roomTopics.slice();
 
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
 
         // re-render
-        setTags(newTags);
+        setRoomTopics(newTags);
     };
 
     const handleTagClick = (index) => {
         console.log('The tag at index ' + index + ' was clicked');
     };
-
-    const [roomTitle, setRoomTitle] = useState('');
-    const [roomDescription, setRoomDescription] = useState('');
-    const [roomPinnedLink, setRoomPinnedLink] = useState('');
-    const [roomTopics, setRoomTopics] = useState('');
-
+    
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const roomId = generateId(10);
@@ -89,12 +88,12 @@ const Dashboard: React.FC = () => {
             title: roomTitle.trim(),
             description: roomDescription.trim(),
             pinnedLink: roomPinnedLink.trim(),
-            topics: tags,
+            topics: roomTopics,
             allowChat: allowChat,
             speakers: [currentUserData.username]
         }
         
-        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && tags.length > 0) {
+        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && roomTopics.length > 0) {
             if (!isEmpty(roomPinnedLink.trim())) {
                 if (isURL(roomPinnedLink.trim())) {
                     try {
@@ -239,7 +238,7 @@ const Dashboard: React.FC = () => {
                                                                 {/*<input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" value={roomTopics} onChange={(e) => {setRoomTopics(e.target.value)}} required /><br />*/}
                                                                 <div className="mb-2">
                                                                 <ReactTags
-                                                                    tags={tags}
+                                                                    tags={roomTopics}
                                                                     delimiters={delimiters}
                                                                     handleDelete={handleDelete}
                                                                     handleAddition={handleAddition}
