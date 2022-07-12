@@ -62,7 +62,17 @@ const Dashboard: React.FC = () => {
     };
 
     const handleAddition = (tag) => {
-        setRoomTopics([...roomTopics, tag]);
+        roomTopics.length < 8 ? setRoomTopics([...roomTopics, tag]) : (
+            toast.warning("You can't add more than 8 tags", {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        )
     };
 
     const handleDrag = (tag, currPos, newPos) => {
@@ -81,6 +91,7 @@ const Dashboard: React.FC = () => {
     
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const roomId = generateId(10);
         const data: NewRoom = {
             id: roomId,
@@ -237,16 +248,15 @@ const Dashboard: React.FC = () => {
                                                                 <span className="font-semibold">Topics <span className="text-primary font-extrabold">*</span></span><br />
                                                                 {/*<input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" value={roomTopics} onChange={(e) => {setRoomTopics(e.target.value)}} required /><br />*/}
                                                                 <div className="mb-2">
-                                                                <ReactTags
-                                                                    tags={roomTopics}
-                                                                    delimiters={delimiters}
-                                                                    handleDelete={handleDelete}
-                                                                    handleAddition={handleAddition}
-                                                                    handleDrag={handleDrag}
-                                                                    handleTagClick={handleTagClick}
-                                                                    inputFieldPosition="bottom"
-                                                                    editable
-                                                                />
+                                                                    <ReactTags
+                                                                        tags={roomTopics}
+                                                                        delimiters={delimiters}
+                                                                        handleDelete={handleDelete}
+                                                                        handleAddition={handleAddition}
+                                                                        handleDrag={handleDrag}
+                                                                        handleTagClick={handleTagClick}
+                                                                        inputFieldPosition="bottom"
+                                                                    />
                                                                 </div>
                                                                 
                                                                 <span className="font-semibold">Pinned link (optional)</span><br />
