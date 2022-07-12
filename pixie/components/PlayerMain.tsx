@@ -256,7 +256,7 @@ function Main ({ user, room }) {
     setShowChat(!showChat);
   }
 
-  const topics = room.topics.split(" ");
+  const topics = room.topics;
 
   return (
     <Fragment>
@@ -671,7 +671,7 @@ function Main ({ user, room }) {
                       topics.map((topic, key) => {
                         return (
                           <Col key={key}>
-                            <span key={key} className="bg-gray text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
+                            <span key={key} className="bg-gray text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic.text}</span>
                           </Col>
                         )
                       })

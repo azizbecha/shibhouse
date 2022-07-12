@@ -123,3 +123,52 @@
         transform:rotate(360deg);
     }
 }
+
+.ReactTags__tags {
+    position: relative;
+}
+
+/* Styles for the input */
+.ReactTags__tagInput {
+    width: 100%;
+    display: inline-block;
+}
+.ReactTags__tagInput input.ReactTags__tagInputField,
+.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+    padding: 10px;
+    background-color: #151A21;
+    margin: 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Styles for selected tags */
+.ReactTags__selected span.ReactTags__tag {
+    background: #f42525;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    padding-right: 9px;
+    padding-left: 9px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+}
+
+.ReactTags__selected a.ReactTags__remove {
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.ReactTags__remove {
+    border: none;
+    cursor: pointer;
+    background: none;
+    color: white;
+    margin-left: 3px;
+}

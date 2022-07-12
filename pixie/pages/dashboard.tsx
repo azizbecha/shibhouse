@@ -8,6 +8,7 @@ import { useAuth } from "../auth/AuthContext"
 
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
+import { WithContext as ReactTags } from 'react-tag-input'
 import { Ticker } from "react-ts-tradingview-widgets"
 import { toast } from "react-toastify"
 import { useMediaQuery } from "react-responsive"
@@ -43,10 +44,37 @@ const Dashboard: React.FC = () => {
     const [allowChat, setAllowChat] = useState<boolean>(true);
     const cancelButtonRef = useRef(null);
 
-    // const roomTitleRef = useRef<HTMLInputElement>();
-    // const roomDescriptionRef = useRef<HTMLTextAreaElement>();
-    // const roomPinnedLinkRef = useRef<HTMLInputElement>();
-    // const roomTopicsRef = useRef<HTMLInputElement>();
+    const KeyCodes = {
+        comma: 188,
+        enter: 13,
+        space: 32
+    };
+
+    const delimiters: Array<number> = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
+    const [tags, setTags] = useState<Array<{id: string, text: string}>>([]);
+
+    const handleDelete = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
+    };
+
+    const handleAddition = (tag) => {
+        setTags([...tags, tag]);
+    };
+
+    const handleDrag = (tag, currPos, newPos) => {
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+
+        // re-render
+        setTags(newTags);
+    };
+
+    const handleTagClick = (index) => {
+        console.log('The tag at index ' + index + ' was clicked');
+    };
+
     const [roomTitle, setRoomTitle] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
     const [roomPinnedLink, setRoomPinnedLink] = useState('');
@@ -61,12 +89,12 @@ const Dashboard: React.FC = () => {
             title: roomTitle.trim(),
             description: roomDescription.trim(),
             pinnedLink: roomPinnedLink.trim(),
-            topics: roomTopics.trim(),
+            topics: tags,
             allowChat: allowChat,
             speakers: [currentUserData.username]
         }
         
-        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && !isEmpty(roomTopics.trim())) {
+        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && tags.length > 0) {
             if (!isEmpty(roomPinnedLink.trim())) {
                 if (isURL(roomPinnedLink.trim())) {
                     try {
@@ -208,7 +236,19 @@ const Dashboard: React.FC = () => {
                                                                 <textarea className="rounded w-full py-1 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={roomDescription} onChange={(e) => {setRoomDescription(e.target.value)}} required /><br />
 
                                                                 <span className="font-semibold">Topics <span className="text-primary font-extrabold">*</span></span><br />
-                                                                <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" value={roomTopics} onChange={(e) => {setRoomTopics(e.target.value)}} required /><br />
+                                                                {/*<input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room topics here (splitted by space)" type="text" value={roomTopics} onChange={(e) => {setRoomTopics(e.target.value)}} required /><br />*/}
+                                                                <div className="mb-2">
+                                                                <ReactTags
+                                                                    tags={tags}
+                                                                    delimiters={delimiters}
+                                                                    handleDelete={handleDelete}
+                                                                    handleAddition={handleAddition}
+                                                                    handleDrag={handleDrag}
+                                                                    handleTagClick={handleTagClick}
+                                                                    inputFieldPosition="bottom"
+                                                                    editable
+                                                                />
+                                                                </div>
                                                                 
                                                                 <span className="font-semibold">Pinned link (optional)</span><br />
                                                                 <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />

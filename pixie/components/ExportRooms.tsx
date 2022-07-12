@@ -42,7 +42,7 @@ const ExportRooms: React.FC = () => {
             <ul role="list" id="roomsList">
                 {
                     data.map((room, index: number) => {
-                        const topics: Array<String> = room.topics.split(" ");
+                        const topics = room.topics;
                         return (
                             <li key={index} className="px-5 py-4 border-t-0 border-b-2 border-b-white bg-dark rounded-t-lg mb-5 shadow-lg">
                                 <div className="flex items-center space-x-4">
@@ -58,9 +58,9 @@ const ExportRooms: React.FC = () => {
                                         </p>
                                         <p className="text-sm mb-4">
                                             {
-                                                topics.map((word: string, key: number) => {
+                                                topics.map((topic, key: number) => {
                                                     return (
-                                                        <span key={key} className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{word}</span>
+                                                        <span key={key} className="bg-darker text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic.text}</span>
                                                     )
                                                 })
                                             }

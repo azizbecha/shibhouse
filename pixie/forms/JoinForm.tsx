@@ -54,7 +54,7 @@ export const JoinForm: React.FC = () => {
             </div>
             <div className="relative flex rounded-full shadow-md mb-5">
                 <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setPassword(e.target.value)
+                    setPassword(e.target.value);
                 }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" required />
             </div>
             <PasswordStrengthBar

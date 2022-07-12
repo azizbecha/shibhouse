@@ -22,7 +22,7 @@ export interface NewRoom {
   title: string,
   description: string,
   pinnedLink: string,
-  topics: string,
+  topics: Array<{id: string, text: string}>,
   createdBy: string,
   allowChat: boolean,
   speakers: Array<string>
