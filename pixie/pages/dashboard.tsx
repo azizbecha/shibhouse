@@ -55,6 +55,7 @@ const Dashboard: React.FC = () => {
         space: 32
     };
 
+    // Delimiters to use when parsing tags
     const delimiters: Array<number> = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
 
     const handleDelete = (i) => {
@@ -92,7 +93,7 @@ const Dashboard: React.FC = () => {
     const createNewRoom = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const roomId = generateId(10);
+        const roomId: string = generateId(10);
         const data: NewRoom = {
             id: roomId,
             createdBy: currentUserData.username,
@@ -178,14 +179,10 @@ const Dashboard: React.FC = () => {
     return (
         <PrivateRoute>
             <SEO title="Dashboard - Shibhouse" description="Re-taking voice conversations to the moon"  />
-            <Hotkeys 
-                keyName="ctrl+y" 
-                onKeyDown={() => setShowModal(!showModal)}
-            ></Hotkeys>
-            <Hotkeys 
-                keyName="ctrl+m" 
-                onKeyDown={() => router.push('/me')}
-            ></Hotkeys>
+            
+            <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)} />
+            <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')} />
+
             <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                 <Navbar />
                 <div className="mx-auto" style={{width: '98%'}}>
