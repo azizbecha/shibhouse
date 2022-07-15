@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { Fragment } from 'react'
-import Link from 'next/link'
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 
 import { useCopyToClipboard } from 'react-use'
 import { toast } from 'react-toastify'

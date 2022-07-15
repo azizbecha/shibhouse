@@ -15,6 +15,8 @@ import { addDoc, collection, DocumentData, limit, onSnapshot, orderBy, query, Qu
 import { fireStore } from "../auth/Firebase"
 import { useAuth } from "../auth/AuthContext"
 
+import isEmpty from 'validator/lib/isEmpty'
+
 import { getBrightColor } from "../lib/getBrightColor"
 import { isChatCommand } from "../lib/isChatCommand"
 import { StreamContext } from "../contexts/StreamContext"
@@ -102,7 +104,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             message.trim();
 
             // Make sure that message is not empty
-            if (message.length > 0) {
+            if (message.length > 0 && !isEmpty(message)) {
 
                 // if message is a command
                 if (isChatCommand(message)) {
