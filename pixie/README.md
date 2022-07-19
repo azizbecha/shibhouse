@@ -58,19 +58,14 @@ Clone the repository
   ```sh
   git clone https://github.com/azizbecha/shibhouse.git
   ```
-  
-Go to the specific folder  
-```sh
-cd shibhouse
-cd pixie
-```
 
 Install dependencies
   ```sh
   npm install
   ```
+ 
 Add Firebase app config:
-1. Go to `/auth` folder and create a file named `config.ts` then add this piece of code and don't forget to replace the `xxxxxxxxxxxxxxxxxxxxxxxxxxxxx`'s with your data
+1. Go to `/auth` folder and create a file named `config.ts` then add this piece of code and don't forget to replace the `xxxxxxxxxxxxxxxxxxxxxxxxxxxxx`'s with your credentials
 ```ts
 export const firebaseConfig = {
     apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -82,11 +77,19 @@ export const firebaseConfig = {
     measurementId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 };
 ```
-    
-Run locally
-  ```sh
-  npm run dev
-  ```
+
+Run the project 
+```sh
+cd shibhouse
+cd pixie
+```  
+
+Or
+  
+```sh
+npm run web
+```
+if you are in the `/shibhouse` folder.
 
 [contributors-shield]: https://img.shields.io/github/contributors/azizbecha/shibhouse.svg?style=for-the-badge
 [contributors-url]: https://github.com/azizbecha/shibhouse/graphs/contributors
