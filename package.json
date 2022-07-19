@@ -4,6 +4,10 @@
   "description": "Re-taking voice conversations to the moon",
   "main": "index.js",
   "scripts": {
+    "web": "cd pixie && npm run dev",
+    "android": "cd poppy && react-native run-android",
+    "ios": "cd poppy && react-native run-ios",
+    "mobile": "cd poppy && react-native start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
