@@ -180,8 +180,8 @@ const Dashboard: React.FC = () => {
         <PrivateRoute>
             <SEO title="Dashboard - Shibhouse" description="Re-taking voice conversations to the moon"  />
             
-            <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)} />
-            <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')} />
+            <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>
+            <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
             <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                 <Navbar />
