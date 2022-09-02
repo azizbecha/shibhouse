@@ -100,7 +100,7 @@ const Chat: React.FC<ChatProps> = (props) => {
         //e.preventDefault();
         try {
             
-            // remove sapces in start/end of message
+            // remove spaces in start/end of message
             message.trim();
 
             // Make sure that message is not empty
@@ -273,6 +273,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                     
                                                     {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
                                                     {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
+                                                    <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white" style={{fontSize: 11}}>Ban</span>
                                                 </span>
                                                 <span className="text-sm text-wrap break-all">
                                                     {
