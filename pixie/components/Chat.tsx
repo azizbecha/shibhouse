@@ -272,7 +272,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                     <a href={`../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
                                                     
                                                     {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
-                                                    {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
+                                                    {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
                                                 </span>
                                                 <span className="text-sm text-wrap break-all">
                                                     {

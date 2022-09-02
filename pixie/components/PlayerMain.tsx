@@ -691,27 +691,27 @@ function Main ({ user, room }) {
                       </span>
                     </Col>
                     <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
                         <HiSpeakerphone size={13} className="my-auto mr-1" /> Speaker
                       </span>
                     </Col>
                     <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
                         <FaHeadphones size={13} className="my-auto mr-1" /> Listener
                       </span>
                     </Col>
                     <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
                         <FaMicrophoneSlash size={13} className="my-auto mr-1" /> Muted
                       </span>
                     </Col>
                     <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
                         <FaMicrophone size={13} className="my-auto mr-1" /> Ummuted
                       </span>
                     </Col>
                     <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
+                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
                         <FaBan size={13} className="my-auto mr-1" /> Ban
                       </span>
                     </Col>
@@ -773,6 +773,7 @@ function Main ({ user, room }) {
                         leave={onLeave}
                         role={connRole}
                         username={user.username}
+                        creator={room.createdBy}
                         muteToggle={() => {
                           muteToggle();
                           playMuteAudio();

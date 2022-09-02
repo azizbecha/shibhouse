@@ -51,7 +51,8 @@ export interface ChatProps {
   leave: () => void,
   muteToggle: () => void,
   role: string,
-  username: string
+  username: string,
+  creator: string
 }
 
 export interface RoomMemberProps {
