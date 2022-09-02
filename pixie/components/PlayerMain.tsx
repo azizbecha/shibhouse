@@ -174,25 +174,29 @@ function Main ({ user, room }) {
       }
     }
 
-    sendBotMessage(roomId, `@${user.username} left the room`)
-    if (connToHost) connToHost.close()
+    sendBotMessage(roomId, `@${user.username} left the room`);
+
+    if (connToHost) connToHost.close();
+
     if (connectedPeers) {
       connectedPeers.forEach(conn => {
         conn.close()
       })
     }
+
     if (outgoingStreams) {
       outgoingStreams.forEach(conn => {
         conn.close()
       })
     }
+
     if (incomingStreams) {
       incomingStreams.forEach(conn => {
         conn.call.close()
       })
     }
 
-    router.push('/dashboard')
+    router.push('/dashboard');
   }
 
   if (peerStatus === 'error') {
@@ -218,7 +222,7 @@ function Main ({ user, room }) {
   }
 
   const copyRoomLink = () => {
-    copyToClipboard(window.location.href)
+    copyToClipboard(window.location.href);
     toast.success('Room link copied to clipboard', {
       position: "top-right",
       autoClose: 1000,

@@ -270,8 +270,9 @@ const Chat: React.FC<ChatProps> = (props) => {
                                             <li className='w-full my-1' key={key}>
                                                 <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
                                                     <a href={`../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
+                                                    
                                                     {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
-                                                    {message.sentBy == currentUserData.username && <span className="px-2 py-0.5 bg-primary mx-1 rounded-full text-xs text-white">You</span>}
+                                                    {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
                                                 </span>
                                                 <span className="text-sm text-wrap break-all">
                                                     {
