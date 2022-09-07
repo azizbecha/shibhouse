@@ -21,6 +21,7 @@ import { getBrightColor } from "../lib/getBrightColor"
 import { isChatCommand } from "../lib/isChatCommand"
 import { StreamContext } from "../contexts/StreamContext"
 import { ChatProps } from "../interfaces"
+import { sendBotMessage } from "../lib/sendBotMessage"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -144,6 +145,12 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 draggable: true,
                                 progress: undefined,
                             });
+                            break;
+                        
+                        case '/rabye':
+                            sendBotMessage(props.roomId, `@${props.username} played the Rabye Bouden's "Sa7a l Bitcoin rab3oun" audio clip`);
+                            var vocal = new Audio("../../sounds/sa7a-bitcoin-rab3oun.mp3");
+                            vocal.play();
                             break;
 
                         case '/micaccess':
