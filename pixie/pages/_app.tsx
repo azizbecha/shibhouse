@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Head>
                 <link rel="shortcut icon" href="../images/icon.ico" type="image/x-icon" />
                 <meta name="theme-color" content="#fa2f2f" />
+                <title>Shibhouse - Re-taking voice conversations to the moon</title>
             </Head>
             <ToastContainer
                 position="top-center"
