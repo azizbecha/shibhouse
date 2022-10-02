@@ -291,17 +291,15 @@ const Dashboard: React.FC = () => {
                                                 <div className="flex-1 min-w-0">
                                                     <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                 </div>
+                                                
                                                 <div className="inline-flex items-end text-base">
                                                     <button onClick={() => setShowModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <Divider />
-                                        <div className="relative text-gray-700 mb-5 border-0">
-                                            <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" placeholder="Search for a room on the moon 🚀"/>
-                                        </div>
                                         <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-1 mt-1" /> Crypto prices</h1>
-                                        <div className="bg-dark p-4 rounded-lg mb-5">
+                                        <div className="bg-dark p-4 rounded-lg m">
                                             <Ticker isTransparent={true} locale={"en"} symbols={[
                                                 {
                                                     "proName": "BINANCE:SHIBUSDT",
@@ -313,7 +311,11 @@ const Dashboard: React.FC = () => {
                                                 }
                                             ]} colorTheme="dark"></Ticker>
                                         </div>
+                                        <Divider />
                                         <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
+                                        <div className="relative text-gray-700 mb-2 border-0">
+                                            <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" placeholder="Search for a room on the moon 🚀"/>
+                                        </div>
                                         <ExportRooms />
                                     </div>
                                 </div>

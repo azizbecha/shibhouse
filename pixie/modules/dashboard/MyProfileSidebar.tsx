@@ -23,7 +23,7 @@ const MyProfileSidebar: React.FC = () => {
                     <div className="flex space-x-45">
                         <div className="flex space-x-20 w-full">
                             <div className="flex-1 min-w-0">
-                                <h1 className="font-bold text-2xl font-inter">My profile</h1>
+                                <h1 className="font-bold text-2xl font-inter">Profile</h1>
                             </div>
                             <div className="inline-flex items-end text-base">
                                 <button onClick={logOut} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white text-md"><FaSignOutAlt className="my-auto mr-1" /> Log out</button>
@@ -54,6 +54,8 @@ const MyProfileSidebar: React.FC = () => {
                     </div>
                     
                 </div>
+
+                
             </div>
         </nav>
     )
