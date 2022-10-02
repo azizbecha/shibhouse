@@ -9,7 +9,7 @@ import { useAuth } from "../auth/AuthContext"
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import { WithContext as ReactTags } from 'react-tag-input'
-import { Ticker } from "react-ts-tradingview-widgets"
+import { Ticker, TickerTape } from "react-ts-tradingview-widgets"
 import { toast } from "react-toastify"
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
@@ -32,7 +32,8 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaDollarSign, FaHome } from "react-icons/fa"
+import { FaChartArea, FaDollarSign, FaHome } from "react-icons/fa"
+import { IoMdNotifications } from "react-icons/io"
 
 const Dashboard: React.FC = () => {
 
@@ -298,20 +299,41 @@ const Dashboard: React.FC = () => {
                                             </div>
                                         </div>
                                         <Divider />
-                                        <h1 className="font-bold text-xl flex font-inter mb-4"><FaDollarSign size={20} className="mr-1 mt-1" /> Crypto prices</h1>
-                                        <div className="bg-dark p-4 rounded-lg m">
-                                            <Ticker isTransparent={true} locale={"en"} symbols={[
-                                                {
-                                                    "proName": "BINANCE:SHIBUSDT",
-                                                    "title": "SHIB/USDT"
-                                                },
-                                                {
-                                                    "proName": "BINANCE:BTCUSDT",
-                                                    "title": "BTC/USDT"
-                                                }
-                                            ]} colorTheme="dark"></Ticker>
-                                        </div>
+                                        
+                                        <Row className="flex">
+                                            <Col sm={6} className="h-100">
+                                                <div className="rounded-lg bg-dark p-4 h-100">
+                                                    <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
+                                                    <ul>
+                                                        <li className="text-sm mb-1"><span className="font-bold">@elonmusk</span> joined Shibhouse</li>
+                                                        <li className="text-sm mb-1"><span className="font-bold">@azizbecha</span> followed <span className="font-bold">@elonmusk</span></li>
+                                                        <li className="text-sm mb-1"><span className="font-bold">@billgates</span> created a room</li>
+                                                        <li className="text-sm mb-1"><span className="font-bold">@jeffbezos</span> followed <span className="font-bold">@azizbecha</span></li>
+                                                    </ul>
+                                                </div>
+                                            </Col>
+                                            <Col sm={6} className="h-100">
+                                                <div className="bg-dark rounded-lg p-3 h-100">
+                                                    <h1 className="font-bold text-xl flex font-inter mb-4"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
+                                                    <TickerTape isTransparent={true} locale={"en"} symbols={[
+                                                        {
+                                                            "proName": "BINANCE:SHIBUSDT",
+                                                            "title": "SHIB/USDT"
+                                                        },
+                                                        {
+                                                            "proName": "BINANCE:BTCUSDT",
+                                                            "title": "BTC/USDT"
+                                                        },
+                                                        {
+                                                            "proName": "BINANCE:ETHUSDT",
+                                                            "title": "ETH/USDT"
+                                                        },
+                                                    ]} colorTheme="dark"></TickerTape>
+                                                </div>
+                                            </Col>
+                                        </Row>
                                         <Divider />
+                                        
                                         <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
                                         <div className="relative text-gray-700 mb-2 border-0">
                                             <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" placeholder="Search for a room on the moon 🚀"/>
