@@ -85,7 +85,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                             </span>
                         </div>
                         <section className="bg-dark">
-                            <div className="focus:outline-none mt-10 flex flex-wrap justify-center gap-10 px-4">
+                            <div className="focus:outline-none mt-10 flex flex-wrap w-full gap-10 px-4">
 
                                 <div className="focus:outline-none flex sm:w-full md:w-5/12 pb-10" data-aos="zoom-in">
                                     <div className="w-20 h-20 relative mr-1">
@@ -199,7 +199,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaEthereum className='my-auto text-primary' /> <span>Ethereum <span className="text-sm">(ethereum network)</span></span></h3>
                                 <p className='font-semibold my-3 cursor-pointer' onClick={() => {
                                     copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
-                                    toast.success('BTC address copied to clipboard', {
+                                    toast.success('ETH address copied to clipboard', {
                                         position: "top-right",
                                         autoClose: 1000,
                                         hideProgressBar: false,
@@ -218,7 +218,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaDog className='my-auto text-primary' /> <span>Shib <span className="text-sm">(ethereum network)</span></span></h3>
                                 <p className='font-semibold my-3 cursor-pointer' onClick={() => {
                                     copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
-                                    toast.success('BTC address copied to clipboard', {
+                                    toast.success('SHIB address copied to clipboard', {
                                         position: "top-right",
                                         autoClose: 1000,
                                         hideProgressBar: false,
