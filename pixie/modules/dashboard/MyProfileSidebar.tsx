@@ -18,7 +18,7 @@ const MyProfileSidebar: React.FC = () => {
 
     return (
         <nav className={`w-full h-full bg-darker rounded-lg ${isTabletOrMobile ? 'hidden' : 'flex'}`}>
-            <div className="flex mx-auto p-4 rounded-md container">
+            <div className="flex mx-auto p-3 rounded-md container">
                 <div className="w-full h-full py-2 items-center justify-center text-white text-xl rounded-md">
                     <div className="flex space-x-45">
                         <div className="flex space-x-20 w-full">
@@ -41,13 +41,13 @@ const MyProfileSidebar: React.FC = () => {
                             <h5 className="mb-1 text-lg font-medium text-center cursor-pointer"><Link href={'/me'}><span>{currentUserData.firstname} {currentUserData.lastname}</span></Link></h5>
                             <span className="text-sm text-white text-center cursor-pointer"><Link href={'/me'}><span>@{currentUserData.username}</span></Link></span>
                             <span className="text-sm text-gray-500 text-center mt-3">{currentUserData.bio}</span>
-                            <div className="flex space-x-3 mt-3">
+                            <div className="flex space-x-3 mt-3 justify-center">
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></span>
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.following.length)} <span className="font-normal">following</span></span>
                                 {/*<span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></span>*/}
                             </div>
-                            <div className="flex mt-4 space-x-3 lg:mt-6">
-                                <Link href="me"><span className="flex justify-left py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><RiPencilFill size={18} className="my-auto mr-1" /> Edit profile</span></Link>
+                            <div className="flex mt-4 space-x-3 lg:mt-6 justify-center">
+                                <Link href="me"><span className="flex justify-center w-11/12 text-center py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><RiPencilFill size={18} className="my-auto mr-1" /> Edit profile</span></Link>
                             </div>
                             
                         </div>
