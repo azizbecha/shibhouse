@@ -285,7 +285,7 @@ const Dashboard: React.FC = () => {
                                         </div>
                                     </Dialog>
                                 </Transition.Root>
-                                <div className="flex w-full mx-auto px-4 pt-8 pb-8">
+                                <div className="flex w-full mx-auto px-4 pt-6 pb-8">
                                     <div className="flex flex-col w-full h-full text-gray-900 text-xl">
                                         <div className="flex space-x-45">
                                             <div className="flex space-x-20 w-full">

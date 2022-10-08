@@ -48,7 +48,7 @@ const PeopleSidebar: React.FC = () => {
         <Fragment>
             <nav className="w-full h-full bg-darker md:block rounded-lg hidden">
                 <div className="flex mx-auto p-4 rounded-md container">
-                    <div className="w-full py-4 items-start justify-left text-white text-xl rounded-md ">
+                    <div className="w-full py-2 items-start justify-left text-white text-xl rounded-md ">
                         <div className={`${isTabletOrMobile && 'hidden'}`}>
                             <div className="flex space-x-20 w-full">
                                 <div className="flex-1 min-w-0">
