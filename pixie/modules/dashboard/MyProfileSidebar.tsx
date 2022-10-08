@@ -34,20 +34,20 @@ const MyProfileSidebar: React.FC = () => {
                     <div className="mx-auto bg-gray rounded-lg shadow-md py-2 border-2 border-white">
                         <div className="flex flex-col container py-5 justify-center align-center">
                             <Link href={'/me'}>
-                                <div className="p-6 text-white text-2xl rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
+                                <div className="p-6 text-white text-2xl font-semibold rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
                                     {currentUserData.firstname[0]}{currentUserData.lastname[0]}
                                 </div>
                             </Link>
-                            <h5 className="mb-1 text-lg font-medium text-center cursor-pointer"><Link href={'/me'}><span>{currentUserData.firstname} {currentUserData.lastname}</span></Link></h5>
+                            <h5 className="mb-1 text-xl font-medium text-center cursor-pointer"><Link href={'/me'}><span>{currentUserData.firstname} {currentUserData.lastname}</span></Link></h5>
                             <span className="text-sm text-white text-center cursor-pointer"><Link href={'/me'}><span>@{currentUserData.username}</span></Link></span>
-                            <span className="text-sm text-gray-500 text-center mt-3">{currentUserData.bio}</span>
-                            <div className="flex space-x-3 mt-3 justify-center">
+                            <span className="text-sm text-gray-500 text-center mt-5">{currentUserData.bio}</span>
+                            <div className="flex space-x-3 mt-2 justify-center">
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></span>
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.following.length)} <span className="font-normal">following</span></span>
                                 {/*<span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></span>*/}
                             </div>
-                            <div className="flex mt-4 space-x-3 lg:mt-6 justify-center">
-                                <Link href="me"><span className="flex justify-center w-11/12 text-center py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><RiPencilFill size={18} className="my-auto mr-1" /> Edit profile</span></Link>
+                            <div className="flex mt-6 space-x-3 lg:mt-6 justify-center">
+                                <Link href="me"><span className="flex justify-center w-full text-center py-2 px-4 text-sm font-medium text-white bg-primary rounded-lg hover:bg-secondary cursor-pointer"><RiPencilFill size={18} className="my-auto mr-1" /> Edit profile</span></Link>
                             </div>
                             
                         </div>
