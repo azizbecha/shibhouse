@@ -18,7 +18,7 @@ const MyProfileSidebar: React.FC = () => {
 
     return (
         <nav className={`w-full h-full bg-darker rounded-lg ${isTabletOrMobile ? 'hidden' : 'flex'}`}>
-            <div className="flex mx-auto p-3 rounded-md container">
+            <div className="flex mx-auto p-4 rounded-md container">
                 <div className="w-full h-full py-2 items-center justify-center text-white text-xl rounded-md">
                     <div className="flex space-x-45">
                         <div className="flex space-x-20 w-full">
