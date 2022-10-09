@@ -17,7 +17,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Divider from "../components/Divider";
 
-import { FaArrowLeft, FaLink, FaPen } from "react-icons/fa";
+import { FaArrowLeft, FaLink, FaPen, FaSave } from "react-icons/fa";
 
 import isEmail from "validator/lib/isEmail";
 import { capitalizeWord } from "../lib/capitalize";
@@ -198,22 +198,22 @@ const Me: React.FC = () => {
 
                                         <h1 className="font-normal text-md mb-1">Firstname <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
-                                            <input type="text" required={true} placeholder={"Please enter your first name"} minLength={3} maxLength={12} value={firstname} onChange={e => setFirstname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-black rounded-md" />
+                                            <input type="text" required={true} placeholder={"Please enter your first name"} minLength={3} maxLength={12} value={firstname} onChange={e => setFirstname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
                                         <h1 className="font-normal text-md mb-1">Lastname <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
-                                            <input type="text" required={true} placeholder={"Please enter your last name"} minLength={3} maxLength={12} value={lastname} onChange={e => setLastname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-black rounded-md" />
+                                            <input type="text" required={true} placeholder={"Please enter your last name"} minLength={3} maxLength={12} value={lastname} onChange={e => setLastname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
                                         <h1 className="font-normal text-md mb-1">Email <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
-                                            <input type="email" required={true} placeholder={"Please enter your email address"} value={email} onChange={e => setEmail(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-black rounded-md" />
+                                            <input type="email" required={true} placeholder={"Please enter your email address"} value={email} onChange={e => setEmail(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
                                         <h1 className="font-normal text-md mb-1">Bio</h1>
                                         <div className="flex mb-3">
-                                            <textarea value={bio} onChange={e => setBio(e.currentTarget.value)} placeholder="Please enter your bio" className="w-9/12 px-3 py-2 mb-1 text-black rounded-md" />
+                                            <textarea value={bio} onChange={e => setBio(e.currentTarget.value)} placeholder="Please enter your bio" className="w-9/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
                                         <h1 className="font-normal text-md mb-1">Avatar</h1>
@@ -221,7 +221,7 @@ const Me: React.FC = () => {
                                             <HexColorPicker color={avatarColor} onChange={setAvatarColor} />
                                         </div>
                                         
-                                        <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 mt-3 rounded-md font-semibold text-sm`} disabled={isDisabled}>Save changes</button>
+                                        <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 mt-5 rounded-md font-semibold text-sm flex`} disabled={isDisabled}><FaSave className="my-auto mr-1" /> Save changes</button>
                                     </form>
 
                                 </div>
