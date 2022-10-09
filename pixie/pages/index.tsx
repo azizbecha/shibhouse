@@ -25,11 +25,10 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
     const [state, copyToClipboard] = useCopyToClipboard();
     
     return (
-        <Fragment>
+        <>
             <SEO 
-                title={props.title}
-                description={props.description}
-                image={props.image}
+                title={"Shibhouse"}
+                description={"Re-taking voice conversations to the moon"}
             />
             <ProtectedRoute>
                 <Navbar />
@@ -237,7 +236,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                 </div>
                 <Footer />
             </ProtectedRoute>
-        </Fragment>
+        </>
     )
 }
 

@@ -131,7 +131,7 @@ const People: React.FC = () => {
     }
 
     return (
-        <Fragment>
+        <>
             <SEO title="People - Shibhouse" description="Check out some random users in Shibhouse" />
             <PrivateRoute>
                 <Navbar />
@@ -182,7 +182,7 @@ const People: React.FC = () => {
                     </div>
                 <Footer />
             </PrivateRoute>
-        </Fragment>
+        </>
     )
 }
 

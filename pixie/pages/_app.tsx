@@ -17,6 +17,7 @@ import en from 'javascript-time-ago/locale/en.json'
 import 'react-flexbox-grid/dist/react-flexbox-grid.css'
 
 import '../styles/globals.css'
+import SEO from '../utils/SEO'
 
 function MyApp({ Component, pageProps }: AppProps) {
     
@@ -29,26 +30,23 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [])
 
     return (
-        <AuthProvider>
-            <NextNProgress color='#fa2f2f' height={5} />
-            <Head>
-                <link rel="shortcut icon" href="../images/icon.ico" type="image/x-icon" />
-                <meta name="theme-color" content="#fa2f2f" />
-                <title>Shibhouse - Re-taking voice conversations to the moon</title>
-            </Head>
-            <ToastContainer
-                position="top-center"
-                autoClose={4000}
-                hideProgressBar={false}
-                newestOnTop={true}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-            <Component {...pageProps} />
-        </AuthProvider>
+        <>
+            <AuthProvider>
+                <NextNProgress color='#fa2f2f' height={5} />
+                <ToastContainer
+                    position="top-center"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={true}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                <Component {...pageProps} />
+            </AuthProvider>
+        </>
     )
 }
 

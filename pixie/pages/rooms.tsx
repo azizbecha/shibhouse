@@ -45,22 +45,24 @@ const Rooms: React.FC = () => {
         })
     }, [])
     return (
-        <PrivateRoute>
+        <>
             <SEO title="Rooms - Shibhouse" description="Discover various rooms playing now at Shibhouse"/>
-            <Navbar />
-                <div className="bg-dark py-10">
-                    <div className="container">
-                        <h1 className="text-white font-bold text-4xl flex space-x-2"><FaHome className="my-auto" /> <span>Current rooms <span className="text-md">({count})</span></span></h1>
-                        <div className="relative text-white border-0 my-5">
-                            <input id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-darker" type="search" placeholder="Search for a room on the moon 🚀"/>
-                        </div>
-                        <div className="bg-darker p-4 rounded-lg mt-5">
-                            <ExportRooms />
+            <PrivateRoute>
+                <Navbar />
+                    <div className="bg-dark py-10">
+                        <div className="container">
+                            <h1 className="text-white font-bold text-4xl flex space-x-2"><FaHome className="my-auto" /> <span>Current rooms <span className="text-md">({count})</span></span></h1>
+                            <div className="relative text-white border-0 my-5">
+                                <input id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-darker" type="search" placeholder="Search for a room on the moon 🚀"/>
+                            </div>
+                            <div className="bg-darker p-4 rounded-lg mt-5">
+                                <ExportRooms />
+                            </div>
                         </div>
                     </div>
-                </div>
-            <Footer />
-        </PrivateRoute>
+                <Footer />
+            </PrivateRoute>
+        </>
     )
 }
 

@@ -72,34 +72,36 @@ const Login: React.FC = () => {
         }
     }
     return (
-        <ProtectedRoute>
+        <>
             <SEO title="Login - Shibhouse" description="Log to your account in Shibhouse.tv"  />
-            <Navbar />
-            <div className="relative bg-dark vh-100">
-                <div className="container px-6 md:px-12 pb-5 lg:px-7">
-                    <div className="flex items-center flex-wrap px-1 md:px-0">
-                        <div className="relative lg:w-7/12 xl:py-32">
-                            <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
-                            <form onSubmit={verify}>
-                                <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
-                                <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" required/>
+            <ProtectedRoute>
+                <Navbar />
+                <div className="relative bg-dark vh-100">
+                    <div className="container px-6 md:px-12 pb-5 lg:px-7">
+                        <div className="flex items-center flex-wrap px-1 md:px-0">
+                            <div className="relative lg:w-7/12 xl:py-32">
+                                <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
+                                <form onSubmit={verify}>
+                                    <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
+                                    <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" required/>
 
-                                <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
-                                <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
+                                    <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
+                                    <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
 
-                                <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2">Login</button>
-                                
-                            </form>
-                            <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
-                        </div>
-                        <div className="ml-auto lg:w-5/12">
-                            <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
+                                    <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2">Login</button>
+                                    
+                                </form>
+                                <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
+                            </div>
+                            <div className="ml-auto lg:w-5/12">
+                                <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <Footer />
-        </ProtectedRoute>
+                <Footer />
+            </ProtectedRoute>
+        </>
     )
 }
 
