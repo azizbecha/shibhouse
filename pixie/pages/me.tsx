@@ -157,7 +157,7 @@ const Me: React.FC = () => {
                             <div className="sm:w-12/12 xs:w-12/12 md:w-8/12 pb-32 xs:mx-auto">
                                 <div className="w-full mt-10">
                                     <div className="absolute -mt-14 ml-5">
-                                        <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: avatarColor}}>
+                                        <div className="flex h-28 w-28 rounded-full shadow-md text-white text-center font-semibold" style={{backgroundColor: avatarColor}}>
                                             <span className="my-auto mx-auto text-3xl font-inter font-bold">{currentUserData.firstname[0].toUpperCase()}{currentUserData.lastname[0].toUpperCase()}</span>
                                         </div>
                                     </div>
