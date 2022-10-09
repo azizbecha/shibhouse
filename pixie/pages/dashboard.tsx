@@ -314,8 +314,8 @@ const Dashboard: React.FC = () => {
                                                     </div>
                                                 </Col>
                                                 <Col sm={6} className="h-100">
-                                                    <div className="bg-dark rounded-lg p-3 h-100">
-                                                        <h1 className="font-bold text-xl flex font-inter mb-4"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
+                                                    <div className="bg-dark rounded-lg p-4 h-100">
+                                                        <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
                                                             {
                                                                 "proName": "BINANCE:SHIBUSDT",
