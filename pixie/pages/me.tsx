@@ -196,27 +196,27 @@ const Me: React.FC = () => {
                                     <form className="edit" method="post" onSubmit={updateProfile}>
                                         <h2 className="text-white font-semibold text-xl flex mb-3"><FaPen size={15} className="mt-2 mr-1" /> Edit profile</h2>
 
-                                        <h1 className="font-normal text-md mb-1">Firstname <span className="text-primary">*</span></h1>
+                                        <h1 className="font-semibold text-md mb-1">Firstname <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
                                             <input type="text" required={true} placeholder={"Please enter your first name"} minLength={3} maxLength={12} value={firstname} onChange={e => setFirstname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
-                                        <h1 className="font-normal text-md mb-1">Lastname <span className="text-primary">*</span></h1>
+                                        <h1 className="font-semibold text-md mb-1">Lastname <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
                                             <input type="text" required={true} placeholder={"Please enter your last name"} minLength={3} maxLength={12} value={lastname} onChange={e => setLastname(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
-                                        <h1 className="font-normal text-md mb-1">Email <span className="text-primary">*</span></h1>
+                                        <h1 className="font-semibold text-md mb-1">Email <span className="text-primary">*</span></h1>
                                         <div className="flex mb-3">
                                             <input type="email" required={true} placeholder={"Please enter your email address"} value={email} onChange={e => setEmail(e.currentTarget.value)} className="md:w-4/12 sm:w-6/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
-                                        <h1 className="font-normal text-md mb-1">Bio</h1>
+                                        <h1 className="font-semibold text-md mb-1">Bio</h1>
                                         <div className="flex mb-3">
                                             <textarea value={bio} onChange={e => setBio(e.currentTarget.value)} placeholder="Please enter your bio" className="w-9/12 px-3 py-2 mb-1 text-white bg-dark rounded-md" />
                                         </div>
 
-                                        <h1 className="font-normal text-md mb-1">Avatar</h1>
+                                        <h1 className="font-semibold text-md mb-1">Avatar</h1>
                                         <div className="flex mb-3">
                                             <HexColorPicker color={avatarColor} onChange={setAvatarColor} />
                                         </div>
