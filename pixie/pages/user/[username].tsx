@@ -18,6 +18,7 @@ import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 import { capitalizeWord } from "../../lib/capitalize";
 import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
+
 import SEO from "../../utils/SEO";
 
 const User: React.FC = () => {
@@ -169,8 +170,8 @@ const User: React.FC = () => {
                         <Col xs={12} sm={12} md={12} lg={8}>
                             <h1 className="pt-10 sm:text-3xl text-2xl text-white font-bold font-inter flex"><FaArrowLeft onClick={() => router.push('/dashboard')} size={26} className="mt-1 mr-2 cursor-pointer" /> Profile of {userData.firstname} {userData.lastname}</h1>
                             <div className="mt-20">
-                                <div className="absolute -mt-14 ml-5">
-                                    <div className="flex h-28 w-28 rounded-full border-primary border-4 shadow-md text-white text-center font-semibold" style={{backgroundColor: userData.avatarColor}}>
+                                <div className="absolute -mt-16 ml-5">
+                                    <div className="flex h-28 w-28 rounded-full shadow-md text-white text-center font-semibold" style={{backgroundColor: userData.avatarColor}}>
                                         <span className="my-auto mx-auto text-3xl font-inter font-bold">{userData.firstname[0].toUpperCase()}{userData.lastname[0].toUpperCase()}</span>
                                     </div>
                                 </div>
