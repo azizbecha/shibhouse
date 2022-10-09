@@ -185,8 +185,8 @@ const Dashboard: React.FC = () => {
                 <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>
                 <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
-                <div className={`bg-dark text-white ${isTabletOrMobile && 'h-screen'} pb-5`}>
                     <Navbar />
+                <div className={`bg-dark text-white ${isTabletOrMobile && 'h-scbreen'} pb-5`}>
                     <div className="mx-auto" style={{width: '98%'}}>
                         <Row>
                             <Col xs={12} sm={3} md={2} lg={3}>
@@ -286,6 +286,7 @@ const Dashboard: React.FC = () => {
                                             </div>
                                         </Dialog>
                                     </Transition.Root>
+                                    
                                     <div className="flex w-full mx-auto px-4 pt-6 pb-8">
                                         <div className="flex flex-col w-full h-full text-gray-900 text-xl">
                                             <div className="flex space-x-45">
@@ -303,7 +304,7 @@ const Dashboard: React.FC = () => {
                                             
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
-                                                    <div className="rounded-lg bg-dark p-4 h-100">
+                                                    <div className={`rounded-lg bg-dark p-4 h-100 ${isTabletOrMobile && 'mb-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
                                                         <ul>
                                                             <li className="text-sm mb-1"><span className="font-bold">@elonmusk</span> joined Shibhouse</li>
@@ -350,7 +351,7 @@ const Dashboard: React.FC = () => {
                         </Row>
                     </div>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </PrivateRoute>
         </>
     )
