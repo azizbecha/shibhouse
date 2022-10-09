@@ -9,7 +9,7 @@ import { useAuth } from "../auth/AuthContext"
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import { WithContext as ReactTags } from 'react-tag-input'
-import { Ticker, TickerTape } from "react-ts-tradingview-widgets"
+import { TickerTape } from "react-ts-tradingview-widgets"
 import { toast } from "react-toastify"
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
@@ -351,7 +351,7 @@ const Dashboard: React.FC = () => {
                         </Row>
                     </div>
                 </div>
-                {/* <Footer /> */}
+                <Footer />
             </PrivateRoute>
         </>
     )
