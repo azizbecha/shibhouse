@@ -57,13 +57,13 @@ const Dashboard: React.FC = () => {
     };
 
     // Delimiters to use when parsing tags
-    const delimiters: Array<number> = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
+    const delimiters: number[] = [KeyCodes.comma, KeyCodes.enter, KeyCodes.space];
 
-    const handleDelete = (i) => {
+    const handleDelete = (i: number) => {
         setRoomTopics(roomTopics.filter((tag, index) => index !== i));
     };
 
-    const handleAddition = (tag) => {
+    const handleAddition = (tag: {id: string, text: string}) => {
         roomTopics.length < 8 ? setRoomTopics([...roomTopics, tag]) : (
             toast.warning("You can't add more than 8 tags", {
                 position: "top-center",
@@ -77,7 +77,7 @@ const Dashboard: React.FC = () => {
         )
     };
 
-    const handleDrag = (tag, currPos, newPos) => {
+    const handleDrag = (tag: {id: string, text: string}, currPos: number, newPos: number) => {
         const newTags = roomTopics.slice();
 
         newTags.splice(currPos, 1);
@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
         setRoomTopics(newTags);
     };
 
-    const handleTagClick = (index) => {
+    const handleTagClick = (index: number) => {
         console.log('The tag at index ' + index + ' was clicked');
     };
     
@@ -185,7 +185,7 @@ const Dashboard: React.FC = () => {
                 <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>
                 <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
-                    <Navbar />
+                <Navbar />
                 <div className={`bg-dark text-white ${isTabletOrMobile && 'h-scbreen'} pb-5`}>
                     <div className="mx-auto" style={{width: '98%'}}>
                         <Row>
