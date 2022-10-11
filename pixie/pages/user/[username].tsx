@@ -20,6 +20,7 @@ import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
 
 import SEO from "../../utils/SEO";
+import { createNotification } from "../../lib/createNotification";
 
 const User: React.FC = () => {
 
@@ -100,7 +101,7 @@ const User: React.FC = () => {
             });
 
             fetch();
-
+            createNotification(`@${currentUserData.username} started following @${userData.username}`);
             toast.success(`Followed ${userData.username}`, {
                 position: "top-right",
                 autoClose: 1000,

@@ -20,6 +20,7 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 import { toast } from "react-toastify"
 import { FaPlus, FaTimes, FaUsers } from "react-icons/fa"
 import SEO from "../utils/SEO"
+import { createNotification } from "../lib/createNotification"
 
 const People: React.FC = () => {
 
@@ -107,6 +108,7 @@ const People: React.FC = () => {
                 followers: followersArray
             });
 
+            createNotification(`@${currentUserData.username} started following @${userData.username}`);
 
             toast.success(`Followed ${userData.username}`, {
                 position: "top-right",
