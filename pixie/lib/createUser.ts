@@ -12,6 +12,7 @@ import { NewUser } from "../interfaces"
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import isAlpha from 'validator/lib/isAlpha';
+import { createNotification } from './createNotification';
 
 const createUser = async (user: NewUser): Promise<void> => {
 
@@ -66,6 +67,8 @@ const createUser = async (user: NewUser): Promise<void> => {
                                 joinDate: new Date(),
                                 avatarColor: getRandomColor()
                             });
+
+                            createNotification(`@${user.username.trim()} joined Shibhouse`);
                             
                             // Show success message to the user
                             toast.success('Joined !', {
