@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
     const [joke, setJoke] = useState<{question: string, punchline: string}>({question: '', punchline: ''});
-    const [notifications, setNotifications] = useState<Array<{id: string, text: string, date: string}>>([])
+    const [notifications, setNotifications] = useState<any>([]); // It will be any for the moment
 
     const [roomTitle, setRoomTitle] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
@@ -195,7 +195,7 @@ const Dashboard: React.FC = () => {
         const q: Query<DocumentData> = query(collection(fireStore, "notifications"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                const result: {id: string, text: string, date: string}  = querySnapshot.docs
+                const result = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setNotifications(result);
             });
