@@ -1,4 +1,4 @@
-import { useState, useRef, Fragment } from "react"
+import { useState, useRef, Fragment, useEffect } from "react"
 import { NextRouter, useRouter } from "next/router"
 
 import { Dialog, Transition } from '@headlessui/react'
@@ -6,6 +6,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import PrivateRoute from "../auth/PrivateRoute"
 import { useAuth } from "../auth/AuthContext"
 
+import axios from "axios"
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import { WithContext as ReactTags } from 'react-tag-input'
@@ -32,14 +33,17 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaChartArea, FaDollarSign, FaHome } from "react-icons/fa"
+import { FaChartArea, FaHome } from "react-icons/fa"
 import { IoMdNotifications } from "react-icons/io"
+import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 
 const Dashboard: React.FC = () => {
 
     const router: NextRouter = useRouter();
     const { currentUserData } = useAuth();
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+    const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
+
+    const [joke, setJoke] = useState<{question: string, punchline: string}>({question: '', punchline: ''});
 
     const [roomTitle, setRoomTitle] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
@@ -176,6 +180,17 @@ const Dashboard: React.FC = () => {
             });
         }
     }
+
+    const randomJoke = () => {
+        axios.get('https://backend-omega-seven.vercel.app/api/getjoke')
+        .then(function (response) {
+            setJoke(response.data[0])
+        })
+    }
+
+    useEffect(() => {
+        randomJoke();
+    }, [])
 
     return (
         <>
@@ -331,6 +346,14 @@ const Dashboard: React.FC = () => {
                                                                 "title": "ETH/USDT"
                                                             },
                                                         ]} colorTheme="dark"></TickerTape>
+                                                    </div>
+                                                </Col>
+
+                                                <Col sm={12}>
+                                                    <div className={`rounded-lg bg-dark p-4 h-100 mt-4 ${isTabletOrMobile && 'mb-2'}`}>
+                                                        <h1 className="font-bold text-xl flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
+                                                        <p className="font-medium text-base">- {joke?.question}</p>
+                                                        <p className="font-medium text-base">- {joke?.punchline}</p>
                                                     </div>
                                                 </Col>
                                             </Row>
