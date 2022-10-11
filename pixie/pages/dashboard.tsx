@@ -36,7 +36,7 @@ import { AiFillHome } from "react-icons/ai"
 import { FaChartArea, FaHome } from "react-icons/fa"
 import { IoMdNotifications } from "react-icons/io"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
-import { collection, DocumentData, onSnapshot, query, Query } from "firebase/firestore"
+import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
 
 const Dashboard: React.FC = () => {
@@ -192,7 +192,7 @@ const Dashboard: React.FC = () => {
     }
 
     const getNotifications = async () => {
-        const q: Query<DocumentData> = query(collection(fireStore, "notifications"));
+        const q: Query<DocumentData> = query(collection(fireStore, "notifications"), limit(4));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
