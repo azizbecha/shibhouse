@@ -36,6 +36,8 @@ import { AiFillHome } from "react-icons/ai"
 import { FaChartArea, FaHome } from "react-icons/fa"
 import { IoMdNotifications } from "react-icons/io"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
+import { collection, DocumentData, onSnapshot, query, Query } from "firebase/firestore"
+import { fireStore } from "../auth/Firebase"
 
 const Dashboard: React.FC = () => {
 
@@ -44,6 +46,7 @@ const Dashboard: React.FC = () => {
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
     const [joke, setJoke] = useState<{question: string, punchline: string}>({question: '', punchline: ''});
+    const [notifications, setNotifications] = useState<Array<{id: string, text: string, date: string}>>([])
 
     const [roomTitle, setRoomTitle] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
@@ -188,8 +191,19 @@ const Dashboard: React.FC = () => {
         })
     }
 
+    const getNotifications = async () => {
+        const q: Query<DocumentData> = query(collection(fireStore, "notifications"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const result: {id: string, text: string, date: string}  = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setNotifications(result);
+            });
+        });
+    }
     useEffect(() => {
         randomJoke();
+        getNotifications();
     }, [])
 
     return (
@@ -319,13 +333,25 @@ const Dashboard: React.FC = () => {
                                             
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
-                                                    <div className={`rounded-lg bg-dark p-4 h-100 ${isTabletOrMobile && 'mb-2'}`}>
+                                                    <div className={`rounded-lg bg-dark p-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
                                                         <ul>
-                                                            <li className="text-sm mb-1"><span className="font-bold">@elonmusk</span> joined Shibhouse</li>
-                                                            <li className="text-sm mb-1"><span className="font-bold">@azizbecha</span> followed <span className="font-bold">@elonmusk</span></li>
-                                                            <li className="text-sm mb-1"><span className="font-bold">@billgates</span> created a room</li>
-                                                            <li className="text-sm mb-1"><span className="font-bold">@jeffbezos</span> followed <span className="font-bold">@azizbecha</span></li>
+                                                            {
+                                                                notifications.map((notification) => {
+                                                                    var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
+                                                                    const text: string = notification.text;
+                                                                    const words: string[] = text.split(" ");
+                                                                    return (
+                                                                        <li className="text-sm mb-1">
+                                                                            {
+                                                                                words.map((word) => {
+                                                                                    return <span>{word.match(pattern) ? <span className="font-bold">{word}</span> : word} </span>
+                                                                                })
+                                                                            }
+                                                                        </li>
+                                                                    )
+                                                                })
+                                                            }
                                                         </ul>
                                                     </div>
                                                 </Col>
