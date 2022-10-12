@@ -717,7 +717,7 @@ function Main ({ user, room }) {
                 </Col>
               </Col>
               <Col lg={3} md={2} sm={12} xs={12}>
-                <nav className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
+                <div className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
                   {(isHost || connRole === 'speaker') && (
                     <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1 m-1">
                       <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
@@ -747,7 +747,7 @@ function Main ({ user, room }) {
                   <button onClick={onLeave} className="text-white/50 p-4 m-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <HiPhoneMissedCall size={20} />
                   </button>
-                </nav>
+                </div>
               </Col>
             </Row>
             <Row>
