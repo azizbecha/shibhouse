@@ -394,11 +394,9 @@ function Main ({ user, room }) {
                                   <Col xs={12} sm={12} md={12} lg={12}>
                                     <Row className={`justify-start ${isTabletOrMobile && 'space-y-1'}`}>
                                       {
-                                        topics.map((topic, key) => {
+                                        topics.map((topic, key: number) => {
                                           return (
-                                            <Col key={key}>
-                                              <span key={key} className="bg-gray text-white text-sm font-medium mr-2 px-2 py-1 rounded-lg">#{topic}</span>
-                                            </Col>
+                                              <span key={key} className="bg-darker text-white text-sm font-semibold mr-2 px-2 py-1 rounded-lg">#{topic.text}</span>
                                           )
                                         })
                                       }
