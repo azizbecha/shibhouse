@@ -74,7 +74,7 @@ const PeopleSidebar: React.FC = () => {
                                                 <div className="flex items-center space-x-4">
                                                     <Link href={`user/${user.username}`}>
                                                         <div className="flex-shrink-0 cursor-pointer">
-                                                            <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
+                                                            <div className="p-4 text-white rounded-full font-bold" style={{backgroundColor: user.avatarColor}}>
                                                                 {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                             </div>
                                                         </div>
