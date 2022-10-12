@@ -333,7 +333,7 @@ const Dashboard: React.FC = () => {
                                             
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
-                                                    <div className={`rounded-lg bg-dark p-3 h-full ${isTabletOrMobile && 'mb-2'}`}>
+                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
                                                         <ul>
                                                             {
@@ -356,7 +356,7 @@ const Dashboard: React.FC = () => {
                                                     </div>
                                                 </Col>
                                                 <Col sm={6} className="h-100">
-                                                    <div className="bg-dark rounded-lg p-3 h-100">
+                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
                                                             {
@@ -376,7 +376,7 @@ const Dashboard: React.FC = () => {
                                                 </Col>
 
                                                 <Col sm={12}>
-                                                    <div className={`rounded-lg bg-dark p-4 h-100 mt-4 ${isTabletOrMobile && 'mb-2'}`}>
+                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-100 mt-4 ${isTabletOrMobile && 'mt-4'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
                                                         <p className="font-medium text-base">- {joke?.question}</p>
                                                         <p className="font-medium text-base">- {joke?.punchline}</p>
