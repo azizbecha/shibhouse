@@ -657,7 +657,7 @@ function Main ({ user, room }) {
           <Row between="lg" middle="lg">
             <Col lg={9} md={7} sm={12} xs={12}>
               <h3 className="text-3xl font-bold text-white inline-flex items-center justify-start">
-                <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill className="mt-1 mr-1" /> {numberFormatter(peerList.length)}</span>
+                <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill size={15} className="mt-0.5 mr-1" /> {numberFormatter(peerList.length)}</span>
               </h3>
               <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
                 {
@@ -717,7 +717,7 @@ function Main ({ user, room }) {
                 </Col>
               </Col>
               <Col lg={3} md={2} sm={12} xs={12}>
-                <nav className={`flex rounded-xl items-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto justify-center'}`}>
+                <nav className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
                   {(isHost || connRole === 'speaker') && (
                     <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
                       <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
@@ -725,25 +725,27 @@ function Main ({ user, room }) {
                       </button>
                     </span>
                   )}
-                  <button onClick={() => {
+                  {/* <button onClick={() => {
                       playDeafenAudio();
                       setDeafen(!deafen);
                     }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                     <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
-                  </button>
+                  </button> */}
                   <button onClick={() => setOpenInvite(true)} className={`p-4 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
-                    <FaUserPlus size={18} />
+                    <FaUserPlus className='mb-1'  size={20} />
                   </button>
                   <button onClick={() => { toggleChat() } } className={`p-4 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     {
                       showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />
                     }
                   </button>
-                  <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
-                    <HiPhoneMissedCall size={20} />
-                  </button>
+                  
                   <button onClick={() => setOpenSettings(true)} className={`p-4 inline-flex justify-center rounded-full ${openSettings ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaCog size={20} />
+                  </button>
+
+                  <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+                    <HiPhoneMissedCall size={20} />
                   </button>
                 </nav>
               </Col>
