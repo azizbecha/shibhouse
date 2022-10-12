@@ -19,9 +19,10 @@ import isEmpty from 'validator/lib/isEmpty'
 
 import { getBrightColor } from "../lib/getBrightColor"
 import { isChatCommand } from "../lib/isChatCommand"
+import { sendBotMessage } from "../lib/sendBotMessage"
+
 import { StreamContext } from "../contexts/StreamContext"
 import { ChatProps } from "../interfaces"
-import { sendBotMessage } from "../lib/sendBotMessage"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -229,12 +230,14 @@ const Chat: React.FC<ChatProps> = (props) => {
                     <span className="text-white font-inter text-lg flex space-x-1 mb-2 font-normal">
                         <AiFillPushpin className="my-auto" size={17} /> <span>Pinned link:</span>
                     </span>
+
                     <LinkPreview 
                         url={props.pinnedLink}
                         showLoader={true}
                         customLoader={
-                            <div className="flex justify-center items-center h-14 w-full px-20 bg-dark ">
+                            <div className="flex justify-center items-center h-16 w-full px-20 bg-dark">
                                 <TailSpin 
+                                    width={45}
                                     color='#fa2f2f'
                                     ariaLabel='loading'
                                 />
