@@ -77,7 +77,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     chatLinks[i].style.color = getBrightColor();
                 }
             }
-        }, 100)
+        }, 250)
 
         setInterval(() => {
             const bot = document.getElementsByClassName('bot') as HTMLCollectionOf<HTMLElement>;
@@ -86,7 +86,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     bot[i].style.color = getBrightColor();
                 }
             }
-        }, 200)
+        }, 250)
 
         setInterval(() => {
             const bot = document.getElementsByClassName('bg-bot') as HTMLCollectionOf<HTMLElement>;
@@ -95,7 +95,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     bot[i].style.backgroundColor = getBrightColor();
                 }
             }
-        }, 200)
+        },250)
     }, [])
     
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
