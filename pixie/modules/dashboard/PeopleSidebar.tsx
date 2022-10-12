@@ -86,7 +86,7 @@ const PeopleSidebar: React.FC = () => {
                                                                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
                                                                     {capitalizeWord(user.firstname)} {capitalizeWord(user.lastname)}
                                                                 </p>
-                                                                <p className="text-sm text-white cursor-pointer">@{user.username}</p>
+                                                                <p className="text-sm font-medium text-white cursor-pointer">@{user.username}</p>
                                                             </div>
                                                         </Link>
                                                     </div>

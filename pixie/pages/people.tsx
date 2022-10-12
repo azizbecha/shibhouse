@@ -163,7 +163,7 @@ const People: React.FC = () => {
                                                                 <Link href={`user/${user.username}`}>
                                                                     <div>
                                                                         <h2 className="text-white font-semibold text-xl">{capitalizeWord(user.firstname)} {capitalizeWord(user.lastname)}</h2>
-                                                                        <h3 className="text-white font-normald text-md">@{user.username}</h3>
+                                                                        <h3 className="text-white font-medium text-md">@{user.username}</h3>
                                                                     </div>
                                                                 </Link>
                                                                 <div className="text-sm mt-3.5 text-gray-200">

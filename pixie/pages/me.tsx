@@ -236,14 +236,14 @@ const Me: React.FC = () => {
                                                     <Link href={`user/${user.username}`} key={key} passHref>
                                                         <li className="py-3 sm:py-4 rounded-lg bg-dark cursor-pointer" key={key}>
                                                             <div className="flex items-center space-x-4 px-3">
-                                                                <div className="p-4 text-white rounded-full" style={{backgroundColor: user.avatarColor}}>
+                                                                <div className="p-4 text-white font-bold rounded-full" style={{backgroundColor: user.avatarColor}}>
                                                                     {user.firstname[0].toUpperCase()}{user.lastname[0].toUpperCase()}
                                                                 </div>
                                                                 <div className="flex-1 min-w-0">
                                                                     <p className="text-sm font-medium text-gray-900 truncate text-white">
                                                                         {capitalizeWord(user.firstname)} {capitalizeWord(user.lastname)}
                                                                     </p>
-                                                                    <p className="text-sm text-white truncate dark:text-gray-400">
+                                                                    <p className="text-sm font-medium text-white truncate dark:text-gray-400">
                                                                         @{user.username}
                                                                     </p>
                                                                 </div>

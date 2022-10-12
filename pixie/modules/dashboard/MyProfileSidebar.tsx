@@ -39,7 +39,7 @@ const MyProfileSidebar: React.FC = () => {
                                 </div>
                             </Link>
                             <h5 className="mb-1 text-xl font-medium text-center cursor-pointer"><Link href={'/me'}><span>{currentUserData.firstname} {currentUserData.lastname}</span></Link></h5>
-                            <span className="text-sm text-white text-center cursor-pointer"><Link href={'/me'}><span>@{currentUserData.username}</span></Link></span>
+                            <span className="text-sm font-medium text-white text-center cursor-pointer"><Link href={'/me'}><span>@{currentUserData.username}</span></Link></span>
                             <span className="text-sm text-gray-500 text-center mt-5">{currentUserData.bio}</span>
                             <div className="flex space-x-3 mt-2 justify-center">
                                 <span className="justify-left text-sm font-bold text-white">{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></span>
