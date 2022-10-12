@@ -56,9 +56,9 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
 
   return (
     <div {...props}>
-      <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-1'}`}>
+      <div className={`bg-dark text-white py-2 rounded-lg ${isTabletOrMobile && 'px-1'}`}>
         <div className="container my-3">
-          <div className={`w-20 py-5 relative text-white text-center text-2xl rounded-full mb-3 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
+          <div className={`w-20 py-5 relative text-white text-center font-bold text-2xl rounded-full mb-1 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
             {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
 
             { onClick && hoverIcon && (
