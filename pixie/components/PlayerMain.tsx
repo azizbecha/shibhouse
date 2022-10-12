@@ -719,7 +719,7 @@ function Main ({ user, room }) {
               <Col lg={3} md={2} sm={12} xs={12}>
                 <nav className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
                   {(isHost || connRole === 'speaker') && (
-                    <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1">
+                    <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1 m-1">
                       <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                         { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                       </button>
@@ -731,20 +731,20 @@ function Main ({ user, room }) {
                     }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
                     <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
                   </button> */}
-                  <button onClick={() => setOpenInvite(true)} className={`p-4 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
+                  <button onClick={() => setOpenInvite(true)} className={`p-4 m-1 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaUserPlus className='mb-1'  size={20} />
                   </button>
-                  <button onClick={() => { toggleChat() } } className={`p-4 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
+                  <button onClick={() => { toggleChat() } } className={`p-4 m-1 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     {
                       showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />
                     }
                   </button>
                   
-                  <button onClick={() => setOpenSettings(true)} className={`p-4 inline-flex justify-center rounded-full ${openSettings ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
+                  <button onClick={() => setOpenSettings(true)} className={`p-4 m-1 inline-flex justify-center rounded-full ${openSettings ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaCog size={20} />
                   </button>
 
-                  <button onClick={onLeave} className="text-white/50 p-4 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
+                  <button onClick={onLeave} className="text-white/50 p-4 m-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
                     <HiPhoneMissedCall size={20} />
                   </button>
                 </nav>
