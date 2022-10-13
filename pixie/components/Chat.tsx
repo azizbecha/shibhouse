@@ -3,8 +3,9 @@ import React, { Fragment, useContext, useEffect, useState } from "react"
 
 import { useCopyToClipboard } from "react-use"
 import { Anchorme, LinkComponentProps } from 'react-anchorme'
-import { TailSpin } from "react-loader-spinner"
-import { LinkPreview } from '@dhaiwat10/react-link-preview'
+
+import Microlink from '@microlink/react'
+
 import { toast } from "react-toastify"
 import InputEmoji from "react-input-emoji"
 
@@ -23,6 +24,7 @@ import { sendBotMessage } from "../lib/sendBotMessage"
 
 import { StreamContext } from "../contexts/StreamContext"
 import { ChatProps } from "../interfaces"
+import { getDomain } from "../lib/getDomain"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -224,28 +226,15 @@ const Chat: React.FC<ChatProps> = (props) => {
         <Fragment>
             {props.pinnedLink !== "" && (
                 <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold">
-                    <span className="text-white font-inter text-lg flex space-x-1 mb-2 font-normal">
+                    <span className="text-white font-inter text-lg flex space-x-1 my-2 font-normal">
                         <AiFillPushpin className="my-auto" size={17} /> <span>Pinned link:</span>
                     </span>
-
-                    <LinkPreview 
+                    
+                    <Microlink
+                        className="mt-4 w-full"
                         url={props.pinnedLink}
-                        showLoader={true}
-                        customLoader={
-                            <div className="flex justify-center items-center h-16 w-full px-20 bg-dark">
-                                <TailSpin 
-                                    width={45}
-                                    color='#fa2f2f'
-                                    ariaLabel='loading'
-                                />
-                            </div>
-                        }
-                        imageHeight={150}
-                        backgroundColor="#151A21"
-                        borderColor="#151A21"
-                        primaryTextColor="#fff" 
-                        secondaryTextColor="#c7c5c5"
-                        descriptionLength={60}
+                        size="large"
+                        style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
                     />
                 </div>
             )}
