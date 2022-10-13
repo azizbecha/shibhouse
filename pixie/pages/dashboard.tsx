@@ -192,7 +192,7 @@ const Dashboard: React.FC = () => {
     }
 
     const getNotifications = async () => {
-        const q: Query<DocumentData> = query(collection(fireStore, "notifications"), limit(4));
+        const q: Query<DocumentData> = query(collection(fireStore, "notifications"), limit(4), orderBy('date', 'desc'));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
