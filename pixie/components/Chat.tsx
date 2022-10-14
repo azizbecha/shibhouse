@@ -25,6 +25,7 @@ import { sendBotMessage } from "../lib/sendBotMessage"
 import { StreamContext } from "../contexts/StreamContext"
 import { ChatProps } from "../interfaces"
 import { getDomain } from "../lib/getDomain"
+import { FaBan } from "react-icons/fa"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -282,7 +283,12 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                     
                                                     {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
                                                     {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
-                                                    <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white" style={{fontSize: 11}}>Ban</span>
+                                                    
+                                                    {
+                                                        props.creator == currentUserData.username && !message.isBot && message.sentBy !== currentUserData.username && (
+                                                            <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white inline-block cursor-pointer"><div className="flex my-0.5"><FaBan size={10} /></div></span>
+                                                        )
+                                                    }
                                                 </span>
                                                 <span className="text-sm text-wrap break-all">
                                                     {
