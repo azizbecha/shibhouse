@@ -25,7 +25,7 @@ export interface NewRoom {
   topics: Array<{id: string, text: string}>,
   createdBy: string,
   allowChat: boolean,
-  speakers: Array<string>
+  speakers: string[]
 }
 
 export interface PlayerProps {
@@ -38,7 +38,7 @@ export interface PlayerProps {
   roomName: string,
   roomDescription: string,
   pinnedLink: string,
-  topics: Array<string>,
+  topics: string[],
   createdBy: string,
   createdAt: string,
   isChatAllowed: boolean
@@ -73,4 +73,11 @@ export interface RoomMemberProps {
   lastname: string,
   avatar: string,
   roomId: string
+}
+
+export interface NotificationProps {
+  title: string,
+  body: string,
+  silent?: boolean,
+  onClick?: void,
 }

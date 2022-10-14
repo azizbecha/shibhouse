@@ -1,5 +1,3 @@
-
-
 export const getDomain = (url, subdomain) => {
     subdomain = subdomain || false;
 
