@@ -40,6 +40,7 @@ import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } fr
 import { fireStore } from "../auth/Firebase"
 import { requestNotificationPermission } from "../lib/requestNotificationPermission"
 import { sendNotification } from "../lib/sendNotification"
+import Link from "next/link"
 
 const Dashboard: React.FC = () => {
 
@@ -349,7 +350,7 @@ const Dashboard: React.FC = () => {
                                                                         <li className="text-sm mb-1">
                                                                             {
                                                                                 words.map((word) => {
-                                                                                    return <span>{word.match(pattern) ? <span className="font-bold">{word}</span> : word} </span>
+                                                                                    return <span>{word.match(pattern) ? <Link href={`user/${word.substring(1)}`}><span className="font-bold cursor-pointer">{word}</span></Link> : word} </span>
                                                                                 })
                                                                             }
                                                                         </li>
