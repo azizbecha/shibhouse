@@ -38,6 +38,7 @@ import { IoMdNotifications } from "react-icons/io"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
+import { requestNotificationPermission } from "../lib/requestNotificationPermission"
 
 const Dashboard: React.FC = () => {
 
@@ -204,6 +205,9 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         randomJoke();
         getNotifications();
+
+        requestNotificationPermission();
+
     }, [])
 
     return (
