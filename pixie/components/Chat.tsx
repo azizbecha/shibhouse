@@ -150,6 +150,10 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     sendBotMessage(props.roomId, `Mic access is ${micAccess}`);
                                     break;
 
+                                case '/request':
+                                    sendBotMessage(props.roomId, `@${props.username} is requesting to speak`);
+                                    break;
+
                                 default:
                                     toast.error(`Command ${message} not found`, {
                                         position: "top-right",
