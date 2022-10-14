@@ -108,107 +108,111 @@ const Chat: React.FC<ChatProps> = (props) => {
             // Make sure that message is not empty
             if (message.length > 0 && !isEmpty(message)) {
 
-                // if message is a command
-                if (isChatCommand(message)) {
+                if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
 
-                    switch(message) {
-                        case '/copy':
-                            copyRoomLink();
-                            break;
+                    // If last message timestamp is greater than 3 seconds
+                    addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
+                        message: message.trim(),
+                        sendTime: Date.now(),
+                        sentBy: currentUserData.username,
+                        roomId: props.roomId,
+                        avatarColor: currentUserData.avatarColor,
+                        isBot: false
+                    }).then(() => {
 
-                        case '/leave':
-                            props.leave();
-                            break;
+                        // if message is a command
+                        if (isChatCommand(message)) {
 
-                        case '/mute':
-                            props.muteToggle();
-                            break;
+                            switch(message) {
+                                case '/copy':
+                                    copyRoomLink();
+                                    break;
 
-                        case '/role':
-                            toast.info(`You are a ${props.role}`, {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
-                            break;
-                        
-                        case '/whoami':
-                            toast.info(`You are a ${props.username}`, {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
-                            break;
-                        
-                        case '/rabye':
-                            sendBotMessage(props.roomId, `@${props.username} played the Rabye Bouden's "Sa7a l Bitcoin rab3oun" audio clip`);
-                            var vocal = new Audio("../../sounds/sa7a-bitcoin-rab3oun.mp3");
-                            vocal.play();
-                            break;
+                                case '/leave':
+                                    props.leave();
+                                    break;
 
-                        case '/micaccess':
-                            toast.info(`Mic access is ${micAccess}`, {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
-                            break;
+                                case '/mute':
+                                    props.muteToggle();
+                                    break;
 
-                        default:
-                            toast.error(`Command ${message} not found`, {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
-                            break;
+                                case '/role':
+                                    toast.info(`You are a ${props.role}`, {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                    break;
+                                
+                                case '/whoami':
+                                    toast.info(`You are a ${props.username}`, {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                    break;
+                                
+                                case '/rabye':
+                                    sendBotMessage(props.roomId, `@${props.username} played the Rabye Bouden's "Sa7a l Bitcoin rab3oun" audio clip`);
+                                    var vocal = new Audio("../../sounds/sa7a-bitcoin-rab3oun.mp3");
+                                    vocal.play();
+                                    break;
 
-                    }
-                } else {
-                    if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
+                                case '/micaccess':
+                                    toast.info(`Mic access is ${micAccess}`, {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                    break;
 
-                        // If last message timestamp is greater than 3 seconds
-                        addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
-                            message: message.trim(),
-                            sendTime: Date.now(),
-                            sentBy: currentUserData.username,
-                            roomId: props.roomId,
-                            avatarColor: currentUserData.avatarColor,
-                            isBot: false
-                        }),
+                                default:
+                                    toast.error(`Command ${message} not found`, {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                    break;
 
+                            }
+                        }
+    
                         setMessage('');
                         setLastMessageTimestamp(new Date().getTime());
 
-                        return 
-                    } else {
-                        toast.warning('Please wait a moment before', {
-                            position: "top-right",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
-                        return 
-                    }
+                    })
+
+
+                    return 
+                } else {
+                    toast.warning('Please wait a moment before', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    return 
                 }
+
             }
         } catch (e) {
             toast.error('An error occured', {
