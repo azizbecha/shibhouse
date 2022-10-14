@@ -231,7 +231,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     </span>
                     
                     {
-                        getDomain(props.pinnedLink, true) == "youtube.com" ? (
+                        getDomain(props.pinnedLink, true) == "youtube.com" || "youtu.be" ? (
                             <Microlink
                                 className="mt-4 w-full"
                                 url={props.pinnedLink}
