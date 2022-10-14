@@ -86,7 +86,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     bgBot[i].style.backgroundColor = getBrightColor();
                 }
             }
-        }, 250);
+        }, 500);
         
     }, [])
     
