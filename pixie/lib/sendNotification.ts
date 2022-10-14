@@ -5,7 +5,7 @@ export const sendNotification = (props: NotificationProps) => {
         if (permission === "granted") {
             let title: string = props.title;
             
-            new Notification(title, props);
+            new Notification(title, {...props, icon: '../images/icon.ico'});
         }
     });
 }

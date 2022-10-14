@@ -208,7 +208,6 @@ const Dashboard: React.FC = () => {
         getNotifications();
 
         requestNotificationPermission();
-
     }, [])
 
     return (
