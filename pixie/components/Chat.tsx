@@ -230,12 +230,25 @@ const Chat: React.FC<ChatProps> = (props) => {
                         <AiFillPushpin className="my-auto" size={17} /> <span>Pinned link:</span>
                     </span>
                     
-                    <Microlink
-                        className="mt-4 w-full"
-                        url={props.pinnedLink}
-                        size="large"
-                        style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
-                    />
+                    {
+                        getDomain(props.pinnedLink, true) == "youtube.com" ? (
+                            <Microlink
+                                className="mt-4 w-full"
+                                url={props.pinnedLink}
+                                size="large"
+                                media={"video"}
+                                style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
+                            />
+                            
+                        ) : (
+                            <Microlink
+                                className="mt-4 w-full"
+                                url={props.pinnedLink}
+                                size="large"
+                                style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
+                            />
+                        )
+                    }
                 </div>
             )}
             {
