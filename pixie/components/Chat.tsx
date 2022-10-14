@@ -61,15 +61,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const copyRoomLink = () => {
         copyToClipboard(window.location.href);
-        toast.success('Room link copied to clipboard', {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        sendBotMessage(props.roomId, `Room link copied successfully`);
     }
 
     useEffect(() => {
