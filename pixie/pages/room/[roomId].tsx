@@ -13,6 +13,7 @@ import LoadingScreen from '../../components/LoadingScreen'
 
 import { sendBotMessage } from '../../lib/sendBotMessage'
 import SEO from '../../utils/SEO'
+import { requestNotificationPermission } from '../../lib/requestNotificationPermission'
 
 const PlayerMain = dynamic(
   () => import('../../components/PlayerMain'),
@@ -43,6 +44,8 @@ export default function RoomPage() {
     }
     check();
   }, [currentUserData.username, roomId])
+
+  useEffect(() => requestNotificationPermission(), []);
 
   return (
     <PrivateRoute>
