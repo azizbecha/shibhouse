@@ -121,35 +121,23 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     break;
 
                                 case '/leave':
+                                    sendBotMessage(props.roomId, `@${props.username} left the room`);
                                     props.leave();
+                                    
                                     break;
 
                                 case '/mute':
                                     props.muteToggle();
+                                    sendBotMessage(props.roomId, `@${props.username} muted his mic`);
                                     break;
 
                                 case '/role':
-                                    toast.info(`You are a ${props.role}`, {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    sendBotMessage(props.roomId, `${props.username} is a ${props.role}`);
                                     break;
                                 
                                 case '/whoami':
-                                    toast.info(`You are a ${props.username}`, {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    sendBotMessage(props.roomId, `You are @${props.username}`);
+                                    
                                     break;
                                 
                                 case '/rabye':
@@ -159,15 +147,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     break;
 
                                 case '/micaccess':
-                                    toast.info(`Mic access is ${micAccess}`, {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    sendBotMessage(props.roomId, `Mic access is ${micAccess}`);
                                     break;
 
                                 default:
@@ -187,9 +167,7 @@ const Chat: React.FC<ChatProps> = (props) => {
     
                         setMessage('');
                         setLastMessageTimestamp(new Date().getTime());
-
                     })
-
 
                     return 
                 } else {
