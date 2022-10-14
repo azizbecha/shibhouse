@@ -235,27 +235,6 @@ function Main ({ user, room }) {
   }
 
   const toggleChat = () => {
-    showChat ? (
-      toast.success('Chat invisible', {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      })
-    ) : (
-      toast.success('Chat visible', {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      })
-    )
     toggleChatAudio.play();
     setShowChat(!showChat);
   }
