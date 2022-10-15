@@ -24,7 +24,7 @@ const Register: React.FC = () => {
                                         <JoinForm />
                                     </Col>
                                     <Col lg={5} md={12} sm={12} xs={12}>
-                                        <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-10/12 mx-auto mb-3" alt="Shib hero" loading="lazy" />
+                                        <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-9/12 mx-auto mb-3" alt="Shib hero" loading="lazy" />
                                     </Col>
                                 </Row>
                             </div>
