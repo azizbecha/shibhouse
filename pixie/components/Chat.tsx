@@ -155,15 +155,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     break;
 
                                 default:
-                                    toast.error(`Command ${message} not found`, {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    sendBotMessage(props.roomId, `Command ${message} not found`);
                                     break;
 
                             }
