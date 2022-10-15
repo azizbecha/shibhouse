@@ -19,7 +19,7 @@ import Hotkeys from 'react-hot-keys';
 import QRCode from "react-qr-code";
 import { IUseNetworkState } from 'react-use/lib/useNetworkState'
 import { useMediaQuery } from 'react-responsive'
-import { toast } from 'react-toastify'
+import toast from "react-hot-toast";
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { useNetworkState, useCopyToClipboard } from 'react-use';
 
@@ -144,15 +144,7 @@ function Main ({ user, room }) {
 
   useEffect(() => {
     if (connRole == 'speaker' && devices.length === 0) {
-      toast.error('you dont have a mic to speak', {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("You do not have a mic to speak");
     }
   }, [connRole, devices.length]);
   
@@ -162,15 +154,7 @@ function Main ({ user, room }) {
       if (!agree) return
       if (agree) {
         await deleteDoc(doc(fireStore, "rooms", roomId));
-        toast.success('Room deleted', {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success('Room deleted');
       }
     }
 
@@ -210,28 +194,12 @@ function Main ({ user, room }) {
   }
 
   if (!networkState.online) {
-    toast.error("You are disconnected !", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.error("You are offline !");
   }
 
   const copyRoomLink = () => {
     copyToClipboard(window.location.href);
-    toast.success('Room link copied to clipboard', {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.success('Room link copied to clipboard');
   }
 
   const toggleChat = () => {

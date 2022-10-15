@@ -1457,11 +1457,6 @@
   dependencies:
     "mimic-response" "^1.0.0"
 
-"clsx@^1.1.1":
-  "integrity" "sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA=="
-  "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.1.1.tgz"
-  "version" "1.1.1"
-
 "color-convert@^1.9.0":
   "integrity" "sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg=="
   "resolved" "https://registry.npmjs.org/color-convert/-/color-convert-1.9.3.tgz"
@@ -1597,7 +1592,7 @@
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-2.6.20.tgz"
   "version" "2.6.20"
 
-"csstype@^3.0.2", "csstype@^3.0.6":
+"csstype@^3.0.10", "csstype@^3.0.2", "csstype@^3.0.6":
   "integrity" "sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw=="
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
   "version" "3.0.11"
@@ -2410,6 +2405,11 @@
     "ignore" "^5.2.0"
     "merge2" "^1.4.1"
     "slash" "^3.0.0"
+
+"goober@^2.1.10":
+  "integrity" "sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A=="
+  "resolved" "https://registry.npmjs.org/goober/-/goober-2.1.11.tgz"
+  "version" "2.1.11"
 
 "got@~11.8.5":
   "integrity" "sha512-o0Je4NvQObAuZPHLFoRSkdG2lTgtcynqymzg2Vupdx6PorhaT5MCbIyXG6d4D94kk8ZG57QeosgdiqfJWhEhlQ=="
@@ -3710,6 +3710,13 @@
     "hotkeys-js" "^3.8.1"
     "prop-types" "^15.7.2"
 
+"react-hot-toast@^2.4.0":
+  "integrity" "sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA=="
+  "resolved" "https://registry.npmjs.org/react-hot-toast/-/react-hot-toast-2.4.0.tgz"
+  "version" "2.4.0"
+  dependencies:
+    "goober" "^2.1.10"
+
 "react-html-parser@^2.0.2":
   "integrity" "sha512-XeerLwCVjTs3njZcgCOeDUqLgNIt/t+6Jgi5/qPsO/krUWl76kWKXMeVs2LhY2gwM6X378DkhLjur0zUQdpz0g=="
   "resolved" "https://registry.npmjs.org/react-html-parser/-/react-html-parser-2.0.2.tgz"
@@ -3811,13 +3818,6 @@
     "memoize-one" "^6.0.0"
     "prop-types" "^15.7.2"
     "raf" "^3.4.1"
-
-"react-toastify@^9.0.1":
-  "integrity" "sha512-c2zeZHkCX+WXuItS/JRqQ/8CH8Qm/je+M0rt09xe9fnu5YPJigtNOdD8zX4fwLA093V2am3abkGfOowwpkrwOQ=="
-  "resolved" "https://registry.npmjs.org/react-toastify/-/react-toastify-9.0.1.tgz"
-  "version" "9.0.1"
-  dependencies:
-    "clsx" "^1.1.1"
 
 "react-ts-tradingview-widgets@^1.0.10":
   "integrity" "sha512-RTqV/fHsXPSeQ4Rq101/Je3BbNmPFJA6uVBN25D9mZtROBF9Y02K7xmnrwxKQJzt+Ej76edKYNC568nAToVYZw=="

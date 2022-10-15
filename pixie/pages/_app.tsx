@@ -6,8 +6,7 @@ import NextNProgress from "nextjs-progressbar"
 
 import AuthProvider from '../auth/AuthContext'
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Toaster } from 'react-hot-toast'
 
 import AOS from 'aos'
 import "aos/dist/aos.css"
@@ -17,7 +16,6 @@ import en from 'javascript-time-ago/locale/en.json'
 import 'react-flexbox-grid/dist/react-flexbox-grid.css'
 
 import '../styles/globals.css'
-import SEO from '../utils/SEO'
 
 function MyApp({ Component, pageProps }: AppProps) {
     
@@ -33,17 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <>
             <AuthProvider>
                 <NextNProgress color='#fa2f2f' height={5} />
-                <ToastContainer
-                    position="top-center"
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    newestOnTop={true}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
+                <Toaster />
                 <Component {...pageProps} />
             </AuthProvider>
         </>

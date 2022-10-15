@@ -9,7 +9,7 @@ import { AuthContext } from "../auth/AuthContext";
 import { fireStore } from "../auth/Firebase";
 import PrivateRoute from "../auth/PrivateRoute";
 
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { HexColorPicker } from "react-colorful";
 
@@ -90,15 +90,7 @@ const Me: React.FC = () => {
             setBio(currentUserData.bio);
             setAvatarColor(currentUserData.avatarColor);
 
-            toast.success('Profile updated successfully', {
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success('Profile updated successfully');
             
             if (email !== currentUserData.email) {
 
@@ -107,38 +99,14 @@ const Me: React.FC = () => {
                     const auth = getAuth();
 
                     updateEmail(auth.currentUser, email).then(() => {
-                        toast.success('Email updated successfully', {
-                            position: "top-center",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        toast.success('Email updated successfully');
                         router.push('/');
                     }).catch((error) => {
                         console.log(error);
-                        toast.error('An error has been occured', {
-                            position: "top-center",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        toast.error('An error has been occured');
                     });
                 } else {
-                    toast.warning('Please enter a valid email', {
-                        position: "top-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
+                    toast.error('Please enter a valid email');
                 }
             }
             router.push('/');
@@ -177,16 +145,10 @@ const Me: React.FC = () => {
                                         </div>
 
                                         <div className="mb-1 mt-2 font-semibold text-md w-10/12">
-                                            <CopyToClipboard text={window.location.host+'/user/'+currentUserData.username} onCopy={() => {
-                                                toast.success('Link copied', {
-                                                    position: "top-center",
-                                                    autoClose: 4000,
-                                                    hideProgressBar: false,
-                                                    closeOnClick: true,
-                                                    pauseOnHover: true,
-                                                    draggable: true,
-                                                    progress: undefined,
-                                                });
+                                            <CopyToClipboard
+                                                text={window.location.host+'/user/'+currentUserData.username}
+                                                onCopy={() => {
+                                                    toast.success('Link copied');
                                                 }}>
                                                 <h4 className="text-sm font-semibold text-white flex mt-2 space-x-2 cursor-pointer"><FaLink size={13.5} className="mt-1 mr-1" />{window.location.host}/user/{currentUserData.username}</h4>
                                             </CopyToClipboard>

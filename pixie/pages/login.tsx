@@ -7,7 +7,7 @@ import { signUser } from "../lib/signUser"
 
 import ProtectedRoute from "../auth/ProtectedRoute"
 
-import { toast } from "react-toastify"
+import toast from "react-hot-toast";
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -31,44 +31,20 @@ const Login: React.FC = () => {
         }
     
         try {
-            toast.info('Please wait', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            //toast.info('Please wait');
 
             setDisabled(true);
 
             await signUser(userObject);
 
-            toast.success('Logged successfully !', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success('Welcome back !');
             
             setDisabled(false);
             router.push("/dashboard");
 
         } catch (e) {
             setDisabled(false)
-            toast.error('Please verify your informations', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error('Please verify your informations');
         }
     }
     return (

@@ -1,18 +1,18 @@
 import { createUserWithEmailAndPassword, User } from 'firebase/auth'
 import { collection, doc, DocumentData, getDocs, Query, query, QuerySnapshot, setDoc, where } from "firebase/firestore"; 
 
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 import getCurrentUserData from "./getCurrentUserData";
 import { auth, fireStore } from '../auth/Firebase'
 import { capitalizeWord } from "./capitalize";
 import { getRandomColor } from "./getRandomColor";
+import { createNotification } from './createNotification';
 import { NewUser } from "../interfaces"
 
 import isEmail from 'validator/lib/isEmail';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import isAlpha from 'validator/lib/isAlpha';
-import { createNotification } from './createNotification';
 
 const createUser = async (user: NewUser): Promise<void> => {
 
@@ -71,95 +71,39 @@ const createUser = async (user: NewUser): Promise<void> => {
                             createNotification(`@${user.username.trim()} joined Shibhouse`);
                             
                             // Show success message to the user
-                            toast.success('Joined !', {
-                                position: "top-center",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
+                            toast.success('Joined !');
                             
                         } catch (e) {
             
                             // If Email in use
                             if (e == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
-                                toast.warning('Email is already used', {
-                                    position: "top-center",
-                                    autoClose: 3000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                });
+                                toast.error('Email is already used');
                             }
                         }
                     } else {
 
                         // If lastname is not strong
-                        toast.warning('Lastname cannot contain numbers', {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        toast.error('Lastname cannot contain numbers');
                     }
                 } else {
 
                     // If firstname is not strong
-                    toast.warning('Firstname cannot contain numbers', {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
+                    toast.error('Firstname cannot contain numbers');
                 }
             } else {
 
                 // If password is not strong
-                toast.warning('Weak password', {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                toast.error('Weak password');
             }
         } else {
 
             // If email is not valid
-            toast.warning('Invalid email', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error('Invalid email');
         }
     } else {
 
         // Username is already used
-        toast.error('Username is already used', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        toast.error('Username is already used');
     }
 
 }

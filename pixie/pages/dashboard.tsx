@@ -11,7 +11,7 @@ import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import { WithContext as ReactTags } from 'react-tag-input'
 import { TickerTape } from "react-ts-tradingview-widgets"
-import { toast } from "react-toastify"
+import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
@@ -75,15 +75,7 @@ const Dashboard: React.FC = () => {
 
     const handleAddition = (tag: {id: string, text: string}) => {
         roomTopics.length < 8 ? setRoomTopics([...roomTopics, tag]) : (
-            toast.warning("You can't add more than 8 tags", {
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            })
+            toast.error("You can't add more than 8 tags")
         )
     };
 
@@ -122,68 +114,28 @@ const Dashboard: React.FC = () => {
                     try {
                         setShowModal(false);
                         await createRoom(data);
-                        toast.success('Room created successfully', {
-                            position: "top-center",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        toast.success('Room created successfully');
         
                         router.push(`/room/${roomId}`);
                     } catch (e) {
                         console.log(e);
-                        toast.error('An error has been occured', {
-                            position: "top-center",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        toast.error('An error has been occured');
                     }
                 }
             } else {
                 try {
                     setShowModal(false);
                     await createRoom(data);
-                    toast.success('Room created successfully', {
-                        position: "top-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
+                    toast.success('Room created successfully');
     
                     router.push(`/room/${roomId}`);
                 } catch (e) {
                     console.log(e)
-                    toast.error('An error has been occured', {
-                        position: "top-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
+                    toast.error('An error has been occured');
                 }
             }
         } else {
-            toast.warning('Please fill all the fields', {
-                position: "top-center",
-                autoClose: 4000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error('Please fill all the fields');
         }
     }
 

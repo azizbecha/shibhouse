@@ -6,7 +6,7 @@ import { Anchorme, LinkComponentProps } from 'react-anchorme'
 
 import Microlink from '@microlink/react'
 
-import { toast } from "react-toastify"
+import toast from "react-hot-toast";
 import InputEmoji from "react-input-emoji"
 
 import { RiChatOffFill } from "react-icons/ri"
@@ -167,29 +167,13 @@ const Chat: React.FC<ChatProps> = (props) => {
 
                     return 
                 } else {
-                    toast.warning('Please wait a moment before', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
+                    toast.error('Please wait a moment before');
                     return 
                 }
 
             }
         } catch (e) {
-            toast.error('An error occured', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error('An error occured');
         }
     }
 

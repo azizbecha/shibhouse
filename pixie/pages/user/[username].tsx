@@ -9,7 +9,7 @@ import { AuthContext } from "../../auth/AuthContext";
 import { fireStore } from "../../auth/Firebase";
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
@@ -57,26 +57,10 @@ const User: React.FC = () => {
             
             fetch();
 
-            toast.success(`Unfollowed ${userData.username}`, {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(`Unfollowed ${userData.username}`);
 
         } catch (e) {
-            toast.error(`An error has been occured`, {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error(`An error has been occured`);
         }
     }
 
@@ -102,25 +86,9 @@ const User: React.FC = () => {
 
             fetch();
             createNotification(`@${currentUserData.username} started following @${userData.username}`);
-            toast.success(`Followed ${userData.username}`, {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(`Followed ${userData.username}`);
         } catch (e) {
-            toast.error(`An error has been occured`, {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error(`An error has been occured`);
         }
     }
 

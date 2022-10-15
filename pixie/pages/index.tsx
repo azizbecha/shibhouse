@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { useCopyToClipboard } from 'react-use'
-import { toast } from 'react-toastify'
+import toast from "react-hot-toast";
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -179,15 +179,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaBitcoin className='my-auto text-primary' /> <span>Bitcoin <span className="text-sm">(bitcoin network)</span></span></h3>
                                 <p className='font-semibold my-3 cursor-pointer' onClick={() => {
                                     copyToClipboard('3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU');
-                                    toast.success('BTC address copied to clipboard', {
-                                        position: "top-right",
-                                        autoClose: 1000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    toast.success('BTC address copied to clipboard');
                                 }}>
                                     3McRNVx1Neuw45LE22T2rKmgB9kcuoJkkU
                                 </p>
@@ -198,15 +190,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaEthereum className='my-auto text-primary' /> <span>Ethereum <span className="text-sm">(ethereum network)</span></span></h3>
                                 <p className='font-semibold my-3 cursor-pointer' onClick={() => {
                                     copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
-                                    toast.success('ETH address copied to clipboard', {
-                                        position: "top-right",
-                                        autoClose: 1000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    toast.success('ETH address copied to clipboard');
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>
@@ -217,15 +201,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                                 <h3 className='font-semibold text-2xl flex space-x-1 mt-3'><FaDog className='my-auto text-primary' /> <span>Shib <span className="text-sm">(ethereum network)</span></span></h3>
                                 <p className='font-semibold my-3 cursor-pointer' onClick={() => {
                                     copyToClipboard('0x06a6974126a6fccc25c6fe9abf9140d81b537419');
-                                    toast.success('SHIB address copied to clipboard', {
-                                        position: "top-right",
-                                        autoClose: 1000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    });
+                                    toast.success('SHIB address copied to clipboard');
                                 }}>
                                     0x06a6974126a6fccc25c6fe9abf9140d81b537419
                                 </p>

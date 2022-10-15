@@ -8,7 +8,7 @@ import User from './User'
 
 import QRCode from 'react-qr-code'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { toast } from 'react-toastify'
+import toast from "react-hot-toast";
 
 import { FaHeadphones, FaLink, FaPlus, FaBan } from 'react-icons/fa'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
@@ -57,15 +57,7 @@ const Listeners: React.FC<ListenersProps> = ({roomId}) => {
                   <h1 className="text-white text-xl text-center font-normal font-inter">Looks like there are no listeners with you in this room.</h1>
                   <h2 className='text-white text-center text-lg font-inter flex items-center justify-center mt-1'>Invite your friends to join the room with this link:<br /></h2>
                   <CopyToClipboard text={window.location.href} onCopy={() => {
-                    toast.success('Link copied', {
-                      position: "top-center",
-                      autoClose: 4000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
+                    toast.success('Link copied');
                   }}>
                     <Fragment>
                       <div className='flex justify-center text-center text-white font-semibold text-sm mt-3 cursor-pointer'>
