@@ -11,8 +11,9 @@ import InputEmoji from "react-input-emoji"
 
 import { RiChatOffFill } from "react-icons/ri"
 import { AiFillPushpin } from "react-icons/ai"
+import { FaBan } from "react-icons/fa"
 
-import { addDoc, collection, DocumentData, limit, onSnapshot, orderBy, query, QueryDocumentSnapshot } from "firebase/firestore"
+import { addDoc, collection, DocumentData, limit, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
 import { useAuth } from "../auth/AuthContext"
 
@@ -25,7 +26,6 @@ import { sendBotMessage } from "../lib/sendBotMessage"
 import { StreamContext } from "../contexts/StreamContext"
 import { ChatProps } from "../interfaces"
 import { getDomain } from "../lib/getDomain"
-import { FaBan } from "react-icons/fa"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -105,7 +105,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     // If last message timestamp is greater than 3 seconds
                     addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
                         message: message.trim(),
-                        sendTime: Date.now(),
+                        sendTime: Timestamp.now().seconds,
                         sentBy: currentUserData.username,
                         roomId: props.roomId,
                         avatarColor: currentUserData.avatarColor,

@@ -1,17 +1,20 @@
 import { useState, useRef, Fragment, useEffect } from "react"
 import { NextRouter, useRouter } from "next/router"
+import Link from "next/link"
 
 import { Dialog, Transition } from '@headlessui/react'
 
+import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
 import PrivateRoute from "../auth/PrivateRoute"
 import { useAuth } from "../auth/AuthContext"
+import { fireStore } from "../auth/Firebase"
 
 import axios from "axios"
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
+import toast from "react-hot-toast";
 import { WithContext as ReactTags } from 'react-tag-input'
 import { TickerTape } from "react-ts-tradingview-widgets"
-import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
@@ -28,6 +31,7 @@ import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar"
 import { NewRoom } from "../interfaces"
 import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
+import { requestNotificationPermission } from "../lib/requestNotificationPermission"
 
 import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
@@ -36,11 +40,6 @@ import { AiFillHome } from "react-icons/ai"
 import { FaChartArea, FaHome } from "react-icons/fa"
 import { IoMdNotifications } from "react-icons/io"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
-import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
-import { fireStore } from "../auth/Firebase"
-import { requestNotificationPermission } from "../lib/requestNotificationPermission"
-import { sendNotification } from "../lib/sendNotification"
-import Link from "next/link"
 
 const Dashboard: React.FC = () => {
 
