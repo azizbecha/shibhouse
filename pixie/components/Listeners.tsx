@@ -63,7 +63,11 @@ const Listeners: React.FC<ListenersProps> = ({roomId}) => {
                       <div className='flex justify-center text-center text-white font-semibold text-sm mt-3 cursor-pointer'>
                         <FaLink size={13} className="my-auto mr-1" /> {window.location.href}
                       </div>
-                      <QRCode className='mt-4 mx-auto flex justify-center' value={window.location.href} />
+                      <div className="mx-auto flex justify-center mt-2">
+                        <div className="border-8 border-white rounded-2xl bg-white flex">
+                          <QRCode className='mx-auto rounded-2xl flex justify-center border-white' value={window.location.href} />
+                        </div>
+                      </div>
                     </Fragment>
 
                   </CopyToClipboard>
@@ -72,7 +76,7 @@ const Listeners: React.FC<ListenersProps> = ({roomId}) => {
             )
           }
         <Row className="gap-y-2">
-          { listenersPeers.map((peer, key) => (
+          {listenersPeers.map((peer, key) => (
             <Col key={key} xs={6} sm={4} md={4} lg={3} className="px-1">
               <User
                 roomId={roomId}
