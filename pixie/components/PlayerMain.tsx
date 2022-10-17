@@ -29,7 +29,7 @@ import { fireStore } from '../auth/Firebase'
 import { Dialog, Transition } from '@headlessui/react'
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-import { FaBan, FaBug, FaCog, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
+import { FaBan, FaBug, FaCog, FaHandPeace, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
 import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
 import { RiChatOffFill } from 'react-icons/ri'
@@ -692,7 +692,7 @@ function Main ({ user, room }) {
                   </button>
 
                   <button onClick={onLeave} className="text-white/50 p-4 m-1 inline-flex justify-center rounded-full hover:text-white hover:bg-gray/50 smooth-hover">
-                    <HiPhoneMissedCall size={20} />
+                    <FaHandPeace size={20} />
                   </button>
                 </div>
               </Col>
