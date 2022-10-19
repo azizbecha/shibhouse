@@ -461,6 +461,20 @@ function Main ({ user, room }) {
                                     </span> For checking microphone access permission
                                     <br /><br />
                                   </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /rabye
+                                    </span> For playing Rabye Bouden's vocal saying "Sa7a Bitcoin Rab3oun"
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /request
+                                    </span> For requesting to speak
+                                    <br /><br />
+                                  </Col>
                                   
                                 </Row>
                               </div>
