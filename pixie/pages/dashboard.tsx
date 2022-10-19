@@ -164,7 +164,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
-            <SEO title="Dashboard - Shibhouse" description="Re-taking voice conversations to the moon"  />
+            <SEO title="Dashboard | Shibhouse" description="Re-taking voice conversations to the moon"  />
             <PrivateRoute>
                 
                 <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>

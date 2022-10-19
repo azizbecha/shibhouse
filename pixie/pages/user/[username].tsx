@@ -132,7 +132,7 @@ const User: React.FC = () => {
     return (
         <PrivateRoute>
             <Navbar />
-            <SEO title={`${capitalizeWord(userData.firstname)} ${capitalizeWord(userData.lastname)} (@${userData.username}) - Shibhouse`} description={`@${userData.username})'s profile on Shibhouse`} />
+            <SEO title={`${capitalizeWord(userData.firstname)} ${capitalizeWord(userData.lastname)} (@${userData.username}) | Shibhouse`} description={`@${userData.username})'s profile on Shibhouse`} />
             <div className="bg-dark h-screen">
                 <div className="container">                    
                     <Row>

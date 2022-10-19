@@ -12,7 +12,7 @@ const Register: React.FC = () => {
 
     return (
         <>
-            <SEO title="Register - Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
+            <SEO title="Register | Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
             <ProtectedRoute>
                 <Navbar />
                     <div className="bg-dark py-16 min-h-screen">
