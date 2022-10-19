@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import SEO from "../utils/SEO"
+import Link from "next/link"
 
 const Login: React.FC = () => {
 
@@ -65,9 +66,10 @@ const Login: React.FC = () => {
                                     <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
 
                                     <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2">Login</button>
-                                    
+                                    <Link href="forgot-password"><p className="cursor-pointer text-white text-sm font-medium mt-4">Forgot password ?</p></Link>
+
                                 </form>
-                                <p className="mt-8 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
+                                <p className="mt-5 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
                             </div>
                             <div className="ml-auto lg:w-5/12">
                                 <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
