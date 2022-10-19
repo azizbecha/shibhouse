@@ -164,21 +164,21 @@ const Dashboard: React.FC = () => {
 
     return (
         <>
-            <SEO title="Dashboard - Shibhouse" description="Re-taking voice conversations to the moon"  />
+            <SEO title="Dashboard | Shibhouse" description="Re-taking voice conversations to the moon"  />
             <PrivateRoute>
                 
                 <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>
                 <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
                 <Navbar />
-                <div className={`bg-dark text-white ${isTabletOrMobile && 'h-scbreen'} pb-5`}>
+                <div className={`bg-dark text-white pb-5`}>
                     <div className="mx-auto" style={{width: '98%'}}>
                         <Row>
                             <Col xs={12} sm={3} md={2} lg={3}>
                                 <PeopleSidebar />
                             </Col>
                             <Col xs={12} sm={3} md={10} lg={6}>
-                                <main className="flex flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
+                                <main className="flex h-full flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
                                     <Transition.Root show={showModal} as={Fragment}>
                                         <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowModal}>
                                             <Transition.Child

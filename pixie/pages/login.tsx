@@ -49,7 +49,7 @@ const Login: React.FC = () => {
     }
     return (
         <>
-            <SEO title="Login - Shibhouse" description="Log to your account in Shibhouse.tv"  />
+            <SEO title="Login | Shibhouse" description="Log to your account in Shibhouse.tv"  />
             <ProtectedRoute>
                 <Navbar />
                 <div className="relative bg-dark vh-100">

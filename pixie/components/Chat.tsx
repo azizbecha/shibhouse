@@ -217,17 +217,17 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     </div>
                                 )
                             }
-                            <ul className='space-y-3 flex flex-col-reverse'>
+                            <ul className='flex flex-col-reverse'>
                                 {
                                     messages.map((message, key) => {
                                         var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
-                                        var mentions: Array<string> | null = []
-                                        var msg: Array<string> = message.message.split(" ");
+                                        var mentions: string[] | null = [];
+                                        var msg: string[] = message.message.split(" ");
 
-                                        mentions = []
+                                        mentions = [];
                                         
                                         if (message.message.match(pattern) !== null) {
-                                            mentions = message.message.match(pattern)
+                                            mentions = message.message.match(pattern);
                                         }
 
                                         return (

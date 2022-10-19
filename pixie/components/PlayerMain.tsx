@@ -17,9 +17,9 @@ import Divider from './Divider'
 import ReactTimeAgo from 'react-time-ago'
 import Hotkeys from 'react-hot-keys';
 import QRCode from "react-qr-code";
+import toast from "react-hot-toast";
 import { IUseNetworkState } from 'react-use/lib/useNetworkState'
 import { useMediaQuery } from 'react-responsive'
-import toast from "react-hot-toast";
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { useNetworkState, useCopyToClipboard } from 'react-use';
 
@@ -31,7 +31,7 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import { FaBan, FaBug, FaCog, FaHandPeace, FaHeadphones, FaKeyboard, FaLink, FaMicrophone, FaMicrophoneSlash, FaQrcode, FaTerminal, FaUserPlus } from "react-icons/fa"
 import { BsPeopleFill } from 'react-icons/bs'
-import { HiPhoneMissedCall, HiSpeakerphone } from 'react-icons/hi'
+import { HiSpeakerphone } from 'react-icons/hi'
 import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
@@ -350,9 +350,9 @@ function Main ({ user, room }) {
                                     </Row>
                                   </Col>
                                 </div>
-                                <br /><span className="font-semibold">Your role: {connRole}</span>
-                                <br /><span className="font-semibold">Host: <Link href={`../../user/${room.createdBy}`}><span className='cursor-pointer'>@{room.createdBy}</span></Link></span>
-                                <br /><span className="font-semibold">Connected users: {peerList.length}</span>
+                                <br /><span className="font-semibold">Your role: </span>{connRole}
+                                <br /><span className="font-semibold">Host: </span><Link href={`../../user/${room.createdBy}`}><span className='font-semibold bg-darker rounded px-1 py-0.5 cursor-pointer'>@{room.createdBy}</span></Link>
+                                <br /><span className="font-semibold">Connected users: </span>{peerList.length}
                                 
                                 <Divider />
                                 <span className="text-xl text-white font-bold">Room Roles</span>
@@ -459,6 +459,20 @@ function Main ({ user, room }) {
                                     <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
                                       /micaccess
                                     </span> For checking microphone access permission
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /rabye
+                                    </span> For playing Rabye Bouden's vocal saying "Sa7a Bitcoin Rab3oun"
+                                    <br /><br />
+                                  </Col>
+
+                                  <Col lg={4}>
+                                    <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
+                                      /request
+                                    </span> For requesting to speak
                                     <br /><br />
                                   </Col>
                                   

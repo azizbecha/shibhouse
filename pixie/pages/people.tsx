@@ -102,7 +102,7 @@ const People: React.FC = () => {
 
     return (
         <>
-            <SEO title="People - Shibhouse" description="Check out some random users in Shibhouse" />
+            <SEO title="People | Shibhouse" description="Check out some random users in Shibhouse" />
             <PrivateRoute>
                 <Navbar />
                     <div className="bg-dark py-6 min-h-screen">

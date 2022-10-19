@@ -49,7 +49,7 @@ export default function RoomPage() {
 
   return (
     <PrivateRoute>
-      <SEO title={`${roomData.title} - Shibhouse`} description={`${roomData.description} - Live now at Shibhouse`} />
+      <SEO title={`${roomData.title} | Shibhouse`} description={`${roomData.description} - Live now at Shibhouse`} />
       <Navbar />
       {
         roomData !== '' ? (
