@@ -350,9 +350,9 @@ function Main ({ user, room }) {
                                     </Row>
                                   </Col>
                                 </div>
-                                <br /><span className="font-semibold">Your role: {connRole}</span>
-                                <br /><span className="font-semibold">Host: <Link href={`../../user/${room.createdBy}`}><span className='cursor-pointer'>@{room.createdBy}</span></Link></span>
-                                <br /><span className="font-semibold">Connected users: {peerList.length}</span>
+                                <br /><span className="font-semibold">Your role: </span>{connRole}
+                                <br /><span className="font-semibold">Host: </span><Link href={`../../user/${room.createdBy}`}><span className='font-semibold bg-darker rounded px-1 py-0.5 cursor-pointer'>@{room.createdBy}</span></Link>
+                                <br /><span className="font-semibold">Connected users: </span>{peerList.length}
                                 
                                 <Divider />
                                 <span className="text-xl text-white font-bold">Room Roles</span>
