@@ -171,7 +171,7 @@ const Dashboard: React.FC = () => {
                 <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
                 <Navbar />
-                <div className={`bg-dark text-white ${isTabletOrMobile && 'h-scbreen'} pb-5`}>
+                <div className={`bg-dark text-white pb-5`}>
                     <div className="mx-auto" style={{width: '98%'}}>
                         <Row>
                             <Col xs={12} sm={3} md={2} lg={3}>
