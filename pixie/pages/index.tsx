@@ -27,7 +27,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
     return (
         <>
             <SEO 
-                title={"Shibhouse"}
+                title={"Shibhouse | Re-taking voice conversations to the moon"}
                 description={"Re-taking voice conversations to the moon"}
             />
             <ProtectedRoute>
