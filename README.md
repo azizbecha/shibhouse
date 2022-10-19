@@ -5,7 +5,7 @@
 <div align="center">
 
   <a href="https://github.com/azizbecha/shibhouse">
-    <img src="https://user-images.githubusercontent.com/63454940/168051960-7da5c959-07f7-4fbb-be91-53e42054cc56.png" alt="Logo" width="130" height="250">
+    <img src="https://user-images.githubusercontent.com/63454940/196781985-bbddadb9-0fdb-4aae-a780-51bf5bfeffe2.png" alt="Logo" width="130" height="250">
   </a>
 
   <h3 align="center">Shibhouse</h3>
