@@ -84,7 +84,7 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
                             </span>
                         </div>
                         <section className="bg-dark">
-                            <div className="focus:outline-none mt-10 flex flex-wrap w-full gap-10 px-4">
+                            <div className="focus:outline-none mt-10 mx-auto flex justify-center flex-wrap w-full gap-10">
 
                                 <div className="focus:outline-none flex sm:w-full md:w-5/12 pb-10" data-aos="zoom-in">
                                     <div className="w-20 h-20 relative mr-1">
