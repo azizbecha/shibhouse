@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @layer base {
+    ul, ol {
+      list-style: revert;
+    }
+} */
 
 /* Text selection */
 ::selection {

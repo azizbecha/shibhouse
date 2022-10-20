@@ -37,7 +37,7 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaChartArea, FaHome } from "react-icons/fa"
+import { FaChartArea, FaHome, FaCalendarAlt } from "react-icons/fa"
 import { IoMdNotifications } from "react-icons/io"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 
@@ -291,7 +291,7 @@ const Dashboard: React.FC = () => {
                                                 <Col sm={6} className="h-100">
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
-                                                        <ul>
+                                                        <ul className="list-disc ml-4">
                                                             {
                                                                 notifications.map((notification) => {
                                                                     var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
@@ -311,7 +311,27 @@ const Dashboard: React.FC = () => {
                                                         </ul>
                                                     </div>
                                                 </Col>
+
                                                 <Col sm={6} className="h-100">
+                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
+                                                        <h1 className="font-bold text-xl flex font-inter mb-4"><FaCalendarAlt size={20} className="mr-1 mt-1" /> Scheduled rooms</h1>
+                                                        <ul className="list-disc ml-4">
+                                                            <li className="text-sm font-medium mb-1">
+                                                                How to get started into programming <br /> <span className="text-secondary font-semibold text-xs">By @azizbecha <span className="font-bold text-white text-md">.</span> In 2 hours</span>
+                                                            </li>
+
+                                                            <li className="text-sm font-medium mb-1">
+                                                                Why you need to stop using Angular.js <br /> <span className="text-secondary font-semibold text-xs">By @benawad <span className="font-bold text-white text-md">.</span> In 4 hours</span>
+                                                            </li>
+
+                                                            <li className="text-sm font-medium mb-1">
+                                                                Coming features for Tesla Cars <br /> <span className="text-secondary font-semibold text-xs">By @elonmusk <span className="font-bold text-white text-md">.</span> In 20 minutes</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </Col>
+
+                                                <Col sm={6} className="h-100 mt-4">
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
@@ -331,7 +351,7 @@ const Dashboard: React.FC = () => {
                                                     </div>
                                                 </Col>
 
-                                                <Col sm={12}>
+                                                <Col sm={6}>
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-100 mt-4 ${isTabletOrMobile && 'mt-4'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
                                                         <p className="font-medium text-base">- {joke?.question}</p>
