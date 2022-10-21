@@ -217,7 +217,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     </div>
                                 )
                             }
-                            <ul className='flex flex-col-reverse overflow-auto'>
+                            <ul className='flex flex-col-reverse overflow-auto w-full'>
                                 {
                                     messages.map((message, key) => {
                                         var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
