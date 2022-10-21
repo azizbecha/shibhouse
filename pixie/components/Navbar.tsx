@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
                                                 <Menu as="div" className="ml-3 relative">
                                                     <Fragment>
                                                         <Menu.Button className="bg-gray p-3 flex text-sm text-white rounded-full focus:outline-none">
-                                                            <span className="absolute text-primary right-3.5 top-2.5">
+                                                            <span className="absolute text-primary right-3.5 top-3">
                                                                 <FaCircle size={9} />
                                                             </span>
                                                             <IoMdNotifications size={20} />
