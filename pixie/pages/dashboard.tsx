@@ -303,7 +303,7 @@ const Dashboard: React.FC = () => {
                                                 </Col>
 
                                                 <Col sm={12} className="h-100 mt-4">
-                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
+                                                    <div className={`rounded-lg bg-dark p-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
                                                             {
