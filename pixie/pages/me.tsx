@@ -3,10 +3,10 @@ import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 
 import { doc, updateDoc, query, collection, where, getDocs, limit, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
-import { getAuth, updateEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail, updateEmail } from "firebase/auth";
 
 import { AuthContext } from "../auth/AuthContext";
-import { fireStore } from "../auth/Firebase";
+import { auth, fireStore } from "../auth/Firebase";
 import PrivateRoute from "../auth/PrivateRoute";
 
 import toast from "react-hot-toast";
@@ -24,6 +24,7 @@ import { capitalizeWord } from "../lib/capitalize";
 import { numberFormatter } from "../lib/numberFormatter";
 
 import SEO from "../utils/SEO";
+import { MdRefresh } from "react-icons/md";
 
 const Me: React.FC = () => {
 
@@ -113,6 +114,21 @@ const Me: React.FC = () => {
         }
     }
 
+    const resetPassword = () => {
+        sendPasswordResetEmail(auth, currentUserData.email)
+        .then(() => {
+            toast.success("Password reset link sent to your mail");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorMessage);
+            
+            toast.error("An error has been occured");
+        });
+    }
+
     return (
         <PrivateRoute>
             <div className="h-screen">
@@ -183,7 +199,10 @@ const Me: React.FC = () => {
                                             <HexColorPicker color={avatarColor} onChange={setAvatarColor} />
                                         </div>
                                         
-                                        <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 mt-5 rounded-md font-semibold text-sm flex`} disabled={isDisabled}><FaSave className="my-auto mr-1" /> Save changes</button>
+                                        <div className="flex space-x-3">
+                                            <button type="submit" className={`bg-${isDisabled ? "gray" : "primary"} px-6 py-2 mt-5 rounded-md font-semibold text-sm flex`} disabled={isDisabled}><FaSave className="my-auto mr-1" /> Save changes</button>
+                                            <button onClick={resetPassword} className={`bg-primary px-4 py-2 mt-5 rounded-md font-semibold text-sm flex`}><MdRefresh size={18} className="my-auto mr-1" /> Send password reset link</button>
+                                        </div>
                                     </form>
 
                                 </div>
