@@ -4,22 +4,39 @@ import Link from "next/link"
 
 import { onAuthStateChanged } from "firebase/auth"
 import { useAuth } from "../auth/AuthContext"
-import { auth } from "../auth/Firebase"
+import { auth, fireStore } from "../auth/Firebase"
 import { logOut } from '../lib/signOut'
 
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa"
 import { AiFillDashboard } from "react-icons/ai"
 import { ImUsers } from 'react-icons/im'
+import { IoMdNotifications } from "react-icons/io"
+import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
 
 const Navbar: React.FC = () => {
 
     const logoLink: string = "../../../../images/shibhouse-logo-transparent.png";
 
+    const [notifications, setNotifications] = useState<any>([]); // It will be any for the moment
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const { currentUserData } = useAuth();
 
+    const getNotifications = async () => {
+
+        // Get the latest 20 notifications from firestore database
+        const q: Query<DocumentData> = query(collection(fireStore, "notifications"), limit(20), orderBy('date', 'desc'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const result = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setNotifications(result);
+            });
+        });
+    }
+
     useEffect(() => {
+        getNotifications();
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setIsLoggedIn(true);
@@ -105,45 +122,94 @@ const Navbar: React.FC = () => {
                                 {/* Profile dropdown */}
                                 {
                                     isLoggedIn && currentUserData !== undefined && (
-                                        <Fragment>
-                                            <Menu as="div" className="ml-3 relative">
-                                                <Fragment>
-                                                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
-                                                    <span className="sr-only">Open user menu</span>
-                                                    
-                                                    <div className="p-3 text-white text-md font-bold rounded-full shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
-                                                        {currentUserData.firstname[0].toUpperCase()}{currentUserData.lastname[0].toUpperCase()}
-                                                    </div>
-                                                    </Menu.Button>
-                                                </Fragment>
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-48 rounded-lg p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <Menu.Item>
-                                                            <Link href={'/me'}>
-                                                                <span className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaUserAlt className="my-auto mr-1.5" /> Profile</span>
-                                                            </Link>
-                                                        </Menu.Item>
+                                        <>
+                                            <Fragment>
+                                                <Menu as="div" className="ml-3 relative">
+                                                    <Fragment>
+                                                        <Menu.Button className="bg-gray p-3 flex text-sm text-white rounded-full focus:outline-none">
+                                                            <IoMdNotifications size={20} />
+                                                        </Menu.Button>
+                                                    </Fragment>
+                                                    <Transition
+                                                        as={Fragment}
+                                                        enter="transition ease-out duration-100"
+                                                        enterFrom="transform opacity-0 scale-95"
+                                                        enterTo="transform opacity-100 scale-100"
+                                                        leave="transition ease-in duration-75"
+                                                        leaveFrom="transform opacity-100 scale-100"
+                                                        leaveTo="transform opacity-0 scale-95"
+                                                    >
+                                                        <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-96 h-4/6 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                            <Menu.Item>
+                                                                <div className={`rounded-lg bg-dark text-white p-3 h-72`}>
+                                                                    <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
+                                                                    <div className="h-5/6 overflow-auto">
+                                                                        <ul className="list-disc ml-4">
+                                                                            {
+                                                                                notifications.map((notification) => {
+                                                                                    var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
+                                                                                    const text: string = notification.text;
+                                                                                    const words: string[] = text.split(" ");
+                                                                                    return (
+                                                                                        <li className="text-sm mb-1">
+                                                                                            {
+                                                                                                words.map((word) => {
+                                                                                                    return <span>{word.match(pattern) ? <Link href={`user/${word.substring(1)}`}><span className="font-bold cursor-pointer">{word}</span></Link> : word} </span>
+                                                                                                })
+                                                                                            }
+                                                                                        </li>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </Menu.Item>
+                                                        </Menu.Items>
+                                                    </Transition>
+                                                </Menu>
+                                            </Fragment>
 
-                                                        <Menu.Item>
-                                                            <a href="https://github.com/azizbecha/shibhouse/issues" target={'_blank'} rel="noreferrer" className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaBug className="my-auto mr-1.5" /> Report A Bug</a>
-                                                        </Menu.Item>
+                                            <Fragment>
+                                                <Menu as="div" className="ml-3 relative">
+                                                    <Fragment>
+                                                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
+                                                        <span className="sr-only">Open user menu</span>
+                                                        
+                                                        <div className="p-3 text-white text-md font-bold rounded-full shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
+                                                            {currentUserData.firstname[0].toUpperCase()}{currentUserData.lastname[0].toUpperCase()}
+                                                        </div>
+                                                        </Menu.Button>
+                                                    </Fragment>
+                                                    <Transition
+                                                        as={Fragment}
+                                                        enter="transition ease-out duration-100"
+                                                        enterFrom="transform opacity-0 scale-95"
+                                                        enterTo="transform opacity-100 scale-100"
+                                                        leave="transition ease-in duration-75"
+                                                        leaveFrom="transform opacity-100 scale-100"
+                                                        leaveTo="transform opacity-0 scale-95"
+                                                    >
+                                                        <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-48 rounded-lg p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                            <Menu.Item>
+                                                                <Link href={'/me'}>
+                                                                    <span className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaUserAlt className="my-auto mr-1.5" /> Profile</span>
+                                                                </Link>
+                                                            </Menu.Item>
 
-                                                        <Menu.Item>
-                                                            <span onClick={logOut} className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaSignOutAlt className="my-auto mr-1.5" /> Log out</span>
-                                                        </Menu.Item>
+                                                            <Menu.Item>
+                                                                <a href="https://github.com/azizbecha/shibhouse/issues" target={'_blank'} rel="noreferrer" className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaBug className="my-auto mr-1.5" /> Report A Bug</a>
+                                                            </Menu.Item>
 
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-                                        </Fragment>
+                                                            <Menu.Item>
+                                                                <span onClick={logOut} className={"flex px-2 py-3 text-sm text-white font-semibold bg-dark cursor-pointer border-b mb-1"}><FaSignOutAlt className="my-auto mr-1.5" /> Log out</span>
+                                                            </Menu.Item>
+
+                                                        </Menu.Items>
+                                                    </Transition>
+                                                </Menu>
+                                            </Fragment>
+                                        </>
                                     )
                                 }
                             </div>

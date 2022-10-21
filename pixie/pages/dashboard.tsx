@@ -48,7 +48,6 @@ const Dashboard: React.FC = () => {
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
     const [joke, setJoke] = useState<{question: string, punchline: string}>({question: '', punchline: ''});
-    const [notifications, setNotifications] = useState<any>([]); // It will be any for the moment
 
     const [roomTitle, setRoomTitle] = useState('');
     const [roomDescription, setRoomDescription] = useState('');
@@ -145,20 +144,8 @@ const Dashboard: React.FC = () => {
         })
     }
 
-    const getNotifications = async () => {
-        const q: Query<DocumentData> = query(collection(fireStore, "notifications"), limit(4), orderBy('date', 'desc'));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const result = querySnapshot.docs
-                .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setNotifications(result);
-            });
-        });
-    }
     useEffect(() => {
         randomJoke();
-        getNotifications();
-
         requestNotificationPermission();
     }, [])
 
@@ -290,30 +277,6 @@ const Dashboard: React.FC = () => {
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
-                                                        <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>
-                                                        <ul className="list-disc ml-4">
-                                                            {
-                                                                notifications.map((notification) => {
-                                                                    var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
-                                                                    const text: string = notification.text;
-                                                                    const words: string[] = text.split(" ");
-                                                                    return (
-                                                                        <li className="text-sm mb-1">
-                                                                            {
-                                                                                words.map((word) => {
-                                                                                    return <span>{word.match(pattern) ? <Link href={`user/${word.substring(1)}`}><span className="font-bold cursor-pointer">{word}</span></Link> : word} </span>
-                                                                                })
-                                                                            }
-                                                                        </li>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </Col>
-
-                                                <Col sm={6} className="h-100">
-                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-4"><FaCalendarAlt size={20} className="mr-1 mt-1" /> Scheduled rooms</h1>
                                                         <ul className="list-disc ml-4">
                                                             <li className="text-sm font-medium mb-1">
@@ -331,7 +294,15 @@ const Dashboard: React.FC = () => {
                                                     </div>
                                                 </Col>
 
-                                                <Col sm={6} className="h-100 mt-4">
+                                                <Col sm={6} className="h-100">
+                                                    <div className={`rounded-lg bg-dark h-full px-3 py-4 ${isTabletOrMobile && 'mt-4'}`}>
+                                                        <h1 className="font-bold text-xl flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
+                                                        <p className="font-medium text-base">- {joke?.question}</p>
+                                                        <p className="font-medium text-base">- {joke?.punchline}</p>
+                                                    </div>
+                                                </Col>
+
+                                                <Col sm={12} className="h-100 mt-4">
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
@@ -348,14 +319,6 @@ const Dashboard: React.FC = () => {
                                                                 "title": "ETH/USDT"
                                                             },
                                                         ]} colorTheme="dark"></TickerTape>
-                                                    </div>
-                                                </Col>
-
-                                                <Col sm={6}>
-                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-100 mt-4 ${isTabletOrMobile && 'mt-4'}`}>
-                                                        <h1 className="font-bold text-xl flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
-                                                        <p className="font-medium text-base">- {joke?.question}</p>
-                                                        <p className="font-medium text-base">- {joke?.punchline}</p>
                                                     </div>
                                                 </Col>
                                             </Row>
