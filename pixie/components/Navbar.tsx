@@ -8,7 +8,7 @@ import { auth, fireStore } from "../auth/Firebase"
 import { logOut } from '../lib/signOut'
 
 import { Disclosure, Menu, Transition } from "@headlessui/react"
-import { FaBars, FaBug, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa"
+import { FaBars, FaBug, FaCircle, FaHome, FaSignInAlt, FaSignOutAlt, FaTimes, FaUserAlt, FaUserPlus } from "react-icons/fa"
 import { AiFillDashboard } from "react-icons/ai"
 import { ImUsers } from 'react-icons/im'
 import { IoMdNotifications } from "react-icons/io"
@@ -127,6 +127,9 @@ const Navbar: React.FC = () => {
                                                 <Menu as="div" className="ml-3 relative">
                                                     <Fragment>
                                                         <Menu.Button className="bg-gray p-3 flex text-sm text-white rounded-full focus:outline-none">
+                                                            <span className="absolute text-primary right-3.5 top-2.5">
+                                                                <FaCircle size={9} />
+                                                            </span>
                                                             <IoMdNotifications size={20} />
                                                         </Menu.Button>
                                                     </Fragment>
