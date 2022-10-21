@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { NextPage } from "next"
 import ProtectedRoute from "../auth/ProtectedRoute"
 import SEO from "../utils/SEO"
 
@@ -8,7 +9,7 @@ import { JoinForm } from "../forms/JoinForm"
 
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
-const Register: React.FC = () => {
+const Register: NextPage = () => {
 
     return (
         <>

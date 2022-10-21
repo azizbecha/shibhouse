@@ -1,4 +1,5 @@
-import { Fragment, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { NextPage } from "next"
 import Link from "next/link"
 
 import { collection, doc, DocumentData, onSnapshot, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
@@ -8,8 +9,10 @@ import { useAuth } from "../auth/AuthContext"
 import { fireStore } from "../auth/Firebase"
 import PrivateRoute from "../auth/PrivateRoute"
 
+import { createNotification } from "../lib/createNotification"
 import { capitalizeWord } from "../lib/capitalize"
 import { removeItem } from "../lib/removeItemFromArray"
+import SEO from "../utils/SEO"
 
 import $ from "jquery"
 
@@ -19,10 +22,8 @@ import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 import toast from "react-hot-toast";
 import { FaPlus, FaTimes, FaUsers } from "react-icons/fa"
-import SEO from "../utils/SEO"
-import { createNotification } from "../lib/createNotification"
 
-const People: React.FC = () => {
+const People: NextPage = () => {
 
     const [users, setUsers] = useState([]);
     const { currentUserData } = useAuth();

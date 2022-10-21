@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { NextPage } from "next"
 import Link from "next/link"
 
 import { sendPasswordResetEmail } from "firebase/auth"
@@ -16,7 +17,7 @@ import isEmail from 'validator/lib/isEmail'
 import { MdRefresh } from "react-icons/md"
 import { useMediaQuery } from "react-responsive"
 
-const ForgotPassword: React.FC = () => {
+const ForgotPassword: NextPage = () => {
 
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
     const [sent, setSent] = useState<boolean>(false);

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react"
+import { NextPage } from "next";
 
 import { collection, query, onSnapshot, orderBy, Query, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { Unsubscribe } from "firebase/auth";
@@ -17,7 +18,7 @@ import { FaHome } from 'react-icons/fa'
 import SEO from "../utils/SEO";
 import ExportRooms from "../components/ExportRooms";
 
-const Rooms: React.FC = () => {
+const Rooms: NextPage = () => {
     const [data, setData] = useState([]);
     const [count, setCount] = useState<number>(0);
 

@@ -1,4 +1,5 @@
 import { useState, useRef, Fragment, useEffect } from "react"
+import { NextPage } from "next"
 import { NextRouter, useRouter } from "next/router"
 
 import { Dialog, Transition } from '@headlessui/react'
@@ -36,7 +37,7 @@ import { AiFillHome } from "react-icons/ai"
 import { FaHome, FaCalendarAlt } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 
-const Dashboard: React.FC = () => {
+const Dashboard: NextPage = () => {
 
     const router: NextRouter = useRouter();
     const { currentUserData } = useAuth();

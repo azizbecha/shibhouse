@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { Fragment } from 'react'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 
 import { useCopyToClipboard } from 'react-use'
@@ -20,7 +20,7 @@ import { MdDevices } from 'react-icons/md'
 import { SiBlockchaindotcom } from 'react-icons/si'
 import { IoIosPeople } from 'react-icons/io'
 
-const IndexPage: React.FC<{props: any}> = ({props}) => {
+const IndexPage: NextPage = () => {
     
     const [state, copyToClipboard] = useCopyToClipboard();
     
@@ -214,23 +214,6 @@ const IndexPage: React.FC<{props: any}> = ({props}) => {
             </ProtectedRoute>
         </>
     )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-    
-    const props = {
-        title: "Shibhouse - Re-taking voice conversations to the moon",
-        description: "Re-taking voice conversations to the moon",
-        image: "https://shibhouse.tv/images/cover.png"
-    }
-
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-        props: {
-            props,
-        },
-    }
 }
 
 export default IndexPage

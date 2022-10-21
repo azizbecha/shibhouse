@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from "react"
+import { NextPage } from "next"
 import { NextRouter, useRouter } from "next/router"
 
 import { LogUser } from "../interfaces"
@@ -14,7 +15,7 @@ import Navbar from "../components/Navbar"
 import SEO from "../utils/SEO"
 import Link from "next/link"
 
-const Login: React.FC = () => {
+const Login: NextPage = () => {
 
     const emailRef = useRef<any>();
     const passwordRef = useRef<any>();

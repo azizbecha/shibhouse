@@ -1,10 +1,14 @@
+import { NextPage } from "next"
 import Link from "next/link"
-import { FaArrowLeft } from "react-icons/fa"
+
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+
 import SEO from "../utils/SEO"
 
-const NotFound: React.FC = () => {
+import { FaArrowLeft } from "react-icons/fa"
+
+const NotFound: NextPage = () => {
     
     return (
         <>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
-import Link from "next/link";
+import { NextPage } from "next";
 import { NextRouter, useRouter } from "next/router";
+import Link from "next/link";
 
 import { doc, updateDoc, query, collection, where, getDocs, limit, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 import { getAuth, sendPasswordResetEmail, updateEmail } from "firebase/auth";
@@ -26,7 +27,7 @@ import { numberFormatter } from "../lib/numberFormatter";
 import SEO from "../utils/SEO";
 import { MdRefresh } from "react-icons/md";
 
-const Me: React.FC = () => {
+const Me: NextPage = () => {
 
     const router: NextRouter = useRouter();    
     const { currentUserData } = useContext(AuthContext);
