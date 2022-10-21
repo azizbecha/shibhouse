@@ -157,7 +157,16 @@ const Navbar: React.FC = () => {
                                                                                         <li className="text-sm mb-1">
                                                                                             {
                                                                                                 words.map((word) => {
-                                                                                                    return <span>{word.match(pattern) ? <Link href={`user/${word.substring(1)}`}><span className="font-bold cursor-pointer">{word}</span></Link> : word} </span>
+                                                                                                    return (
+                                                                                                        <span>
+                                                                                                            {word.match(pattern) ? (
+                                                                                                                word.substring(1) == currentUserData.username ? <span className="font-semibold">You </span> : (
+                                                                                                                <Link href={`user/${word.substring(1)}`}>
+                                                                                                                    <span className="font-bold cursor-pointer">{word} </span>
+                                                                                                                </Link>)
+                                                                                                            ) : <span>{word} </span>}
+                                                                                                        </span>
+                                                                                                    )
                                                                                                 })
                                                                                             }
                                                                                         </li>
