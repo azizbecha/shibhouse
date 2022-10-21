@@ -13,7 +13,7 @@ import { RiChatOffFill } from "react-icons/ri"
 import { AiFillPushpin } from "react-icons/ai"
 import { FaBan } from "react-icons/fa"
 
-import { addDoc, collection, DocumentData, limit, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp } from "firebase/firestore"
+import { addDoc, collection, DocumentData, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
 import { useAuth } from "../auth/AuthContext"
 

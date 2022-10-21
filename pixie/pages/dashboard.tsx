@@ -1,20 +1,16 @@
 import { useState, useRef, Fragment, useEffect } from "react"
 import { NextRouter, useRouter } from "next/router"
-import Link from "next/link"
 
 import { Dialog, Transition } from '@headlessui/react'
 
-import { collection, DocumentData, limit, onSnapshot, orderBy, query, Query } from "firebase/firestore"
 import PrivateRoute from "../auth/PrivateRoute"
 import { useAuth } from "../auth/AuthContext"
-import { fireStore } from "../auth/Firebase"
 
 import axios from "axios"
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import toast from "react-hot-toast";
 import { WithContext as ReactTags } from 'react-tag-input'
-import { TickerTape } from "react-ts-tradingview-widgets"
 import { useMediaQuery } from "react-responsive"
 import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
@@ -37,8 +33,7 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaChartArea, FaHome, FaCalendarAlt } from "react-icons/fa"
-import { IoMdNotifications } from "react-icons/io"
+import { FaHome, FaCalendarAlt } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 
 const Dashboard: React.FC = () => {
@@ -53,8 +48,13 @@ const Dashboard: React.FC = () => {
     const [roomDescription, setRoomDescription] = useState('');
     const [roomPinnedLink, setRoomPinnedLink] = useState('');
     const [roomTopics, setRoomTopics] = useState<Array<{id: string, text: string}>>([]);
+    
+    const [scheduledRoomTitle, setScheduledRoomTitle] = useState<string>('');
+    const [scheduledRoomDescription, setScheduledRoomDescription] = useState<string>('');
+    const [scheduledRoomDate, setScheduledRoomDate] = useState<any>('');
 
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showCreateRoomModal, setShowCreateRoomModal] = useState<boolean>(false);
+    const [showScheduleRoomModal, setShowScheduleRoomModal] = useState<boolean>(false);
     const [allowChat, setAllowChat] = useState<boolean>(true);
     const cancelButtonRef = useRef(null);
 
@@ -106,11 +106,11 @@ const Dashboard: React.FC = () => {
             speakers: [currentUserData.username]
         }
         
-        if (!isEmpty(roomTitle.trim()) && !isEmpty(roomDescription.trim()) && roomTopics.length > 0) {
+        if (!isEmpty(roomTitle.trim()) || !isEmpty(roomDescription.trim()) || roomTopics.length > 0) {
             if (!isEmpty(roomPinnedLink.trim())) {
                 if (isURL(roomPinnedLink.trim())) {
                     try {
-                        setShowModal(false);
+                        setShowCreateRoomModal(false);
                         await createRoom(data);
                         toast.success('Room created successfully');
         
@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
                 }
             } else {
                 try {
-                    setShowModal(false);
+                    setShowCreateRoomModal(false);
                     await createRoom(data);
                     toast.success('Room created successfully');
     
@@ -135,6 +135,10 @@ const Dashboard: React.FC = () => {
         } else {
             toast.error('Please fill all the fields');
         }
+    }
+
+    const submitScheduledRoom = (e) => {
+
     }
 
     const randomJoke = () => {
@@ -154,7 +158,7 @@ const Dashboard: React.FC = () => {
             <SEO title="Dashboard | Shibhouse" description="Re-taking voice conversations to the moon"  />
             <PrivateRoute>
                 
-                <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowModal(!showModal)}></Hotkeys>
+                <Hotkeys keyName="ctrl+y" onKeyDown={() => setShowCreateRoomModal(!showCreateRoomModal)}></Hotkeys>
                 <Hotkeys keyName="ctrl+m" onKeyDown={() => router.push('/me')}></Hotkeys>
 
                 <Navbar />
@@ -166,8 +170,10 @@ const Dashboard: React.FC = () => {
                             </Col>
                             <Col xs={12} sm={3} md={10} lg={6}>
                                 <main className="flex h-full flex-col w-full bg-darker overflow-x-hidden overflow-y-auto rounded-lg mb-14">
-                                    <Transition.Root show={showModal} as={Fragment}>
-                                        <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowModal}>
+                                    
+                                    {/* Start Create Room Modal */}
+                                    <Transition.Root show={showCreateRoomModal} as={Fragment}>
+                                        <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowCreateRoomModal}>
                                             <Transition.Child
                                             as={Fragment}
                                             enter="ease-out duration-300"
@@ -235,7 +241,7 @@ const Dashboard: React.FC = () => {
                                                                     
                                                                     <div className="font-semibold flex space-x-2"><span>Allow chat:</span> <Switch onChange={setAllowChat} checked={allowChat} width={53} offColor='#151A21' onColor="#fa2f2f" /> </div>
                                                                 </div>
-                                                                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                                <div className="bg-gray-50 px-4 py-2 sm:px-6 sm:flex sm:flex-row-reverse">
                                                                     <button
                                                                         type="submit"
                                                                         className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
@@ -245,7 +251,7 @@ const Dashboard: React.FC = () => {
                                                                     <button
                                                                         type="button"
                                                                         className="mt-3 w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-dark text-base font-medium text-white hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                                                        onClick={() => setShowModal(false)}
+                                                                        onClick={() => setShowCreateRoomModal(false)}
                                                                         ref={cancelButtonRef}
                                                                     >
                                                                         Cancel
@@ -258,6 +264,87 @@ const Dashboard: React.FC = () => {
                                             </div>
                                         </Dialog>
                                     </Transition.Root>
+                                    {/* End Create Room Modal */}
+
+                                    {/* Start Schedule Room Modal */}
+                                    <Transition.Root show={showScheduleRoomModal} as={Fragment}>
+                                        <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowScheduleRoomModal}>
+                                            <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                            >
+                                                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity bg-dark" />
+                                            </Transition.Child>
+
+                                            <div className="fixed z-10 inset-0 overflow-y-auto m-auto">
+                                                <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0 text-white">
+                                                    <Transition.Child
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    >
+                                                        <Dialog.Panel className="relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                                                        <form onSubmit={submitScheduledRoom}>
+                                                                <div className="bg-darker px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                                                    <div className="sm:flex sm:items-start">
+                                                                        <div className="m-auto bg-primary flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                                            <FaCalendarAlt size={20} className="text-white" aria-hidden="true" />
+                                                                        </div>
+                                                                        <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                                            <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                                                                                Schedule room
+                                                                            </Dialog.Title>
+                                                                            <div className="mt-1">
+                                                                                <p className="text-sm text-white font-normal">
+                                                                                    Pre-Inform your audience that you are going to give a speech
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Divider />
+                                                                    <span className="font-semibold">Room title <span className="text-primary font-extrabold">*</span></span><br />
+                                                                    <input className="rounded w-full py-2 px-2 text-white bg-dark mt-1 mb-4" placeholder="Please enter the room title here" value={scheduledRoomTitle} onChange={(e) => setScheduledRoomTitle(e.target.value)} type="text" required />
+
+                                                                    <span className="font-semibold">Short description <span className="text-primary font-extrabold">*</span></span><br />
+                                                                    <textarea className="rounded w-full py-1 px-2 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={scheduledRoomDescription} onChange={(e) => setScheduledRoomDescription(e.target.value)} required /><br />
+
+                                                                    <span className="font-semibold">Date <span className="text-primary font-extrabold">*</span></span><br />
+                                                                    <input type="datetime-local" required value={scheduledRoomDate} onChange={(e) => setScheduledRoomDate(e.currentTarget.value)} className="bg-dark p-2 w-full rounded mt-1 text-white" />
+                                                                    
+                                                                </div>
+                                                                <div className="bg-gray-50 px-4 pb-4 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                                    <button
+                                                                        type="submit"
+                                                                        className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                                                    >
+                                                                        Schedule
+                                                                    </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="mt-3 w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-dark text-base font-medium text-white hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                                                        onClick={() => setShowScheduleRoomModal(false)}
+                                                                        ref={cancelButtonRef}
+                                                                    >
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </Dialog.Panel>
+                                                    </Transition.Child>
+                                                </div>
+                                            </div>
+                                        </Dialog>
+                                    </Transition.Root>
+                                    {/* End Schedule Room Modal */}
                                     
                                     <div className="flex w-full mx-auto px-4 pt-6 pb-8">
                                         <div className="flex flex-col w-full h-full text-gray-900 text-xl">
@@ -267,8 +354,9 @@ const Dashboard: React.FC = () => {
                                                         <h1 className="font-bold text-2xl font-inter">Feed</h1>
                                                     </div>
                                                     
-                                                    <div className="inline-flex items-end text-base">
-                                                        <button onClick={() => setShowModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
+                                                    <div className="inline-flex items-end text-base space-x-2">
+                                                        <button onClick={() => setShowCreateRoomModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
+                                                        <button onClick={() => setShowScheduleRoomModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><FaCalendarAlt className="my-auto mr-1" /> Schedule room</button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -81,3 +81,10 @@ export interface NotificationProps {
   silent?: boolean,
   onClick?: void,
 }
+
+export interface ScheduledRoomProps {
+  title: string,
+  description: string,
+  host: string,
+  date: string
+}
