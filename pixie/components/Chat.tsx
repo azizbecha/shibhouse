@@ -40,7 +40,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     useEffect(() => {
         const fetch = async () => {
-            const q = query(collection(fireStore, `rooms/${props.roomId}/messages`), orderBy("sendTime", "desc"), limit(15));
+            const q = query(collection(fireStore, `rooms/${props.roomId}/messages`), orderBy("sendTime", "desc"));
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                     const messages = querySnapshot.docs
@@ -209,7 +209,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             {
                 props.isChatAllowed ? (
                     <Fragment>
-                        <div className="overflow-y-auto relative flex rounded-md w-full h-11/12 mt-3 p-3 text-white bg-dark">
+                        <div className="overflow-y-auto relative flex rounded-md w-full h-4/6 mt-2 p-3 text-white bg-dark">
                             {
                                 messages.length == 0 && (
                                     <div className="p-4">
@@ -217,7 +217,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                     </div>
                                 )
                             }
-                            <ul className='flex flex-col-reverse'>
+                            <ul className='flex flex-col-reverse overflow-auto'>
                                 {
                                     messages.map((message, key) => {
                                         var pattern: RegExp = /\B@[a-z0-9_-]+/gi;

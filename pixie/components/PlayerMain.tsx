@@ -723,7 +723,7 @@ function Main ({ user, room }) {
               {
                 showChat && (
                   <Col xs={12} sm={12} md={4} lg={4}>
-                    <div className="bg-darker p-4 mt-3 rounded-lg">
+                    <div className="bg-darker p-4 mt-3 rounded-lg h-96">
                       <div className="flex">
                         <h1 className="font-bold mb-2 text-white text-2xl flex justify-center"><IoMdChatboxes size={24} className="mt-1 mr-1" /> Chat</h1>
                       </div>
