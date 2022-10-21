@@ -303,7 +303,7 @@ const Dashboard: React.FC = () => {
                                                     </div>
                                                 </Col>
 
-                                                <Col sm={12} className="h-100 mt-4">
+                                                {/* <Col sm={12} className="h-100 mt-4">
                                                     <div className={`rounded-lg bg-dark p-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
                                                         <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
                                                         <TickerTape isTransparent={true} locale={"en"} symbols={[
@@ -321,7 +321,7 @@ const Dashboard: React.FC = () => {
                                                             },
                                                         ]} colorTheme="dark"></TickerTape>
                                                     </div>
-                                                </Col>
+                                                </Col> */}
                                             </Row>
                                             <Divider />
                                             
