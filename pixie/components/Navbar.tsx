@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
     }, [])
 
     return (
-        <Disclosure as="nav" className="bg-dark">
+        <Disclosure as="nav" className="bg-dark py-2.5">
             {({ open }) => (
                 <Fragment>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
