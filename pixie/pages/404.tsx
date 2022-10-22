@@ -14,17 +14,16 @@ const NotFound: NextPage = () => {
         <>
             <SEO title="Page not found | Shibhouse" description="We didn't find this page in our website Shibhouse.tv"  />
             <Navbar />
-            <div
-                className="
+            <div className="
                     flex
                     items-center
                     justify-center
-                    w-screen
+                    w-full
                     h-screen
                     bg-dark
                 "
                 >
-                <div className="px-28 py-14 bg-darker text-white rounded-md shadow-xl">
+                <div className="px-20 py-10 bg-darker text-white rounded-md shadow-xl">
                     <div className="flex flex-col items-center">
                     <h1 className="font-bold text-white text-8xl">404</h1>
 
