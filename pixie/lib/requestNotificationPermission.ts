@@ -7,7 +7,7 @@ export const requestNotificationPermission = () => {
         Notification.requestPermission(function (permission: NotificationPermission) {
             if (permission === "granted") {
                 sendNotification({
-                    title: "Shibhouse",
+                    title: "ShibHouse",
                     body: "Thanks for allowing notifications. We sincerely appreciate it."
                 })
             }

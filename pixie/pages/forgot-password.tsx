@@ -50,7 +50,7 @@ const ForgotPassword: NextPage = () => {
 
     return (
         <ProtectedRoute>
-            <SEO title="Forgot password | Shibhouse" description="Reset your forgotten password from here" />
+            <SEO title="Forgot password | ShibHouse" description="Reset your forgotten password from here" />
             <Navbar />
             <div className="bg-dark h-screen">
                 <div className="container p-8">

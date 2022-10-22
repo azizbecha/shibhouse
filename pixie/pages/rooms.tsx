@@ -47,7 +47,7 @@ const Rooms: NextPage = () => {
     }, [])
     return (
         <>
-            <SEO title="Rooms | Shibhouse" description="Discover various rooms playing now at Shibhouse"/>
+            <SEO title="Rooms | ShibHouse" description="Discover various rooms playing now at ShibHouse"/>
             <PrivateRoute>
                 <Navbar />
                     <div className="bg-dark py-10">

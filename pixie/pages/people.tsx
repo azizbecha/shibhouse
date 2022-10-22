@@ -103,7 +103,7 @@ const People: NextPage = () => {
 
     return (
         <>
-            <SEO title="People | Shibhouse" description="Check out some random users in Shibhouse" />
+            <SEO title="People | ShibHouse" description="Check out some random users in ShibHouse" />
             <PrivateRoute>
                 <Navbar />
                     <div className="bg-dark py-6 min-h-screen">

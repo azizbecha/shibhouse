@@ -51,7 +51,7 @@ const Login: NextPage = () => {
     }
     return (
         <>
-            <SEO title="Login | Shibhouse" description="Log to your account in Shibhouse.tv"  />
+            <SEO title="Login | ShibHouse" description="Log to your account in Shibhouse.tv"  />
             <ProtectedRoute>
                 <Navbar />
                 <div className="relative bg-dark">

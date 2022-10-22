@@ -13,7 +13,7 @@ const Register: NextPage = () => {
 
     return (
         <>
-            <SEO title="Register | Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
+            <SEO title="Register | ShibHouse" description="Create a Shibhouse account now and start your trip with us !" />
             <ProtectedRoute>
                 <Navbar />
                     <div className="bg-dark py-10 vh-100">
