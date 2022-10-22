@@ -34,7 +34,7 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaHome, FaCalendarAlt } from "react-icons/fa"
+import { FaHome, FaCalendarAlt, FaCalendarPlus } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
 
 const Dashboard: NextPage = () => {
@@ -357,7 +357,6 @@ const Dashboard: NextPage = () => {
                                                     
                                                     <div className="inline-flex items-end text-base space-x-2">
                                                         <button onClick={() => setShowCreateRoomModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><AiFillHome className="my-auto mr-1" /> Create room</button>
-                                                        <button onClick={() => setShowScheduleRoomModal(true)} className="flex bg-primary px-4 py-2 rounded-md text-sm font-semibold text-white hover:bg-secondary hover:shadow" type="button"><FaCalendarAlt className="my-auto mr-1" /> Schedule room</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -366,7 +365,18 @@ const Dashboard: NextPage = () => {
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
                                                     <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
-                                                        <h1 className="font-bold text-xl flex font-inter mb-4"><FaCalendarAlt size={20} className="mr-1 mt-1" /> Scheduled rooms</h1>
+                                                        {/*  */}
+                                                        <div className="flex space-x-45 mb-3">
+                                                            <div className="flex w-full">
+                                                                <div className="flex-1 min-w-0">
+                                                                    <h1 className="font-bold text-xl flex font-inter"><FaCalendarAlt size={20} className="mr-1 mt-1" /> Scheduled rooms</h1>
+                                                                </div>
+                                                                
+                                                                <div className="inline-flex items-end text-base">
+                                                                    <button onClick={() => setShowScheduleRoomModal(true)} className="flex bg-gray p-2 rounded-md text-sm font-semibold text-white hover:bg-primary hover:shadow" type="button"><FaCalendarPlus /></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <ul className="list-disc ml-4">
                                                             <li className="text-sm font-medium mb-1">
                                                                 How to get started into programming <br /> <span className="text-secondary font-semibold text-xs">By @azizbecha <span className="font-bold text-white text-md">.</span> In 2 hours</span>
