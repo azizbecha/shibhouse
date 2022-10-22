@@ -16,7 +16,7 @@ const Register: NextPage = () => {
             <SEO title="Register | Shibhouse" description="Create a Shibhouse account now and start your trip with us !" />
             <ProtectedRoute>
                 <Navbar />
-                    <div className="bg-dark py-16 min-h-screen">
+                    <div className="bg-dark py-10 vh-100">
                         <div className="container">
                             <div className="">
                                 <p className="text-white font-bold text-4xl font-inter mb-10">Register</p>
@@ -25,7 +25,7 @@ const Register: NextPage = () => {
                                         <JoinForm />
                                     </Col>
                                     <Col lg={5} md={12} sm={12} xs={12}>
-                                        <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-/12 mx-auto mb-3" alt="Shib hero" loading="lazy" />
+                                        <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-9/12 mx-auto mb-3" alt="Shib hero" loading="lazy" />
                                     </Col>
                                 </Row>
                             </div>
