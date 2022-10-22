@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    height: 100vh !important;
+}
+
 /* Text selection */
 ::selection {
     color: #fff;

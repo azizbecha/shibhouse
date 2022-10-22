@@ -54,10 +54,10 @@ const Login: NextPage = () => {
             <SEO title="Login | Shibhouse" description="Log to your account in Shibhouse.tv"  />
             <ProtectedRoute>
                 <Navbar />
-                <div className="relative bg-dark vh-100">
-                    <div className="container px-6 md:px-12 pb-5 lg:px-7">
+                <div className="relative bg-dark">
+                    <div className="container px-6 md:px-12 lg:px-7">
                         <div className="flex items-center flex-wrap px-1 md:px-0">
-                            <div className="relative lg:w-7/12 xl:py-32">
+                            <div className="relative lg:w-7/12">
                                 <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
                                 <form onSubmit={verify}>
                                     <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
