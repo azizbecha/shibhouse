@@ -396,8 +396,7 @@ const Dashboard: NextPage = () => {
                                                 <Col sm={6} className="h-100">
                                                     <div className={`rounded-lg bg-dark h-full px-3 py-4 ${isTabletOrMobile && 'mt-4'}`}>
                                                         <h1 className="font-bold text-lg flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
-                                                        <p className="font-medium text-base">- {joke?.question}</p>
-                                                        <br />
+                                                        <p className="font-medium text-base my-5">- {joke?.question}</p>
                                                         <p className="font-medium text-base">- {joke?.punchline}</p>
                                                     </div>
                                                 </Col>
