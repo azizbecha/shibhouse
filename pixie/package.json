@@ -21,6 +21,7 @@
     "hark": "^1.2.3",
     "javascript-time-ago": "^2.3.13",
     "jquery": "^3.6.0",
+    "moment": "^2.29.4",
     "next": "latest",
     "nextjs-progressbar": "^0.0.14",
     "peerjs": "^1.4.2",

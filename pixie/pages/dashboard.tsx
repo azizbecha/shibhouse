@@ -1,13 +1,17 @@
 import { useState, useRef, Fragment, useEffect } from "react"
 import { NextPage } from "next"
 import { NextRouter, useRouter } from "next/router"
+import Link from "next/link"
 
 import { Dialog, Transition } from '@headlessui/react'
 
+import { collection, DocumentData, onSnapshot, orderBy, query, Query, where } from "firebase/firestore"
+import { fireStore } from "../auth/Firebase"
 import PrivateRoute from "../auth/PrivateRoute"
 import { useAuth } from "../auth/AuthContext"
 
 import axios from "axios"
+import moment from 'moment';
 import Switch from "react-switch"
 import Hotkeys from 'react-hot-keys'
 import toast from "react-hot-toast";
@@ -25,10 +29,11 @@ import SEO from "../utils/SEO"
 import { PeopleSidebar } from "../modules/dashboard/PeopleSidebar"
 import { MyProfileSidebar } from "../modules/dashboard/MyProfileSidebar"
 
-import { NewRoom } from "../interfaces"
+import { NewRoom, ScheduledRoomProps } from "../interfaces"
 import createRoom from "../lib/createRoom"
 import generateId from "../lib/generateId"
 import { requestNotificationPermission } from "../lib/requestNotificationPermission"
+import { scheduleRoom } from "../lib/scheduleRoom"
 
 import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
@@ -36,7 +41,6 @@ import isURL from 'validator/lib/isURL'
 import { AiFillHome } from "react-icons/ai"
 import { FaHome, FaCalendarAlt, FaCalendarPlus } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
-import { scheduleRoom } from "../lib/scheduleRoom"
 
 const Dashboard: NextPage = () => {
 
@@ -44,6 +48,7 @@ const Dashboard: NextPage = () => {
     const { currentUserData } = useAuth();
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
+    const [scheduledRooms, setScheduledRooms] = useState([]);
     const [joke, setJoke] = useState<{question: string, punchline: string}>({question: '', punchline: ''});
 
     const [roomTitle, setRoomTitle] = useState('');
@@ -52,7 +57,6 @@ const Dashboard: NextPage = () => {
     const [roomTopics, setRoomTopics] = useState<Array<{id: string, text: string}>>([]);
     
     const [scheduledRoomTitle, setScheduledRoomTitle] = useState<string>('');
-    const [scheduledRoomDescription, setScheduledRoomDescription] = useState<string>('');
     const [scheduledRoomDate, setScheduledRoomDate] = useState<string>('');
     const [scheduledRoomTime, setScheduledRoomTime] = useState<string>('');
 
@@ -143,18 +147,21 @@ const Dashboard: NextPage = () => {
     const submitScheduledRoom = (e) => {
 
         e.preventDefault();
-        const data = {
+        const data: ScheduledRoomProps = {
             title: scheduledRoomTitle,
-            description: scheduledRoomDescription,
             date: scheduledRoomDate,
             time: scheduledRoomTime,
             createdBy: currentUserData.username
         }
 
+        // Close modal
         setShowScheduleRoomModal(false);
+
+        // Schedule Room
         scheduleRoom(data);
+
+        // Empty inputs
         setScheduledRoomDate('');
-        setScheduledRoomDescription('');
         setScheduledRoomTime('');
         setScheduledRoomTitle('');
     }
@@ -166,7 +173,19 @@ const Dashboard: NextPage = () => {
         })
     }
 
+    const fetchScheduledRooms = async () => {    
+        const q: Query<DocumentData> = query(collection(fireStore, "scheduledRooms"), where('date', '>', new Date()), orderBy("date", "asc"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const rooms = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setScheduledRooms(rooms);
+            });
+        });
+    }
+
     useEffect(() => {
+        fetchScheduledRooms();
         randomJoke();
         requestNotificationPermission();
     }, [])
@@ -332,10 +351,7 @@ const Dashboard: NextPage = () => {
                                                                     <span className="font-semibold">Room title <span className="text-primary font-extrabold">*</span></span><br />
                                                                     <input className="rounded w-full py-2 px-2 text-white bg-dark mt-1 mb-4" placeholder="Please enter the room title here" value={scheduledRoomTitle} onChange={(e) => setScheduledRoomTitle(e.target.value)} type="text" required />
 
-                                                                    <span className="font-semibold">Short description <span className="text-primary font-extrabold">*</span></span><br />
-                                                                    <textarea className="rounded w-full py-1 px-2 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={scheduledRoomDescription} onChange={(e) => setScheduledRoomDescription(e.target.value)} required /><br />
-
-                                                                    <Row className="mt-2">
+                                                                    <Row>
                                                                         <Col sm={6}>
                                                                             <span className="font-semibold">Date <span className="text-primary font-extrabold">*</span></span><br />
                                                                             <input type="date" required value={scheduledRoomDate} onChange={(e) => setScheduledRoomDate(e.currentTarget.value)} className="bg-dark p-2 w-full rounded mt-1 text-white" />
@@ -390,8 +406,7 @@ const Dashboard: NextPage = () => {
                                             
                                             <Row className="flex">
                                                 <Col sm={6} className="h-100">
-                                                    <div className={`rounded-lg bg-dark px-3 py-4 h-full ${isTabletOrMobile && 'mb-2'}`}>
-                                                        {/*  */}
+                                                    <div className={`rounded-lg h-full bg-dark px-3 py-4 ${isTabletOrMobile && 'mb-2'}`}>
                                                         <div className="flex space-x-45 mb-3">
                                                             <div className="flex w-full">
                                                                 <div className="flex-1 min-w-0">
@@ -399,31 +414,59 @@ const Dashboard: NextPage = () => {
                                                                 </div>
                                                                 
                                                                 <div className="inline-flex items-end text-base">
-                                                                    <button onClick={() => setShowScheduleRoomModal(true)} className="flex bg-gray p-2 rounded-md text-sm font-semibold text-white hover:bg-primary hover:shadow" type="button"><FaCalendarPlus /></button>
+                                                                    <button onClick={() => setShowScheduleRoomModal(true)} className="flex bg-primary p-2 rounded-md text-sm font-semibold text-white hover:bg-primary hover:shadow" type="button"><FaCalendarPlus /></button>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <ul className="list-disc ml-4">
-                                                            <li className="text-sm font-medium mb-1">
-                                                                How to get started into programming <br /> <span className="text-secondary font-semibold text-xs">By @azizbecha <span className="font-bold text-white text-md">.</span> In 2 hours</span>
-                                                            </li>
-
-                                                            <li className="text-sm font-medium mb-1">
-                                                                Why you need to stop using Angular.js <br /> <span className="text-secondary font-semibold text-xs">By @benawad <span className="font-bold text-white text-md">.</span> In 4 hours</span>
-                                                            </li>
-
-                                                            <li className="text-sm font-medium mb-1">
-                                                                Coming features for Tesla Cars <br /> <span className="text-secondary font-semibold text-xs">By @elonmusk <span className="font-bold text-white text-md">.</span> In 20 minutes</span>
-                                                            </li>
-                                                        </ul>
+                                                        <div className="h-40 overflow-auto">
+                                                                {
+                                                                    scheduledRooms.length == 0 ? (
+                                                                        <div className="flex">
+                                                                            <div className="mx-auto text-center">
+                                                                                <img src="../images/shiba-sleeping.png" className="w-3/6 mt-1 mb-2 mx-auto" alt="" />
+                                                                                <span className="text-xs font-medium mx-auto">There are no scheduled rooms at the moment</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    ) : (
+                                                                        <ul className="list-disc ml-4">
+                                                                            {
+                                                                                scheduledRooms.map((room, key) => {
+                                                                                    return (
+                                                                                        <li className="text-sm font-medium mb-3" key={key}>
+                                                                                            <span className="text-primary">{moment().month(new Date(room.day).getMonth()).format("MMM")}. {new Date(room.day).getDate().toString()} {room.time}</span><br />
+                                                                                            <span className="text-sm">
+                                                                                                {room.title}
+                                                                                            </span> <br />
+                                                                                            <span className="text-white font-normal text-xs">
+                                                                                                By <Link href={`users/${room.createdBy}`}>
+                                                                                                    <span className="cursor-pointer font-semibold">
+                                                                                                        @{room.createdBy}
+                                                                                                    </span>
+                                                                                                </Link>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </ul>
+                                                                    )
+                                                                }
+                                                        </div>
                                                     </div>
                                                 </Col>
 
                                                 <Col sm={6} className="h-100">
                                                     <div className={`rounded-lg bg-dark h-full px-3 py-4 ${isTabletOrMobile && 'mt-4'}`}>
                                                         <h1 className="font-bold text-lg flex font-inter mb-3"><BsFillEmojiSunglassesFill size={17} className="mr-2 my-auto" /> Random Programming Joke</h1>
-                                                        <p className="font-medium text-base my-5">- {joke?.question}</p>
-                                                        <p className="font-medium text-base">- {joke?.punchline}</p>
+                                                        
+                                                        <ul className="list-disc ml-4">
+                                                            <li className="font-medium text-base my-5">
+                                                                Question: <span className="font-normal">{joke.question}</span>
+                                                            </li>
+                                                            <li className="font-medium text-base my-5">
+                                                                Answer: <span className="font-normal">{joke.punchline}</span>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </Col>
 
