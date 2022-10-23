@@ -85,6 +85,7 @@ export interface NotificationProps {
 export interface ScheduledRoomProps {
   title: string,
   description: string,
-  host: string,
-  date: string
+  date: string,
+  time: string,
+  createdBy: string
 }

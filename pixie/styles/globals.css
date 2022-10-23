@@ -176,6 +176,8 @@ body {
     margin-left: 3px;
 }
 
-input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+/* Date and Time inputs icons */
+input[type="date"]::-webkit-calendar-picker-indicator, 
+input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(356deg) brightness(101%) contrast(105%);
 }

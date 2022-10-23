@@ -27,7 +27,7 @@ const IndexPage: NextPage = () => {
     return (
         <>
             <SEO 
-                title={"Shibhouse | Re-taking voice conversations to the moon"}
+                title={"ShibHouse | Re-taking voice conversations to the moon"}
                 description={"Re-taking voice conversations to the moon"}
             />
             <ProtectedRoute>

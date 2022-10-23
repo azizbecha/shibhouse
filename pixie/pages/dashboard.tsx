@@ -36,6 +36,7 @@ import isURL from 'validator/lib/isURL'
 import { AiFillHome } from "react-icons/ai"
 import { FaHome, FaCalendarAlt, FaCalendarPlus } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
+import { scheduleRoom } from "../lib/scheduleRoom"
 
 const Dashboard: NextPage = () => {
 
@@ -52,7 +53,8 @@ const Dashboard: NextPage = () => {
     
     const [scheduledRoomTitle, setScheduledRoomTitle] = useState<string>('');
     const [scheduledRoomDescription, setScheduledRoomDescription] = useState<string>('');
-    const [scheduledRoomDate, setScheduledRoomDate] = useState<any>('');
+    const [scheduledRoomDate, setScheduledRoomDate] = useState<string>('');
+    const [scheduledRoomTime, setScheduledRoomTime] = useState<string>('');
 
     const [showCreateRoomModal, setShowCreateRoomModal] = useState<boolean>(false);
     const [showScheduleRoomModal, setShowScheduleRoomModal] = useState<boolean>(false);
@@ -140,6 +142,21 @@ const Dashboard: NextPage = () => {
 
     const submitScheduledRoom = (e) => {
 
+        e.preventDefault();
+        const data = {
+            title: scheduledRoomTitle,
+            description: scheduledRoomDescription,
+            date: scheduledRoomDate,
+            time: scheduledRoomTime,
+            createdBy: currentUserData.username
+        }
+
+        setShowScheduleRoomModal(false);
+        scheduleRoom(data);
+        setScheduledRoomDate('');
+        setScheduledRoomDescription('');
+        setScheduledRoomTime('');
+        setScheduledRoomTitle('');
     }
 
     const randomJoke = () => {
@@ -318,9 +335,18 @@ const Dashboard: NextPage = () => {
                                                                     <span className="font-semibold">Short description <span className="text-primary font-extrabold">*</span></span><br />
                                                                     <textarea className="rounded w-full py-1 px-2 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={scheduledRoomDescription} onChange={(e) => setScheduledRoomDescription(e.target.value)} required /><br />
 
-                                                                    <span className="font-semibold">Date <span className="text-primary font-extrabold">*</span></span><br />
-                                                                    <input type="datetime-local" required value={scheduledRoomDate} onChange={(e) => setScheduledRoomDate(e.currentTarget.value)} className="bg-dark p-2 w-full rounded mt-1 text-white" />
-                                                                    
+                                                                    <Row className="mt-2">
+                                                                        <Col sm={6}>
+                                                                            <span className="font-semibold">Date <span className="text-primary font-extrabold">*</span></span><br />
+                                                                            <input type="date" required value={scheduledRoomDate} onChange={(e) => setScheduledRoomDate(e.currentTarget.value)} className="bg-dark p-2 w-full rounded mt-1 text-white" />
+                                                                        </Col>
+
+                                                                        <Col sm={6}>
+                                                                            <span className="font-semibold">Time <span className="text-primary font-extrabold">*</span></span><br />
+                                                                            <input type="time" required value={scheduledRoomTime} onChange={(e) => setScheduledRoomTime(e.currentTarget.value)} className="bg-dark p-2 w-full rounded mt-1 text-white" />
+                                                                        </Col>
+
+                                                                    </Row>
                                                                 </div>
                                                                 <div className="bg-gray-50 px-4 pb-4 sm:px-6 sm:flex sm:flex-row-reverse">
                                                                     <button
