@@ -96,7 +96,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             // Make sure that message is not empty
             if (message.length > 0 && !isEmpty(message)) {
 
-                if (new Date().getTime() - Number(lastMessageTimestamp) >= 3000) {
+                if (new Date().getTime() - Number(lastMessageTimestamp) >= 2000) {
 
                     // If last message timestamp is greater than 3 seconds
                     addDoc(collection(fireStore, 'rooms', `${props.roomId}/messages`), {
