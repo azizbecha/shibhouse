@@ -36,6 +36,7 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
+import { PinnedLink } from './PinnedLink'
 
 const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
 
@@ -723,6 +724,7 @@ function Main ({ user, room }) {
               {
                 showChat && (
                   <Col xs={12} sm={12} md={4} lg={4}>
+                    <PinnedLink link={room.pinnedLink} />
                     <div className="bg-darker p-4 mt-3 rounded-lg h-96">
                       <div className="flex">
                         <h1 className="font-bold mb-2 text-white text-2xl flex justify-center"><IoMdChatboxes size={24} className="mt-1 mr-1" /> Chat</h1>

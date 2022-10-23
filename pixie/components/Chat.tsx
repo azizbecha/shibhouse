@@ -4,13 +4,10 @@ import React, { Fragment, useContext, useEffect, useState } from "react"
 import { useCopyToClipboard } from "react-use"
 import { Anchorme, LinkComponentProps } from 'react-anchorme'
 
-import Microlink from '@microlink/react'
-
 import toast from "react-hot-toast";
 import InputEmoji from "react-input-emoji"
 
 import { RiChatOffFill } from "react-icons/ri"
-import { AiFillPushpin } from "react-icons/ai"
 import { FaBan } from "react-icons/fa"
 
 import { addDoc, collection, DocumentData, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp } from "firebase/firestore"
@@ -22,10 +19,9 @@ import isEmpty from 'validator/lib/isEmpty'
 import { getBrightColor } from "../lib/getBrightColor"
 import { isChatCommand } from "../lib/isChatCommand"
 import { sendBotMessage } from "../lib/sendBotMessage"
+import { ChatProps } from "../interfaces"
 
 import { StreamContext } from "../contexts/StreamContext"
-import { ChatProps } from "../interfaces"
-import { getDomain } from "../lib/getDomain"
 
 const Chat: React.FC<ChatProps> = (props) => {
 
@@ -178,38 +174,11 @@ const Chat: React.FC<ChatProps> = (props) => {
     }
 
     return (
-        <Fragment>
-            {props.pinnedLink !== "" && (
-                <div className="bg-dark px-3 py-2 rounded-md text-white font-semibold">
-                    <span className="text-white font-inter text-lg flex space-x-1 my-2 font-normal">
-                        <AiFillPushpin className="my-auto" size={17} /> <span>Pinned link:</span>
-                    </span>
-                    
-                    {
-                        getDomain(props.pinnedLink, true) == "youtube.com" || "youtu.be" ? (
-                            <Microlink
-                                className="mt-4 w-full"
-                                url={props.pinnedLink}
-                                size="large"
-                                media={"video"}
-                                style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
-                            />
-                            
-                        ) : (
-                            <Microlink
-                                className="mt-4 w-full"
-                                url={props.pinnedLink}
-                                size="large"
-                                style={{backgroundColor:"#151A21", color: "#fff", border: 'none', borderRadius: '5px', width: '100%'}}
-                            />
-                        )
-                    }
-                </div>
-            )}
+        <div className="bg-dark h-5/6 rounded-md">
             {
                 props.isChatAllowed ? (
                     <Fragment>
-                        <div className="overflow-y-auto relative flex rounded-md w-full h-4/6 mt-2 p-3 text-white bg-dark">
+                        <div className="overflow-y-auto relative flex rounded-md w-full h-5/6 mt-1 p-3 text-white bg-dark">
                             {
                                 messages.length == 0 && (
                                     <div className="p-4">
@@ -300,7 +269,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                     </div>
                 )
             }
-        </Fragment>
+        </div>
     )
 }
 
