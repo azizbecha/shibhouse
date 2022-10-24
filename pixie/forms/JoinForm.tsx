@@ -37,23 +37,23 @@ export const JoinForm: React.FC = () => {
     return (
         <form onSubmit={addUser} className="mt-5">
             <Row>
-                <Col className="my-2" lg={6} md={12} sm={12} xs={12}>
-                    <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full mr-4" type="text" required />
+                <Col className="mb-3" lg={6} md={12} sm={12} xs={12}>
+                    <input ref={firstnameRef} placeholder="First name" className="w-full p-4 rounded-full" type="text" required />
                 </Col>
 
-                <Col className="my-2" lg={6} md={12} sm={12} xs={12}>                
+                <Col className="mb-3" lg={6} md={12} sm={12} xs={12}>                
                     <input ref={lastnameRef} placeholder="Last name" className="w-full p-4 rounded-full" type="text" required />
                 </Col>
 
-                <Col className="my-2" lg={6} md={12} sm={12} xs={12}>
-                    <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full mr-4" type="email" required />
+                <Col className="mb-3" lg={6} md={12} sm={12} xs={12}>
+                    <input ref={emailRef} placeholder="Email" className="w-full p-4 rounded-full" type="email" required />
                 </Col>
 
-                <Col className="my-2" lg={6} md={12} sm={12} xs={12}>                
+                <Col className="mb-3" lg={6} md={12} sm={12} xs={12}>                
                     <input ref={usernameRef} placeholder="Username" className="w-full p-4 rounded-full" type="text" required />
                 </Col>
                 
-                <Col className="my-2" lg={12} md={12} sm={12} xs={12}>                
+                <Col className="mb-3" lg={12} md={12} sm={12} xs={12}>                
                     <input value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setPassword(e.target.value);
                     }} placeholder="Your password" className="w-full p-4 rounded-full" type="password" required />
