@@ -6,6 +6,7 @@ import { Col, Row } from "react-flexbox-grid/dist/react-flexbox-grid";
 import isEmpty from 'validator/lib/isEmpty'
 import { NewUser } from "../interfaces"
 import { createUser } from "../lib/createUser"
+import Link from "next/link";
 
 export const JoinForm: React.FC = () => {
 
@@ -63,6 +64,10 @@ export const JoinForm: React.FC = () => {
                 <button type="submit" className="p-4 rounded-full hover:bg-secondary w-full text-center transition bg-primary text-white">
                     <span className="text-white font-semibold md:block">Join now</span>
                 </button>
+
+                <p className="text-white font-normal mt-3">
+                    Already have an account ? <Link href='login'><span className="font-medium cursor-pointer">Log in</span></Link>
+                </p>
             </Row>
         </form>
     )
