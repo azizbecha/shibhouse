@@ -10,7 +10,7 @@ import InputEmoji from "react-input-emoji"
 import { RiChatOffFill } from "react-icons/ri"
 import { FaBan } from "react-icons/fa"
 
-import { addDoc, collection, DocumentData, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp } from "firebase/firestore"
+import { addDoc, arrayUnion, collection, doc, DocumentData, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp, updateDoc } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
 import { useAuth } from "../auth/AuthContext"
 
@@ -29,10 +29,21 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const [state, copyToClipboard] = useCopyToClipboard();
     const [messages, setMessages] = useState<Array<any>>([]);
+    const [bannedFromChat, setBannedFromChat] = useState([]);
     const [message, setMessage] = useState<string>("");
     const [lastMessageTimestamp, setLastMessageTimestamp] = useState<BigInteger | number>(0);
 
     const { micAccess } = useContext<any>(StreamContext);
+
+    const shadowBan = async (user: string) => {
+        const roomRef = doc(fireStore, "rooms", props.roomId);
+  
+        await updateDoc(roomRef, {
+            bannedFromChat: arrayUnion(user),
+        });
+
+        toast.success(`@${user} banned from chat`);
+    }
 
     useEffect(() => {
         const fetch = async () => {
@@ -45,9 +56,14 @@ const Chat: React.FC<ChatProps> = (props) => {
                 });
             });
 
+            const unsub = onSnapshot(doc(fireStore, "rooms", `${props.roomId}`), (doc) => {
+                setBannedFromChat(doc.data().bannedFromChat);
+            });
+
+
         }
         fetch()
-    }, [props.roomId])
+    }, [props.roomId]);
 
     const CustomLink = (props: LinkComponentProps) => {
         return (
@@ -105,7 +121,8 @@ const Chat: React.FC<ChatProps> = (props) => {
                         sentBy: currentUserData.username,
                         roomId: props.roomId,
                         avatarColor: currentUserData.avatarColor,
-                        isBot: false
+                        isBot: false,
+                        isSpam: bannedFromChat.includes(currentUserData.username)
                     }).then(() => {
 
                         // if message is a command
@@ -124,7 +141,6 @@ const Chat: React.FC<ChatProps> = (props) => {
 
                                 case '/mute':
                                     props.muteToggle();
-                                    sendBotMessage(props.roomId, `@${props.username} muted his mic`);
                                     break;
 
                                 case '/role':
@@ -199,47 +215,89 @@ const Chat: React.FC<ChatProps> = (props) => {
                                             mentions = message.message.match(pattern);
                                         }
 
-                                        return (
-                                            <li className='w-full my-1' key={key}>
-                                                <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
-                                                    <a href={`../../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
-                                                    
-                                                    {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
-                                                    {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
-                                                    
-                                                    {
-                                                        props.creator == currentUserData.username && !message.isBot && message.sentBy !== currentUserData.username && (
-                                                            <span className="px-1 py-0.5 bg-primary mr-1 rounded-full text-white inline-block cursor-pointer"><div className="flex my-0.5"><FaBan size={10} /></div></span>
-                                                        )
-                                                    }
-                                                </span>
-                                                <span className="text-sm text-wrap break-all">
-                                                    {
-                                                        msg.map((word: string, key: number) => {
-                                                            if (mentions.includes(word)) {
-                                                                return (
-                                                                    <span key={key}>
-                                                                        <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
-                                                                            <a href={`../../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
-                                                                                {word}
-                                                                            </a>
-                                                                        </span>&nbsp;
-                                                                    </span>
-                                                                )
-                                                            } else {
-                                                                return (
-                                                                    <span className="message" key={key}>
-                                                                        <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
-                                                                            {word}
-                                                                        </Anchorme>&nbsp;
-                                                                    </span>
-                                                                )
+                                        if(message.isSpam) {
+                                            // if message is spam so it will appear only to the spammer
+                                            if (message.sentBy == currentUserData.username) {
+                                                return (
+                                                    <li className='w-full my-1' key={key}>
+                                                        <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
+                                                            <a href={`../../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
+                                                            
+                                                            <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>
+                                                        </span>
+                                                        <span className="text-sm text-wrap break-all">
+                                                            {
+                                                                msg.map((word: string, key: number) => {
+                                                                    if (mentions.includes(word)) {
+                                                                        return (
+                                                                            <span key={key}>
+                                                                                <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
+                                                                                    <a href={`../../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
+                                                                                        {word}
+                                                                                    </a>
+                                                                                </span>&nbsp;
+                                                                            </span>
+                                                                        )
+                                                                    } else {
+                                                                        return (
+                                                                            <span className="message" key={key}>
+                                                                                <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
+                                                                                    {word}
+                                                                                </Anchorme>&nbsp;
+                                                                            </span>
+                                                                        )
+                                                                    }
+                                                                })
                                                             }
-                                                        })
-                                                    }
-                                                </span>
-                                            </li>
-                                        )
+                                                        </span>
+                                                    </li>
+                                                )
+                                            }
+                                        } else {
+                                            return (
+                                                <li className='w-full my-1' key={key}>
+                                                    <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
+                                                        <a href={`../../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
+                                                        
+                                                        {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
+                                                        {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
+                                                        
+                                                        {
+                                                            props.creator == currentUserData.username && !message.isBot && message.sentBy !== currentUserData.username && (
+                                                                <span onClick={() => {
+                                                                    bannedFromChat.includes(message.sentBy) ? toast.error("User already banned") : shadowBan(message.sentBy);
+                                                                }} className={`px-1 py-0.5 bg-${!bannedFromChat.includes(message.sentBy) ? 'primary' : 'green'} mr-1 rounded-full text-white inline-block cursor-pointer`}><div className="flex my-0.5"><FaBan size={10} /></div></span>
+                                                            )
+                                                        }
+                                                    </span>
+                                                    <span className="text-sm text-wrap break-all">
+                                                        {
+                                                            msg.map((word: string, key: number) => {
+                                                                if (mentions.includes(word)) {
+                                                                    return (
+                                                                        <span key={key}>
+                                                                            <span style={{backgroundColor: message.avatarColor}} className="font-bold text-xs px-1 rounded cursor-pointer">
+                                                                                <a href={`../../user/${word.substring(1)}`} target="_blank" rel="noopener noreferrer">
+                                                                                    {word}
+                                                                                </a>
+                                                                            </span>&nbsp;
+                                                                        </span>
+                                                                    )
+                                                                } else {
+                                                                    return (
+                                                                        <span className="message" key={key}>
+                                                                            <Anchorme linkComponent={CustomLink} target="_blank" rel="noreferrer noopener">
+                                                                                {word}
+                                                                            </Anchorme>&nbsp;
+                                                                        </span>
+                                                                    )
+                                                                }
+                                                            })
+                                                        }
+                                                    </span>
+                                                </li>
+                                            )
+                                        }
                                     })
                                 }
                             </ul>

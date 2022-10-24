@@ -16,7 +16,8 @@ const createRoom = async (data: NewRoom): Promise<void> => {
         topics: data.topics,
         users: 0,
         allowChat: data.allowChat,
-        speakers: data.speakers
+        speakers: data.speakers,
+        bannedFromChat: [],
     });
 
     createNotification(`@${data.createdBy} created a room`);
