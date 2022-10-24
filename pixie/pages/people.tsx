@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { NextPage } from "next"
 import Link from "next/link"
 
-import { collection, doc, DocumentData, onSnapshot, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
+import { arrayRemove, arrayUnion, collection, doc, DocumentData, onSnapshot, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
 import { Unsubscribe } from "firebase/auth"
 
 import { useAuth } from "../auth/AuthContext"
@@ -11,7 +11,6 @@ import PrivateRoute from "../auth/PrivateRoute"
 
 import { createNotification } from "../lib/createNotification"
 import { capitalizeWord } from "../lib/capitalize"
-import { removeItem } from "../lib/removeItemFromArray"
 import SEO from "../utils/SEO"
 
 import $ from "jquery"
@@ -57,12 +56,12 @@ const People: NextPage = () => {
         try {
             const followersRef = doc(fireStore, "users", userData.id);
             await updateDoc(followersRef, {
-                followers: removeItem(userData.followers, currentUserData.username)
+                followers: arrayRemove(currentUserData.username) ,
             });
 
             const followersRef2 = doc(fireStore, "users", currentUserData.id);
             await updateDoc(followersRef2, {
-                following: removeItem(userData.followers, currentUserData.username)
+                following: arrayRemove(currentUserData.username)
             });
             
 
@@ -75,22 +74,16 @@ const People: NextPage = () => {
 
     const Follow = async (userData) => {
         try {
-            var followersArray = userData.followers;
-            var followingArray = currentUserData.following;
-
-            followersArray.push(currentUserData.username);
-            followingArray.push(userData.username);
-
             const followersRef = doc(fireStore, "users", currentUserData.id);
 
             await updateDoc(followersRef, {
-                following: followingArray
+                following: arrayUnion(userData.username)
             });
 
             const followersRef2 = doc(fireStore, "users", userData.id);
 
             await updateDoc(followersRef2, {
-                followers: followersArray
+                followers: arrayUnion(currentUserData.username)
             });
 
             createNotification(`@${currentUserData.username} started following @${userData.username}`);

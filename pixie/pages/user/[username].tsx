@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { query, collection, limit, where, getDocs, doc, updateDoc, DocumentReference, DocumentData, QuerySnapshot, QueryDocumentSnapshot } from "firebase/firestore";
+import { query, collection, limit, where, getDocs, doc, updateDoc, DocumentReference, DocumentData, QuerySnapshot, QueryDocumentSnapshot, arrayRemove, arrayUnion } from "firebase/firestore";
 
 import PrivateRoute from "../../auth/PrivateRoute";
 import { AuthContext } from "../../auth/AuthContext";
@@ -16,7 +16,6 @@ import Navbar from "../../components/Navbar";
 import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 
 import { capitalizeWord } from "../../lib/capitalize";
-import { removeItem } from "../../lib/removeItemFromArray";
 import { numberFormatter } from "../../lib/numberFormatter";
 
 import SEO from "../../utils/SEO";
@@ -47,12 +46,12 @@ const User: React.FC = () => {
         try {
             const followersRef = doc(fireStore, "users", userData.id);
             await updateDoc(followersRef, {
-                followers: removeItem(userData.followers, currentUserData.username)
+                followers: arrayRemove(currentUserData.username)
             });
 
             const followersRef2 = doc(fireStore, "users", currentUserData.id);
             await updateDoc(followersRef2, {
-                following: removeItem(userData.followers, currentUserData.username)
+                following: arrayRemove(currentUserData.username)
             });
             
             fetch();
@@ -66,22 +65,17 @@ const User: React.FC = () => {
 
     const Follow = async () => {
         try {
-            var followersArray: Array<string> = userData.followers;
-            var followingArray: Array<string> = currentUserData.following;
-
-            followersArray.push(currentUserData.username);
-            followingArray.push(userData.username);
 
             const followersRef: DocumentReference<DocumentData> = doc(fireStore, "users", currentUserData.id);
 
             await updateDoc(followersRef, {
-                following: followingArray
+                following: arrayUnion(userData.username)
             });
 
             const followersRef2: DocumentReference<DocumentData> = doc(fireStore, "users", userData.id);
 
             await updateDoc(followersRef2, {
-                followers: followersArray
+                followers: arrayUnion(currentUserData.username)
             });
 
             fetch();
