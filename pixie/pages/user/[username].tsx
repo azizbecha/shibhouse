@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 import Link from "next/link";
 
 import { query, collection, limit, where, getDocs, doc, updateDoc, DocumentReference, DocumentData, QuerySnapshot, QueryDocumentSnapshot, arrayRemove, arrayUnion } from "firebase/firestore";
@@ -17,11 +18,11 @@ import { FaArrowLeft, FaBan, FaPlus, FaTimes } from "react-icons/fa";
 
 import { capitalizeWord } from "../../lib/capitalize";
 import { numberFormatter } from "../../lib/numberFormatter";
-
-import SEO from "../../utils/SEO";
 import { createNotification } from "../../lib/createNotification";
 
-const User: React.FC = () => {
+import SEO from "../../utils/SEO";
+
+const User: NextPage = () => {
 
     const router = useRouter();
     
