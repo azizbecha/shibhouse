@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
             <div className="sm:flex sm:items-center sm:justify-between">
                 <Link href="/">
                     <span className="flex items-center mb-4 sm:mb-0">
-                        <img src="../images/shibhouse-logo-transparent.png" className="mr-3 h-10 w-6" alt="ShibHouse Logo" />
+                        <img src="../../../../images/shibhouse-logo-transparent.png" className="mr-3 h-10 w-6" alt="ShibHouse Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ShibHouse</span>
                     </span>
                 </Link>
