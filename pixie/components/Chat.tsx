@@ -57,7 +57,7 @@ const Chat: React.FC<ChatProps> = (props) => {
             });
 
             const unsub = onSnapshot(doc(fireStore, "rooms", `${props.roomId}`), (doc) => {
-                setBannedFromChat(doc.data().bannedFromChat);
+                setBannedFromChat(doc.data()?.bannedFromChat);
             });
 
 
@@ -266,7 +266,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                             props.creator == currentUserData.username && !message.isBot && message.sentBy !== currentUserData.username && (
                                                                 <span onClick={() => {
                                                                     bannedFromChat.includes(message.sentBy) ? toast.error("User already banned") : shadowBan(message.sentBy);
-                                                                }} className={`px-1 py-0.5 bg-${!bannedFromChat.includes(message.sentBy) ? 'primary' : 'green'} mr-1 rounded-full text-white inline-block cursor-pointer`}><div className="flex my-0.5"><FaBan size={10} /></div></span>
+                                                                }} className={`px-1 py-0.5 bg-${!bannedFromChat?.includes(message.sentBy) ? 'primary' : 'green'} mr-1 rounded-full text-white inline-block cursor-pointer`}><div className="flex my-0.5"><FaBan size={10} /></div></span>
                                                             )
                                                         }
                                                     </span>
