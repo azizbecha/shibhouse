@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
                                                         leaveFrom="transform opacity-100 scale-100"
                                                         leaveTo="transform opacity-0 scale-95"
                                                     >
-                                                        <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-96 h-4/6 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <Menu.Items className="origin-top-right bg-dark absolute z-50 right-0 mt-2 w-80 h-4/6 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                             <Menu.Item>
                                                                 <div className={`rounded-lg bg-dark text-white p-3 h-72`}>
                                                                     <h1 className="font-bold text-xl flex font-inter mb-4"><IoMdNotifications size={20} className="mr-1 mt-1" /> Notifications</h1>

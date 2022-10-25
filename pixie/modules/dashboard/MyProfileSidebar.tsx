@@ -34,7 +34,7 @@ const MyProfileSidebar: React.FC = () => {
                     <div className="mx-auto bg-gray rounded-lg shadow-md py-2">
                         <div className="flex flex-col container py-5 justify-center align-center">
                             <Link href={'/me'}>
-                                <div className="p-6 text-white text-2xl font-semibold rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
+                                <div className="p-6 uppercase text-white text-2xl font-semibold rounded-full mb-3 shadow-lg mx-auto cursor-pointer" style={{backgroundColor: currentUserData.avatarColor}}>
                                     {currentUserData.firstname[0]}{currentUserData.lastname[0]}
                                 </div>
                             </Link>
