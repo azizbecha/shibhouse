@@ -77,6 +77,13 @@ export const firebaseConfig = {
     measurementId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 };
 ```
+2. On the same file, you need to add hCaptcha site key which you can get it from https://hcaptcha.com and add it like the following:
+```ts
+export const hCaptchaConfig = {
+  siteKey: "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx", // replace this with yours
+  devKey: "10000000-ffff-ffff-ffff-000000000001" // this will be used when working in localhost only
+}
+```
 
 Run the project 
 ```sh
