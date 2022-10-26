@@ -2,94 +2,104 @@
 import { useRef, useState } from "react"
 import { NextPage } from "next"
 import { NextRouter, useRouter } from "next/router"
+import Link from "next/link"
+
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { useMediaQuery } from "react-responsive"
+import toast from "react-hot-toast";
 
 import { LogUser } from "../interfaces"
 import { signUser } from "../lib/signUser"
 
 import ProtectedRoute from "../auth/ProtectedRoute"
-
-import toast from "react-hot-toast";
+import { hCaptchaConfig } from "../auth/config"
 
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import SEO from "../utils/SEO"
-import Link from "next/link"
-import HCaptcha from '@hcaptcha/react-hcaptcha';
-import { hCaptchaConfig } from "../auth/config"
+
+import isEmpty from 'validator/lib/isEmpty'
 
 const Login: NextPage = () => {
 
-    const emailRef = useRef<any>();
-    const passwordRef = useRef<any>();
-
-    const [passedCaptcha, setPassedCaptcha] = useState<boolean>(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const captchaRef = useRef(null);
 
     const router: NextRouter = useRouter();
+    const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
 
-    const [loading, setLoading] = useState<boolean>(false);
+    const verify = async () => {
 
-    const verify = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        // If email and password are not empty
+        if (!isEmpty(email) && !isEmpty(password)) {
 
-        if(passedCaptcha) {
             const userObject: LogUser = {
-                email: emailRef.current.value,
-                password: passwordRef.current.value
+                email: email,
+                password: password
             }
         
             try {
-
-                setLoading(true);
-    
                 await signUser(userObject);
     
                 toast.success('Welcome back !');
                 
-                setLoading(false);
                 router.push("/dashboard");
     
             } catch (e) {
-                setLoading(false)
                 toast.error('Please verify your informations');
             }
         } else {
-            toast.error("Please verify the captcha");
+            toast.error("Please fill all the inputs");
         }
     }
+
     return (
-        <>
+        <div className="bg-dark text-white h-screen">
             <SEO title="Login | ShibHouse" description="Log to your account in Shibhouse.tv"  />
             <ProtectedRoute>
                 <Navbar />
-                <div className="relative bg-dark">
-                    <div className="container px-6 md:px-12 lg:px-7">
-                        <div className="flex items-center flex-wrap px-1 md:px-0">
-                            <div className="relative lg:w-7/12">
-                                <h1 className="font-bold text-4xl text-white md:text-5xl lg:w-10/12">Login</h1>
-                                <form onSubmit={verify}>
-                                    <h5 className="text-xl mt-10 text-white font-normal mb-3">Email</h5>
-                                    <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" required/>
-
-                                    <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
-                                    <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4 mb-3" placeholder="Please enter your password" required/>
-                                    <HCaptcha
-                                        sitekey={window.location.hostname == "localhost" ? hCaptchaConfig.devKey : hCaptchaConfig.siteKey}
-                                        onVerify={(token, ekey) => setPassedCaptcha(true)}
-                                    />
-                                    <button type="submit" className={`bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2`}>Login</button>
-                                    <Link href="forgot-password"><p className="cursor-pointer text-white text-sm font-medium mt-4">Forgot password ?</p></Link>
-                                </form>
-                                <p className="my-5 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
-                            </div>
-                            <div className="ml-auto lg:w-5/12">
-                                <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />
-                            </div>
+                <div className="relative">
+                    <div className={`p-9 ${isTabletOrMobile ? 'w-11/12' : 'w-4/12'} mx-auto rounded-lg bg-darker mb-7`}>
+                        <div className="mb-6">
+                            <h2 className="text-white font-semibold text-4xl">
+                                Welcome
+                            </h2>
+                            <p className="text-white text-sm mt-2">We are happy seeing you coming back</p>
                         </div>
+
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            captchaRef.current.execute();
+                        }} method="post">
+                            <div className="mb-4">
+                                <span className="font-medium">Email <span className="text-primary">*</span></span>
+                                <input value={email} onChange={e => setEmail(e.currentTarget.value)} type="email" className="w-full px-2 py-2 rounded-md mt-1 bg-dark" placeholder="Please enter your email" required />
+                            </div>
+
+                            <div className="mb-4">
+                                <span className="font-medium">Password <span className="text-primary">*</span></span>
+                                <input value={password} onChange={e => setPassword(e.currentTarget.value)} type="password" className="w-full px-2 py-2 rounded-md mt-1 bg-dark" placeholder="Please enter your password" required />
+                                <Link href="forgot-password"><p className="cursor-pointer text-white text-xs font-medium mt-2">Forgot password ?</p></Link>
+
+                            </div>
+
+                            <HCaptcha
+                                sitekey={window.location.hostname == "localhost" ? hCaptchaConfig.devKey : hCaptchaConfig.siteKey}
+                                onVerify={() => verify()}
+                                size="invisible"
+                                ref={captchaRef}
+                            />
+
+                            <button type="submit" className={`bg-primary mt-2 w-full rounded-lg text-white font-semibold py-2`}>Login</button>
+
+                            <p className="text-white text-sm font-medium mt-4">Don't have an account ? <Link href="register"><span className="cursor-pointer">Register now</span></Link></p>
+                        </form>
                     </div>
                 </div>
                 <Footer />
             </ProtectedRoute>
-        </>
+        </div>
     )
 }
 
