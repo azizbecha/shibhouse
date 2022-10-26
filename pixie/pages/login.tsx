@@ -14,39 +14,46 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import SEO from "../utils/SEO"
 import Link from "next/link"
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { hCaptchaConfig } from "../auth/config"
 
 const Login: NextPage = () => {
 
     const emailRef = useRef<any>();
     const passwordRef = useRef<any>();
 
+    const [passedCaptcha, setPassedCaptcha] = useState<boolean>(false);
+
     const router: NextRouter = useRouter();
 
-    const [disabled, setDisabled] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const verify = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const userObject: LogUser = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
-        }
+        if(passedCaptcha) {
+            const userObject: LogUser = {
+                email: emailRef.current.value,
+                password: passwordRef.current.value
+            }
+        
+            try {
+
+                setLoading(true);
     
-        try {
-            //toast.info('Please wait');
-
-            setDisabled(true);
-
-            await signUser(userObject);
-
-            toast.success('Welcome back !');
-            
-            setDisabled(false);
-            router.push("/dashboard");
-
-        } catch (e) {
-            setDisabled(false)
-            toast.error('Please verify your informations');
+                await signUser(userObject);
+    
+                toast.success('Welcome back !');
+                
+                setLoading(false);
+                router.push("/dashboard");
+    
+            } catch (e) {
+                setLoading(false)
+                toast.error('Please verify your informations');
+            }
+        } else {
+            toast.error("Please verify the captcha");
         }
     }
     return (
@@ -64,13 +71,15 @@ const Login: NextPage = () => {
                                     <input ref={emailRef} type="email" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your email" required/>
 
                                     <h5 className="text-xl mt-4 text-white font-normal mb-3">Password</h5>
-                                    <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4" placeholder="Please enter your password" required/>
-
-                                    <button type="submit" disabled={disabled} className="bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2">Login</button>
+                                    <input ref={passwordRef} type="password" className="w-11/12 rounded-lg py-2 px-4 mb-3" placeholder="Please enter your password" required/>
+                                    <HCaptcha
+                                        sitekey={window.location.hostname == "localhost" ? hCaptchaConfig.devKey : hCaptchaConfig.siteKey}
+                                        onVerify={(token, ekey) => setPassedCaptcha(true)}
+                                    />
+                                    <button type="submit" className={`bg-primary w-11/12 mt-5 rounded-lg text-white font-semibold py-2`}>Login</button>
                                     <Link href="forgot-password"><p className="cursor-pointer text-white text-sm font-medium mt-4">Forgot password ?</p></Link>
-
                                 </form>
-                                <p className="mt-5 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
+                                <p className="my-5 text-white lg:w-10/12 font-bold">By signing in, you will be able to join and create rooms ^_^</p>
                             </div>
                             <div className="ml-auto lg:w-5/12">
                                 <img src="../images/cute-shiba-inu-with-flying-rocket.png" className="relative w-12/12 mx-auto my-auto" alt="Shib hero" loading="lazy" />

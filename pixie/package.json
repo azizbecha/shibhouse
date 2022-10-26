@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@dhaiwat10/react-link-preview": "^1.14.0",
+    "@hcaptcha/react-hcaptcha": "^1.4.4",
     "@headlessui/react": "^1.6.1",
     "@microlink/react": "^5.5.9",
     "@types/react-responsive": "^8.0.5",
