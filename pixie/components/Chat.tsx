@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import InputEmoji from "react-input-emoji"
 
 import { RiChatOffFill } from "react-icons/ri"
-import { FaBan } from "react-icons/fa"
+import { FaBan, FaPaperPlane } from "react-icons/fa"
 
 import { addDoc, arrayUnion, collection, doc, DocumentData, onSnapshot, orderBy, query, QueryDocumentSnapshot, Timestamp, updateDoc } from "firebase/firestore"
 import { fireStore } from "../auth/Firebase"
@@ -102,7 +102,7 @@ const Chat: React.FC<ChatProps> = (props) => {
         
     }, [])
     
-    const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    const sendMessage = async () => {
         //e.preventDefault();
         try {
             
@@ -190,11 +190,11 @@ const Chat: React.FC<ChatProps> = (props) => {
     }
 
     return (
-        <div className="bg-dark h-5/6 rounded-md">
+        <div className="bg-dark rounded-md" style={{height: '90%'}}>
             {
                 props.isChatAllowed ? (
                     <Fragment>
-                        <div className="overflow-y-auto relative flex rounded-md w-full h-5/6 mt-1 p-3 text-white bg-dark">
+                        <div className="overflow-y-auto relative flex rounded-md w-full h-5/6 p-3 text-white bg-dark">
                             {
                                 messages.length == 0 && (
                                     <div className="p-4">
@@ -302,19 +302,23 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 }
                             </ul>
                         </div>
-                        <div className="mt-2 flex">
-                            <InputEmoji
-                                value={message}
-                                onChange={setMessage}
-                                cleanOnEnter
-                                onEnter={sendMessage}
-                                placeholder="Type a message"
-                                theme="dark"
-                                borderRadius={7}
-                                borderColor="#242C37"
-                                height={20}
-                                maxWidth={120}
-                            />
+                        <div className="mt-1 flex">
+                            <div className="w-11/12">
+                                <InputEmoji
+                                    value={message}
+                                    onChange={setMessage}
+                                    cleanOnEnter
+                                    onEnter={sendMessage}
+                                    placeholder="Type a message"
+                                    theme="dark"
+                                    borderRadius={7}
+                                    borderColor="#242C37"
+                                    height={15}                                
+                                />
+                            </div>
+                            <div className="w-1/12">
+                                <button onClick={() => message.length > 0 && sendMessage()} className={`bg-${message.length == 0 ? 'gray' : 'primary'} ${message.length == 0 ? 'cursor-default' : 'cursor-pointer'} text-white p-1.5 mt-2 rounded mr-1`}><FaPaperPlane /></button>
+                            </div>
                         </div>
                     </Fragment>
                 ) : (

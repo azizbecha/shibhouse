@@ -107,12 +107,12 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
                 });
                 if (incomingStreams) {
                   incomingStreams.forEach(conn => {
-                    conn.call.close()
+                    conn.call.close();
                   })
                 }
                 if (outgoingStreams) {
                   outgoingStreams.forEach(conn => {
-                    conn.close()
+                    conn.close();
                   })
                 }
                 sendBotMessage(roomId, `@${name} is kicked from the room`)
