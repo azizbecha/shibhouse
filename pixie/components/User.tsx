@@ -22,6 +22,10 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
       connRole,
       connectedPeers,
     },
+    streams: {
+      incomingStreams,
+      outgoingStreams,
+    },
 
   } = useContext<any>(PeerContext);
 
@@ -101,6 +105,16 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
                   conn.peer == id.peer && conn.close();
                   if (connToHost) connToHost.close();
                 });
+                if (incomingStreams) {
+                  incomingStreams.forEach(conn => {
+                    conn.call.close()
+                  })
+                }
+                if (outgoingStreams) {
+                  outgoingStreams.forEach(conn => {
+                    conn.close()
+                  })
+                }
                 sendBotMessage(roomId, `@${name} is kicked from the room`)
               }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{ kickIcon }</span>
             }
