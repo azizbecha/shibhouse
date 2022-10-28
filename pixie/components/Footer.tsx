@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaBug, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaBug, FaEnvelope, FaGithub } from "react-icons/fa";
 
 const Footer: React.FC = () => {
     return (
@@ -20,9 +20,9 @@ const Footer: React.FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/azizbechaa" className="mr-6 md:mr-6 ">
+                        <a href="mailto:contact@shibhouse.tv" className="mr-6 md:mr-6 ">
                             <div className="flex mt-6">
-                                <FaTwitter className="my-auto mr-1" /> Contact
+                                <FaEnvelope className="my-auto mr-1" /> Contact
                             </div>
                         </a>
                     </li>
