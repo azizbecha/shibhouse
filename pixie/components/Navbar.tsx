@@ -149,16 +149,16 @@ const Navbar: React.FC = () => {
                                                                     <div className="h-5/6 overflow-auto">
                                                                         <ul className="list-disc ml-4">
                                                                             {
-                                                                                notifications.map((notification) => {
+                                                                                notifications.map((notification, key) => {
                                                                                     var pattern: RegExp = /\B@[a-z0-9_-]+/gi;
                                                                                     const text: string = notification.text;
                                                                                     const words: string[] = text.split(" ");
                                                                                     return (
-                                                                                        <li className="text-sm mb-1">
+                                                                                        <li className="text-sm mb-1" key={key}>
                                                                                             {
-                                                                                                words.map((word) => {
+                                                                                                words.map((word, key) => {
                                                                                                     return (
-                                                                                                        <span>
+                                                                                                        <span key={key}>
                                                                                                             {
                                                                                                                 word.match(pattern) ? (
                                                                                                                     word.substring(1) == currentUserData.username ? <span className="font-semibold">You </span> : (
