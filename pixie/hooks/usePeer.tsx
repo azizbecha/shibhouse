@@ -36,9 +36,9 @@ const usePeer = (config: any = {}) => {
 
     peer.on('disconnected', () => {
       console.log('usePeer::Peer desconnected')
-      router.push('/dashboard')
       setPeerStatus('disconnected')
       destroyPeerInstance()
+      router.push('/dashboard')
     })
 
     peer.on('close', () => {
@@ -47,7 +47,6 @@ const usePeer = (config: any = {}) => {
       setPeerStatus('close')
       router.push('/dashboard')
     })
-
 
     peer.on('error', (error) => {
       console.log('usePeer::Peer error', error)

@@ -338,7 +338,7 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     })
 
     peer.on('disconnected', () => {
-      log('Peer desconnected')
+      log('Peer desconnected');
     })
 
     setPeerListenersInitialized(true)

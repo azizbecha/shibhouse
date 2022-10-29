@@ -317,7 +317,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 />
                             </div>
                             <div className="w-1/12">
-                                <button onClick={() => sendMessage()} className={`${message.length == 0 ? 'bg-gray cursor-default' : 'bg-primamry cursor-pointer'} text-white p-1.5 mt-2 rounded mr-1`}><FaPaperPlane /></button>
+                                <button onClick={() => sendMessage()} className={`${message.length == 0 ? 'bg-gray cursor-default' : 'bg-primary cursor-pointer'} text-white p-1.5 mt-2 rounded mr-1`}><FaPaperPlane /></button>
                             </div>
                         </div>
                     </Fragment>
