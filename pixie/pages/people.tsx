@@ -130,7 +130,7 @@ const People: NextPage = () => {
                                                                 </Link>
                                                                 <div className="text-sm mt-3.5 text-gray-200">
                                                                     <div className="flex flex-row ml-auto space-x-6 items-center">
-                                                                        <div className="mb-1 h-5 w-20">{user.followers.includes(currentUserData.username) ? <button onClick={() => Unfollow(user)} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={() => Follow(user)} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
+                                                                        <div className="mb-1 h-5 w-20">{user.followers.includes(currentUserData.username) ? <button onClick={(e) => { e.currentTarget.disabled = true;Unfollow(user); e.currentTarget.disabled = false}} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaTimes className="my-auto mr-1" /> Unfollow</button> : <button onClick={(e) => {e.currentTarget.disabled = true; Follow(user); e.currentTarget.disabled = false;}} className="bg-primary text-white px-4 py-2 rounded-md font-semibold flex"><FaPlus className="my-auto mr-1" /> Follow</button>}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
