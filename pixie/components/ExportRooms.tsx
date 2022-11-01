@@ -64,7 +64,7 @@ const ExportRooms: React.FC = () => {
                                                 })
                                             }
                                         </p>
-                                        <p className="text-sm text-white font-semibold flex space-x-1 mb-1">
+                                        <p className="text-sm text-white font-medium flex space-x-1 mb-1">
                                             {room.allowChat ? <RiChat4Fill size={18} className="my-auto mr-1 text-primary" /> : <RiChatOffFill className="my-auto mr-1 text-primary" /> } Chat {!room.allowChat && 'not'} allowed
                                         </p>
                                         <p className="text-sm text-white font-normal flex space-x-1">
