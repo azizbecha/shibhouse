@@ -80,7 +80,7 @@ const User: NextPage = () => {
             });
 
             fetch();
-            createNotification(`@${currentUserData.username} started following @${userData.username}`);
+            createNotification(`@${currentUserData.username} started following @${userData.username}.`);
             toast.success(`Followed ${userData.username}`);
         } catch (e) {
             toast.error(`An error has been occured`);

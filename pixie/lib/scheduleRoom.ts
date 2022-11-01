@@ -19,7 +19,7 @@ export const scheduleRoom = async (props: ScheduledRoomProps) => {
             title: props.title,
         });
     
-        createNotification(`@${props.createdBy} scheduled a room`);
+        createNotification(`@${props.createdBy} scheduled a room.`);
         toast.success("Your room has been Scheduled");
     } catch (e) {
         toast.error("An error occured during scheduling your room");

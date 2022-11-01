@@ -20,7 +20,7 @@ const createRoom = async (data: NewRoom): Promise<void> => {
         bannedFromChat: [],
     });
 
-    createNotification(`@${data.createdBy} created a room`);
+    createNotification(`@${data.createdBy} created a room.`);
 }
 
 export default createRoom

@@ -86,7 +86,7 @@ const People: NextPage = () => {
                 followers: arrayUnion(currentUserData.username)
             });
 
-            createNotification(`@${currentUserData.username} started following @${userData.username}`);
+            createNotification(`@${currentUserData.username} started following @${userData.username}.`);
 
             toast.success(`Followed ${userData.username}`);
         } catch (e) {
