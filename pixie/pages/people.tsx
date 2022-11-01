@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { NextPage } from "next"
 import Link from "next/link"
 
-import { arrayRemove, arrayUnion, collection, doc, DocumentData, onSnapshot, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
+import { arrayRemove, arrayUnion, collection, doc, DocumentData, onSnapshot, orderBy, Query, query, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
 import { Unsubscribe } from "firebase/auth"
 
 import { useAuth } from "../auth/AuthContext"
@@ -28,7 +28,7 @@ const People: NextPage = () => {
     const { currentUserData } = useAuth();
 
     const getUsers = async () => {
-        const q: Query<DocumentData> = query(collection(fireStore, "users"));
+        const q: Query<DocumentData> = query(collection(fireStore, "users"), orderBy('joinDate', 'desc'));
 
         const fetch: Unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
