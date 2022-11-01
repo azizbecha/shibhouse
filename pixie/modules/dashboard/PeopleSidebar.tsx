@@ -31,15 +31,6 @@ const PeopleSidebar: React.FC = () => {
 
     useEffect(() => {
         getUsers();
-        
-        $(document).ready(() => {
-            $("#userSearchInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("ul#usersList li").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        })
     }, [])
 
     const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 });
@@ -60,12 +51,8 @@ const PeopleSidebar: React.FC = () => {
                                     </Link>
                                 </div>
                             </div>
-                            <Divider />
-                            <div className="relative text-gray-700 border-0 mb-5">
-                                <input id="userSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" type="search" placeholder="Search for a user on the moon 🚀"/>
-                            </div>
                         </div>
-                        <ul role="list" id="usersList" className="overflow-auto">
+                        <ul role="list" id="usersList" className="overflow-auto mt-5">
                             {
                                 users.map((user, key) => {
                                     if (user.id != currentUserData.id) {
@@ -97,6 +84,9 @@ const PeopleSidebar: React.FC = () => {
                                 })
                             }
                         </ul>
+                        <Link href={'people'}>
+                            <button className="bg-primary w-full text-sm font-medium px-4 py-1 mt-2 rounded-md">See more</button>
+                        </Link>
                     </div>
                 </div>
             </nav>
