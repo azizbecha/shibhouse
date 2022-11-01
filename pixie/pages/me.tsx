@@ -186,6 +186,16 @@ const Me: NextPage = () => {
                                             </div>
                                         </Row>
                                     </div>
+                                    <div className="bg-gray-50 pb-2 sm:px-6 sm:flex sm:flex-row-reverse">
+                                        <button
+                                            type="button"
+                                            className="mt-3 mb-3 w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                            onClick={() => setShowFollowersModal(false)}
+                                            ref={cancelButtonRef}
+                                        >
+                                            Close
+                                        </button>
+                                    </div>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
