@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react"
 import { NextPage } from "next";
 import { NextRouter, useRouter } from "next/router";
 import Link from "next/link";
@@ -26,6 +26,8 @@ import { numberFormatter } from "../lib/numberFormatter";
 
 import SEO from "../utils/SEO";
 import { MdRefresh } from "react-icons/md";
+import { Dialog, Transition } from "@headlessui/react";
+import { Row, Col } from 'react-flexbox-grid/dist/react-flexbox-grid'
 
 const Me: NextPage = () => {
 
@@ -41,6 +43,9 @@ const Me: NextPage = () => {
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
     const [users, setUsers] = useState([]);
+
+    const [showFollowersModal, setShowFollowersModal] = useState(false);
+    const cancelButtonRef = useRef(null);
     
     useEffect(() => {
         const getUsers = async () => {
@@ -132,6 +137,63 @@ const Me: NextPage = () => {
 
     return (
         <PrivateRoute>
+            <Transition.Root show={showFollowersModal} as={Fragment}>
+                <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setShowFollowersModal}>
+                    <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity bg-dark" />
+                    </Transition.Child>
+
+                    <div className="fixed z-10 inset-0 overflow-y-auto m-auto">
+                        <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0 text-white">
+                            <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            >
+                                <Dialog.Panel className="relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                                    <div className="sm:items-start bg-darker px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                        <h1 className="text-white font-bold text-2xl">Followers ({currentUserData.followers.length})</h1>
+                                                <Divider />
+
+                                        <Row>
+                                            <div className="h-48 overflow-y-auto w-full">
+                                                {
+                                                    currentUserData.followers.map((follower, key) => {
+                                                        console.log(follower);
+                                                        return (
+                                                            <Col sm={12} key={key}>
+                                                                <Link href={`../user/${follower}`}>
+                                                                    <div className="bg-dark cursor-pointer rounded-lg text-white px-2 py-2 mb-2 font-semibold">
+                                                                        @{follower}
+                                                                    </div>
+                                                                </Link>
+                                                            </Col>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </Row>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition.Root>
+
+
             <div className="h-screen">
                 <Navbar />
                 <SEO title={`${capitalizeWord(currentUserData.firstname)} ${capitalizeWord(currentUserData.lastname)} (@${currentUserData.username}) | Shibhouse`} description="My profile in Shibhouse.tv"  />
@@ -152,7 +214,7 @@ const Me: NextPage = () => {
                                     <div className="mb-1 font-semibold text-2xl mt-3">{capitalizeWord(currentUserData.firstname)} {capitalizeWord(currentUserData.lastname)} <span className="text-lg">(@{currentUserData.username})</span></div>
                                     <div className="text-sm mt-2 text-gray-200">
                                         <div className="flex flex-row ml-auto space-x-3 items-center">
-                                            <div className="mb-1 h-5 font-bold">{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></div>
+                                            <div className="mb-1 h-5 font-bold cursor-pointer" onClick={() => setShowFollowersModal(true)}>{numberFormatter(currentUserData.followers.length)} <span className="font-normal">Follower{currentUserData.followers.length == 1 ? null : 's'}</span></div>
                                             <div className="mb-1 h-5 font-bold">{numberFormatter(currentUserData.following.length)} <span className="font-normal">Following</span></div>
                                             <div className="mb-1 h-5 font-bold ml-2">{numberFormatter(currentUserData.claps)} <span className="font-normal">Claps</span></div>
                                         </div>
