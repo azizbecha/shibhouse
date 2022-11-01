@@ -36,6 +36,8 @@ export default function RoomPage() {
         if (roomSnap.exists()) {
           setRoomData(roomSnap.data());
           sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
+        } else {
+
         }
       } catch (e) {
         //console.log('error getting room data')

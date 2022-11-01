@@ -5,8 +5,7 @@ import Link from "next/link";
 import { collection, query, onSnapshot, orderBy, Query, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
-import { FaUsers } from 'react-icons/fa'
-import { GoClock } from "react-icons/go"
+import { FaUser, FaUsers } from 'react-icons/fa'
 import { RiChat4Fill, RiChatOffFill } from "react-icons/ri";
 
 const ExportRooms: React.FC = () => {
@@ -69,7 +68,7 @@ const ExportRooms: React.FC = () => {
                                             {room.allowChat ? <RiChat4Fill size={18} className="my-auto mr-1 text-primary" /> : <RiChatOffFill className="my-auto mr-1 text-primary" /> } Chat {!room.allowChat && 'not'} allowed
                                         </p>
                                         <p className="text-sm text-white font-normal flex space-x-1">
-                                            <GoClock size={18} className="my-auto mr-1 text-primary" /> With <Link href={`user/${room.createdBy}`}><span className="font-bold text-white text-sm cursor-pointer">@{room.createdBy}</span></Link>
+                                            <FaUser size={18} className="my-auto mr-1 text-primary" /> With <Link href={`user/${room.createdBy}`}><span className="font-bold text-white text-sm cursor-pointer">@{room.createdBy}</span></Link>
                                         </p>
                                     </div>
                                     <div className="flex font-bold">
