@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 
-import { collection, DocumentData, getDocs, limit, Query, query, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore"
+import { collection, DocumentData, getDocs, limit, orderBy, Query, query, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore"
 import { useAuth } from "../../auth/AuthContext"
 import { fireStore } from "../../auth/Firebase"
 
@@ -19,7 +19,7 @@ const PeopleSidebar: React.FC = () => {
     const { currentUserData } = useAuth();
 
     const getUsers = async () => {
-        const q: Query<DocumentData> = query(collection(fireStore, "users"), limit(10));
+        const q: Query<DocumentData> = query(collection(fireStore, "users"), limit(10), orderBy("joinDate", "desc"));
 
         const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
         querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
