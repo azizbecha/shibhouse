@@ -85,10 +85,10 @@ const createUser = async (user: NewUser): Promise<void> => {
                                         avatarColor: getRandomColor()
                                     });
 
-                                    createNotification(`@${username} joined Shibhouse`);
+                                    createNotification(`@${username} joined the club.`);
                                     
                                     // Show success message to the user
-                                    toast.success('Joined !');
+                                    toast.success('Welcome to the club');
                                     
                                 } catch (e) {
 
