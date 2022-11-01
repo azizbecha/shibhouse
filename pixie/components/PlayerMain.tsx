@@ -536,7 +536,7 @@ function Main ({ user, room }) {
                   <div className="bg-darker px-3 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mx-auto flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-primary sm:mx-0 sm:h-10 sm:w-10">
-                        <FaUserPlus className="h-6 w-6 text-white" aria-hidden="true" />
+                        <FaUserPlus className="h-5 w-5 text-white" aria-hidden="true" />
                       </div>
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                         <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-white">
