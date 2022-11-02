@@ -67,7 +67,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const CustomLink = (props: LinkComponentProps) => {
         return (
-            <a {...props} className="font-semibold chat-link" />
+            <a {...props} className="font-semibold text-xs text-white bg-gray p-1 rounded" />
         )
     }
 
@@ -75,32 +75,6 @@ const Chat: React.FC<ChatProps> = (props) => {
         copyToClipboard(window.location.href);
         sendBotMessage(props.roomId, `Room link copied successfully`);
     }
-
-    useEffect(() => {
-        setInterval(() => {
-            const chatLinks = document.getElementsByClassName('chat-link') as HTMLCollectionOf<HTMLElement>;
-            for (let i = 0; i < chatLinks.length; i++) {
-                if(chatLinks[i] !== null) {
-                    chatLinks[i].style.color = getBrightColor();
-                }
-            }
-
-            const bot = document.getElementsByClassName('bot') as HTMLCollectionOf<HTMLElement>;
-            for (let i = 0; i < bot.length; i++) {
-                if(bot[i] !== null) {
-                    bot[i].style.color = getBrightColor();
-                }
-            }
-
-            const bgBot = document.getElementsByClassName('bg-bot') as HTMLCollectionOf<HTMLElement>;
-            for (let i = 0; i < bgBot.length; i++) {
-                if(bgBot[i] !== null) {
-                    bgBot[i].style.backgroundColor = getBrightColor();
-                }
-            }
-        }, 500);
-        
-    }, [])
     
     const sendMessage = async () => {
         //e.preventDefault();
@@ -149,7 +123,6 @@ const Chat: React.FC<ChatProps> = (props) => {
                                 
                                 case '/whoami':
                                     sendBotMessage(props.roomId, `You are @${props.username}`);
-                                    
                                     break;
                                 
                                 case '/rabye':
@@ -256,10 +229,9 @@ const Chat: React.FC<ChatProps> = (props) => {
                                         } else {
                                             return (
                                                 <li className='w-full my-1' key={key}>
-                                                    <span className={`font-bold text-sm ${message.isBot && 'bot'}`} style={{color: message.avatarColor}}>
-                                                        <a href={`../../../user/${message.sentBy}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
+                                                    <span className={`font-bold text-sm ${message.isBot && 'bg-primary text-xs p-0.5 rounded'}`} style={{color: message.avatarColor}}>
+                                                        <a href={`../../../user/${message.sentBy}`} className={`${message.isBot && 'bg-primary text-xs p-0.5 rounded'}`} target="_blank" rel="noopener noreferrer">{message.sentBy}</a>:&nbsp;
                                                         
-                                                        {message.isBot && <span className='px-1 py-0 mx-1 bg-bot text-white rounded text-xs'>BOT</span> } 
                                                         {message.sentBy == currentUserData.username && <span className="px-1 py-0.5 bg-gray mr-1 rounded-full text-white" style={{fontSize: 11}}>You</span>}
                                                         
                                                         {

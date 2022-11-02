@@ -76,8 +76,8 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
 
           {speakerIcon && <VolumeIndicator volume={volume} />}
 
-          <h1 className="mt-4 text-white text-center font-semibold text-md">
-            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && <span className="text-sm">(You)</span> }
+          <h1 className="mt-4 text-white text-center font-semibold text-sm">
+            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && <span className="text-xs">(You)</span> }
           </h1>
 
           <div className='flex justify-center space-x-2 mt-3'>
@@ -86,9 +86,9 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
                 <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
               </Fragment>
             )}
-            <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><FaHeadphones /></span>
+            <span className='p-1.5 bg-gray rounded-md flex space-x-2'><FaHeadphones /></span>
             {speakerIcon && (
-              <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'>{speakerIcon}</span>
+              <span className='p-1.5 bg-gray rounded-md flex space-x-2'>{speakerIcon}</span>
             )}
 
             {me && ['host', 'speaker'].includes(connRole) && (
@@ -100,7 +100,7 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
               </Fragment>
             )}
             
-            {! me && !host && !stream && <span onClick={() => {
+            {!me && !host && !stream && ['host', 'speaker'].includes(connRole) && <span onClick={() => {
               connectedPeers.forEach(conn => {
                   conn.peer == id.peer && conn.close();
                   if (connToHost) connToHost.close();

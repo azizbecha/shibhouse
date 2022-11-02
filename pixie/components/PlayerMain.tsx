@@ -78,7 +78,6 @@ function Main ({ user, room }) {
   const [state, copyToClipboard] = useCopyToClipboard();
 
   const [showChat, setShowChat] = useState<boolean>(true);
-  const [deafen, setDeafen] = useState<boolean>(false);
   const [openSettings, setOpenSettings] = useState<boolean>(false);
   const [openInvite, setOpenInvite] = useState<boolean>(false);
   const [openTab, setOpenTab] = useState<Number>(1);
@@ -86,22 +85,6 @@ function Main ({ user, room }) {
   const cancelButtonRef = useRef(null)
   const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 768 });
   const [devices, setDevices] = useState<Array<{ id: string; label: string }>>([]);
-
-  let muteAudio: HTMLAudioElement = new Audio("../../sounds/mute.wav");
-  let unmuteAudio: HTMLAudioElement = new Audio("../../sounds/unmute.wav");
-
-  let deafenAudio: HTMLAudioElement = new Audio("../../sounds/deafen.wav");
-  let undeafenAudio: HTMLAudioElement = new Audio("../../sounds/undeafen.wav");
-
-  let toggleChatAudio: HTMLAudioElement = new Audio("../../sounds/deafen.wav");
-
-  const playMuteAudio = () => {
-    micMuted ? muteAudio.play() : unmuteAudio.play();
-  }
-
-  const playDeafenAudio = () => {
-    deafen ? deafenAudio.play() : undeafenAudio.play();
-  }
 
   if (!user.username) {
     console.log('no username provided');
@@ -132,7 +115,6 @@ function Main ({ user, room }) {
   } = useContext<any>(PeerContext)
 
   useEffect(() => {
-    if (!isHost) return
     startMicStream()
     
   }, [isHost, peerList.length, startMicStream])
@@ -146,6 +128,7 @@ function Main ({ user, room }) {
   useEffect(() => {
     if (connRole == 'speaker' && devices.length === 0) {
       toast.error("You do not have a mic to speak");
+      checkMicPermission();
     }
   }, [connRole, devices.length]);
   
@@ -204,7 +187,6 @@ function Main ({ user, room }) {
   }
 
   const toggleChat = () => {
-    toggleChatAudio.play();
     setShowChat(!showChat);
   }
 
@@ -381,7 +363,7 @@ function Main ({ user, room }) {
                                     </Col>
                                     <Col>
                                       <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex  justify-center">
-                                        <FaMicrophone size={13} className="my-auto mr-1" /> Ummuted
+                                        <FaMicrophone size={13} className="my-auto mr-1" /> Unmuted
                                       </span>
                                     </Col>
                                     <Col>
@@ -593,7 +575,6 @@ function Main ({ user, room }) {
         keyName="ctrl+m" 
         onKeyDown={() => {
           muteToggle();
-          playMuteAudio();
         }}
       ></Hotkeys>
       <Hotkeys 
@@ -671,18 +652,13 @@ function Main ({ user, room }) {
               <Col lg={3} md={2} sm={12} xs={12}>
                 <div className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
                   {(isHost || connRole === 'speaker') && (
-                    <span onClick={() => {muteToggle(); playMuteAudio()}} className="mb-1 m-1">
+                    <span onClick={() => {muteToggle();}} className="mb-1 m-1">
                       <button className={`p-4 inline-flex justify-center rounded-full ${micMuted ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                         { micMuted ? <FaMicrophoneSlash size={20} /> : <FaMicrophone size={20} />}
                       </button>
                     </span>
                   )}
-                  {/* <button onClick={() => {
-                      playDeafenAudio();
-                      setDeafen(!deafen);
-                    }} className={`text-white/50 p-4 mb-1 inline-flex justify-center rounded-full hover:bg-gray/50 ${deafen && 'text-white bg-primary' }`}>
-                    <FaHeadphones color={deafen ? 'white': 'gray'} size={18}/>
-                  </button> */}
+
                   <button onClick={() => setOpenInvite(true)} className={`p-4 m-1 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaUserPlus className='mb-1'  size={20} />
                   </button>
@@ -729,7 +705,6 @@ function Main ({ user, room }) {
                         creator={room.createdBy}
                         muteToggle={() => {
                           muteToggle();
-                          playMuteAudio();
                         }}
                       />
                     </div>

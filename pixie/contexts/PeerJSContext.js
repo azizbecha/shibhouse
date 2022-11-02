@@ -10,6 +10,7 @@ import { mapPeersData } from '../lib/peerHelper'
 import useStateRef from '../lib/useStateRef'
 
 import usePeer from '../hooks/usePeer'
+import { useRouter } from 'next/router'
 
 export const PeerContext = createContext({
   peer: null, // PeerInstance
@@ -19,7 +20,8 @@ export const PeerContext = createContext({
 })
 
 export const PeerContextProvider = ({ children, initialContext }) => {
-  const soundEffect = new Audio("../../sounds/roomChatMention.wav")
+
+  const router = useRouter();
 
   const {
     roomId,
@@ -229,7 +231,6 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     // Why this gets executed on peers and not in host
     // TODO: This is not being properly executed (there are several open issues open in Github)
     .on('close', () => {
-      soundEffect.play()
       log('Stream has been closed')
       closedStreamToPeer(call)
     })
@@ -287,8 +288,6 @@ export const PeerContextProvider = ({ children, initialContext }) => {
     if (!peer) return
     if (peerListenersInitialized) return
     peer.on('connection', (conn) => {
-      const soundEffect = new Audio("../../sounds/roomChatMention.wav")
-
       // Incoming connection
       // Room Host only
       log(`Incoming peer connection ${conn.peer}`)
@@ -305,13 +304,11 @@ export const PeerContextProvider = ({ children, initialContext }) => {
       })
 
       conn.on('close', () => {
-        soundEffect.play()
         log(`Closed peer connection ${conn.peer}`)
         setConnectedPeers(connectedPeersRef.current.filter(peer => peer.peer !== conn.peer))
       })
 
       conn.on('open', () => {
-        soundEffect.play()
         log(`Stablished peer connection ${conn.peer}`)
         setConnectedPeers([...connectedPeersRef.current, conn])
         conn.send({
@@ -325,15 +322,14 @@ export const PeerContextProvider = ({ children, initialContext }) => {
 
     peer.on('call', call => {
       log('Received call', call)
-      soundEffect.play()
       // Call can be closed by peer or speaker
       call.answer()
       call.on('stream', audioStream => {
         onSpeakerStarsStream(call, audioStream)
       })
       
-      call.on('close', () => { log('Close call'); onSpeakerClosesStream(call);soundEffect.play();})
-      call.on('error', () => { log('Error call'); onSpeakerClosesStream(call)})
+      call.on('close', () => { log('Close call'); onSpeakerClosesStream(call);})
+      call.on('error', () => { log('Error call'); onSpeakerClosesStream(call);})
       
     })
 
@@ -394,9 +390,9 @@ export const PeerContextProvider = ({ children, initialContext }) => {
           //lastPing: serverTimestamp()
         })
       } else {
-
+        router.push('/');
       }
-    }, 10000)
+    }, 5000)
     return () => {
       clearInterval(update)
     }
