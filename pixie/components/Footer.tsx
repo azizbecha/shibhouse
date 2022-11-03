@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
                 </Link>
                 <ul className="flex space-x-4 flex-wrap items-center mb-6 text-base font-medium text-white sm:mb-0">
                     <li>
-                        <a href="https://github.com/azizbecha/shibhouse/issues" className="mr-6 md:mr-6 ">
+                        <a href="https://github.com/azizbecha/shibhouse/issues" target="_blank" className="mr-6 md:mr-6 ">
                             <div className="flex mt-6">
                                 <FaBug className="my-auto mr-1" /> Report Issue
                             </div>
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/azizbecha/shibhouse" className="mr-6 md:mr-6 ">
+                        <a href="https://github.com/azizbecha/shibhouse" target="_blank" className="mr-6 md:mr-6 ">
                             <div className="flex mt-6">
                                 <FaGithub className="my-auto mr-1" /> GitHub
                             </div>
