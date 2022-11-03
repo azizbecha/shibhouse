@@ -28,26 +28,26 @@ export default function RoomPage() {
   const [roomData, setRoomData] = useState<any>('');
   const { currentUserData } = useContext(AuthContext);
   
-  useEffect(() => {
-    const check = async () => {
-      try {
-        const roomRef: DocumentReference<DocumentData> = doc(fireStore, "rooms", String(roomId));
-        const roomSnap: DocumentSnapshot<DocumentData> = await getDoc(roomRef);
-        if (roomSnap.exists()) {
-          setRoomData(roomSnap.data());
-          sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
-        } else {
+  const check = async () => {
+    try {
+      const roomRef: DocumentReference<DocumentData> = doc(fireStore, "rooms", String(roomId));
+      const roomSnap: DocumentSnapshot<DocumentData> = await getDoc(roomRef);
+      if (roomSnap.exists()) {
+        setRoomData(roomSnap.data());
+        sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
+      } else {
 
-        }
-      } catch (e) {
-        //console.log('error getting room data')
       }
-      
+    } catch (e) {
+      //console.log('error getting room data')
     }
-    check();
-  }, [currentUserData.username, roomId])
+    
+  }
 
-  useEffect(() => requestNotificationPermission(), []);
+  useEffect(() => {
+    check();
+    requestNotificationPermission();
+  }, []);
 
   return (
     <PrivateRoute>

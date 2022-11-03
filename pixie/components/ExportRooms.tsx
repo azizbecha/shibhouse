@@ -22,7 +22,7 @@ const ExportRooms: React.FC = () => {
             });
         });
 
-    }, [data])
+    }, [])
 
     if (data.length < 1) {
         return (
@@ -47,9 +47,9 @@ const ExportRooms: React.FC = () => {
                                 <div className="flex items-center space-x-4">
                                     <div className="flex-1 min-w-0">
                                         <Link href={`room/${room.id}`}>
-                                            <p className="text-xg font-medium text-white mb-2 cursor-pointer">
+                                            <span className="text-xg font-medium text-white mb-2 cursor-pointer">
                                                 {room.title}
-                                            </p>
+                                            </span>
                                         </Link>
 
                                         <p className="text-sm text-white mb-6">

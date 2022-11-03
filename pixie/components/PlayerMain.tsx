@@ -123,7 +123,7 @@ function Main ({ user, room }) {
     window.onbeforeunload = async () => {
       onLeave();
     };
-  })
+  }, [])
 
   useEffect(() => {
     if (connRole == 'speaker' && devices.length === 0) {
@@ -683,7 +683,7 @@ function Main ({ user, room }) {
                 <div className="p-4 mt-3 rounded-lg bg-darker">
                   <Speakers roomId={roomId} />
                 </div>
-                <div className="p-4 mt-3 rounded-lg bg-darker">
+                 <div className="p-4 mt-3 rounded-lg bg-darker">
                   <Listeners roomId={roomId} />
                 </div>
               </Col>

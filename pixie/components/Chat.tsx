@@ -63,7 +63,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
         }
         fetch()
-    }, [props.roomId]);
+    }, []);
 
     const CustomLink = (props: LinkComponentProps) => {
         return (

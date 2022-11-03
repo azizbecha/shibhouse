@@ -7,7 +7,7 @@ const Index: NextPage = () => {
 
     useEffect(() => {
         router.push('../rooms/')
-    })
+    }, [])
     return (
         <>
         </>

@@ -469,25 +469,6 @@ const Dashboard: NextPage = () => {
                                                     </div>
                                                 </Col>
 
-                                                {/* <Col sm={12} className="h-100 mt-4">
-                                                    <div className={`rounded-lg bg-dark p-4 h-full ${isTabletOrMobile && 'mt-2'}`}>
-                                                        <h1 className="font-bold text-xl flex font-inter mb-2"><FaChartArea size={20} className="mr-1 mt-1" /> Crypto prices</h1>
-                                                        <TickerTape isTransparent={true} locale={"en"} symbols={[
-                                                            {
-                                                                "proName": "BINANCE:SHIBUSDT",
-                                                                "title": "SHIB/USDT"
-                                                            },
-                                                            {
-                                                                "proName": "BINANCE:BTCUSDT",
-                                                                "title": "BTC/USDT"
-                                                            },
-                                                            {
-                                                                "proName": "BINANCE:ETHUSDT",
-                                                                "title": "ETH/USDT"
-                                                            },
-                                                        ]} colorTheme="dark"></TickerTape>
-                                                    </div>
-                                                </Col> */}
                                             </Row>
                                             <Divider />
                                             
