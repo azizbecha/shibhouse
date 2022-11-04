@@ -6,6 +6,8 @@ import { PeerContextProvider, PeerContext } from '../contexts/PeerJSContext'
 import { StreamContextProvider, StreamContext } from '../contexts/StreamContext'
 import { sendBotMessage } from '../lib/sendBotMessage'
 import { numberFormatter } from '../lib/numberFormatter'
+import { AuthContext } from '../auth/AuthContext'
+import SEO from '../utils/SEO'
 
 import { PlayerProps } from '../interfaces'
 
@@ -23,7 +25,7 @@ import { useMediaQuery } from 'react-responsive'
 import { Audio as AudioLoader } from "react-loader-spinner"
 import { useNetworkState, useCopyToClipboard } from 'react-use';
 
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDoc } from "firebase/firestore";
 import { fireStore } from '../auth/Firebase'
 
 import { Dialog, Transition } from '@headlessui/react'
@@ -37,38 +39,73 @@ import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
 import { PinnedLink } from './PinnedLink'
+import { requestNotificationPermission } from '../lib/requestNotificationPermission'
+import LoadingScreen from './LoadingScreen'
 
-const PlayerMain: React.FC<PlayerProps> =  ({ roomId, userName, firstname, avatar, lastname, isHost, roomName, roomDescription, pinnedLink, topics, createdBy, createdAt, isChatAllowed }) => {
+const PlayerMain: React.FC<PlayerProps> =  ({ roomId }) => {
+  const [roomData, setRoomData] = useState<any>(null);
+  const { currentUserData } = useContext(AuthContext);
+  const router: NextRouter = useRouter();
 
-  return (
-    <StreamContextProvider>
-      <PeerContextProvider initialContext={{
-        isHost,
-        roomId,
-        user: {
-          name: userName,
-          firstname: firstname,
-          lastname: lastname,
-          avatar: avatar
-        },
-      }}>
-        <Main user={{
-          username: userName,
-          firstname: firstname,
-          lastname: lastname,
-          avatar: avatar
-        }} room={{
-          title: roomName,
-          description: roomDescription,
-          pinnedLink: pinnedLink,
-          topics: topics,
-          createdAt: createdAt,
-          createdBy: createdBy,
-          allowChat: isChatAllowed
-        }} />
-      </PeerContextProvider>
-    </StreamContextProvider>
-  )
+  const check = async () => {
+    try {
+      const roomRef = doc(fireStore, "rooms", String(roomId));
+      const roomSnap= await getDoc(roomRef);
+      if (roomSnap.exists()) {
+        setRoomData(roomSnap.data());
+        sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
+      } else {
+        toast.error("Room does not exist");
+        router.push('/');
+      }
+    } catch (e) {
+      //console.log('error getting room data')
+    }
+    
+  }
+
+  useEffect(() => {
+    check();
+    requestNotificationPermission();
+  }, []);
+
+  if (roomData !== null) {
+    const isHost: boolean = roomData.createdBy == currentUserData.username;
+    const topics = roomData.topics;
+    return (
+      <StreamContextProvider>
+        <PeerContextProvider initialContext={{
+          isHost,
+          roomId,
+          user: {
+            name: currentUserData.username,
+            firstname: currentUserData.firstname,
+            lastname: currentUserData.lastname,
+            avatar: currentUserData.avatarColor
+          },
+        }}>
+          <Main user={{
+            username: currentUserData.username,
+            firstname: currentUserData.firstname,
+            lastname: currentUserData.lastname,
+            avatar: currentUserData.avatarColor
+          }} room={{
+            title: roomData.title,
+            description: roomData.description,
+            pinnedLink: roomData.pinnedLink,
+            topics: topics,
+            createdAt: roomData.createdAt,
+            createdBy: roomData.createdBy,
+            allowChat: roomData.allowChat
+          }} />
+        </PeerContextProvider>
+      </StreamContextProvider>
+    )
+  } else {
+    return (
+      <LoadingScreen />
+    )
+  }
 }
 
 function Main ({ user, room }) {
@@ -194,7 +231,7 @@ function Main ({ user, room }) {
 
   return (
     <Fragment>
-
+      <SEO title={`${room.title} | Shibhouse`} description={`${room.description} - Live now at Shibhouse`} />
       {/* Start settings modal */}
       <Transition.Root show={openSettings} as={Fragment}>
         <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setOpenSettings}>

@@ -31,18 +31,18 @@ export interface NewRoom {
 
 export interface PlayerProps {
   roomId: string,
-  userName: string,
-  firstname: string,
-  lastname: string,
-  avatar: string,
-  isHost: boolean,
-  roomName: string,
-  roomDescription: string,
-  pinnedLink: string,
-  topics: string[],
-  createdBy: string,
-  createdAt: string,
-  isChatAllowed: boolean
+  // userName: string,
+  // firstname: string,
+  // lastname: string,
+  // avatar: string,
+  // isHost: boolean,
+  // roomName: string,
+  // roomDescription: string,
+  // pinnedLink: string,
+  // topics: string[],
+  // createdBy: string,
+  // createdAt: string,
+  // isChatAllowed: boolean
 }
 
 export interface ChatProps {
