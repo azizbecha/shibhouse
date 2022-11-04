@@ -14,6 +14,7 @@ import LoadingScreen from '../../components/LoadingScreen'
 import { sendBotMessage } from '../../lib/sendBotMessage'
 import SEO from '../../utils/SEO'
 import { requestNotificationPermission } from '../../lib/requestNotificationPermission'
+import { toast } from 'react-hot-toast'
 
 const PlayerMain = dynamic(
   () => import('../../components/PlayerMain'),
@@ -36,7 +37,8 @@ export default function RoomPage() {
         setRoomData(roomSnap.data());
         sendBotMessage(String(roomId), `@${currentUserData.username} joined the room !`);
       } else {
-
+        toast.error("Room does not exist");
+        router.push('/');
       }
     } catch (e) {
       //console.log('error getting room data')
