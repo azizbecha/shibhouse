@@ -3,6 +3,10 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+    hardResetMethod: 'exit'
+});
 
 const createWindow = () => {
   // Create the browser window.
@@ -16,7 +20,7 @@ const createWindow = () => {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadURL("https://shibhouse.tv");
+  mainWindow.loadURL("https://github.com");
   mainWindow.maximize();
 
   // Open the DevTools.
