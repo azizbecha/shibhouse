@@ -4,7 +4,7 @@
   "description": "Electron Wrapper For ShibHouse",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "set NODE_ENV=development&&electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
