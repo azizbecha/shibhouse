@@ -19,6 +19,7 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    title: 'ShibHouse - Re-taking voice conversations to the moon',
     icon: 'https://shibhouse.tv/images/icon.ico',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
