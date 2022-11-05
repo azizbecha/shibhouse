@@ -220,7 +220,7 @@ const Dashboard: NextPage = () => {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                             >
-                                                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity bg-dark" />
+                                                <div className="fixed inset-0 bg-opacity-75 transition-opacity bg-dark" />
                                             </Transition.Child>
 
                                             <div className="fixed z-10 inset-0 overflow-y-auto m-auto">
@@ -254,10 +254,10 @@ const Dashboard: NextPage = () => {
                                                                     </div>
                                                                     <Divider />
                                                                     <span className="font-semibold">Room title <span className="text-primary font-extrabold">*</span></span><br />
-                                                                    <input className="rounded w-full py-2 px-2 text-white bg-dark mt-1 mb-4" placeholder="Please enter the room title here" value={roomTitle} onChange={(e) => {setRoomTitle(e.target.value)}} type="text" required />
+                                                                    <input className="rounded-lg w-full py-2 px-2 text-white bg-dark mt-1 mb-4" placeholder="Please enter the room title here" value={roomTitle} onChange={(e) => {setRoomTitle(e.target.value)}} type="text" required />
 
                                                                     <span className="font-semibold">Description <span className="text-primary font-extrabold">*</span></span><br />
-                                                                    <textarea className="rounded w-full py-1 px-2 mb-2 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={roomDescription} onChange={(e) => {setRoomDescription(e.target.value)}} required /><br />
+                                                                    <textarea className="rounded-lg w-full py-1 px-2 mb-2 text-white bg-dark mt-1" placeholder="Please enter the room description here" value={roomDescription} onChange={(e) => {setRoomDescription(e.target.value)}} required /><br />
 
                                                                     <span className="font-semibold">Topics</span><br />
                                                                     <div className="mb-3">
@@ -272,8 +272,19 @@ const Dashboard: NextPage = () => {
                                                                         />
                                                                     </div>
                                                                     
-                                                                    <span className="font-semibold">Pinned link (optional)</span><br />
-                                                                    <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />
+                                                                    <Row>
+                                                                        <Col sm={6}>
+                                                                            <label className="block text-base font-medium text-gray-900 dark:text-gray-400">Visibility <span className="text-primary font-extrabold">*</span></label>
+                                                                            <select id="large" className="block mt-1 py-3 px-2 w-full text-base text-gray-900 bg-dark rounded-lg">
+                                                                                <option selected value="public">Public</option>
+                                                                                <option value="private">Private</option>
+                                                                            </select>
+                                                                        </Col>
+                                                                        <Col sm={6}>
+                                                                            <span className="font-semibold">Pinned link</span><br />
+                                                                            <input className="rounded-lg w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />
+                                                                        </Col>
+                                                                    </Row>
                                                                     
                                                                     <div className="font-semibold flex space-x-2"><span>Allow chat:</span> <Switch onChange={setAllowChat} checked={allowChat} width={53} offColor='#151A21' onColor="#fa2f2f" /></div>
                                                                 </div>
