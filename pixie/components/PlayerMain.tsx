@@ -171,7 +171,7 @@ function Main ({ user, room }) {
   
   async function onLeave() {
     if (isHost) {
-      const agree: boolean = confirm('Are you sure you want to close the room ?')
+      const agree: boolean = confirm('Are you sure you want to close the room ?');
       if (!agree) return
       if (agree) {
         await deleteDoc(doc(fireStore, "rooms", roomId));

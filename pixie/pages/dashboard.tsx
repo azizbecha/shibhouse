@@ -39,8 +39,9 @@ import isEmpty from 'validator/lib/isEmpty'
 import isURL from 'validator/lib/isURL'
 
 import { AiFillHome } from "react-icons/ai"
-import { FaHome, FaCalendarAlt, FaCalendarPlus } from "react-icons/fa"
+import { FaHome, FaCalendarAlt, FaCalendarPlus, FaUserPlus } from "react-icons/fa"
 import { BsFillEmojiSunglassesFill } from "react-icons/bs"
+import { joinPrivateRoom } from "../lib/joinPrivateRoom"
 
 const Dashboard: NextPage = () => {
 
@@ -65,6 +66,8 @@ const Dashboard: NextPage = () => {
     const [showScheduleRoomModal, setShowScheduleRoomModal] = useState<boolean>(false);
     const [allowChat, setAllowChat] = useState<boolean>(true);
     const cancelButtonRef = useRef(null);
+
+    const [privateRoomID, setPrivateRoomID] = useState<string>("");
 
     const KeyCodes = {
         comma: 188,
@@ -486,8 +489,21 @@ const Dashboard: NextPage = () => {
                                             <Divider />
                                             
                                             <h1 className="font-bold text-xl flex font-inter mb-4"><FaHome size={20} className="mr-2 mt-1" /> Current rooms</h1>
+                                            <form className="flex mb-2" onSubmit={(e) => {
+                                                // Avoid refreshing the page
+                                                e.preventDefault();
+
+                                                // Passed router to the function to avoid re-initialization
+                                                // which throws an error
+                                                joinPrivateRoom(privateRoomID, router);
+                                            }}>
+                                                <div className="relative w-full">
+                                                    <input type="search" value={privateRoomID} onChange={e => setPrivateRoomID(e.currentTarget.value)} className="block p-3 w-full z-20 text-sm bg-dark rounded-lg focus:outline-none" placeholder="Enter Room ID" required />
+                                                    <button type="submit" className="absolute top-0 right-0 p-3 text-sm font-medium text-white bg-primary rounded-r-lg flex"><FaUserPlus className="my-auto mr-1" /> Join</button>
+                                                </div>
+                                            </form>
                                             <div className="relative text-gray-700 mb-2 border-0">
-                                                <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-base placeholder-gray-600 rounded-lg bg-dark" placeholder="Search for a room on the moon 🚀"/>
+                                                <input type="search" id="roomSearchInput" className="w-full h-10 px-3 py-2 text-sm placeholder-gray-600 rounded-lg bg-dark focus:outline-none" placeholder="Search for a room on the moon 🚀"/>
                                             </div>
                                             <ExportRooms />
                                         </div>
