@@ -181,28 +181,27 @@ function Main ({ user, room }) {
       }
     }
 
-    sendBotMessage(roomId, `@${user.username} left the room`);
-
     if (connToHost) connToHost.close();
-
-    if (connectedPeers) {
-      connectedPeers.forEach(conn => {
-        conn.close()
+    
+    if (outgoingStreams) {
+      outgoingStreams.forEach(conn => {
+        conn.close();
       })
     }
 
-    if (outgoingStreams) {
-      outgoingStreams.forEach(conn => {
-        conn.close()
+    if (connectedPeers) {
+      connectedPeers.forEach(conn => {
+        conn.close();
       })
     }
 
     if (incomingStreams) {
       incomingStreams.forEach(conn => {
-        conn.call.close()
+        conn.call.close();
       })
     }
-
+    
+    sendBotMessage(roomId, `@${user.username} left the room`);
     router.push('/dashboard');
   }
 
