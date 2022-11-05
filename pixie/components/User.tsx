@@ -3,7 +3,7 @@ import { Fragment, useContext, useEffect, useState } from 'react'
 import hark from 'hark'
 import { useMediaQuery } from 'react-responsive'
 
-import { FaHeadphones, FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
+import { FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 
 import { PeerContext } from '../contexts/PeerJSContext'
@@ -86,7 +86,7 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
                 <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
               </Fragment>
             )}
-            <span className='p-1.5 bg-gray rounded-md flex space-x-2'><FaHeadphones /></span>
+
             {speakerIcon && (
               <span className='p-1.5 bg-gray rounded-md flex space-x-2'>{speakerIcon}</span>
             )}
