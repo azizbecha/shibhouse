@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link";
 
-import { collection, query, onSnapshot, orderBy, Query, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, Query, DocumentData, QueryDocumentSnapshot, where } from "firebase/firestore";
 import { fireStore } from "../auth/Firebase";
 
 import { FaUser, FaUsers } from 'react-icons/fa'
@@ -13,7 +13,7 @@ const ExportRooms: React.FC = () => {
     const [data, setData] = useState([]);
     
     useEffect(() => {
-        const q: Query<DocumentData> = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"));
+        const q: Query<DocumentData> = query(collection(fireStore, "rooms"), orderBy("createdAt", "desc"), where("isPublic", "==", true));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
                 const rooms = querySnapshot.docs
