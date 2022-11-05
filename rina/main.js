@@ -28,6 +28,7 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadURL("https://shibhouse.tv");
+  mainWindow.center();
   mainWindow.maximize();
 
   // Open the DevTools.
