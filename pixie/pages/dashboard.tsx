@@ -235,7 +235,7 @@ const Dashboard: NextPage = () => {
                                                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                                                     >
                                                         <Dialog.Panel className="relative bg-darker rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
-                                                        <form onSubmit={createNewRoom}>
+                                                            <form onSubmit={createNewRoom}>
                                                                 <div className="bg-darker px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                                                     <div className="sm:flex sm:items-start">
                                                                         <div className="m-auto bg-primary flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -275,7 +275,7 @@ const Dashboard: NextPage = () => {
                                                                     <span className="font-semibold">Pinned link (optional)</span><br />
                                                                     <input className="rounded w-full py-2 px-2 mb-4 text-white bg-dark mt-1" placeholder="Please enter the room pinned link here" value={roomPinnedLink} onChange={(e) => {setRoomPinnedLink(e.target.value)}} type="link" /><br />
                                                                     
-                                                                    <div className="font-semibold flex space-x-2"><span>Allow chat:</span> <Switch onChange={setAllowChat} checked={allowChat} width={53} offColor='#151A21' onColor="#fa2f2f" /> </div>
+                                                                    <div className="font-semibold flex space-x-2"><span>Allow chat:</span> <Switch onChange={setAllowChat} checked={allowChat} width={53} offColor='#151A21' onColor="#fa2f2f" /></div>
                                                                 </div>
                                                                 <div className="bg-gray-50 px-4 py-2 sm:px-6 sm:flex sm:flex-row-reverse">
                                                                     <button

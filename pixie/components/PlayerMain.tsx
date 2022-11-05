@@ -231,7 +231,7 @@ function Main ({ user, room }) {
 
   return (
     <Fragment>
-      <SEO title={`${room.title} | Shibhouse`} description={`${room.description} - Live now at Shibhouse`} />
+      <SEO title={`(${peerList.length}) ${room.title} | Shibhouse`} description={`${room.description} - Live now at Shibhouse`} />
       {/* Start settings modal */}
       <Transition.Root show={openSettings} as={Fragment}>
         <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setOpenSettings}>
