@@ -28,7 +28,7 @@ const ExportRooms: React.FC = () => {
             <div className="bg-dark p-5 rounded-lg">
                 <img src="../images/musk-with-cybertruck-and-shiba.png" className="w-5/12 mx-auto" alt="" />
                 <h1 className="text-center text-white font-medium">
-                    There are no rooms actually
+                    There are no Public Rooms actually
                 </h1>
                 <p className="text-center text-white font-normal text-sm mt-3 mb-3">
                     We did not find any running rooms actually, why not create your own room ?
@@ -36,7 +36,7 @@ const ExportRooms: React.FC = () => {
             </div>
         )
     } 
-    
+
     return (
         <ul role="list" id="roomsList">
             {
