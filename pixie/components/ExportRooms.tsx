@@ -32,7 +32,7 @@ const ExportRooms: React.FC = () => {
                     There are no rooms actually
                 </h1>
                 <p className="text-center text-white font-normal text-sm mt-3 mb-3">
-                    We didn&apos;t find any running rooms actually, why not create your own room ?
+                    We did not find any running rooms actually, why not create your own room ?
                 </p>
             </div>
         )
