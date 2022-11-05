@@ -73,7 +73,7 @@ const Chat: React.FC<ChatProps> = (props) => {
 
     const copyRoomLink = () => {
         copyToClipboard(window.location.href);
-        sendBotMessage(props.roomId, `Room link copied successfully`);
+        sendBotMessage(props.roomId, `Room ID copied successfully`);
     }
     
     const sendMessage = async () => {
@@ -242,7 +242,7 @@ const Chat: React.FC<ChatProps> = (props) => {
                                                             )
                                                         }
                                                     </span>
-                                                    <span className="text-sm text-wrap break-all">
+                                                    <span className="text-sm text-wrap break-all px-1">
                                                         {
                                                             msg.map((word: string, key: number) => {
                                                                 if (mentions.includes(word)) {

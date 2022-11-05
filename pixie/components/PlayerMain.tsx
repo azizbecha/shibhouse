@@ -38,6 +38,8 @@ import { RiChatOffFill } from 'react-icons/ri'
 import { GoClock } from "react-icons/go"
 import { AiFillHome, AiFillPushpin } from "react-icons/ai"
 import { IoMdChatboxes } from 'react-icons/io'
+import { MdContentCopy } from 'react-icons/md'
+
 import { PinnedLink } from './PinnedLink'
 import { requestNotificationPermission } from '../lib/requestNotificationPermission'
 import LoadingScreen from './LoadingScreen'
@@ -219,8 +221,8 @@ function Main ({ user, room }) {
   }
 
   const copyRoomLink = () => {
-    copyToClipboard(window.location.href);
-    toast.success('Room link copied to clipboard');
+    copyToClipboard(roomId);
+    toast.success('Room ID copied to clipboard');
   }
 
   const toggleChat = () => {
@@ -424,7 +426,7 @@ function Main ({ user, room }) {
                                 <br /><br />
                                 <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
                                   CTRL + I
-                                </span> For copying room link
+                                </span> For copying room ID
                                 <br /><br />
                                 <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
                                   CTRL + Y
@@ -443,7 +445,7 @@ function Main ({ user, room }) {
                                   <Col lg={4}>
                                     <span className="badge bg-darker px-2 py-1 text-white font-bold rounded-lg">
                                       /copy
-                                    </span> To copy room link
+                                    </span> To copy Room ID
                                     <br /><br />
                                   </Col>
 
@@ -572,14 +574,14 @@ function Main ({ user, room }) {
                             <Col>
                               <p className="font-semibold text-xl font-inter flex mb-1"><FaQrcode className='my-auto mr-1' /> Scannable QR Code</p>
                               <span className="text-white font-normal text-md">You can scan the following QR Code to send the link to anyone:</span>
-                              <QRCode className='mt-4 mx-auto' value={window.location.href} />
+                              <QRCode className='mt-4 mx-auto' value={roomId} />
                             </Col>
 
                             <Col className="mt-4">
                               <p className="font-semibold text-xl font-inter flex mb-1"><FaLink className='my-auto mr-1' /> Link</p>
-                              <span className="text-white font-normal text-md">Or you can simply copy the following link below:</span><br />
+                              <span className="text-white font-normal text-md">Or you can simply copy the Room ID:</span><br />
                               <span onClick={() => copyRoomLink()} className="text-white text-center font-semibold cursor-pointer">
-                                {window.location.href}
+                                {roomId}
                               </span><br />
                               <button onClick={() => copyRoomLink()} className="flex justify-center bg-primary px-4 py-2 text-white text-center font-semibold rounded-md mt-5">
                                 <FaLink className='my-auto mr-1' size={14} /> Copy Link
@@ -632,6 +634,7 @@ function Main ({ user, room }) {
         keyName="ctrl+b" 
         onKeyDown={() => toggleChat()}
       ></Hotkeys>
+
       <div className="bg-dark w-12/12 py-5 flex items-center">
         <div style={{width: '96%'}} className="mx-auto">
           <Row between="lg" middle="lg">
@@ -640,11 +643,10 @@ function Main ({ user, room }) {
                 <AudioLoader color="white" width={30} height={25} /> {room.title} <span className="bg-primary text-sm font-medium ml-2 mt-1 px-2.5 py-0.5 rounded inline-flex justify-center space-between"><BsPeopleFill size={15} className="mt-0.5 mr-1" /> {numberFormatter(peerList.length)}</span>
               </h3>
               <h4 className="text-lg font-normal text-white mt-3">{room.description}</h4>
+              <h4 onClick={() => copyRoomLink()} className="text-sm text-white flex mt-3 font-semibold cursor-pointer"><MdContentCopy size={19} className="mb-1 mr-1" />{roomId}</h4>
                 {
                   room.pinnedLink !== "" ? (
-                    <Fragment>
-                      <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" rel="noreferrer" >{room.pinnedLink}</a> </h4>
-                    </Fragment>
+                    <h4 className="text-sm text-white flex mt-3 font-semibold"><AiFillPushpin size={19} className="mb-1 mr-1" /><a href={room.pinnedLink} target="_blank" rel="noreferrer" >{room.pinnedLink}</a></h4>
                   ) : null
                 }
                 <Col xs={12} sm={12} md={12} lg={12} className="mt-2">
@@ -661,30 +663,7 @@ function Main ({ user, room }) {
                   </Row>
                 </Col>
                 <h5 className="text-md font-normal text-white mt-5 flex space-x-1"><GoClock size={18} className="mt-1 text-primary" />&nbsp;Started {<ReactTimeAgo date={Number(room.createdAt)} />}&nbsp;with <Link href={`../../../user/${room.createdBy}`}><span className="font-bold bg-gray px-1 rounded-lg cursor-pointer">@{room.createdBy}</span></Link></h5>
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <Row className={`flex relative mt-5 space-x-1 justify-start ${isTabletOrMobile && 'space-y-1'}`}>
-                    <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
-                        <AiFillHome size={13} className="my-auto mr-1" /> Host
-                      </span>
-                    </Col>
-                    <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
-                        <HiSpeakerphone size={13} className="my-auto mr-1" /> Speaker
-                      </span>
-                    </Col>
-                    <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
-                        <FaHeadphones size={13} className="my-auto mr-1" /> Listener
-                      </span>
-                    </Col>
-                    <Col>
-                      <span className="bg-gray px-2 py-1 rounded-full text-white text-sm font-bold flex justify-center">
-                        <FaBan size={13} className="my-auto mr-1" /> Ban
-                      </span>
-                    </Col>
-                  </Row>
-                </Col>
+               
               </Col>
               <Col lg={3} md={2} sm={12} xs={12}>
                 <div className={`flex bg-darker py-0.5 rounded-full items-center justify-center space-x-2" ${isTabletOrMobile && 'mt-3 mx-auto'}`}>
@@ -699,10 +678,9 @@ function Main ({ user, room }) {
                   <button onClick={() => setOpenInvite(true)} className={`p-4 m-1 inline-flex justify-center rounded-full ${openInvite ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
                     <FaUserPlus className='mb-1'  size={20} />
                   </button>
+
                   <button onClick={() => { toggleChat() } } className={`p-4 m-1 inline-flex justify-center rounded-full ${!showChat ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
-                    {
-                      showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />
-                    }
+                    {showChat ? <IoMdChatboxes size={24} /> : <RiChatOffFill size={20} />}
                   </button>
                   
                   <button onClick={() => setOpenSettings(true)} className={`p-4 m-1 inline-flex justify-center rounded-full ${openSettings ? 'text-white bg-primary hover:bg-secondary rounded-full' : 'text-white/50 hover:bg-gray/50'} smooth-hover`}>
