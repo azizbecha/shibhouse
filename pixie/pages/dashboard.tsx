@@ -55,6 +55,7 @@ const Dashboard: NextPage = () => {
     const [roomDescription, setRoomDescription] = useState('');
     const [roomPinnedLink, setRoomPinnedLink] = useState('');
     const [roomTopics, setRoomTopics] = useState<Array<{id: string, text: string}>>([]);
+    const [roomVisibility, setRoomVisibility] = useState<string>("public");
     
     const [scheduledRoomTitle, setScheduledRoomTitle] = useState<string>('');
     const [scheduledRoomDate, setScheduledRoomDate] = useState<string>('');
@@ -110,7 +111,8 @@ const Dashboard: NextPage = () => {
             pinnedLink: roomPinnedLink.trim(),
             topics: roomTopics,
             allowChat: allowChat,
-            speakers: [currentUserData.username]
+            speakers: [currentUserData.username],
+            isPublic: roomVisibility === "public"
         }
         
         if (!isEmpty(roomTitle.trim()) || !isEmpty(roomDescription.trim())) {
@@ -275,7 +277,7 @@ const Dashboard: NextPage = () => {
                                                                     <Row>
                                                                         <Col sm={6}>
                                                                             <label className="block text-base font-medium text-gray-900 dark:text-gray-400">Visibility <span className="text-primary font-extrabold">*</span></label>
-                                                                            <select id="large" className="block mt-1 py-3 px-2 w-full text-base text-gray-900 bg-dark rounded-lg">
+                                                                            <select value={roomVisibility} onChange={e => setRoomVisibility(e.currentTarget.value)}  id="large" className="block mt-1 py-3 px-2 w-full text-base text-gray-900 bg-dark rounded-lg">
                                                                                 <option selected value="public">Public</option>
                                                                                 <option value="private">Private</option>
                                                                             </select>

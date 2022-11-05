@@ -26,7 +26,8 @@ export interface NewRoom {
   topics?: Array<{id: string, text: string}>,
   createdBy: string,
   allowChat: boolean,
-  speakers: string[]
+  speakers: string[],
+  isPublic: boolean
 }
 
 export interface PlayerProps {
