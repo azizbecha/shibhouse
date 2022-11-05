@@ -60,7 +60,7 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
 
   return (
     <div {...props}>
-      <div className={`bg-dark text-white py-2 rounded-lg ${isTabletOrMobile && 'px-1'}`}>
+      <div className={`bg-dark text-white py-1 rounded-lg ${isTabletOrMobile && 'px-1'}`}>
         <div className="container my-3">
           <div className={`w-20 py-5 relative text-white text-center font-bold text-2xl rounded-full mb-1 shadow-lg mx-auto border-4 ${speaking ? 'border-primary' : 'border-gray'}`} style={{backgroundColor: avatar}}>
             {firstname[0].toUpperCase()}{lastname[0].toUpperCase()}
@@ -72,33 +72,37 @@ const User: React.FC<RoomMemberProps> = ({ host, onClick, muted, me, stream, nam
                 </div>
               </Fragment>
             )}
+
+            {me && ['host', 'speaker'].includes(connRole) && (
+              <span onClick={() => {
+                muteToggle();
+                playMuteAudio();
+              }} className='p-1 mb-1 bg-gray rounded-full flex cursor-pointer absolute right-0'>{micMuted ? <FaMicrophoneAltSlash size={12} /> : <FaMicrophone size={12} />}</span>
+            )}
           </div>
 
           {speakerIcon && <VolumeIndicator volume={volume} />}
 
           <h1 className="mt-4 text-white text-center font-semibold text-sm">
-            <a href={`../../user/${name}`} target="_blank" rel="noopener noreferrer">{name}</a> {me && <span className="text-xs">(You)</span> }
+            <div className="flex">
+              <div className="mx-auto space-x-1 flex">
+                {host && <div className='rounded-full px-1 py-0 bg-primary'><AiFillHome className='mt-1' size={10} /></div>} <span>{name}</span>
+              </div>
+            </div>
           </h1>
 
           <div className='flex justify-center space-x-2 mt-3'>
-            {host && (
-              <Fragment>
-                <span className='p-1.5 bg-gray rounded-md flex spaxe-x-2'><AiFillHome /></span>
-              </Fragment>
-            )}
 
-            {speakerIcon && (
+            {/* {speakerIcon && (
               <span className='p-1.5 bg-gray rounded-md flex space-x-2'>{speakerIcon}</span>
-            )}
+            )} */}
 
-            {me && ['host', 'speaker'].includes(connRole) && (
-              <Fragment>
-                <span onClick={() => {
-                  muteToggle();
-                  playMuteAudio();
-                }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2 cursor-pointer'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
-              </Fragment>
-            )}
+            {/* {me && ['host', 'speaker'].includes(connRole) && (
+              <span onClick={() => {
+                muteToggle();
+                playMuteAudio();
+              }} className='p-1.5 bg-gray rounded-md flex spaxe-x-2 cursor-pointer'>{micMuted ? <FaMicrophoneAltSlash /> : <FaMicrophone />}</span>
+            )} */}
             
             {!me && !host && !stream && ['host', 'speaker'].includes(connRole) && <span onClick={() => {
               connectedPeers.forEach(conn => {

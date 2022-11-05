@@ -66,7 +66,7 @@ const Speakers: React.FC<SpeakersProps> = ({roomId}) => {
   
   return (
     <Fragment>
-      <div className="bg-darker my-0 rounded-md p-2">
+      <div className="bg-darker rounded-md p-1">
         <h1 className="font-bold text-white text-2xl mb-4 flex"><HiSpeakerphone size={19} className="mt-2 mr-2" /> Speakers ({speakers.length})</h1>
           <Row className="gap-y-2">
             {speakers.map((speaker, key) => (
