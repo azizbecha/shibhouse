@@ -1,13 +1,10 @@
 {
-  "name": "shibhouse",
+  "name": "rina",
   "version": "1.0.0",
-  "description": "Re-taking voice conversations to the moon",
-  "main": "index.js",
+  "description": "Electron Wrapper For ShibHouse",
+  "main": "main.js",
   "scripts": {
-    "web": "cd pixie && npm run dev",
-    "android": "cd poppy && react-native run-android",
-    "ios": "cd poppy && react-native run-ios",
-    "mobile": "cd poppy && react-native start",
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +17,7 @@
     "url": "https://github.com/azizbecha/shibhouse/issues"
   },
   "homepage": "https://github.com/azizbecha/shibhouse#readme",
-  "dependencies": {
-    "husky": "^8.0.1"
-  },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron": "^21.2.2"
+  }
 }
