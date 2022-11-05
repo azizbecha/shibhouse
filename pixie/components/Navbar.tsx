@@ -68,14 +68,14 @@ const Navbar: React.FC = () => {
                                     <img
                                         className="block lg:hidden h-8 w-auto"
                                         src={logoLink}
-                                        alt="Shibhouse logo"
+                                        alt="ShibHouse logo"
                                     />
                                     <img
                                         className="hidden lg:block h-12 w-7 mr-1 mt-1"
                                         src={logoLink}
-                                        alt="Shibhouse logo"
+                                        alt="ShibHouse logo"
                                     />
-                                    <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>Shibhouse</Link></h1>
+                                    <h1 className="text-white font-medium text-lg">&nbsp;<Link href='/' passHref>ShibHouse</Link></h1>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
