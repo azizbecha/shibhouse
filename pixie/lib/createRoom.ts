@@ -21,7 +21,10 @@ const createRoom = async (data: NewRoom): Promise<void> => {
         isPublic: data.isPublic
     });
 
-    createNotification(`@${data.createdBy} created a room.`);
+    if (data.isPublic) {
+        // create notification only when the room is public
+        createNotification(`@${data.createdBy} created a room.`);
+    }
 }
 
 export default createRoom
