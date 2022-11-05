@@ -1,8 +1,9 @@
+import { NextRouter } from "next/router";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import { fireStore } from "../auth/Firebase";
 
-export const joinPrivateRoom = async (id: string, router) => {
+export const joinPrivateRoom = async (id: string, router: NextRouter) => {
 
     id.trim();
 
