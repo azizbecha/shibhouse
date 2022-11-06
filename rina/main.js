@@ -7,32 +7,84 @@ const path = require('path')
 const env = process.env.NODE_ENV || 'development';
   
 // If development environment
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+    hardResetMethod: 'exit'
+});
 if (env === 'development') {
-    require('electron-reload')(__dirname, {
-        electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-        hardResetMethod: 'exit'
-    });
 }
 
 const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    title: 'ShibHouse - Re-taking voice conversations to the moon',
-    icon: 'https://shibhouse.tv/images/icon.ico',
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+    
+    // // Create the Splash Screen
+    // const splash = new BrowserWindow({
+    //     title: 'ShibHouse - Re-taking voice conversations to the moon',
+    //     width: 500, 
+    //     height: 300, 
+    //     transparent: true, 
+    //     frame: false, 
+    //     alwaysOnTop: true 
+    // });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL("https://shibhouse.tv");
-  mainWindow.center();
-  mainWindow.maximize();
+    // // Create the main window.
+    // const mainWindow = new BrowserWindow({
+    //     width: 1200,
+    //     height: 800,
+    //     title: 'ShibHouse - Re-taking voice conversations to the moon',
+    //     icon: 'https://shibhouse.tv/images/icon.ico',
+    //     alwaysOnTop: true,
+    //     webPreferences: {
+    //         preload: path.join(__dirname, 'preload.js')
+    //     }
+    // })
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+    // mainWindow.hide();
+    // splash.loadFile('splash.html');
+    // splash.center();
+
+    // setTimeout(function () {
+    //     splash.close();
+    //     mainWindow.show();
+    //     mainWindow.loadURL("https://shibhouse.tv");
+    //     mainWindow.center();
+    //     mainWindow.maximize();
+    // }, 5000);
+
+    const mainWindow = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        title: 'ShibHouse - Re-taking voice conversations to the moon',
+        icon: 'https://shibhouse.tv/images/icon.ico',
+        alwaysOnTop: false,
+        show: false,
+        webPreferences: {
+          preload: path.join(__dirname, 'preload.js')
+        }
+    })
+
+    mainWindow.loadURL('https://shibhouse.tv');
+
+    var splash = new BrowserWindow({ 
+        width: 350, 
+        height: 400, 
+        transparent: false, 
+        frame: false, 
+        alwaysOnTop: true,
+        icon: 'https://shibhouse.tv/images/icon.ico',
+    });
+      
+    splash.loadFile('splash/index.html');
+    splash.center();
+
+    setTimeout(function () {
+        splash.close();
+        mainWindow.center();
+        mainWindow.show();
+    }, 3000);
+
+
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
