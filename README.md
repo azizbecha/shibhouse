@@ -68,6 +68,7 @@ Big shout out to the creators of those tools
 * [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
 * [React Native](https://reactnative.dev)
+* [Electron.js](htttps://electronjs.org)
 * [Tailwind CSS](https://tailwindcss.com)
 * [Firebase](https://firebase.google.com)
 * [React Icons](https://react-icons.github.io/)
@@ -78,6 +79,7 @@ Big shout out to the creators of those tools
 | :-------------------- | :-----------------------: |
 | [pixie](pixie)        |   Next.js frontend        |
 | [poppy](poppy)        |   React Native App        |
+| [rina](rina)          |   Electron Wrapper        |
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -94,6 +96,7 @@ Clone the repository
 `NOTE` The project is divided into 2 parts which are: 
 - Pixie: Which is the Next.JS frontend. Here are the <a href="https://github.com/azizbecha/shibhouse/blob/main/pixie/README.md">docs</a>.
 - Poppy: Which is the React Native app. Here are the <a href="https://github.com/azizbecha/shibhouse/blob/main/poppy/README.md">docs</a>.
+- Rina: Which is the Electron Wrapper. Here are the <a href="https://github.com/azizbecha/shibhouse/blob/main/rina/README.md">docs</a>.
 
 <!-- CONTRIBUTING -->
 ## Contributing
