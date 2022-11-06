@@ -15,40 +15,6 @@ if (env === 'development') {
 }
 
 const createWindow = () => {
-    
-    // // Create the Splash Screen
-    // const splash = new BrowserWindow({
-    //     title: 'ShibHouse - Re-taking voice conversations to the moon',
-    //     width: 500, 
-    //     height: 300, 
-    //     transparent: true, 
-    //     frame: false, 
-    //     alwaysOnTop: true 
-    // });
-
-    // // Create the main window.
-    // const mainWindow = new BrowserWindow({
-    //     width: 1200,
-    //     height: 800,
-    //     title: 'ShibHouse - Re-taking voice conversations to the moon',
-    //     icon: 'https://shibhouse.tv/images/icon.ico',
-    //     alwaysOnTop: true,
-    //     webPreferences: {
-    //         preload: path.join(__dirname, 'preload.js')
-    //     }
-    // })
-
-    // mainWindow.hide();
-    // splash.loadFile('splash.html');
-    // splash.center();
-
-    // setTimeout(function () {
-    //     splash.close();
-    //     mainWindow.show();
-    //     mainWindow.loadURL("https://shibhouse.tv");
-    //     mainWindow.center();
-    //     mainWindow.maximize();
-    // }, 5000);
 
     const mainWindow = new BrowserWindow({
         width: 1200,
@@ -80,6 +46,7 @@ const createWindow = () => {
         splash.close();
         mainWindow.center();
         mainWindow.show();
+        mainWindow.maximize();
     }, 3000);
 
 
