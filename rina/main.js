@@ -20,7 +20,7 @@ const createWindow = () => {
         width: 1200,
         height: 800,
         title: 'ShibHouse - Re-taking voice conversations to the moon',
-        icon: 'https://shibhouse.tv/images/icon.ico',
+        icon: __dirname + "../assets/images/icon.ico",
         alwaysOnTop: false,
         show: false,
         webPreferences: {
@@ -36,7 +36,7 @@ const createWindow = () => {
         transparent: false, 
         frame: false, 
         alwaysOnTop: true,
-        icon: 'https://shibhouse.tv/images/icon.ico',
+        icon: __dirname + "../assets/images/icon.ico"
     });
       
     splash.loadFile('splash/index.html');

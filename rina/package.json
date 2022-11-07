@@ -17,7 +17,7 @@
     "url": "https://github.com/azizbecha/shibhouse/issues"
   },
   "homepage": "https://github.com/azizbecha/shibhouse#readme",
-  "devDependencies": {
+  "dependencies": {
     "electron": "^21.2.2",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-reloader": "^1.2.3"
