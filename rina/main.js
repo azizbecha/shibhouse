@@ -20,7 +20,7 @@ const createWindow = () => {
         width: 1200,
         height: 800,
         title: 'ShibHouse - Re-taking voice conversations to the moon',
-        icon: "assets/images/shibhouse-logo-transparent.png",
+        icon: 'icon.ico',
         alwaysOnTop: false,
         show: false,
         webPreferences: {
@@ -36,10 +36,10 @@ const createWindow = () => {
         transparent: false, 
         frame: false, 
         alwaysOnTop: true,
-        icon: "assets/images/shibhouse-logo-transparent.png"
+        icon: 'icon.ico'
     });
-    
-    new Notification({ title: "ShibHouse", body: "Welcome Back", icon: "assets/images/shibhouse-logo-transparent.png", }).show()
+
+    new Notification({ title: "ShibHouse", body: "Welcome Back", icon: path.join(__dirname, "assets/images/shibhouse-logo-transparent.png"), }).show()
 
     splash.loadFile('splash/index.html');
     splash.center();
